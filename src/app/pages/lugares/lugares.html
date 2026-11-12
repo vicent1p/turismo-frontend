@@ -1,0 +1,320 @@
+<app-editorial-shell
+  activeSection="lugares"
+  sheetWidth="wide"
+  [breadcrumbHome]="content().breadcrumbHome"
+  [breadcrumbCurrent]="content().breadcrumbCurrent"
+  [metaPill]="content().metaPill"
+  [eyebrow]="content().eyebrow"
+  [pageTitle]="content().pageTitle"
+  [subtitle]="content().subtitle"
+  [closingTag]="content().closingTag"
+  [closingTitle]="content().closingTitle"
+  [closingDesc]="content().closingDesc"
+  [ctaPrimaryLabel]="content().ctaAgenda"
+  ctaPrimaryRoute="/programacion"
+  [ctaSecondaryLabel]="content().ctaCulture"
+  ctaSecondaryRoute="/cultura"
+  [ctaBackLabel]="content().ctaBackHome"
+>
+  <!-- RESUMEN EJECUTIVO POR CATEGORÍA -->
+  <div shell-header-extra class="lugares-metrics-grid">
+    @for (m of metrics(); track m.id) {
+      <button
+        type="button"
+        class="lugares-metric-card"
+        [class.active]="categoriaActiva() === m.id"
+        (click)="setCategoria(m.id)"
+      >
+        <span class="metric-label">{{ m.label }}</span>
+        <strong class="metric-value">{{ m.value }}</strong>
+      </button>
+    }
+  </div>
+
+  <!-- SELECTOR CENTRADO SUPERIOR (RÉPLICA EXACTA DE CÁPSULA) -->
+  <div class="lugares-switcher-zone">
+    <div
+      class="category-tabs"
+      role="tablist"
+      [attr.aria-label]="content().switcherAriaLabel"
+    >
+      @for (cat of content().categories; track cat.id) {
+        <button
+          type="button"
+          role="tab"
+          class="tab-pill"
+          [class.active]="categoriaActiva() === cat.id"
+          [attr.aria-selected]="categoriaActiva() === cat.id"
+          (click)="setCategoria(cat.id)"
+        >
+          {{ cat.label }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- SUB-BARRA CONTEXTUAL Y FILTRO DE DISPONIBILIDAD -->
+  <div class="lugares-subtoolbar">
+    <div class="subtoolbar-context">
+      <strong class="context-count">
+        {{ content().showingPrefix }} {{ visibleItems().length }}
+        {{ activeCategoryMeta().label.toLowerCase() }} {{ content().inPlato }}
+      </strong>
+      <span class="context-desc">{{ activeCategoryMeta().summaryText }}</span>
+    </div>
+
+    <div class="availability-pills" role="group" aria-label="Availability filter">
+      <button
+        type="button"
+        class="avail-pill"
+        [class.active]="!soloDisponibles()"
+        (click)="setSoloDisponibles(false)"
+      >
+        {{ content().filterAll }} ({{ categoryItems().length }})
+      </button>
+      <button
+        type="button"
+        class="avail-pill"
+        [class.active]="soloDisponibles()"
+        (click)="setSoloDisponibles(true)"
+      >
+        {{ content().filterAvailable }}
+      </button>
+    </div>
+  </div>
+
+  <!-- REJILLA DE TARJETAS PEQUEÑAS -->
+  @if (visibleItems().length > 0) {
+    <div class="lugares-grid">
+      @for (item of visibleItems(); track item.id) {
+        <article class="lugar-card">
+          <div
+            class="lugar-thumb-wrap"
+            role="button"
+            tabindex="0"
+            [attr.aria-label]="item.nombre"
+            (click)="abrirDetalle(item)"
+            (keydown.enter)="abrirDetalle(item)"
+          >
+            @if (item.fotos && item.fotos.length > 0) {
+              <img
+                [src]="item.fotos[0]"
+                [alt]="item.nombre"
+                class="lugar-thumb"
+                loading="lazy"
+              />
+            } @else {
+              <div class="lugar-thumb-placeholder">{{ content().noImage }}</div>
+            }
+
+            <span
+              class="lugar-status-badge"
+              [class.available]="item.disponible"
+              [class.unavailable]="!item.disponible"
+            >
+              <span class="status-dot" aria-hidden="true"></span>
+              {{ item.disponible ? content().available : content().unavailable }}
+            </span>
+
+            <span class="lugar-stars-badge" [attr.aria-label]="item.estrellas + ' estrellas'">
+              ★ {{ item.estrellas }}.0
+            </span>
+
+            @if (item.fotos && item.fotos.length > 1) {
+              <span class="lugar-photo-count">1/{{ item.fotos.length }}</span>
+            }
+          </div>
+
+          <div class="lugar-body">
+            <div class="lugar-kicker-row">
+              <span class="lugar-type-tag">{{ getCardCategoryBadge(item.tipo) }}</span>
+              <span class="lugar-location">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6-5.4-6-11a6 6 0 1112 0c0 5.6-6 11-6 11z" />
+                  <circle cx="12" cy="10" r="2.2" />
+                </svg>
+                {{ item.municipio }}
+              </span>
+            </div>
+
+            <h3 class="lugar-name">{{ item.nombre }}</h3>
+            <p class="lugar-desc">{{ getDesc(item) }}</p>
+
+            @if (getServices(item).length > 0) {
+              <div class="lugar-chips">
+                @for (serv of getServices(item).slice(0, 3); track $index) {
+                  <span class="lugar-chip">{{ serv }}</span>
+                }
+                @if (getServices(item).length > 3) {
+                  <span class="lugar-chip chip-extra">+{{ getServices(item).length - 3 }}</span>
+                }
+              </div>
+            }
+          </div>
+
+          <footer class="lugar-footer">
+            <button
+              type="button"
+              class="btn-detail"
+              (click)="abrirDetalle(item)"
+            >
+              {{ content().viewDetail }}
+            </button>
+
+            <div class="lugar-actions">
+              <a
+                [href]="getMapsUrl(item)"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="icon-action maps"
+                [attr.aria-label]="content().mapsLabel + ' - ' + item.nombre"
+                [title]="content().mapsLabel"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6-5.4-6-11a6 6 0 1112 0c0 5.6-6 11-6 11z" />
+                  <circle cx="12" cy="10" r="2.2" />
+                </svg>
+              </a>
+
+              @if (item.whatsapp) {
+                <a
+                  [href]="getWhatsAppHref(item)"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="icon-action whatsapp"
+                  [attr.aria-label]="content().whatsappLabel + ' - ' + item.nombre"
+                  [title]="content().whatsappLabel"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
+                  </svg>
+                </a>
+              }
+            </div>
+          </footer>
+        </article>
+      }
+    </div>
+  } @else {
+    <div class="lugares-empty-state">
+      <p>{{ soloDisponibles() ? content().emptyAvailable : content().emptyCategory }}</p>
+      @if (soloDisponibles()) {
+        <button type="button" class="btn-reset-filter" (click)="setSoloDisponibles(false)">
+          {{ content().showAllBtn }}
+        </button>
+      }
+    </div>
+  }
+</app-editorial-shell>
+
+<!-- MODAL INTERACTIVO DE DETALLE -->
+@if (selectedPlace(); as place) {
+  <div class="lugar-modal-backdrop" (click)="cerrarDetalle()">
+    <div
+      class="lugar-modal"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-label]="place.nombre"
+      (click)="$event.stopPropagation()"
+    >
+      <button
+        type="button"
+        class="modal-close-btn"
+        [attr.aria-label]="content().closeModal"
+        (click)="cerrarDetalle()"
+      >
+        ✕
+      </button>
+
+      <div class="modal-gallery">
+        @if (modalPhotos().length > 0) {
+          <img
+            [src]="modalPhotos()[modalPhotoIdx()]"
+            [alt]="place.nombre"
+            class="modal-hero-img"
+          />
+          @if (modalPhotos().length > 1) {
+            <button
+              type="button"
+              class="gallery-nav prev"
+              [attr.aria-label]="content().prevPhoto"
+              (click)="stepModalPhoto(-1)"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              class="gallery-nav next"
+              [attr.aria-label]="content().nextPhoto"
+              (click)="stepModalPhoto(1)"
+            >
+              ›
+            </button>
+            <div class="gallery-dots">
+              @for (p of modalPhotos(); track $index) {
+                <span class="gallery-dot" [class.active]="modalPhotoIdx() === $index"></span>
+              }
+            </div>
+          }
+        } @else {
+          <div class="lugar-thumb-placeholder modal-empty">{{ content().noImage }}</div>
+        }
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-badges">
+          <span class="lugar-type-tag">{{ getCardCategoryBadge(place.tipo) }}</span>
+          <span
+            class="modal-status-pill"
+            [class.available]="place.disponible"
+            [class.unavailable]="!place.disponible"
+          >
+            {{ place.disponible ? content().available : content().unavailable }}
+          </span>
+          <span class="modal-stars" aria-hidden="true">
+            @for (s of getStarArray(place.estrellas); track $index) {
+              ★
+            }
+          </span>
+        </div>
+
+        <h2 class="modal-title">{{ place.nombre }}</h2>
+        <p class="modal-location">📍 {{ place.municipio }}, Magdalena</p>
+        <p class="modal-desc">{{ getDesc(place) }}</p>
+
+        @if (getServices(place).length > 0) {
+          <div class="modal-amenities">
+            <h4>{{ content().amenitiesTitle }}</h4>
+            <div class="lugar-chips">
+              @for (serv of getServices(place); track $index) {
+                <span class="lugar-chip">{{ serv }}</span>
+              }
+            </div>
+          </div>
+        }
+
+        <div class="modal-cta-row">
+          @if (place.whatsapp) {
+            <a
+              [href]="getWhatsAppHref(place)"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="modal-btn primary"
+            >
+              {{ content().whatsappLabel }}
+            </a>
+          }
+          <a
+            [href]="getMapsUrl(place)"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="modal-btn secondary"
+          >
+            {{ content().mapsLabel }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+

@@ -1,0 +1,325 @@
+.historia-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.historia-fact-card {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 253, 248, 0.72);
+  border: 1px solid rgba(207, 160, 47, 0.32);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fact-label {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #8a6423;
+}
+
+.fact-value {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: #16542d;
+}
+
+.historia-toc {
+  margin: 0 0 30px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(22, 84, 45, 0.045);
+  border: 1px solid rgba(22, 84, 45, 0.14);
+}
+
+.toc-heading {
+  display: block;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #16542d;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.toc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.toc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.81rem;
+  font-weight: 500;
+  color: #24402e;
+  background: rgba(255, 253, 248, 0.88);
+  border: 1px solid rgba(200, 150, 46, 0.38);
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.toc-chip:hover {
+  border-color: #16542d;
+  color: #16542d;
+  transform: translateY(-1px);
+}
+
+.toc-chip.active {
+  background: #16542d;
+  color: #ffffff;
+  border-color: #16542d;
+  box-shadow: 0 4px 12px rgba(22, 84, 45, 0.2);
+}
+
+.toc-roman {
+  font-weight: 700;
+  color: #c8962e;
+}
+
+.toc-chip.active .toc-roman {
+  color: #f3ce6f;
+}
+
+.historia-body {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: 18px;
+}
+
+.historia-chapter {
+  scroll-margin-top: 90px;
+  width: 100%;
+  margin: 0;
+}
+
+/* Tarjeta pergamino idéntica al diseño "Qué Hacer y Visitar" */
+.parchment-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  filter: drop-shadow(0 8px 18px rgba(14, 38, 22, 0.16));
+  transition: transform 0.24s ease, filter 0.24s ease;
+}
+
+.parchment-card:hover {
+  transform: translateY(-4px);
+  filter: drop-shadow(0 14px 26px rgba(14, 38, 22, 0.22));
+}
+
+.parchment-inner-frame {
+  background-color: #fcf8ef;
+  clip-path: polygon(
+    10px 0%, calc(100% - 10px) 0%,
+    100% 10px, 100% calc(100% - 10px),
+    calc(100% - 10px) 100%, 10px 100%,
+    0% calc(100% - 10px), 0% 10px
+  );
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath d='M10.5,0.75 Q10.5,10.5 0.75,10.5' fill='none' stroke='%23d4a238' stroke-width='1.35'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath d='M0.5,0.75 Q0.5,10.5 10.25,10.5' fill='none' stroke='%23d4a238' stroke-width='1.35'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath d='M10.25,0.5 Q0.5,0.5 0.5,10.25' fill='none' stroke='%23d4a238' stroke-width='1.35'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath d='M0.75,0.5 Q10.5,0.5 10.5,10.25' fill='none' stroke='%23d4a238' stroke-width='1.35'/%3E%3C/svg%3E"),
+    linear-gradient(#d4a238, #d4a238),
+    linear-gradient(#d4a238, #d4a238),
+    linear-gradient(#d4a238, #d4a238),
+    linear-gradient(#d4a238, #d4a238);
+  background-position:
+    left 6px top 6px,
+    right 6px top 6px,
+    right 6px bottom 6px,
+    left 6px bottom 6px,
+    left 16.5px top 6px,
+    left 16.5px bottom 6px,
+    left 6px top 16.5px,
+    right 6px top 16.5px;
+  background-size:
+    11px 11px,
+    11px 11px,
+    11px 11px,
+    11px 11px,
+    calc(100% - 33px) 1.35px,
+    calc(100% - 33px) 1.35px,
+    1.35px calc(100% - 33px),
+    1.35px calc(100% - 33px);
+  background-repeat: no-repeat;
+  padding: 24px 18px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.box-scroll-icon {
+  margin-bottom: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chapter-era {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #b4801e;
+  min-height: 1.25em;
+  line-height: 1.25;
+  margin-bottom: 5px;
+}
+
+.chapter-heading {
+  margin: 0 auto;
+  max-width: 220px;
+  min-height: 3.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.24;
+  color: #16542d;
+}
+
+.chapter-gold-rule {
+  width: 34px;
+  height: 1.3px;
+  background: rgba(200, 150, 46, 0.72);
+  margin: 9px auto 12px;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+/* Estado encogido (solo un extracto corto visible) y despliegue suave hacia abajo */
+.chapter-text-collapse {
+  position: relative;
+  width: 100%;
+  max-width: 225px;
+  max-height: 4.95rem;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.chapter-text-collapse::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.85rem;
+  background: linear-gradient(180deg, rgba(252, 248, 239, 0) 0%, #fcf8ef 92%);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.chapter-text-collapse.expanded {
+  max-height: 65rem;
+}
+
+.chapter-text-collapse.expanded::after {
+  opacity: 0;
+}
+
+.chapter-paragraph {
+  margin: 0 auto;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.855rem;
+  font-weight: 400;
+  line-height: 1.54;
+  color: #36473d;
+  text-align: center;
+}
+
+.chapter-read-more-btn {
+  appearance: none;
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 15px;
+  border-radius: 999px;
+  border: 1px solid rgba(200, 150, 46, 0.65);
+  background: rgba(255, 253, 248, 0.96);
+  color: #16542d;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.18s ease;
+}
+
+.chapter-read-more-btn:hover {
+  background: #16542d;
+  border-color: #16542d;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.chapter-read-more-btn:focus-visible {
+  outline: 2px solid #cfa02f;
+  outline-offset: 2px;
+}
+
+.read-more-chevron {
+  font-size: 0.62rem;
+  line-height: 1;
+  color: #c8962e;
+  transition: color 0.2s ease;
+}
+
+.chapter-read-more-btn:hover .read-more-chevron {
+  color: #f3ce6f;
+}
+
+@media (max-width: 1040px) {
+  .historia-body {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .chapter-text-collapse {
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 680px) {
+  .historia-facts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .parchment-inner-frame {
+    padding: 24px 18px 22px;
+  }
+}
+
+@media (max-width: 580px) {
+  .historia-body {
+    grid-template-columns: 1fr;
+  }
+
+  .chapter-heading {
+    min-height: 0;
+  }
+}

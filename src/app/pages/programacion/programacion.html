@@ -1,0 +1,299 @@
+<app-editorial-shell
+  activeSection="programacion"
+  sheetWidth="wide"
+  [breadcrumbHome]="content().breadcrumbHome"
+  [breadcrumbCurrent]="content().breadcrumbCurrent"
+  [metaPill]="content().metaPill"
+  [eyebrow]="content().eyebrow"
+  [pageTitle]="content().pageTitle"
+  [subtitle]="content().subtitle"
+  [closingTag]="content().closingTag"
+  [closingTitle]="content().closingTitle"
+  [closingDesc]="content().closingDesc"
+  [ctaPrimaryLabel]="content().ctaHotels"
+  ctaPrimaryRoute="/"
+  ctaPrimaryFragment="hoteles"
+  [ctaSecondaryLabel]="content().ctaCulture"
+  ctaSecondaryRoute="/cultura"
+  [ctaBackLabel]="content().ctaBackHome"
+>
+  <!-- CO-BRANDING INSTITUCIONAL Y TARJETAS RESUMEN -->
+  <div shell-header-extra class="prog-header-extra">
+    <div class="prog-institutional-strip" [attr.aria-label]="content().institutionalBannerLabel">
+      <div class="inst-logos-cluster">
+        <img src="escudo-alcaldia.png" alt="Alcaldía de Plato" class="inst-crest" loading="lazy" />
+        <span class="inst-divider" aria-hidden="true"></span>
+        <img src="logo-plato-400.png" alt="Plato 400 Años" class="inst-400-logo" loading="lazy" />
+        <span class="inst-divider" aria-hidden="true"></span>
+        <img src="escudo-gobernacion.png" alt="Gobernación del Magdalena" class="inst-crest" loading="lazy" />
+      </div>
+      <span class="inst-partners-caption">{{ content().institutionalPartners }}</span>
+    </div>
+
+    <div class="prog-metrics-grid">
+      @for (metric of content().metrics; track $index) {
+        <div class="prog-metric-card">
+          <span class="metric-label">{{ metric.label }}</span>
+          <strong class="metric-value">{{ metric.value }}</strong>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- FILTROS DE AGENDA INTERACTIVOS -->
+  <nav class="prog-filter-bar" [attr.aria-label]="content().filterAriaLabel">
+    @for (tab of content().filters; track tab.id) {
+      <button
+        type="button"
+        class="prog-filter-pill"
+        [class.active]="activeFilter() === tab.id"
+        [attr.aria-pressed]="activeFilter() === tab.id"
+        (click)="setFilter(tab.id)"
+      >
+        <span>{{ tab.label }}</span>
+        <span class="prog-filter-count">{{ tab.count }}</span>
+      </button>
+    }
+  </nav>
+
+  <!-- BLOQUE 1 · OCTUBRE Y NOVIEMBRE - DICIEMBRE -->
+  @if (previaBlocks().length > 0) {
+    <section class="prog-stage-section" aria-labelledby="stage-preludio-title">
+      <div class="stage-heading-row">
+        <span class="stage-eyebrow">{{ content().sectionPreludioEyebrow }}</span>
+        <h2 id="stage-preludio-title" class="stage-title">{{ content().sectionPreludioTitle }}</h2>
+      </div>
+
+      <div class="prog-preludio-grid">
+        @for (block of previaBlocks(); track block.id) {
+          <article
+            class="prog-card parchment-frame"
+            [class.span-wide]="block.layoutSpan === 'wide'"
+          >
+            <div class="prog-card-inner">
+              <div class="date-ribbon">
+                <span class="ribbon-spark" aria-hidden="true">✦</span>
+                <h3 class="ribbon-text">{{ block.ribbonDate }}</h3>
+                <span class="ribbon-spark" aria-hidden="true">✦</span>
+              </div>
+
+              @if (block.eyebrow) {
+                <span class="card-kicker">{{ block.eyebrow }}</span>
+              }
+
+              <div class="diamond-rule" aria-hidden="true">
+                <span></span><em>◆</em><span></span>
+              </div>
+
+              @if (block.events?.length) {
+                <ul class="event-list">
+                  @for (ev of block.events; track ev.title) {
+                    <li class="event-row">
+                      <span class="event-icon-badge" aria-hidden="true">
+                        @switch (ev.icon) {
+                          @case ('book') {
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M2 5.5A2.5 2.5 0 0 1 4.5 3H11v16H4.5A2.5 2.5 0 0 0 2 21V5.5Z"/>
+                              <path d="M22 5.5A2.5 2.5 0 0 0 19.5 3H13v16h6.5a2.5 2.5 0 0 1 2.5 2V5.5Z"/>
+                            </svg>
+                          }
+                          @case ('calendar') {
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                              <rect x="3" y="4" width="18" height="17" rx="2.5"/>
+                              <path d="M8 2.5v3M16 2.5v3M3 9.5h18"/>
+                              <circle cx="8" cy="14" r="1" fill="currentColor"/>
+                              <circle cx="12" cy="14" r="1" fill="currentColor"/>
+                              <circle cx="16" cy="14" r="1" fill="currentColor"/>
+                            </svg>
+                          }
+                          @case ('pray') {
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M12 4v6.5l-3 5.5v4.5h6v-4.5l-3-5.5"/>
+                              <path d="M12 4c-1.8 2.2-3 4.8-3 7.5 0 2 1.2 4.5 3 4.5s3-2.5 3-4.5C15 8.8 13.8 6.2 12 4Z"/>
+                              <path d="M7.5 18.5 6 20.5M16.5 18.5 18 20.5"/>
+                            </svg>
+                          }
+                          @default {
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M9 18V6l10-2v12"/>
+                              <circle cx="6.5" cy="18" r="2.5"/>
+                              <circle cx="16.5" cy="16" r="2.5"/>
+                            </svg>
+                          }
+                        }
+                      </span>
+                      <div class="event-copy">
+                        <strong class="event-date-tag">{{ ev.dateLabel }}</strong>
+                        <p class="event-title">{{ ev.title }}</p>
+                        @if (ev.subtitle) {
+                          <p class="event-sub">{{ ev.subtitle }}</p>
+                        }
+                      </div>
+                    </li>
+                  }
+                </ul>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- BLOQUE 2 · 5, 10 Y 11 DE DICIEMBRE -->
+  @if (tradicionBlocks().length > 0) {
+    <section class="prog-stage-section" aria-labelledby="stage-tradicion-title">
+      <div class="stage-heading-row">
+        <span class="stage-eyebrow">{{ content().sectionTradicionEyebrow }}</span>
+        <h2 id="stage-tradicion-title" class="stage-title">{{ content().sectionTradicionTitle }}</h2>
+      </div>
+
+      <div class="prog-tradicion-grid">
+        @for (block of tradicionBlocks(); track block.id) {
+          <article
+            class="prog-card parchment-frame"
+            [class.variant-noche-blanca]="block.variant === 'noche-blanca'"
+            [class.variant-desfile]="block.variant === 'desfile'"
+          >
+            <div class="prog-card-inner">
+              <div class="date-ribbon">
+                <span class="ribbon-spark" aria-hidden="true">✦</span>
+                <h3 class="ribbon-text">{{ block.ribbonDate }}</h3>
+                <span class="ribbon-spark" aria-hidden="true">✦</span>
+              </div>
+
+              @if (block.eyebrow) {
+                <span class="card-kicker">{{ block.eyebrow }}</span>
+              }
+
+              <div class="diamond-rule" aria-hidden="true">
+                <span></span><em>◆</em><span></span>
+              </div>
+
+              @if (block.events?.length && block.variant === 'parchment') {
+                @for (ev of block.events; track ev.title) {
+                  <div class="featured-center-event">
+                    <span class="center-emblem" aria-hidden="true">
+                      <svg width="42" height="42" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 36c1-6 4-11 9-13l3-7c2-3 5-3 6 0l1 3 5-1 2 3-4 2c-1 3-3 5-6 6l1 7"/>
+                        <path d="M18 22l4-5 3 2"/>
+                        <path d="M10 38h28"/>
+                        <circle cx="29" cy="11" r="2.2"/>
+                      </svg>
+                    </span>
+                    <span class="center-date-sub">{{ ev.dateLabel }}</span>
+                    <h4 class="center-event-title">{{ ev.title }}</h4>
+                    @if (ev.subtitle) {
+                      <p class="center-event-desc">{{ ev.subtitle }}</p>
+                    }
+                  </div>
+                }
+              }
+
+              @if (block.variant === 'noche-blanca') {
+                <div class="noche-blanca-spotlight">
+                  <span class="noche-star" aria-hidden="true">✧</span>
+                  <h4 class="noche-title">{{ block.headline }}</h4>
+                  @if (block.quote) {
+                    <blockquote class="noche-quote">{{ block.quote }}</blockquote>
+                  }
+                  @if (block.events?.length) {
+                    <p class="noche-sub">{{ block.events?.[0]?.title }}</p>
+                  }
+                </div>
+              }
+
+              @if (block.variant === 'desfile') {
+                <div class="desfile-content">
+                  <h4 class="desfile-title">{{ block.headline }}</h4>
+
+                  @if (block.bullets?.length) {
+                    <ul class="desfile-bullets">
+                      @for (bullet of block.bullets; track $index) {
+                        <li>{{ bullet }}</li>
+                      }
+                    </ul>
+                  }
+
+                  @if (block.featuredArtist) {
+                    <div class="artist-signature-pill">
+                      <span class="artist-role">{{ block.featuredArtist.roleLabel }}</span>
+                      <strong class="artist-name">{{ block.featuredArtist.name }}</strong>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- BLOQUE 3 · DÍPTICO FIN DE SEMANA CENTRAL (12 Y 13 DE DICIEMBRE) -->
+  @if (showFestivales()) {
+    <section class="prog-stage-section" aria-labelledby="stage-festivales-title">
+      <div class="stage-heading-row">
+        <span class="stage-eyebrow">{{ content().sectionFestivalesEyebrow }}</span>
+        <h2 id="stage-festivales-title" class="stage-title">{{ content().sectionFestivalesTitle }}</h2>
+      </div>
+
+      <div class="prog-festivales-grid">
+        @for (day of content().festivalDays; track day.id) {
+          <article class="festival-mega-card parchment-frame">
+            <div class="prog-card-inner festival-inner">
+              <div class="date-ribbon ribbon-grand">
+                <span class="ribbon-spark" aria-hidden="true">✦</span>
+                <h3 class="ribbon-text">{{ day.ribbonDate }}</h3>
+                <span class="ribbon-spark" aria-hidden="true">✦</span>
+              </div>
+
+              <div class="gastro-pill">
+                <span class="gastro-dot" aria-hidden="true"></span>
+                <span>{{ day.gastronomiaLabel }}</span>
+              </div>
+
+              @if (day.specialShow) {
+                <div class="special-show-box">
+                  <span class="special-show-kicker">{{ day.specialShow.kicker }}</span>
+                  <h4 class="special-show-title">{{ day.specialShow.title }}</h4>
+                </div>
+              }
+
+              <div class="festival-winners-box">
+                <div class="festival-script-title">{{ day.festivalHeading }}</div>
+                <p class="festival-sub">{{ day.festivalSubheading }}</p>
+                <div class="diamond-rule compact" aria-hidden="true">
+                  <span></span><em>◆</em><span></span>
+                </div>
+                <ul class="winners-list">
+                  @for (winner of day.winners; track $index) {
+                    <li>
+                      <span class="winner-bullet" aria-hidden="true">✦</span>
+                      <span>{{ winner }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+
+              <div class="festival-lineup-box">
+                <span class="lineup-label">{{ day.artistsLabel }}</span>
+                <div class="lineup-chips">
+                  @for (artist of day.artists; track artist.name) {
+                    <div class="artist-card-chip" [class.headliner]="artist.isHeadliner">
+                      @if (artist.tag) {
+                        <span class="artist-chip-tag">{{ artist.tag }}</span>
+                      }
+                      <strong class="artist-chip-name">{{ artist.name }}</strong>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  }
+</app-editorial-shell>
+

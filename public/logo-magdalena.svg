@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" width="100%" height="100%">
+  <defs>
+    <linearGradient id="franjaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5618BA" />
+      <stop offset="14%" stop-color="#FEC800" />
+      <stop offset="28%" stop-color="#F7003C" />
+      <stop offset="42%" stop-color="#0071BB" />
+      <stop offset="70%" stop-color="#00B7D9" />
+      <stop offset="100%" stop-color="#69B75E" />
+    </linearGradient>
+  </defs>
+  <!-- Sello/Escudo estilizado Magdalena -->
+  <g transform="translate(10, 6)">
+    <rect width="46" height="46" rx="10" fill="#0071BB" />
+    <path d="M12 36 L23 12 L34 36 Z" fill="#FEC800" opacity="0.9" />
+    <path d="M16 36 L23 20 L30 36 Z" fill="#ffffff" />
+    <circle cx="23" cy="18" r="4" fill="#F7003C" />
+    <rect x="0" y="44" width="46" height="4" rx="2" fill="url(#franjaGrad)" />
+  </g>
+  <!-- Texto Gobernación del Magdalena -->
+  <text x="68" y="26" font-family="'Montserrat', sans-serif" font-size="15" font-weight="800" fill="#004F83" letter-spacing="1.2">GOBERNACIÓN DEL</text>
+  <text x="68" y="45" font-family="'Montserrat', sans-serif" font-size="18" font-weight="900" fill="#F7003C" letter-spacing="2">MAGDALENA</text>
+</svg>
+

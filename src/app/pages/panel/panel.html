@@ -1,0 +1,1594 @@
+<div class="panel-layout">
+  <!-- MENÚ LATERAL (SIDEBAR) ESTILO GOBERNACIÓN DEL MAGDALENA -->
+  <aside class="sidebar" aria-label="Menú principal del panel">
+    <!-- Encabezado con Logo Oficial de la Gobernación del Magdalena -->
+    <div class="sidebar-header">
+      <div class="sidebar-logo-box">
+        <img
+          src="logo-horizontal-color.png"
+          alt="Gobernación del Magdalena"
+          class="sidebar-logo-img"
+        />
+      </div>
+    </div>
+
+    <!-- SECCIÓN: MI ESPACIO -->
+    <div class="sidebar-menu">
+      <span class="menu-heading">MI ESPACIO</span>
+
+      <!-- 0. PANEL DE CONTROL (DASHBOARD) -->
+      <button
+        type="button"
+        class="nav-item"
+        [class.active]="seccion() === 'dashboard'"
+        (click)="setSeccion('dashboard')"
+      >
+        <span class="nav-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/>
+          </svg>
+        </span>
+        <span class="nav-label">Panel de Control</span>
+      </button>
+
+      <!-- 1. CATÁLOGO DE HOTELES -->
+      <button
+        type="button"
+        class="nav-item"
+        [class.active]="seccion() === 'hoteles' && subTabHoteles() === 'catalogo'"
+        (click)="setSeccion('hoteles', 'catalogo')"
+      >
+        <span class="nav-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.75a1.5 1.5 0 011.5-1.5h1.5a1.5 1.5 0 011.5 1.5V21"/>
+          </svg>
+        </span>
+        <span class="nav-label">Catálogo de Hoteles</span>
+      </button>
+
+      <!-- 2. CREAR TARJETA -->
+      <button
+        type="button"
+        class="nav-item"
+        [class.active]="seccion() === 'hoteles' && subTabHoteles() === 'crear'"
+        (click)="setSeccion('hoteles', 'crear')"
+      >
+        <span class="nav-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+          </svg>
+        </span>
+        <span class="nav-label">Crear Tarjeta</span>
+      </button>
+
+      <!-- 3. CREAR USUARIOS (Solo Administradores) -->
+      @if (authService.isAdmin()) {
+        <button
+          type="button"
+          class="nav-item"
+          [class.active]="seccion() === 'usuarios'"
+          (click)="setSeccion('usuarios')"
+        >
+          <span class="nav-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+            </svg>
+          </span>
+          <span class="nav-label">Crear Usuarios</span>
+        </button>
+
+        <!-- 4. CATÁLOGOS (Solo Administradores) -->
+        <button
+          type="button"
+          class="nav-item nav-item-catalogos"
+          [class.active]="seccion() === 'catalogos'"
+          (click)="setSeccion('catalogos')"
+        >
+          <span class="nav-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z"/>
+            </svg>
+          </span>
+          <span class="nav-label">Catálogos</span>
+        </button>
+      }
+    </div>
+
+    <!-- ENLACE DIRECTO A LA PORTADA PÚBLICA -->
+    <div class="sidebar-footer">
+      <a routerLink="/" class="btn-sidebar-portada">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+        </svg>
+        <span>Ver Portada</span>
+      </a>
+
+      <button type="button" class="btn-sidebar-password" (click)="openOwnPasswordModal()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+        </svg>
+        <span>Cambiar contraseña</span>
+      </button>
+
+      <button type="button" class="btn-sidebar-logout" (click)="logout()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H8.25"/>
+        </svg>
+        <span>Cerrar sesión</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="panel-main">
+    <!-- Barra Superior -->
+    <header class="panel-topbar">
+      <div class="breadcrumb">
+        <span>Panel Turismo</span>
+        <span class="sep">/</span>
+        <strong>{{ seccion() === 'dashboard' ? 'Panel de Control' : (seccion() === 'usuarios' ? 'Crear Usuarios' : (seccion() === 'catalogos' ? 'Catálogos' : (subTabHoteles() === 'crear' ? 'Crear Tarjeta' : 'Catálogo de Hoteles'))) }}</strong>
+      </div>
+
+      <div class="topbar-right">
+        <div class="user-pill">
+          <span class="user-role-badge" [class.badge-admin]="authService.isAdmin()" [class.badge-gestor]="!authService.isAdmin()">
+            {{ authService.roleLabel() }}
+          </span>
+          <span class="user-name">{{ authService.currentUser()?.name }}</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Notificación Toast flotante -->
+    @if (toastMessage()) {
+      <div class="toast-alert" role="alert">
+        {{ toastMessage() }}
+      </div>
+    }
+
+    <!-- ======================================================== -->
+    <!-- SECCIÓN 0: PANEL DE CONTROL (DASHBOARD)                 -->
+    <!-- ======================================================== -->
+    @if (seccion() === 'dashboard') {
+      <section class="section-content dashboard-content">
+        <!-- Encabezado del Dashboard con Accesos Directos -->
+        <div class="dashboard-header-row">
+          <div class="section-title-wrap">
+            <h2>Panel de Control</h2>
+            <p class="section-desc">
+              Resumen general y métricas operativas del catálogo turístico de Plato y el Magdalena.
+            </p>
+          </div>
+
+          <!-- ACCESOS DIRECTOS -->
+          <div class="quick-actions-bar" aria-label="Accesos directos">
+            <span class="quick-actions-label">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+              </svg>
+              <span>Accesos directos</span>
+            </span>
+            <div class="quick-actions-btns">
+              <button
+                type="button"
+                class="btn-quick btn-quick-crear"
+                (click)="setSeccion('hoteles', 'crear')"
+              >
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                </svg>
+                <span>Crear Tarjeta</span>
+              </button>
+
+              <button
+                type="button"
+                class="btn-quick btn-quick-catalogo"
+                (click)="setSeccion('hoteles', 'catalogo')"
+              >
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+                <span>Ver Catálogo</span>
+              </button>
+
+              @if (authService.isAdmin()) {
+                <button
+                  type="button"
+                  class="btn-quick btn-quick-usuario"
+                  (click)="setSeccion('usuarios', 'crear')"
+                >
+                  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.765z"/>
+                  </svg>
+                  <span>Crear Usuario</span>
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- ESTADO DE ERROR -->
+        @if (dashboardService.errorResumen()) {
+          <div class="dashboard-error-banner" role="alert">
+            <div class="error-msg">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/>
+              </svg>
+              <span>{{ dashboardService.errorResumen() }}</span>
+            </div>
+            <button type="button" class="btn-retry" (click)="dashboardService.cargarResumen()">
+              Reintentar
+            </button>
+          </div>
+        }
+
+        <!-- ESTADO DE CARGA (SKELETON) -->
+        @if (dashboardService.loadingResumen()) {
+          <div class="kpi-grid">
+            <div class="kpi-card skeleton-card">
+              <div class="skeleton-shimmer skeleton-icon"></div>
+              <div class="skeleton-shimmer skeleton-title"></div>
+              <div class="skeleton-shimmer skeleton-value"></div>
+              <div class="skeleton-shimmer skeleton-sub"></div>
+            </div>
+            <div class="kpi-card skeleton-card">
+              <div class="skeleton-shimmer skeleton-icon"></div>
+              <div class="skeleton-shimmer skeleton-title"></div>
+              <div class="skeleton-shimmer skeleton-value"></div>
+              <div class="skeleton-shimmer skeleton-sub"></div>
+            </div>
+            <div class="kpi-card skeleton-card">
+              <div class="skeleton-shimmer skeleton-icon"></div>
+              <div class="skeleton-shimmer skeleton-title"></div>
+              <div class="skeleton-shimmer skeleton-value"></div>
+              <div class="skeleton-shimmer skeleton-sub"></div>
+            </div>
+            @if (authService.isAdmin()) {
+              <div class="kpi-card skeleton-card">
+                <div class="skeleton-shimmer skeleton-icon"></div>
+                <div class="skeleton-shimmer skeleton-title"></div>
+                <div class="skeleton-shimmer skeleton-value"></div>
+                <div class="skeleton-shimmer skeleton-sub"></div>
+              </div>
+            }
+          </div>
+        } @else if (dashboardService.resumen()) {
+          <!-- TARJETAS DE RESUMEN (KPI CARDS) -->
+          <div class="kpi-grid">
+            <!-- 1. Total de Hoteles Registrados -->
+            <div class="kpi-card card-total">
+              <div class="kpi-top">
+                <div class="kpi-icon-box bg-blue">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.75a1.5 1.5 0 011.5-1.5h1.5a1.5 1.5 0 011.5 1.5V21"/>
+                  </svg>
+                </div>
+                <span class="kpi-tag tag-blue">Catálogo Activo</span>
+              </div>
+              <span class="kpi-label">Total de Hoteles Registrados</span>
+              <div class="kpi-value-row">
+                <span class="kpi-num">{{ dashboardService.resumen()?.totalHoteles }}</span>
+                <span class="kpi-unit">hoteles</span>
+              </div>
+              <p class="kpi-desc">Hospedajes y hoteles registrados para los 400 años de Plato.</p>
+            </div>
+
+            <!-- 2. Estado de Disponibilidad (Verde / Rojo) -->
+            <div class="kpi-card card-disponibilidad">
+              <div class="kpi-top">
+                <div class="kpi-icon-box bg-emerald">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <span class="kpi-tag tag-emerald">Tiempo Real</span>
+              </div>
+              <span class="kpi-label">Estado de Disponibilidad</span>
+              <div class="kpi-split-row">
+                <div class="split-pill pill-disponible">
+                  <span class="pill-dot bg-green"></span>
+                  <span class="pill-num">{{ dashboardService.resumen()?.hotelesDisponibles }}</span>
+                  <span class="pill-text">Disponibles</span>
+                </div>
+                <div class="split-pill pill-no-disponible">
+                  <span class="pill-dot bg-red"></span>
+                  <span class="pill-num">{{ dashboardService.resumen()?.hotelesNoDisponibles }}</span>
+                  <span class="pill-text">No disponibles</span>
+                </div>
+              </div>
+              <p class="kpi-desc">Sincronizado con la portada pública de reservas turísticas.</p>
+            </div>
+
+            <!-- 3. Hoteles por Municipio -->
+            <div class="kpi-card card-municipios">
+              <div class="kpi-top">
+                <div class="kpi-icon-box bg-amber">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                  </svg>
+                </div>
+                <span class="kpi-tag tag-amber">Magdalena</span>
+              </div>
+              <span class="kpi-label">Hoteles por Municipio</span>
+              <div class="municipios-chips-list">
+                @for (m of dashboardService.resumen()?.hotelesPorMunicipio; track m.municipio) {
+                  <span class="mun-chip">
+                    <strong class="mun-name">{{ m.municipio }}</strong>
+                    <span class="mun-count">{{ m.total }}</span>
+                  </span>
+                }
+              </div>
+              <p class="kpi-desc">Distribución geográfica departamental.</p>
+            </div>
+
+            <!-- 4. Total de Usuarios (SOLO VISIBLE PARA ADMIN) -->
+            @if (authService.isAdmin() && dashboardService.resumen()?.usuarios) {
+              <div class="kpi-card card-usuarios">
+                <div class="kpi-top">
+                  <div class="kpi-icon-box bg-purple">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>
+                    </svg>
+                  </div>
+                  <span class="kpi-tag tag-purple">Solo Administrador</span>
+                </div>
+                <span class="kpi-label">Usuarios del Sistema</span>
+                <div class="kpi-value-row">
+                  <span class="kpi-num">{{ dashboardService.resumen()?.usuarios?.total }}</span>
+                  <span class="kpi-unit">usuarios</span>
+                </div>
+                <div class="kpi-roles-split">
+                  <span class="role-badge-sub">
+                    🛡️ {{ dashboardService.resumen()?.usuarios?.administradores }} Admin
+                  </span>
+                  <span class="role-badge-sub">
+                    📋 {{ dashboardService.resumen()?.usuarios?.gestores }} Gestores
+                  </span>
+                </div>
+                <p class="kpi-desc">Personal con credenciales activas en el sistema.</p>
+              </div>
+            }
+          </div>
+
+          <!-- BLOQUE DE GRÁFICAS INTERACTIVAS -->
+          <div class="dashboard-section-block">
+            <div class="section-subtitle-wrap">
+              <h3>Distribución y Métricas Gráficas</h3>
+              <p class="section-subdesc">Visualización analítica de disponibilidad, categorías y cobertura territorial.</p>
+            </div>
+
+            <div class="charts-grid">
+              <!-- Gráfica 1: Dona Disponibles vs No Disponibles (Verde y Rojo) -->
+              <div class="chart-card">
+                <div class="chart-header">
+                  <div class="chart-title-box">
+                    <span class="chart-title">Disponibilidad de Hospedajes</span>
+                    <span class="chart-sub">Proporción en tiempo real</span>
+                  </div>
+                  <span class="chart-badge badge-dona">Dona</span>
+                </div>
+                <div class="chart-container">
+                  <canvas #donaCanvas id="donaChartCanvas"></canvas>
+                </div>
+                <div class="chart-footer-legend">
+                  <span class="legend-item"><i class="dot bg-green"></i> Disponibles: <strong>{{ dashboardService.graficas()?.disponibilidad?.disponibles }}</strong></span>
+                  <span class="legend-item"><i class="dot bg-red"></i> No disponibles: <strong>{{ dashboardService.graficas()?.disponibilidad?.noDisponibles }}</strong></span>
+                </div>
+              </div>
+
+              <!-- Gráfica 2: Barras por Número de Estrellas (1 a 5) -->
+              <div class="chart-card">
+                <div class="chart-header">
+                  <div class="chart-title-box">
+                    <span class="chart-title">Categoría por Estrellas</span>
+                    <span class="chart-sub">De 1 a 5 estrellas</span>
+                  </div>
+                  <span class="chart-badge badge-bar">Barras</span>
+                </div>
+                <div class="chart-container">
+                  <canvas #estrellasCanvas id="estrellasChartCanvas"></canvas>
+                </div>
+                <div class="chart-footer-legend">
+                  <span class="legend-hint">Calificación de calidad según el catálogo turístico.</span>
+                </div>
+              </div>
+
+              <!-- Gráfica 3: Barras Horizontales por Municipio -->
+              <div class="chart-card">
+                <div class="chart-header">
+                  <div class="chart-title-box">
+                    <span class="chart-title">Hoteles por Municipio</span>
+                    <span class="chart-sub">Cobertura geográfica</span>
+                  </div>
+                  <span class="chart-badge badge-horiz">Horizontal</span>
+                </div>
+                <div class="chart-container">
+                  <canvas #municipiosCanvas id="municipiosChartCanvas"></canvas>
+                </div>
+                <div class="chart-footer-legend">
+                  <span class="legend-hint">Distribución en el departamento del Magdalena.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BLOQUE DE MAPA INTERACTIVO (LEAFLET) -->
+          <div class="dashboard-section-block">
+            <div class="section-subtitle-wrap">
+              <h3>Mapa Interactivo de Hospedajes</h3>
+              <p class="section-subdesc">
+                Localización geográfica de hoteles registrados en Plato y el Magdalena con OpenStreetMap.
+              </p>
+            </div>
+
+            <!-- COMPONENTE REUTILIZABLE MAPA-HOTELES -->
+            <app-mapa-hoteles
+              [hoteles]="dashboardService.mapaHoteles()"
+              (editar)="editarHotelPorId($event)"
+            ></app-mapa-hoteles>
+          </div>
+
+          <!-- BLOQUE DE LISTAS RÁPIDAS -->
+          <div class="dashboard-section-block">
+            <div class="section-subtitle-wrap">
+              <h3>Listas Rápidas de Control y Auditoría</h3>
+              <p class="section-subdesc">Supervisión inmediata de novedades, calidad de datos y mantenimiento.</p>
+            </div>
+
+            <div class="quicklists-grid">
+              <!-- Lista 1: Últimos 5 hoteles agregados o editados -->
+              <div class="quicklist-card">
+                <div class="quicklist-header">
+                  <div class="ql-title-wrap">
+                    <span class="ql-icon-box bg-blue">
+                      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                    </span>
+                    <h4>Últimos Modificados</h4>
+                  </div>
+                  <span class="ql-counter">{{ dashboardService.listas()?.recientes?.length || 0 }}</span>
+                </div>
+
+                <div class="quicklist-body">
+                  @if (!dashboardService.listas()?.recientes?.length) {
+                    <p class="ql-empty">No hay registros recientes disponibles.</p>
+                  } @else {
+                    <ul class="ql-items-list">
+                      @for (item of dashboardService.listas()?.recientes; track item.id) {
+                        <li class="ql-item">
+                          <div class="ql-item-info">
+                            <strong class="ql-item-name">{{ item.nombre }}</strong>
+                            <div class="ql-item-meta">
+                              <span class="ql-item-author">👤 {{ item.quien }}</span>
+                              <span class="ql-item-date">📅 {{ item.fecha }}</span>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="btn-ql-action"
+                            (click)="editarHotelPorId(item.id)"
+                            title="Editar hotel"
+                          >
+                            Editar
+                          </button>
+                        </li>
+                      }
+                    </ul>
+                  }
+                </div>
+              </div>
+
+              <!-- Lista 2: Hoteles con información incompleta -->
+              <div class="quicklist-card">
+                <div class="quicklist-header">
+                  <div class="ql-title-wrap">
+                    <span class="ql-icon-box bg-amber">
+                      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+                      </svg>
+                    </span>
+                    <h4>Información Incompleta</h4>
+                  </div>
+                  <span class="ql-counter" [class.counter-alert]="(dashboardService.listas()?.incompletos?.length || 0) > 0">
+                    {{ dashboardService.listas()?.incompletos?.length || 0 }}
+                  </span>
+                </div>
+
+                <div class="quicklist-body">
+                  @if (!dashboardService.listas()?.incompletos?.length) {
+                    <div class="ql-success-box">
+                      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                      <p>✓ Todos los hoteles tienen fotos, WhatsApp, ubicación y reseña completas.</p>
+                    </div>
+                  } @else {
+                    <ul class="ql-items-list">
+                      @for (item of dashboardService.listas()?.incompletos; track item.id) {
+                        <li class="ql-item ql-item-warning">
+                          <div class="ql-item-info">
+                            <strong class="ql-item-name">{{ item.nombre }}</strong>
+                            <div class="ql-missing-chips">
+                              @for (f of item.faltantes; track f) {
+                                <span class="missing-badge">⚠️ {{ f }}</span>
+                              }
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="btn-ql-action btn-ql-warning"
+                            (click)="editarHotelPorId(item.id)"
+                            title="Completar información"
+                          >
+                            Completar
+                          </button>
+                        </li>
+                      }
+                    </ul>
+                  }
+                </div>
+              </div>
+
+              <!-- Lista 3: Hoteles sin actualizarse en más de 30 días -->
+              <div class="quicklist-card">
+                <div class="quicklist-header">
+                  <div class="ql-title-wrap">
+                    <span class="ql-icon-box bg-emerald">
+                      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.253M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
+                      </svg>
+                    </span>
+                    <h4>Sin Actualizar (&gt; 30 días)</h4>
+                  </div>
+                  <span class="ql-counter" [class.counter-alert]="(dashboardService.listas()?.sinActualizar?.length || 0) > 0">
+                    {{ dashboardService.listas()?.sinActualizar?.length || 0 }}
+                  </span>
+                </div>
+
+                <div class="quicklist-body">
+                  @if (!dashboardService.listas()?.sinActualizar?.length) {
+                    <div class="ql-success-box">
+                      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                      <p>✓ Todos los hoteles se encuentran al día y actualizados recientemente.</p>
+                    </div>
+                  } @else {
+                    <ul class="ql-items-list">
+                      @for (item of dashboardService.listas()?.sinActualizar; track item.id) {
+                        <li class="ql-item ql-item-stale">
+                          <div class="ql-item-info">
+                            <strong class="ql-item-name">{{ item.nombre }}</strong>
+                            <span class="ql-stale-tag">⏱️ Hace {{ item.diasSinActualizar }} días</span>
+                          </div>
+                          <button
+                            type="button"
+                            class="btn-ql-action"
+                            (click)="editarHotelPorId(item.id)"
+                            title="Actualizar hotel"
+                          >
+                            Revisar
+                          </button>
+                        </li>
+                      }
+                    </ul>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </section>
+    }
+
+    <!-- ======================================================== -->
+    <!-- SECCIÓN 1: CREAR USUARIOS (Gestión de usuarios y claves) -->
+    <!-- ======================================================== -->
+    @if (seccion() === 'usuarios' && authService.isAdmin()) {
+      <section class="section-content">
+        <div class="section-title-wrap">
+          <h2>Crear Usuarios</h2>
+          <p class="section-desc">
+            Administre las cuentas autorizadas para gestionar el portal turístico, asigne roles y modifique contraseñas.
+          </p>
+        </div>
+
+        <!-- DOS BOTONES / PESTAÑAS: CREAR y USUARIOS CREADOS -->
+        <div class="subtabs-bar">
+          <button
+            type="button"
+            class="subtab-btn"
+            [class.active]="subTabUsuarios() === 'crear'"
+            (click)="setSubTabUsuarios('crear')"
+          >
+            + Crear
+          </button>
+          <button
+            type="button"
+            class="subtab-btn"
+            [class.active]="subTabUsuarios() === 'lista'"
+            (click)="setSubTabUsuarios('lista')"
+          >
+            👥 Usuarios Creados ({{ authService.usuarios().length }})
+          </button>
+        </div>
+
+        <div class="cards-grid">
+          <!-- SUB-PESTAÑA 1: FORMULARIO CREAR USUARIO -->
+          @if (subTabUsuarios() === 'crear') {
+            <div class="card card-form">
+              <h3 class="card-heading">+ Registrar nuevo usuario</h3>
+
+              <form (submit)="$event.preventDefault(); crearUsuario()" class="mini-form">
+                <div class="form-group">
+                  <label for="u_nombre">NOMBRE COMPLETO *</label>
+                  <input
+                    id="u_nombre"
+                    type="text"
+                    [(ngModel)]="userNombre"
+                    name="userNombre"
+                    placeholder="ej.: Carlos Mario Restrepo"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="u_correo">CORREO ELECTRÓNICO *</label>
+                  <input
+                    id="u_correo"
+                    type="email"
+                    [(ngModel)]="userCorreo"
+                    name="userCorreo"
+                    placeholder="ej.: carlos.turismo@magdalena.gov.co"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="u_pass">CONTRASEÑA *</label>
+                  <input
+                    id="u_pass"
+                    type="password"
+                    [(ngModel)]="userPassword"
+                    name="userPassword"
+                    placeholder="Contraseña inicial del usuario"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>ROL Y PERMISOS DE ACCESO *</label>
+                  <div class="radio-roles">
+                    <label class="radio-card" [class.selected]="userRol === 'gestor'">
+                      <input
+                        type="radio"
+                        name="userRol"
+                        value="gestor"
+                        [(ngModel)]="userRol"
+                      />
+                      <div class="radio-text">
+                        <strong>Gestor de Contenidos</strong>
+                        <small>Permiso para crear y editar hoteles, subir y ordenar fotos.</small>
+                      </div>
+                    </label>
+
+                    <label class="radio-card" [class.selected]="userRol === 'admin'">
+                      <input
+                        type="radio"
+                        name="userRol"
+                        value="admin"
+                        [(ngModel)]="userRol"
+                      />
+                      <div class="radio-text">
+                        <strong>Administrador General</strong>
+                        <small>Acceso completo: creación de usuarios, cambio de claves y hoteles.</small>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn-primary-action">
+                    + Crear Usuario
+                  </button>
+                  <button type="button" class="btn-secondary-action" (click)="setSubTabUsuarios('lista')">
+                    Ver Usuarios Creados
+                  </button>
+                </div>
+              </form>
+            </div>
+          }
+
+          <!-- SUB-PESTAÑA 2: LISTA DE USUARIOS CREADOS -->
+          @if (subTabUsuarios() === 'lista') {
+            <div class="card card-full">
+              <div class="card-header-flex">
+                <h3 class="card-heading">Usuarios Creados en el Sistema</h3>
+                <button type="button" class="btn-subtab-inline" (click)="setSubTabUsuarios('crear')">
+                  + Registrar otro usuario
+                </button>
+              </div>
+
+              <div class="users-table-wrap">
+                <table class="users-table">
+                  <thead>
+                    <tr>
+                      <th>NOMBRE COMPLETO</th>
+                      <th>CORREO ELECTRÓNICO</th>
+                      <th>ROL</th>
+                      <th>FECHA CREACIÓN</th>
+                      <th>ACCIONES / CONTRASEÑA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (u of authService.usuarios(); track u.id) {
+                      <tr>
+                        <td>
+                          <strong>{{ u.nombreCompleto }}</strong>
+                        </td>
+                        <td>
+                          <span class="user-email-text">{{ u.correo }}</span>
+                        </td>
+                        <td>
+                          <span class="role-pill" [class.role-admin]="u.role === 'admin'" [class.role-gestor]="u.role === 'gestor'">
+                            {{ u.roleLabel }}
+                          </span>
+                        </td>
+                        <td>{{ u.fechaCreacion }}</td>
+                        <td>
+                          <!-- MODIFICAR CONTRASEÑA -->
+                          @if (editingUserId() === u.id) {
+                            <div class="inline-password-box">
+                              <input
+                                type="password"
+                                [(ngModel)]="newPasswordInput"
+                                placeholder="Nueva clave"
+                                class="input-pass-mini"
+                              />
+                              <button type="button" class="btn-pass-save" (click)="guardarPassword(u.id)">
+                                Guardar
+                              </button>
+                              <button type="button" class="btn-pass-cancel" (click)="cancelarCambioPassword()">
+                                ✕
+                              </button>
+                            </div>
+                          } @else {
+                            <div class="row-actions">
+                              <button
+                                type="button"
+                                class="btn-action-pass"
+                                (click)="iniciarCambioPassword(u.id)"
+                                title="Cambiar contraseña de este usuario"
+                              >
+                                🔑 Cambiar contraseña
+                              </button>
+                              <button
+                                type="button"
+                                class="btn-action-del"
+                                (click)="eliminarUsuario(u)"
+                                title="Eliminar usuario"
+                              >
+                                🗑
+                              </button>
+                            </div>
+                          }
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- ======================================================== -->
+    <!-- SECCIÓN 2: CATÁLOGO DE HOTELES (Vinculado a portada)       -->
+    <!-- ======================================================== -->
+    @if (seccion() === 'hoteles') {
+      <section class="section-content">
+        <div class="section-title-wrap">
+          @if (subTabHoteles() === 'catalogo') {
+            <h2>Catálogo de Hoteles</h2>
+            <p class="section-desc">
+              Configure y administre el catálogo de hospedajes y hoteles turísticos del Magdalena. Los cambios se sincronizan inmediatamente en la portada pública.
+            </p>
+          } @else {
+            <h2>{{ hotelEditId ? 'Editar Tarjeta' : 'Crear Tarjeta' }}</h2>
+            <p class="section-desc">
+              {{ hotelEditId ? cardMeta().pageDescEdit : cardMeta().pageDescCreate }}
+            </p>
+          }
+        </div>
+
+        <!-- 1. APARTADO: CREAR TARJETA -->
+        @if (subTabHoteles() === 'crear') {
+          <div class="cards-grid-two-cols">
+            <!-- COLUMNA 1: FORMULARIO CREAR TARJETA -->
+            <div class="card card-hotel-form">
+              <div class="card-header-flex">
+                <h3 class="card-heading">
+                  {{ hotelEditId ? cardMeta().formHeadingEdit : cardMeta().formHeadingCreate }}
+                </h3>
+                @if (hotelEditId) {
+                  <button type="button" class="btn-cancel-edit" (click)="limpiarFormularioHotel()">
+                    ✕ Cancelar Edición
+                  </button>
+                }
+              </div>
+
+              <form (submit)="$event.preventDefault(); guardarHotel()" class="hotel-form">
+                <!-- 0. Pregunta inicial: ¿Qué tarjeta vas a crear? -->
+                <div class="form-group card-type-question-group">
+                  <label id="card_type_question_label" class="card-type-question-label">¿Qué tarjeta vas a crear? *</label>
+                  <p class="card-type-helper">Selecciona una opción para adaptar automáticamente los nombres del formulario.</p>
+                  <div class="card-type-options" role="radiogroup" aria-labelledby="card_type_question_label">
+                    @for (opt of cardTypeOptions; track opt.id) {
+                      <button
+                        type="button"
+                        role="radio"
+                        class="card-type-option"
+                        [class.selected]="cardType() === opt.id"
+                        [attr.aria-checked]="cardType() === opt.id"
+                        [attr.data-card-type]="opt.id"
+                        (click)="seleccionarTipoTarjeta(opt.id)"
+                      >
+                        <span class="card-type-radio-dot" aria-hidden="true"></span>
+                        <span class="card-type-text">
+                          <strong class="card-type-name">{{ opt.optionLabel }}</strong>
+                          <small class="card-type-sub">{{ opt.optionHint }}</small>
+                        </span>
+                      </button>
+                    }
+                  </div>
+                </div>
+
+                <!-- 1. Nombre del establecimiento -->
+                <div class="form-group">
+                  <label for="h_nombre">{{ cardMeta().labelNombre }}</label>
+                  <input
+                    id="h_nombre"
+                    type="text"
+                    [(ngModel)]="hotelNombre"
+                    name="hotelNombre"
+                    [placeholder]="cardMeta().placeholderNombre"
+                    required
+                  />
+                </div>
+
+                <!-- 1.1 Municipio del Magdalena -->
+                <div class="form-group">
+                  <label for="h_muni">MUNICIPIO DEL MAGDALENA *</label>
+                  <select id="h_muni" [(ngModel)]="hotelMunicipio" name="hotelMunicipio" required>
+                    @for (m of municipiosMagdalena; track m) {
+                      <option [value]="m">{{ m }}</option>
+                    }
+                  </select>
+                </div>
+
+                <!-- 2. Número de Estrellas -->
+                <div class="form-group">
+                  <label>{{ cardMeta().labelEstrellas }}</label>
+                  <div class="stars-selector">
+                    @for (s of [1, 2, 3, 4, 5]; track s) {
+                      <button
+                        type="button"
+                        class="btn-star"
+                        [class.active]="s <= hotelEstrellas"
+                        (click)="hotelEstrellas = s"
+                        [attr.aria-label]="s + ' estrellas'"
+                      >
+                        ★
+                      </button>
+                    }
+                    <span class="stars-val-text">{{ hotelEstrellas }} de 5 estrellas</span>
+                  </div>
+                </div>
+
+                <!-- 3. Servicios con los que cuenta -->
+                <div class="form-group">
+                  <label>{{ cardMeta().labelServicios }}</label>
+                  <div class="chips-selector">
+                    @for (serv of serviciosDisponibles; track serv) {
+                      <button
+                        type="button"
+                        class="chip-toggle"
+                        [class.selected]="serviciosSeleccionados.includes(serv)"
+                        (click)="toggleServicio(serv)"
+                      >
+                        @if (getServIconAsset(serv); as iconSrc) {
+                          <img [src]="iconSrc" alt="" aria-hidden="true" class="chip-toggle-icon">
+                        }
+                        <span>{{ serviciosSeleccionados.includes(serv) ? '✓ ' : '+ ' }}{{ serv }}</span>
+                      </button>
+                    }
+                  </div>
+                  <div class="add-custom-service">
+                    <input
+                      type="text"
+                      [(ngModel)]="nuevoServicioInput"
+                      name="nuevoServicioInput"
+                      [placeholder]="cardMeta().placeholderOtroServicio"
+                    />
+                    <button type="button" class="btn-add-serv" (click)="agregarServicioPersonalizado()">
+                      + Agregar
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 4. Breve Reseña -->
+                <div class="form-group">
+                  <label for="h_desc">{{ cardMeta().labelDesc }}</label>
+                  <textarea
+                    id="h_desc"
+                    rows="3"
+                    [(ngModel)]="hotelDesc"
+                    name="hotelDesc"
+                    [placeholder]="cardMeta().placeholderDesc"
+                    required
+                  ></textarea>
+                </div>
+
+                <!-- 5. Fotos e Imágenes -->
+                <div class="form-group">
+                  <label>{{ cardMeta().labelFotos }}</label>
+                  <div class="photo-uploader-box">
+                    <label class="btn-upload-file">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                      </svg>
+                      <span>Subir fotos desde el dispositivo</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        style="display: none"
+                        (change)="subirFotosArchivo($event)"
+                      />
+                    </label>
+
+                    <div class="url-photo-add">
+                      <input
+                        type="text"
+                        [(ngModel)]="nuevaFotoUrlInput"
+                        name="nuevaFotoUrlInput"
+                        placeholder="O pega el nombre / URL de la imagen"
+                      />
+                      <button type="button" class="btn-add-serv" (click)="agregarFotoPorUrl()">
+                        + Añadir URL
+                      </button>
+                    </div>
+
+                    <!-- Galería previa de fotos cargadas -->
+                    @if (hotelFotos.length > 0) {
+                      <div class="photos-thumb-gallery">
+                        @for (foto of hotelFotos; track $index) {
+                          <div class="thumb-item">
+                            <img [src]="foto" [alt]="'Foto ' + ($index + 1)" />
+                            <button
+                              type="button"
+                              class="thumb-remove"
+                              (click)="eliminarFotoHotel($index)"
+                              title="Eliminar foto"
+                            >✕</button>
+                          </div>
+                        }
+                      </div>
+                    } @else {
+                      <p class="photos-empty-hint">Aún no hay fotos agregadas. Añade al menos una foto para que se vea en la tarjeta.</p>
+                    }
+                  </div>
+                </div>
+
+                <!-- 6. Enlaces de Contacto y Redes -->
+                <div class="social-links-grid">
+                  <!-- WhatsApp -->
+                  <div class="form-group">
+                    <label for="h_wa">WHATSAPP (NÚMERO DIRECTO)</label>
+                    <input
+                      id="h_wa"
+                      type="text"
+                      [(ngModel)]="hotelWhatsapp"
+                      name="hotelWhatsapp"
+                      placeholder="ej.: 573001234567"
+                    />
+                  </div>
+
+                  <!-- Instagram -->
+                  <div class="form-group">
+                    <label for="h_ig">INSTAGRAM (ENLACE O PERFIL)</label>
+                    <input
+                      id="h_ig"
+                      type="text"
+                      [(ngModel)]="hotelInstagram"
+                      name="hotelInstagram"
+                      [placeholder]="cardMeta().placeholderInstagram"
+                    />
+                  </div>
+
+                  <!-- X (Twitter) -->
+                  <div class="form-group">
+                    <label for="h_x">X (ENLACE O USUARIO)</label>
+                    <input
+                      id="h_x"
+                      type="text"
+                      [(ngModel)]="hotelX"
+                      name="hotelX"
+                      [placeholder]="cardMeta().placeholderX"
+                    />
+                  </div>
+
+                  <!-- Pregunta 1: TikTok -->
+                  <div class="form-group">
+                    <label for="h_tiktok">TIKTOK (ENLACE O PERFIL)</label>
+                    <input
+                      id="h_tiktok"
+                      type="text"
+                      [(ngModel)]="hotelTikTok"
+                      name="hotelTikTok"
+                      placeholder="https://tiktok.com/@nombre o @usuario"
+                    />
+                  </div>
+
+                  <!-- Pregunta 2: Página web -->
+                  <div class="form-group">
+                    <label for="h_web">PÁGINA WEB (ENLACE DEL SITIO OFICIAL)</label>
+                    <input
+                      id="h_web"
+                      type="text"
+                      [(ngModel)]="hotelPaginaWeb"
+                      name="hotelPaginaWeb"
+                      placeholder="https://www.misitio.com"
+                    />
+                  </div>
+
+                  <!-- Ubicación -->
+                  <div class="form-group">
+                    <label for="h_ubi">UBICACIÓN (BOTÓN VER UBICACIÓN - GOOGLE MAPS)</label>
+                    <input
+                      id="h_ubi"
+                      type="text"
+                      [(ngModel)]="hotelUbicacion"
+                      name="hotelUbicacion"
+                      placeholder="https://google.com/maps/..."
+                    />
+                  </div>
+
+                  <!-- Coordenadas GPS opcionales para el mapa del Dashboard -->
+                  <div class="coord-grid">
+                    <div class="form-group">
+                      <label for="h_lat">LATITUD (OPCIONAL MAPA)</label>
+                      <input
+                        id="h_lat"
+                        type="number"
+                        step="any"
+                        [(ngModel)]="hotelLatitud"
+                        name="hotelLatitud"
+                        placeholder="Ej: 9.7925"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="h_lng">LONGITUD (OPCIONAL MAPA)</label>
+                      <input
+                        id="h_lng"
+                        type="number"
+                        step="any"
+                        [(ngModel)]="hotelLongitud"
+                        name="hotelLongitud"
+                        placeholder="Ej: -74.7812"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Botón de Acción Único -->
+                <div class="form-actions">
+                  <button type="submit" class="btn-primary-action">
+                    {{ hotelEditId ? '💾 Guardar Cambios en Tarjeta' : '+ Crear Tarjeta' }}
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- COLUMNA 2: VISTA PREVIA EN VIVO DE LA TARJETA (Mismas dimensiones exactas) -->
+            <div class="preview-column">
+              <div class="preview-header">
+                <span class="preview-badge">VISTA PREVIA EN VIVO</span>
+                <p class="preview-hint">Así se verá esta tarjeta en la página principal para todos los usuarios:</p>
+              </div>
+
+              <!-- TARJETA SIMULADA CON DIMENSIONES UNIFORMES -->
+              <article class="hotel-card live-card uniform-card">
+                <!-- Foto Hero Grande -->
+                <div class="card-photo-hero">
+                  @if (hotelFotos.length > 0) {
+                    <img
+                      [src]="hotelFotos[0]"
+                      [alt]="hotelNombre || cardMeta().previewAltFallback"
+                      class="carousel-img"
+                    />
+                    <span class="photo-count-badge">📷 {{ hotelFotos.length }} foto(s)</span>
+                  } @else {
+                    <div class="photo-placeholder">
+                      <span>📷 Sin fotos cargadas</span>
+                    </div>
+                  }
+                </div>
+
+                <!-- Cuerpo de la tarjeta con dimensiones uniformes -->
+                <div class="card-body">
+                  <!-- Estrellas -->
+                  <div class="card-stars-wrap">
+                    <div class="stars">
+                      @for (s of [1, 2, 3, 4, 5]; track s) {
+                        <span [class.star-on]="s <= hotelEstrellas" [class.star-off]="s > hotelEstrellas">★</span>
+                      }
+                      <span class="stars-num">{{ hotelEstrellas }} / 5</span>
+                    </div>
+                  </div>
+
+                  <!-- Nombre de la tarjeta -->
+                  <h3 class="hotel-nombre" [title]="hotelNombre || cardMeta().previewTitleFallback">
+                    {{ hotelNombre || cardMeta().previewTitleFallback }}
+                  </h3>
+
+                  <!-- Instalaciones y Servicios -->
+                  <div class="instalaciones-block">
+                    <span class="instalaciones-label">SERVICIOS:</span>
+                    <div class="chips">
+                      @for (serv of serviciosSeleccionados; track serv) {
+                        <span class="chip">
+                          @if (getServIconAsset(serv); as iconSrc) {
+                            <img [src]="iconSrc" alt="" aria-hidden="true" class="chip-serv-img">
+                          }
+                          <span>{{ serv }}</span>
+                        </span>
+                      }
+                      @if (serviciosSeleccionados.length === 0) {
+                        <span class="chip-muted">{{ cardMeta().previewServEmpty }}</span>
+                      }
+                    </div>
+                    <p class="hotel-desc" [title]="hotelDesc || cardMeta().previewDescFallback">
+                      {{ hotelDesc || cardMeta().previewDescFallback }}
+                    </p>
+                  </div>
+
+                  <!-- Botón Ver Ubicación (arriba de las redes sociales) -->
+                  <a class="btn-card-ubicacion" [href]="getLiveUbicacionLink()" target="_blank" rel="noopener noreferrer">
+                    <span>Ver ubicación</span>
+                    <span class="btn-arrow">→</span>
+                  </a>
+
+                  <!-- Redes Sociales y Contacto (WhatsApp, Instagram, X) -->
+                  <div class="cuadros-container">
+                    <!-- WhatsApp -->
+                    <a class="cuadro cuadro-wa" [href]="getLiveWhatsAppLink()" target="_blank" rel="noopener noreferrer">
+                      <div class="cuadro-icon-box wa-box">
+                        <img src="icon-whatsapp.svg" alt="WhatsApp" class="cuadro-img-icon wa-icon" width="20" height="20" />
+                      </div>
+                      <div class="cuadro-content">
+                        <span class="cuadro-nombre">WhatsApp</span>
+                        <span class="cuadro-accion">Contactar</span>
+                      </div>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a class="cuadro cuadro-ig" [href]="getLiveInstagramLink()" target="_blank" rel="noopener noreferrer">
+                      <div class="cuadro-icon-box ig-box">
+                        <img src="icon-instagram.svg" alt="Instagram" class="cuadro-img-icon ig-icon" width="20" height="20" />
+                      </div>
+                      <div class="cuadro-content">
+                        <span class="cuadro-nombre">Instagram</span>
+                        <span class="cuadro-accion">Ver perfil</span>
+                      </div>
+                    </a>
+
+                    <!-- X -->
+                    <a class="cuadro cuadro-x" [href]="getLiveXLink()" target="_blank" rel="noopener noreferrer">
+                      <div class="cuadro-icon-box x-box">
+                        <img src="icon-x.png" alt="X" class="cuadro-img-icon x-icon" width="18" height="18" />
+                      </div>
+                      <div class="cuadro-content">
+                        <span class="cuadro-nombre">X</span>
+                        <span class="cuadro-accion">Ver perfil</span>
+                      </div>
+                    </a>
+
+                    <!-- TikTok -->
+                    <a class="cuadro cuadro-tk" [href]="getLiveTikTokLink()" target="_blank" rel="noopener noreferrer">
+                      <div class="cuadro-icon-box tk-box">
+                        <img src="icon-tiktok.svg" alt="TikTok" class="cuadro-img-icon tk-icon" width="18" height="18" />
+                      </div>
+                      <div class="cuadro-content">
+                        <span class="cuadro-nombre">TikTok</span>
+                        <span class="cuadro-accion">Ver perfil</span>
+                      </div>
+                    </a>
+
+                    <!-- Página Web -->
+                    <a class="cuadro cuadro-web" [href]="getLivePaginaWebLink()" target="_blank" rel="noopener noreferrer">
+                      <div class="cuadro-icon-box web-box">
+                        <img src="icon-web.svg" alt="Página web" class="cuadro-img-icon web-icon" width="18" height="18" />
+                      </div>
+                      <div class="cuadro-content">
+                        <span class="cuadro-nombre">Página Web</span>
+                        <span class="cuadro-accion">Visitar sitio</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        }
+
+        <!-- 2. APARTADO: CATÁLOGO DE HOTELES (TABLA ADMINISTRATIVA MODERNA) -->
+        @if (subTabHoteles() === 'catalogo') {
+          <div class="catalog-view-wrap">
+            <!-- Barra superior del Catálogo -->
+            <div class="catalog-toolbar">
+              <div class="catalog-toolbar-left">
+                <span class="catalog-count-pill">
+                  Total: <strong>{{ hotelesService.hoteles.length }}</strong> hoteles registrados
+                </span>
+                <span class="catalog-sync-badge">✓ Sincronizado en tiempo real con la portada</span>
+              </div>
+              <button type="button" class="btn-create-card-action" (click)="iniciarNuevaTarjeta()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                </svg>
+                <span>+ Crear Tarjeta</span>
+              </button>
+            </div>
+
+            <!-- Tabla Administrativa de Hoteles -->
+            <div class="card card-table-hotel-wrap">
+              <div class="table-responsive">
+                <table class="hotels-admin-table">
+                  <thead>
+                    <tr>
+                      <th class="th-sortable">
+                        <span class="th-label">NOMBRE DEL HOTEL</span>
+                        <span class="th-sort-arrows">▲▼</span>
+                      </th>
+                      <th class="th-sortable">
+                        <span class="th-label">MUNICIPIO</span>
+                        <span class="th-sort-arrows">▲▼</span>
+                      </th>
+                      <th class="th-sortable">
+                        <span class="th-label">CONTACTO (WHATSAPP)</span>
+                        <span class="th-sort-arrows">▲▼</span>
+                      </th>
+                      <th class="th-sortable">
+                        <span class="th-label">DISPONIBILIDAD DEL HOTEL</span>
+                        <span class="th-sort-arrows">▲▼</span>
+                      </th>
+                      <th class="th-actions">
+                        <span class="th-label">ACCIÓN</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (h of hotelesService.hoteles; track h.id) {
+                      <tr class="hotel-table-row">
+                        <!-- 1. NOMBRE DEL HOTEL -->
+                        <td class="td-nombre">
+                          <div class="hotel-id-block">
+                            <div class="hotel-avatar">
+                              @if (h.fotos && h.fotos.length > 0) {
+                                <img [src]="h.fotos[0]" [alt]="h.nombre" class="hotel-avatar-img" />
+                              } @else {
+                                <div class="hotel-avatar-icon">
+                                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.75a1.5 1.5 0 011.5-1.5h1.5a1.5 1.5 0 011.5 1.5V21"/>
+                                  </svg>
+                                </div>
+                              }
+                            </div>
+                            <div class="hotel-info-meta">
+                              <strong class="hotel-name-title">{{ h.nombre }}</strong>
+                              <div class="hotel-stars-sub">
+                                <span class="stars-gold">
+                                  @for (s of [1, 2, 3, 4, 5]; track s) {
+                                    <span [class.star-on]="s <= h.estrellas" [class.star-off]="s > h.estrellas">★</span>
+                                  }
+                                </span>
+                                <span class="stars-text">{{ h.estrellas }} de 5 estrellas</span>
+                                @if (h.fotos && h.fotos.length > 0) {
+                                  <span class="meta-dot">·</span>
+                                  <span class="meta-photos">📷 {{ h.fotos.length }} foto(s)</span>
+                                }
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+
+                        <!-- 2. MUNICIPIO -->
+                        <td class="td-municipio">
+                          <span class="municipio-val">{{ h.municipio || 'Plato' }}</span>
+                        </td>
+
+                        <!-- 3. CONTACTO (WHATSAPP) -->
+                        <td class="td-contacto">
+                          <a
+                            class="contacto-phone-link"
+                            [href]="getWhatsAppLink(h)"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Chatear por WhatsApp"
+                          >
+                            <svg class="phone-svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.43-3.9-6.8-6.72l1.97-1.61c.29-.26.37-.65.25-1.02A11.36 11.36 0 018.77 4c0-.55-.45-1-1-1H4.27c-.55 0-1 .45-1 1 0 9.39 7.63 17.02 17.02 17.02.55 0 1-.45 1-1v-3.64c0-.55-.45-1-1-1z"/>
+                            </svg>
+                            <span class="phone-number">{{ formatTelefono(h.whatsapp) }}</span>
+                          </a>
+                        </td>
+
+                        <!-- 4. DISPONIBILIDAD DEL HOTEL -->
+                        <td class="td-disponibilidad">
+                          @if (h.disponible) {
+                            <button
+                              type="button"
+                              class="badge-estado badge-activo"
+                              (click)="toggleHotelDisponible(h)"
+                              title="Activo en portada. Clic para cambiar estado"
+                            >
+                              <span class="badge-dot">●</span>
+                              <span>Activo</span>
+                            </button>
+                          } @else {
+                            <button
+                              type="button"
+                              class="badge-estado badge-inactivo"
+                              (click)="toggleHotelDisponible(h)"
+                              title="Inactivo / No disponible. Clic para activar"
+                            >
+                              <span class="badge-dot">○</span>
+                              <span>Inactivo</span>
+                            </button>
+                          }
+                        </td>
+
+                        <!-- 5. ACCIÓN (EDITAR INFORMACIÓN CREADA) -->
+                        <td class="td-acciones">
+                          <div class="table-actions-cell">
+                            <!-- Botón Editar Información -->
+                            <button
+                              type="button"
+                              class="btn-icon-square btn-edit-hotel"
+                              (click)="editarHotel(h)"
+                              title="Editar información del hotel"
+                            >
+                              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+                              </svg>
+                            </button>
+
+                            <!-- Botón Eliminar / Inhabilitar -->
+                            <button
+                              type="button"
+                              class="btn-icon-square btn-del-hotel"
+                              (click)="eliminarHotel(h)"
+                              title="Eliminar hotel"
+                            >
+                              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        }
+      </section>
+    }
+
+    <!-- ======================================================== -->
+    <!-- SECCIÓN 3: CATÁLOGOS (MUNICIPIOS Y SERVICIOS - ADMIN)    -->
+    <!-- ======================================================== -->
+    @if (seccion() === 'catalogos' && authService.isAdmin()) {
+      <section class="section-content catalogos-section">
+        <div class="section-title-wrap">
+          <h2>Catálogos Turísticos</h2>
+          <p class="section-desc">
+            Administra municipios del Magdalena y servicios disponibles para las tarjetas turísticas.
+          </p>
+        </div>
+
+        <div class="catalogos-grid">
+          <!-- TARJETA 1: MUNICIPIOS -->
+          <div class="card">
+            <h3 class="card-heading">Municipios ({{ catalogoMunicipiosLista().length }})</h3>
+            <form class="catalogo-form" (ngSubmit)="guardarCatalogoMunicipio()">
+              <div class="catalogo-form-grid">
+                <input
+                  id="cat_mun_nombre"
+                  type="text"
+                  [(ngModel)]="catalogoMunicipioNombre"
+                  name="catalogoMunicipioNombre"
+                  placeholder="Nombre del municipio *"
+                  required
+                />
+                <input
+                  id="cat_mun_depto"
+                  type="text"
+                  [(ngModel)]="catalogoMunicipioDepto"
+                  name="catalogoMunicipioDepto"
+                  placeholder="Departamento"
+                />
+              </div>
+              <div class="catalogo-form-actions">
+                <button type="submit" class="btn-primary-action" [disabled]="catalogoSaving()">
+                  {{ catalogoMunicipioEditId ? 'Guardar cambios' : '+ Agregar municipio' }}
+                </button>
+                @if (catalogoMunicipioEditId) {
+                  <button type="button" class="btn-secondary-action" (click)="cancelarEdicionMunicipio()">
+                    Cancelar
+                  </button>
+                }
+              </div>
+            </form>
+
+            <div class="catalogo-list">
+              @for (m of catalogoMunicipiosLista(); track m.id) {
+                <div class="catalogo-item-row">
+                  <div class="catalogo-item-info">
+                    <strong>{{ m.nombre }}</strong>
+                    <span class="catalogo-item-meta">
+                      {{ m.departamento }} · {{ m.totalTarjetas ?? 0 }} tarjeta(s)
+                    </span>
+                  </div>
+                  <div class="catalogo-item-actions">
+                    <button
+                      type="button"
+                      class="btn-action-mini"
+                      (click)="editarCatalogoMunicipio(m)"
+                      title="Editar municipio"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      type="button"
+                      class="btn-action-mini btn-danger-mini"
+                      [disabled]="(m.totalTarjetas ?? 0) > 0"
+                      (click)="eliminarCatalogoMunicipio(m)"
+                      title="Eliminar municipio sin tarjetas"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- TARJETA 2: SERVICIOS -->
+          <div class="card">
+            <h3 class="card-heading">Servicios e Instalaciones ({{ catalogoServiciosLista().length }})</h3>
+            <form class="catalogo-form" (ngSubmit)="guardarCatalogoServicio()">
+              <div class="catalogo-form-grid">
+                <input
+                  id="cat_srv_nombre"
+                  type="text"
+                  [(ngModel)]="catalogoServicioNombre"
+                  name="catalogoServicioNombre"
+                  placeholder="Servicio en español *"
+                  required
+                />
+                <input
+                  id="cat_srv_nombre_en"
+                  type="text"
+                  [(ngModel)]="catalogoServicioNombreEn"
+                  name="catalogoServicioNombreEn"
+                  placeholder="Service in English (opcional)"
+                />
+              </div>
+              <div class="catalogo-form-actions">
+                <button type="submit" class="btn-primary-action" [disabled]="catalogoSaving()">
+                  + Agregar servicio
+                </button>
+              </div>
+            </form>
+
+            <div class="catalogo-list">
+              @for (s of catalogoServiciosLista(); track s.id) {
+                <div class="catalogo-item-row">
+                  <div class="catalogo-item-info">
+                    <strong>{{ s.nombre }}</strong>
+                    @if (s.nombreEn) {
+                      <span class="catalogo-item-meta">{{ s.nombreEn }}</span>
+                    }
+                  </div>
+                  <div class="catalogo-item-actions">
+                    <button
+                      type="button"
+                      class="btn-action-mini btn-danger-mini"
+                      (click)="eliminarCatalogoServicio(s)"
+                      title="Eliminar servicio"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+    }
+
+    <!-- PIE DE PÁGINA DEL PANEL -->
+    <footer class="panel-footer">
+      <p class="panel-footer-copy">© 2026 Gobernación del Magdalena. Todos los derechos reservados. - OFICINA TIC</p>
+    </footer>
+  </main>
+</div>
+
+@if (showOwnPasswordModal()) {
+  <div class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalPassTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modalPassTitle">Cambiar mi contraseña</h3>
+        <button type="button" class="btn-modal-close" (click)="closeOwnPasswordModal()" aria-label="Cerrar">✕</button>
+      </div>
+      <p class="modal-subtitle">
+        Actualiza la clave de acceso de <strong>{{ authService.currentUser()?.email }}</strong>.
+      </p>
+
+      @if (ownPasswordError()) {
+        <div class="modal-error" role="alert">{{ ownPasswordError() }}</div>
+      }
+
+      <div class="form-group">
+        <label for="own_current_pass">CONTRASEÑA ACTUAL *</label>
+        <input
+          id="own_current_pass"
+          type="password"
+          [(ngModel)]="ownCurrentPassword"
+          name="ownCurrentPassword"
+          autocomplete="current-password"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="own_new_pass">NUEVA CONTRASEÑA (MÍN. 6 CARACTERES) *</label>
+        <input
+          id="own_new_pass"
+          type="password"
+          [(ngModel)]="ownNewPassword"
+          name="ownNewPassword"
+          autocomplete="new-password"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="own_confirm_pass">CONFIRMAR NUEVA CONTRASEÑA *</label>
+        <input
+          id="own_confirm_pass"
+          type="password"
+          [(ngModel)]="ownConfirmPassword"
+          name="ownConfirmPassword"
+          autocomplete="new-password"
+        />
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-modal-cancel" (click)="closeOwnPasswordModal()">Cancelar</button>
+        <button type="button" class="btn-primary-action" [disabled]="ownPasswordSaving()" (click)="submitOwnPassword()">
+          {{ ownPasswordSaving() ? 'Actualizando...' : 'Actualizar contraseña' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
+

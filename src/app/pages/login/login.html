@@ -1,0 +1,109 @@
+<div class="pagina">
+  <div class="franja" aria-hidden="true"></div>
+  <div class="fondo">
+    <main class="contenido">
+      <!-- Columna Izquierda: Identidad Institucional -->
+      <section class="identidad" aria-labelledby="titulo-sistema">
+        <img class="logo" src="logo-horizontal-color.png" alt="Gobernación del Magdalena">
+        <h1 id="titulo-sistema">
+          <span class="sigla">Turismo</span>
+          <span class="nombre">Descubres los Destinos del Magdalena, experiencias y hospedajes.</span>
+        </h1>
+        <div class="linea" aria-hidden="true"></div>
+      </section>
+
+      <!-- Columna Derecha: Tarjeta de Acceso -->
+      <section class="acceso" aria-label="Acceso al sistema">
+        <div class="tarjeta">
+          <div class="franja" aria-hidden="true"></div>
+          
+          <header class="encabezado">
+            <span class="icono" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+              </svg>
+            </span>
+            <h2>Iniciar sesión</h2>
+            <p>Ingresa con tu cuenta institucional o de administrador</p>
+          </header>
+
+          <p class="ayuda">Acceso seguro para administradores del portal.</p>
+
+          @if (errorMensaje()) {
+            <div class="alerta-error" role="alert">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              <span>{{ errorMensaje() }}</span>
+            </div>
+          }
+
+          <form (submit)="onSubmit($event)" novalidate>
+            <div class="campo">
+              <input
+                id="email"
+                type="email"
+                autocomplete="username"
+                placeholder=" "
+                [value]="email()"
+                (input)="email.set($any($event.target).value)"
+                required
+              />
+              <label for="email">Correo electrónico</label>
+            </div>
+            
+            <div class="campo">
+              <input
+                id="password"
+                type="password"
+                autocomplete="current-password"
+                placeholder=" "
+                [value]="password()"
+                (input)="password.set($any($event.target).value)"
+                required
+              />
+              <label for="password">Contraseña</label>
+            </div>
+            
+            <div class="derecha">
+              <button type="button" class="enlace btn-enlace" (click)="toggleAyudaClave($event)">
+                ¿Olvidaste tu contraseña?
+              </button>
+            </div>
+
+            @if (mostrarAyudaClave()) {
+              <div class="ayuda-clave" role="status">
+                Para restablecer o cambiar tu contraseña, solicita asistencia al Administrador del sistema o a la Oficina TI desde el panel de usuarios.
+              </div>
+            }
+            
+            <button type="submit" class="btn-primario" [disabled]="loading()">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H8.25"/>
+              </svg>
+              {{ loading() ? 'Ingresando...' : 'Ingresar al sistema' }}
+            </button>
+          </form>
+
+          <div class="volver-wrap">
+            <a routerLink="/" class="volver-enlace">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+              </svg>
+              Volver al portal turístico
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie">
+      <div style="justify-content: center; text-align: center;">
+        <p class="footer-copy">© 2026 Gobernación del Magdalena - Todos los derechos reservados. - OFICINA TIC</p>
+      </div>
+    </footer>
+  </div>
+</div>
+

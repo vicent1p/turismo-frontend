@@ -1,0 +1,95 @@
+<app-editorial-shell
+  activeSection="historia"
+  sheetWidth="wide"
+  [breadcrumbHome]="content().breadcrumbHome"
+  [breadcrumbCurrent]="content().breadcrumbCurrent"
+  [metaPill]="content().readTimeLabel"
+  [eyebrow]="content().eyebrow"
+  [pageTitle]="content().pageTitle"
+  [subtitle]="content().subtitle"
+  [closingTag]="content().closingTag"
+  [closingTitle]="content().closingTitle"
+  [closingDesc]="content().closingDesc"
+  [ctaPrimaryLabel]="content().ctaCulture"
+  ctaPrimaryRoute="/cultura"
+  [ctaSecondaryLabel]="content().ctaHotels"
+  ctaSecondaryRoute="/"
+  ctaSecondaryFragment="hoteles"
+  [ctaBackLabel]="content().ctaBackHome"
+>
+  <!-- HITOS CLAVE SCANEABLES -->
+  <div shell-header-extra class="historia-facts-grid">
+    @for (fact of content().facts; track fact.label) {
+      <div class="historia-fact-card">
+        <span class="fact-label">{{ fact.label }}</span>
+        <strong class="fact-value">{{ fact.value }}</strong>
+      </div>
+    }
+  </div>
+
+  <!-- ÍNDICE INTERACTIVO DE CAPÍTULOS -->
+  <nav class="historia-toc" [attr.aria-label]="content().tocLabel">
+    <span class="toc-heading">{{ content().tocLabel }}</span>
+    <div class="toc-chips">
+      @for (cap of content().chapters; track cap.id) {
+        <a
+          [href]="'#' + cap.id"
+          (click)="scrollToChapter(cap.id, $event)"
+          class="toc-chip"
+          [class.active]="activeChapterId() === cap.id"
+        >
+          <span class="toc-roman">{{ cap.roman }}</span>
+          <span>{{ cap.shortLabel }}</span>
+        </a>
+      }
+    </div>
+  </nav>
+
+  <!-- TARJETAS PARCHMENT DE CAPÍTULOS CON DESPLIEGUE "LEER MÁS" -->
+  <div class="historia-body">
+    @for (cap of content().chapters; track cap.id) {
+      <section
+        [id]="cap.id"
+        class="historia-chapter parchment-card"
+        [class.is-expanded]="isExpanded(cap.id)"
+      >
+        <div class="parchment-inner-frame">
+          <div class="box-scroll-icon" aria-hidden="true">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none" stroke="#c8962e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 5.5h12.5a2 2 0 0 1 2 2v5"/>
+              <path d="M24.5 22v4a2.5 2.5 0 0 1-2.5 2.5H9a2.5 2.5 0 0 1-2.5-2.5V8A2.5 2.5 0 0 1 9 5.5h1v19.5a2.5 2.5 0 0 1-2.5 2.5"/>
+              <path d="M13 10.5h7.5M13 14h7.5M13 17.5h5M13 21h4"/>
+              <path d="M30.2 9.2c-4.2 1.2-7.3 4.2-9.2 8.6l-1.4 4.1 4-1.4c3.7-1.9 6.1-5 6.6-11.3z"/>
+              <path d="M18.4 23.2l8.4-9.8"/>
+            </svg>
+          </div>
+
+          <span class="chapter-era">{{ cap.roman }} · {{ cap.era }}</span>
+          <h2 class="chapter-heading">{{ cap.title }}</h2>
+          <div class="chapter-gold-rule" aria-hidden="true"></div>
+
+          <div
+            [id]="'body-' + cap.id"
+            class="chapter-text-collapse"
+            [class.expanded]="isExpanded(cap.id)"
+          >
+            <p class="chapter-paragraph">
+              {{ cap.body }}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class="chapter-read-more-btn"
+            [attr.aria-expanded]="isExpanded(cap.id)"
+            [attr.aria-controls]="'body-' + cap.id"
+            (click)="toggleChapter(cap.id)"
+          >
+            <span>{{ isExpanded(cap.id) ? content().readLessLabel : content().readMoreLabel }}</span>
+            <span class="read-more-chevron" aria-hidden="true">{{ isExpanded(cap.id) ? '▲' : '▼' }}</span>
+          </button>
+        </div>
+      </section>
+    }
+  </div>
+</app-editorial-shell>

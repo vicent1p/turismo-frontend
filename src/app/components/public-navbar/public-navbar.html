@@ -1,0 +1,84 @@
+<header class="top-header">
+  <div class="top-nav-container">
+    <!-- LOGOS A LA IZQUIERDA: PLATO 400 AÑOS Y GOBERNACIÓN DEL MAGDALENA -->
+    <div class="nav-brand-group">
+      <a class="nav-brand" routerLink="/" (click)="onHomeAnchorClick($event, 'top')" title="Plato 400 Años">
+        <img src="logo-plato-white.png" alt="Plato 400 Años" class="brand-logo-img" />
+      </a>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <a class="nav-brand nav-brand-gob" href="https://www.magdalena.gov.co" target="_blank" rel="noopener noreferrer" title="Gobernación del Magdalena">
+        <img src="logo-gobernacion-magdalena-white.png" alt="Gobernación del Magdalena" class="brand-logo-img gob-logo-img" />
+      </a>
+    </div>
+
+    <!-- ENLACES DE NAVEGACIÓN CENTRADOS -->
+    <nav class="nav-links" [attr.aria-label]="t().navAria">
+      <a
+        routerLink="/"
+        (click)="onHomeAnchorClick($event, 'top')"
+        class="nav-item"
+        [class.active]="activeSection() === 'inicio'"
+      >{{ t().navInicio }}</a>
+      <a
+        routerLink="/historia"
+        class="nav-item"
+        [class.active]="activeSection() === 'historia'"
+      >{{ t().navHistoria }}</a>
+      <a
+        routerLink="/cultura"
+        class="nav-item"
+        [class.active]="activeSection() === 'cultura'"
+      >{{ t().navCultura }}</a>
+      <a
+        routerLink="/"
+        fragment="plato"
+        (click)="onHomeAnchorClick($event, 'plato')"
+        class="nav-item"
+      >{{ t().navPueblo }}</a>
+    </nav>
+
+    <!-- ACCIONES A LA DERECHA -->
+    <div class="nav-actions">
+      <a
+        routerLink="/programacion"
+        class="btn-celebracion"
+        [class.active]="activeSection() === 'programacion'"
+      >{{ t().btnCelebracion }}</a>
+
+      <div class="lang-selector" id="lang">
+        <button type="button" [class.on]="lang() === 'es'" (click)="setLang('es')" aria-label="Cambiar a Español">ES</button>
+        <button type="button" [class.on]="lang() === 'en'" (click)="setLang('en')" aria-label="Switch to English">EN</button>
+      </div>
+
+      @if (authService.isAuthenticated()) {
+        <div class="user-session-pill">
+          <span class="user-badge">
+            <span class="user-dot"></span> {{ roleLabel() || t().adminActivo }}
+          </span>
+          <a class="btn btn-panel-link" routerLink="/panel">
+            🏛 {{ t().miEspacio }}
+          </a>
+          <button type="button" class="btn btn-logout" (click)="logout()">
+            {{ t().logoutBtn }}
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+  <!-- ONDA CURVA INFERIOR DEL NAVBAR -->
+  <svg class="header-bottom-wave" viewBox="0 0 1440 20" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="headerWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#124828" />
+        <stop offset="18%" stop-color="#14552B" />
+        <stop offset="50%" stop-color="#165D30" />
+        <stop offset="70%" stop-color="#1D6035" />
+        <stop offset="79%" stop-color="#3C6E48" />
+        <stop offset="88%" stop-color="#1A5831" />
+        <stop offset="100%" stop-color="#134C29" />
+      </linearGradient>
+    </defs>
+    <path d="M0,0 L1440,0 L1440,4 C1080,18 420,18 0,4 Z" fill="url(#headerWaveGrad)"></path>
+  </svg>
+</header>
+

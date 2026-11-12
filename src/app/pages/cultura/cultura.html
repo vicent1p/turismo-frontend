@@ -1,0 +1,143 @@
+<app-editorial-shell
+  activeSection="cultura"
+  sheetWidth="gallery"
+  [breadcrumbHome]="content().breadcrumbHome"
+  [breadcrumbCurrent]="content().breadcrumbCurrent"
+  [metaPill]="content().metaPill"
+  [eyebrow]="content().eyebrow"
+  [pageTitle]="content().pageTitle"
+  [subtitle]="content().subtitle"
+  [closingTag]="content().closingTag"
+  [closingTitle]="content().closingTitle"
+  [closingDesc]="content().closingDesc"
+  [ctaPrimaryLabel]="content().ctaHistory"
+  ctaPrimaryRoute="/historia"
+  [ctaSecondaryLabel]="content().ctaHotels"
+  ctaSecondaryRoute="/"
+  ctaSecondaryFragment="hoteles"
+  [ctaBackLabel]="content().ctaBackHome"
+>
+  <!-- PILARES VISUALES ESCANEABLES -->
+  <div shell-header-extra class="cultura-pillars-grid">
+    @for (pillar of content().pillars; track pillar.label) {
+      <div class="cultura-pillar-card">
+        <span class="pillar-label">{{ pillar.label }}</span>
+        <strong class="pillar-value">{{ pillar.value }}</strong>
+      </div>
+    }
+  </div>
+
+  <!-- FILTRO DE CATEGORÍAS EN SPECTRAL -->
+  <nav class="cultura-filter-bar" [attr.aria-label]="content().filterAriaLabel">
+    @for (tab of content().filters; track tab.id) {
+      <button
+        type="button"
+        class="cultura-filter-pill"
+        [class.active]="activeCategory() === tab.id"
+        [attr.aria-pressed]="activeCategory() === tab.id"
+        (click)="setCategory(tab.id)"
+      >
+        <span>{{ tab.label }}</span>
+        <span class="filter-count">{{ categoryCounts()[tab.id] }}</span>
+      </button>
+    }
+  </nav>
+
+  <!-- CUADRÍCULA DE PEQUEÑAS TARJETAS CULTURALES (3x3 DESKTOP) -->
+  <section class="cultura-grid" [attr.aria-label]="content().galleryAriaLabel">
+    @for (item of filteredPhotos(); track item.id) {
+      <button
+        type="button"
+        class="cultura-card"
+        (click)="openLightbox(item.id)"
+        [attr.aria-label]="item.title + ' — ' + content().expandHint"
+      >
+        <div class="card-media-wrap">
+          <img
+            [src]="item.image"
+            [alt]="item.alt"
+            class="card-media-img"
+            loading="lazy"
+          />
+          <span class="card-index-badge">{{ item.order }}</span>
+          <span class="card-zoom-pill">
+            <span aria-hidden="true">⤢</span>
+            <span>{{ content().expandHint }}</span>
+          </span>
+        </div>
+
+        <div class="card-body">
+          <div class="card-meta-row">
+            <span class="card-location">{{ item.location }}</span>
+          </div>
+          <h2 class="card-title">{{ item.title }}</h2>
+          <p class="card-caption">{{ item.caption }}</p>
+          <div class="card-footer-strip">
+            <span class="card-category-tag">{{ item.categoryLabel }}</span>
+            <span class="card-arrow" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </button>
+    }
+  </section>
+
+  <!-- VISOR LIGHTBOX INTERACTIVO -->
+  @if (selectedPhoto(); as current) {
+    <div
+      class="cultura-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cultura-lightbox-title"
+      (click)="closeLightbox()"
+    >
+      <div class="lightbox-dialog" (click)="$event.stopPropagation()">
+        <div class="lightbox-topbar">
+          <span class="lightbox-counter">
+            {{ selectedIndex() + 1 }} / {{ filteredPhotos().length }} · {{ current.categoryLabel }}
+          </span>
+          <button
+            type="button"
+            class="lightbox-close-btn"
+            (click)="closeLightbox()"
+            [attr.aria-label]="content().lightboxCloseAria"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="lightbox-figure-wrap">
+          <button
+            type="button"
+            class="lightbox-nav-btn lightbox-prev"
+            (click)="prevPhoto()"
+            [attr.aria-label]="content().lightboxPrevAria"
+          >
+            ‹
+          </button>
+
+          <img
+            [src]="current.image"
+            [alt]="current.alt"
+            class="lightbox-img"
+          />
+
+          <button
+            type="button"
+            class="lightbox-nav-btn lightbox-next"
+            (click)="nextPhoto()"
+            [attr.aria-label]="content().lightboxNextAria"
+          >
+            ›
+          </button>
+        </div>
+
+        <div class="lightbox-caption-panel">
+          <span class="lightbox-location">{{ current.location }}</span>
+          <h3 id="cultura-lightbox-title" class="lightbox-title">{{ current.title }}</h3>
+          <p class="lightbox-note">{{ current.lightboxNote }}</p>
+        </div>
+      </div>
+    </div>
+  }
+</app-editorial-shell>
+

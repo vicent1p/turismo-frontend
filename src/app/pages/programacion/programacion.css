@@ -1,0 +1,789 @@
+/* ==========================================================================
+   PROGRAMACIÓN PLATO 400 AÑOS · ESTÉTICA CONMEMORATIVA PERGAMINO & ORO
+   ========================================================================== */
+
+.prog-header-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.prog-institutional-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255, 254, 249, 0.92) 0%, rgba(251, 244, 229, 0.88) 100%);
+  border: 1px solid rgba(200, 150, 46, 0.38);
+  box-shadow: 0 4px 14px rgba(96, 65, 24, 0.06);
+}
+
+.inst-logos-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.inst-crest {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+}
+
+.inst-400-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.inst-divider {
+  width: 1px;
+  height: 30px;
+  background: rgba(200, 150, 46, 0.45);
+}
+
+.inst-partners-caption {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #16542d;
+  text-align: center;
+}
+
+.prog-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.prog-metric-card {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 253, 248, 0.78);
+  border: 1px solid rgba(207, 160, 47, 0.34);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-label {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #8a6423;
+}
+
+.metric-value {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: #16542d;
+}
+
+/* Barra de filtros */
+.prog-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 28px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(22, 84, 45, 0.045);
+  border: 1px solid rgba(22, 84, 45, 0.15);
+}
+
+.prog-filter-pill {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #24402e;
+  background: rgba(255, 253, 248, 0.92);
+  border: 1px solid rgba(200, 150, 46, 0.42);
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.prog-filter-pill:hover {
+  border-color: #16542d;
+  color: #16542d;
+  transform: translateY(-1px);
+}
+
+.prog-filter-pill:focus-visible {
+  outline: 2px solid #cfa02f;
+  outline-offset: 2px;
+}
+
+.prog-filter-pill.active {
+  background: #16542d;
+  color: #ffffff;
+  border-color: #16542d;
+  box-shadow: 0 4px 12px rgba(22, 84, 45, 0.22);
+}
+
+.prog-filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #8a6423;
+  background: rgba(207, 160, 47, 0.16);
+}
+
+.prog-filter-pill.active .prog-filter-count {
+  color: #16542d;
+  background: #f3ce6f;
+}
+
+/* Secciones por etapa */
+.prog-stage-section {
+  margin-bottom: 34px;
+}
+
+.prog-stage-section:last-child {
+  margin-bottom: 6px;
+}
+
+.stage-heading-row {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.stage-eyebrow {
+  display: block;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9e711d;
+  margin-bottom: 2px;
+}
+
+.stage-title {
+  margin: 0;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: clamp(1.18rem, 2vw, 1.48rem);
+  font-weight: 600;
+  color: #16542d;
+}
+
+/* Grids de tarjetas */
+.prog-preludio-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(320px, 1.4fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.prog-tradicion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+.prog-festivales-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+/* Marco pergamino octogonal con esquinas festoneadas doradas */
+.parchment-frame {
+  display: flex;
+  filter: drop-shadow(0 8px 18px rgba(14, 38, 22, 0.14));
+  transition: transform 0.24s ease, filter 0.24s ease;
+}
+
+.parchment-frame:hover {
+  transform: translateY(-3px);
+  filter: drop-shadow(0 14px 26px rgba(14, 38, 22, 0.2));
+}
+
+.prog-card-inner {
+  width: 100%;
+  background-color: #fcf8ef;
+  clip-path: polygon(
+    11px 0%, calc(100% - 11px) 0%,
+    100% 11px, 100% calc(100% - 11px),
+    calc(100% - 11px) 100%, 11px 100%,
+    0% calc(100% - 11px), 0% 11px
+  );
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath d='M10.5,0.75 Q10.5,10.5 0.75,10.5' fill='none' stroke='%23d4a238' stroke-width='1.35'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath d='M0.5,0.75 Q0.5,10.5 10.25,10.5' fill='none' stroke='%23d4a238' stroke-width='1.35'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath d='M10.25,0.5 Q0.5,0.5 0.5,10.25' fill='none' stroke='%23d4a238' stroke-width='1.35'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath d='M0.75,0.5 Q10.5,0.5 10.5,10.25' fill='none' stroke='%23d4a238' stroke-width='1.35'/%3E%3C/svg%3E"),
+    linear-gradient(#d4a238, #d4a238),
+    linear-gradient(#d4a238, #d4a238),
+    linear-gradient(#d4a238, #d4a238),
+    linear-gradient(#d4a238, #d4a238);
+  background-position:
+    left 6px top 6px,
+    right 6px top 6px,
+    right 6px bottom 6px,
+    left 6px bottom 6px,
+    left 16.5px top 6px,
+    left 16.5px bottom 6px,
+    left 6px top 16.5px,
+    right 6px top 16.5px;
+  background-size:
+    11px 11px,
+    11px 11px,
+    11px 11px,
+    11px 11px,
+    calc(100% - 33px) 1.35px,
+    calc(100% - 33px) 1.35px,
+    1.35px calc(100% - 33px),
+    1.35px calc(100% - 33px);
+  background-repeat: no-repeat;
+  padding: 24px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.variant-noche-blanca .prog-card-inner {
+  background-color: #fffef9;
+}
+
+/* Cinta verde esmeralda y oro tipo afiche oficial */
+.date-ribbon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 7px 20px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0f4122 0%, #17582f 55%, #1d6b39 100%);
+  border: 1.5px solid #d4a238;
+  box-shadow: 0 4px 12px rgba(15, 65, 34, 0.22);
+  margin-bottom: 10px;
+}
+
+.date-ribbon.ribbon-grand {
+  padding: 8px 26px;
+}
+
+.ribbon-spark {
+  color: #f3ce6f;
+  font-size: 0.78rem;
+  line-height: 1;
+}
+
+.ribbon-text {
+  margin: 0;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.94rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.card-kicker {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8f651d;
+  text-align: center;
+}
+
+.diamond-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 190px;
+  margin: 10px auto 16px;
+}
+
+.diamond-rule.compact {
+  max-width: 140px;
+  margin: 8px auto 12px;
+}
+
+.diamond-rule span {
+  flex: 1;
+  height: 1px;
+  background: rgba(200, 150, 46, 0.55);
+}
+
+.diamond-rule em {
+  font-style: normal;
+  font-size: 0.7rem;
+  color: #c8962e;
+  line-height: 1;
+}
+
+/* Lista de eventos con iconos (Octubre & Noviembre - Diciembre) */
+.event-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.event-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(200, 150, 46, 0.25);
+}
+
+.event-icon-badge {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(22, 84, 45, 0.08);
+  border: 1px solid rgba(200, 150, 46, 0.45);
+  color: #16542d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-date-tag {
+  display: block;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #8a6017;
+  margin-bottom: 1px;
+}
+
+.event-title {
+  margin: 0;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.32;
+  color: #16542d;
+}
+
+.event-sub {
+  margin: 3px 0 0;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.86rem;
+  font-style: italic;
+  color: #46584c;
+  line-height: 1.38;
+}
+
+/* Tarjeta Cabalgata (5 dic) */
+.featured-center-event {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px 4px;
+}
+
+.center-emblem {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(207, 160, 47, 0.2) 0%, rgba(22, 84, 45, 0.06) 72%);
+  border: 1.4px solid rgba(200, 150, 46, 0.55);
+  color: #16542d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.center-date-sub {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #8a6017;
+  margin-bottom: 4px;
+}
+
+.center-event-title {
+  margin: 0 0 6px;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 1.24rem;
+  font-weight: 700;
+  color: #16542d;
+  line-height: 1.25;
+}
+
+.center-event-desc {
+  margin: 0;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.88rem;
+  color: #46584c;
+  line-height: 1.45;
+  max-width: 240px;
+}
+
+/* Tarjeta Noche Blanca (10 dic) */
+.noche-blanca-spotlight {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 14px 12px;
+  border-radius: 12px;
+  background: radial-gradient(circle at top, #ffffff 0%, rgba(249, 243, 229, 0.72) 100%);
+  border: 1px solid rgba(207, 160, 47, 0.35);
+}
+
+.noche-star {
+  color: #c8962e;
+  font-size: 1.35rem;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.noche-title {
+  margin: 0 0 8px;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: #16542d;
+  line-height: 1.24;
+}
+
+.noche-quote {
+  margin: 0 0 10px;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 1.06rem;
+  font-style: italic;
+  font-weight: 600;
+  color: #9e711d;
+}
+
+.noche-sub {
+  margin: 0;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.85rem;
+  color: #46584c;
+  line-height: 1.42;
+}
+
+/* Tarjeta Hombre Caimán (11 dic) */
+.desfile-content {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.desfile-title {
+  margin: 0 0 12px;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #16542d;
+  text-align: center;
+  line-height: 1.26;
+}
+
+.desfile-bullets {
+  width: 100%;
+  margin: 0 0 16px;
+  padding: 0 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.9rem;
+  color: #2f4337;
+}
+
+.desfile-bullets li::marker {
+  color: #c8962e;
+}
+
+.artist-signature-pill {
+  margin-top: auto;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #134a27 0%, #1c6637 100%);
+  border: 1.2px solid #d4a238;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.artist-role {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f3ce6f;
+}
+
+.artist-name {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #ffffff;
+}
+
+/* Mega-tarjetas Díptico Festivales (12 y 13 de diciembre) */
+.festival-inner {
+  padding: 28px 24px 26px;
+}
+
+.gastro-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(207, 160, 47, 0.14);
+  border: 1px solid rgba(200, 150, 46, 0.45);
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #16542d;
+  margin: 6px 0 14px;
+}
+
+.gastro-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c8962e;
+}
+
+.special-show-box {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(22, 84, 45, 0.08) 0%, rgba(207, 160, 47, 0.14) 100%);
+  border: 1px solid rgba(200, 150, 46, 0.42);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.special-show-kicker {
+  display: block;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8f651d;
+  margin-bottom: 2px;
+}
+
+.special-show-title {
+  margin: 0;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #16542d;
+  line-height: 1.28;
+}
+
+.festival-winners-box {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(200, 150, 46, 0.28);
+  margin-bottom: 18px;
+}
+
+.festival-script-title {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 1.32rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #16542d;
+  text-align: center;
+  line-height: 1.18;
+}
+
+.festival-sub {
+  margin: 4px 0 0;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #8a6017;
+  text-align: center;
+}
+
+.winners-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+}
+
+.winners-list li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: #24362b;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: rgba(252, 248, 239, 0.75);
+}
+
+.winner-bullet {
+  color: #c8962e;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+}
+
+.festival-lineup-box {
+  width: 100%;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.lineup-label {
+  display: block;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #8a6017;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.lineup-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.artist-card-chip {
+  flex: 1 1 135px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 253, 248, 0.92);
+  border: 1.2px solid rgba(200, 150, 46, 0.45);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.artist-card-chip.headliner {
+  background: linear-gradient(135deg, #134a27 0%, #1c6637 100%);
+  border-color: #d4a238;
+  box-shadow: 0 4px 12px rgba(19, 74, 39, 0.18);
+}
+
+.artist-chip-tag {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #8a6017;
+}
+
+.artist-card-chip.headliner .artist-chip-tag {
+  color: #f3ce6f;
+}
+
+.artist-chip-name {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #16542d;
+}
+
+.artist-card-chip.headliner .artist-chip-name {
+  color: #ffffff;
+}
+
+/* Responsivo */
+@media (max-width: 1020px) {
+  .prog-tradicion-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .prog-preludio-grid,
+  .prog-festivales-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .prog-metrics-grid,
+  .prog-tradicion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inst-crest {
+    height: 36px;
+  }
+
+  .inst-400-logo {
+    height: 40px;
+  }
+}
+

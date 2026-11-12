@@ -1,0 +1,71 @@
+<div class="historia-page-shell">
+  <app-public-navbar [activeSection]="activeSection()"></app-public-navbar>
+
+  <!-- INDICADOR DE PROGRESO SUTIL -->
+  <div class="historia-progress-track" aria-hidden="true">
+    <div class="historia-progress-fill" [style.width.%]="readProgress()"></div>
+  </div>
+
+  <!-- LIENZO FIJO ILUSTRADO EN PERGAMINO -->
+  <div class="historia-backdrop" aria-hidden="true"></div>
+
+  <main class="historia-main">
+    <article
+      class="historia-sheet"
+      [class.sheet-gallery]="sheetWidth() === 'gallery'"
+      [class.sheet-wide]="sheetWidth() === 'wide'"
+    >
+      <!-- MIGAS DE PAN Y METADATOS -->
+      <div class="historia-topbar">
+        <nav class="historia-breadcrumb" [attr.aria-label]="breadcrumbAria()">
+          <a routerLink="/" class="crumb-link">
+            <span aria-hidden="true">←</span> {{ breadcrumbHome() }}
+          </a>
+          <span class="crumb-sep" aria-hidden="true">/</span>
+          <span class="crumb-current">{{ breadcrumbCurrent() }}</span>
+        </nav>
+        <span class="read-meta-pill">{{ metaPill() }}</span>
+      </div>
+
+      <!-- CABECERA EDITORIAL EN SPECTRAL -->
+      <header class="historia-header">
+        <span class="historia-eyebrow">{{ eyebrow() }}</span>
+        <div class="historia-gold-rule"></div>
+        <h1 class="historia-title">{{ pageTitle() }}</h1>
+        <p class="historia-subtitle">{{ subtitle() }}</p>
+        <div class="historia-ornament" aria-hidden="true">
+          <span class="orn-line"></span>
+          <span class="orn-diamond">◆</span>
+          <span class="orn-line"></span>
+        </div>
+
+        <ng-content select="[shell-header-extra]"></ng-content>
+      </header>
+
+      <!-- CONTENIDO PROPIO DEL APARTADO -->
+      <ng-content></ng-content>
+
+      <!-- BLOQUE FINAL DE CONTINUIDAD -->
+      <footer class="historia-closing-cta">
+        <span class="closing-tag">{{ closingTag() }}</span>
+        <h2 class="closing-title">{{ closingTitle() }}</h2>
+        <p class="closing-desc">{{ closingDesc() }}</p>
+        <div class="closing-actions">
+          <a [routerLink]="ctaPrimaryRoute()" [fragment]="ctaPrimaryFragment()" class="btn-hist-primary">
+            <span>{{ ctaPrimaryLabel() }}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a [routerLink]="ctaSecondaryRoute()" [fragment]="ctaSecondaryFragment()" class="btn-hist-secondary">
+            <span>{{ ctaSecondaryLabel() }}</span>
+          </a>
+          <a routerLink="/" class="btn-hist-link">
+            <span>← {{ ctaBackLabel() }}</span>
+          </a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <app-public-footer></app-public-footer>
+</div>
+

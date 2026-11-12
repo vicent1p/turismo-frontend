@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--
+=====================================================================
+ PLATO 400 AÑOS · PÁGINA DE HOTELES (prueba piloto)
+ Oficina de Turismo · Gobernación del Magdalena
+=====================================================================
+-->
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plato 400 · Hoteles / Hotels</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,600&display=swap">
+<style>
+/* VARIABLES DE COLOR (modo claro). */
+:root{--bg:#f7f1e3;--card:#fffdf8;--ink:#1b2a2f;--mute:#5b6b70;--brand:#0f4c5c;--onb:#fff;--oro:#c8962e;--sun:#e6b84f;--ok:#14633f;--okbg:#dff2e8;--no:#a3231b;--nobg:#fbe4e1;--line:#e3d9c3;--sh:0 12px 32px rgba(15,76,92,.12);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a1e;--card:#14262c;--ink:#f1f4f2;--mute:#a3b4b6;--brand:#4fb4c4;--onb:#0d1a1e;--ok:#7be3a8;--okbg:#14351f;--no:#ff9c97;--nobg:#401a1a;--line:#26393e;--sh:0 12px 32px rgba(0,0,0,.45)}}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Spectral',Georgia,serif;line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.main-bg{position:relative;background-color:#faf8f5;background-image:url('leaf-bg.webp');background-repeat:repeat-y;background-position:center top;background-size:100% auto;padding-bottom:50px;overflow:hidden}@media(min-width:900px){.main-bg{background-size:cover;background-attachment:fixed}}
+.main-bg::before{content:'';position:absolute;inset:0;background:url('iglesia-fachada.jpg') center top/cover no-repeat;opacity:0.22;pointer-events:none;z-index:1}@media(min-width:900px){.main-bg::before{background-attachment:fixed}}
+.main-bg .wrap{position:relative;z-index:2}
+.hero{position:relative;overflow:hidden;color:#fff;text-align:center;padding:40px 24px 60px;background:url('hero-bg.jpg') center 30%/cover no-repeat}
+.top{position:relative;display:flex;justify-content:center;align-items:center;max-width:1120px;margin:0 auto 40px;font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;min-height:36px;text-shadow:0 2px 6px rgba(0,0,0,.9)}
+.lang{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:14px;z-index:20;display:flex;background:rgba(10,54,66,.88);backdrop-filter:blur(6px);border-radius:999px;padding:3px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.lang button{border:0;background:none;color:#fff;font:700 .78rem Inter,sans-serif;padding:7px 14px;border-radius:999px;cursor:pointer}
+.lang button.on{background:#e6b84f;color:#1b2a2f}
+.hero h1{position:relative;font-family:Fraunces,Georgia,serif;font-weight:500;margin:0;line-height:1;font-size:clamp(1.7rem,5vw,2.8rem);text-shadow:0 3px 12px rgba(0,0,0,.85),0 1px 3px rgba(0,0,0,.95)}
+.hero .n{display:block;font-weight:800;font-size:clamp(6.5rem,26vw,14rem);line-height:.85;color:#e6b84f;margin-bottom:.06em;text-shadow:0 4px 16px rgba(0,0,0,.8),0 1px 4px rgba(0,0,0,.9)}
+.hero p{position:relative;max-width:600px;margin:18px auto 26px;font-size:1.12rem;opacity:.96;text-shadow:0 2px 10px rgba(0,0,0,.85),0 1px 3px rgba(0,0,0,.95)}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fbbf24 0%,#d97706 100%);color:#0b1f28;padding:14px 28px;border-radius:14px;font-weight:800;text-decoration:none;margin:4px;border:2px solid #fef08a;box-shadow:0 8px 20px rgba(0,0,0,.5);text-shadow:0 1px 0 rgba(255,255,255,.4)}
+.btn.o{background:linear-gradient(135deg,#0284c7 0%,#0369a1 100%);color:#fff;border:2px solid #7dd3fc;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.hero .in{position:relative;display:grid;gap:34px;align-items:center;max-width:1120px;margin:0 auto}
+.collage{margin:0;width:100%;max-width:680px;justify-self:center;border-radius:24px;overflow:hidden;border:5px solid #e6b84f;box-shadow:0 24px 50px rgba(0,0,0,.45),0 0 35px rgba(230,184,79,.22);transform:rotate(1deg);transition:transform .3s ease,box-shadow .3s ease}.collage:hover{transform:rotate(0deg) scale(1.015);box-shadow:0 28px 60px rgba(0,0,0,.5),0 0 45px rgba(230,184,79,.35)}.collage img{display:block;width:100%;height:500px;object-fit:cover;object-position:center 25%}
+@media (min-width:900px){.hero .in{grid-template-columns:1fr 1.15fr;text-align:left}.hero .in p{margin-left:0;margin-right:0}}
+section{padding:56px 0 10px}
+h2{font-family:Fraunces,Georgia,serif;font-size:clamp(1.9rem,5vw,2.6rem);color:var(--brand);margin:0 0 6px;line-height:1.1}
+.sub{color:var(--mute);margin:0 0 28px;font-size:1.05rem;max-width:720px}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.box{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--brand);border-radius:18px;padding:24px;box-shadow:var(--sh)}
+.box h3{margin:0 0 6px;font-family:Fraunces,Georgia,serif;font-size:1.2rem}.box p{margin:0;color:var(--mute)}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.filters button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 20px;border-radius:999px;cursor:pointer;font:600 .95rem Inter,sans-serif}
+.filters button.on{background:var(--brand);border-color:var(--brand);color:var(--onb)}
+#adminbar{background:#fff3c4;color:#4a3b00;border:2px dashed #c8962e;border-radius:12px;padding:12px 16px;margin-bottom:22px;font-size:.92rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:26px}
+.hotel{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;min-height:540px;box-shadow:var(--sh)}
+.ph{position:relative;height:250px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,rgba(15,76,92,.12) 0 14px,rgba(15,76,92,.06) 14px 28px),var(--card);color:var(--mute)}
+.nophoto{font-size:.9rem}
+.badge{z-index:3;position:absolute;left:14px;top:14px;display:inline-flex;gap:6px;align-items:center;font-weight:700;font-size:.85rem;padding:7px 14px;border-radius:999px;background:var(--okbg);color:var(--ok);box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.off .badge{background:var(--nobg);color:var(--no)}
+.body{padding:24px;display:flex;flex-direction:column;gap:13px;flex:1}
+.body h3{margin:0;font-family:Fraunces,Georgia,serif;font-size:1.6rem;line-height:1.15}
+.body p{margin:0;color:var(--mute);font-size:1rem}
+.chips{display:flex;gap:7px;flex-wrap:wrap}.chips span{border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:.84rem;color:var(--mute)}
+.actions{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.wa{display:block;text-align:center;background:#1f7a5c;color:#fff;font-weight:700;font-size:1.02rem;text-decoration:none;padding:14px;border-radius:12px;border:2px solid #1f7a5c}
+.wa.sec{background:none;color:var(--brand);border-color:var(--brand)}
+.soc{display:flex;gap:10px}.soc a{flex:1;text-align:center;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px;font-weight:600;font-size:.9rem}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--line);border-radius:12px;overflow:hidden}
+.tog{border:0;padding:13px;font:700 .95rem Inter,sans-serif;cursor:pointer;background:var(--card);color:var(--mute)}
+.tog.sel{background:#14633f;color:#fff}.tog.sel.no{background:#a3231b}.tog:disabled{opacity:.6;cursor:wait}
+.car{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}.car::-webkit-scrollbar{display:none}
+.car img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center}
+.nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#1b2a2f;font-size:1.6rem;line-height:1;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3)}.nav.l{left:10px}.nav.r{right:10px}
+.dots{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:6px;z-index:2;pointer-events:none}.dots i{width:8px;height:8px;border-radius:8px;background:rgba(255,255,255,.6);transition:width .2s}.dots i.on{background:#fff;width:22px}
+.rm{position:absolute;top:14px;right:14px;z-index:3;border:0;border-radius:999px;background:rgba(163,35,27,.94);color:#fff;font:700 .8rem Inter,sans-serif;padding:8px 12px;cursor:pointer}
+.addph{display:block;text-align:center;border:2px dashed var(--brand);color:var(--brand);border-radius:12px;padding:12px;font-weight:700;cursor:pointer}
+footer{margin-top:60px;background:#0a3642;color:#d6ecee;text-align:center;padding:24px 20px;font-size:.88rem;line-height:1.5}
+:focus-visible{outline:3px solid #e6b84f;outline-offset:2px}
+.abtn{margin:4px 6px 0 0;border:1px solid #c8962e;background:#fff;color:#4a3b00;border-radius:8px;padding:7px 12px;font:700 .85rem Inter,sans-serif;cursor:pointer}
+.stars{font-size:1.2rem;letter-spacing:2px;line-height:1}.stars span{color:#b8821a}.stars .off{color:var(--line)}
+.stars.adm{display:flex;align-items:center;gap:2px}.st{border:0;background:none;padding:2px 3px;font-size:1.7rem;line-height:1;color:#b8821a;cursor:pointer}.st.off{color:var(--line)}.stars.adm small{margin-left:8px;color:var(--mute);font-size:.8rem;letter-spacing:0}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="top"><span data-i="kicker">Gobernación del Magdalena · Turismo</span><div class="lang" id="lang"><button data-l="es" class="on">ES</button><button data-l="en" class="">EN</button></div></div>
+  <div class="in"><div class="txt">
+  <h1><span class="n">400</span><span data-i="heroTitle">años de Plato</span></h1>
+  <p data-i="heroSub">Cuatro siglos de historia, cultura y hospitalidad a orillas del río Magdalena. Reserva tu estadía y vive la celebración.</p>
+  <a class="btn" href="#hoteles" data-i="cta">Ver hoteles</a><a class="btn o" href="#plato" data-i="aboutT">Conoce Plato</a></div>
+  <figure class="collage"><img id="heroImg" src="collage-plato.jpg" alt="" width="1400" height="1400" fetchpriority="high"></figure></div>
+</header>
+
+<div class="main-bg">
+<main class="wrap">
+  <section id="plato">
+    <h2 data-i="aboutT">Conoce Plato</h2><p class="sub" data-i="aboutS">Municipio del departamento del Magdalena, Colombia, que celebra sus 400 años.</p>
+    <div class="info">
+      <div class="box"><h3 data-i="b1t">Historia</h3><p data-i="b1p">Fundado en 1626 por Fray Dionisio de Sanctis. Celebramos cuatro siglos de memoria ribereña sobre el río Magdalena.</p></div>
+      <div class="box"><h3 data-i="b2t">Cultura y tradición</h3><p data-i="b2p">Cuna de la Leyenda del Hombre Caimán y del Festival Nacional del Hombre Caimán, con música de acordeón y tambora.</p></div>
+      <div class="box"><h3 data-i="b3t">Qué hacer</h3><p data-i="b3p">Visita el Monumento al Hombre Caimán, el Malecón del Río Magdalena y la Iglesia colonial de la Inmaculada Concepción.</p></div>
+      <div class="box"><h3 data-i="b4t">Cómo llegar</h3><p data-i="b4p">Sobre la Troncal de los Contenedores. Conexión directa desde Santa Marta (3h), Barranquilla (2.5h) y Valledupar (2h).</p></div>
+    </div>
+  </section>
+  <section id="hoteles">
+    <h2 data-i="hotT">Dónde hospedarte</h2><p class="sub" data-i="hotS">Escríbele directo a cada hotel por WhatsApp y consulta su disponibilidad.</p>
+    <div id="adminbar" hidden=""></div>
+    <div class="filters" id="filters"><button class="on" data-f="todos" data-i="fAll">Todos</button><button data-f="si" data-i="fYes">Con disponibilidad</button><button data-f="no" data-i="fNo">Sin disponibilidad</button></div>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+</div>
+<footer><p style="margin:0;font-size:.88rem;color:#d6ecee;">© 2026 Gobernación del Magdalena - Oficina de Pasaportes. Todos los derechos reservados. - OFICINA TIC</p></footer>
+
+<script type="application/json" id="data">{"actualizado":"2026-11-06","hoteles":[{"id":"h1","estrellas":4,"nombre":"Hotel Ejemplo Uno","disponible":true,"whatsapp":"573000000001","facebook":"https://facebook.com/","instagram":"https://instagram.com/","es":{"desc":"Habitaciones con aire acondicionado, piscina y parqueadero.","serv":["Piscina","Aire acondicionado","Parqueadero"]},"en":{"desc":"Air-conditioned rooms with a pool and private parking.","serv":["Pool","A/C","Parking"]}},{"id":"h2","estrellas":3,"nombre":"Hotel Ejemplo Dos","disponible":false,"whatsapp":"573000000002","facebook":"https://facebook.com/","instagram":"https://instagram.com/","es":{"desc":"Hospedaje céntrico, cerca de la plaza principal.","serv":["Centro","Wifi","Restaurante"]},"en":{"desc":"Central stay, close to the main square.","serv":["Downtown","Wi-Fi","Restaurant"]}},{"id":"h3","estrellas":0,"nombre":"Hotel Ejemplo Tres","disponible":true,"whatsapp":"573000000003","facebook":"","instagram":"https://instagram.com/","es":{"desc":"Ambiente familiar con desayuno incluido.","serv":["Desayuno","Wifi","Familiar"]},"en":{"desc":"Family-friendly atmosphere with breakfast included.","serv":["Breakfast","Wi-Fi","Family"]}}]}</script>
+<script>
+var T={
+es:{kicker:"Gobernación del Magdalena · Turismo",heroTitle:"años de Plato",heroSub:"Cuatro siglos de historia, cultura y hospitalidad a orillas del río Magdalena. Reserva tu estadía y vive la celebración.",cta:"Ver hoteles",aboutT:"Conoce Plato",aboutS:"Municipio del departamento del Magdalena, Colombia, que celebra sus 400 años.",b1t:"Historia",b1p:"Texto breve sobre la historia de Plato y el significado de sus 400 años.",b2t:"Cultura y tradición",b2p:"Fiestas, música, gastronomía y personajes que identifican al municipio.",b3t:"Qué hacer",b3p:"Lugares de interés, eventos de la conmemoración y actividades para visitantes.",b4t:"Cómo llegar",b4p:"Indicaciones de acceso desde Santa Marta, Barranquilla y otras ciudades.",hotT:"Dónde hospedarte",hotS:"Escríbele directo a cada hotel por WhatsApp y consulta su disponibilidad.",fAll:"Todos",fYes:"Con disponibilidad",fNo:"Sin disponibilidad",yes:"Con disponibilidad",no:"Sin disponibilidad",wa:"Escribir por WhatsApp",msg:"Hola, vi su hotel en la página de los 400 años de Plato y quisiera consultar disponibilidad.",footA:"Plato 400 años · Prueba piloto",footB:"Disponibilidad actualizada:",empty:"No hay hoteles en esta categoría por ahora.",admin:"Modo administrador: cambia la disponibilidad y sube fotos de cada hotel. Se publica al instante para todos.",mkNo:"Marcar SIN disponibilidad",mkYes:"Marcar CON disponibilidad",saving:"Guardando…",addPh:"Agregar fotos",rmPh:"Quitar esta foto",uploading:"Subiendo…",ask:"Consultar otras fechas",noPh:"Fotos próximamente",stLbl:"Estrellas del hotel",stHint:"Toca una estrella para asignar la categoría",heroAlt:"Collage de fotos: un hombre con sombrero y traje verde, una carroza con reinas y una escultura de bronce",segLbl:"Estado del hotel",segYes:"Disponible",segNo:"Lleno",adminLocal:"Modo administrador local: tus cambios solo se ven en este navegador. Para publicarlos pulsa «Copiar datos» y pega el resultado en el bloque de datos del archivo (id data); luego sube el archivo de nuevo.",copy:"Copiar datos",reset:"Descartar cambios",copied:"¡Copiado!"},
+en:{kicker:"Magdalena Tourism Office · Colombia",heroTitle:"years of Plato",heroSub:"Four centuries of history, culture and warm hospitality on the banks of the Magdalena River. Book your stay and join the celebration.",cta:"Browse hotels",aboutT:"Discover Plato",aboutS:"A town in the Magdalena department, Colombia, celebrating its 400th anniversary.",b1t:"History",b1p:"A short text about Plato’s history and what its 400 years mean.",b2t:"Culture & traditions",b2p:"Festivals, music, food and the people that define the town.",b3t:"Things to do",b3p:"Places to visit, anniversary events and activities for travelers.",b4t:"How to get here",b4p:"Directions from Santa Marta, Barranquilla and other cities.",hotT:"Where to stay",hotS:"Message each hotel directly on WhatsApp and check availability.",fAll:"All",fYes:"Available",fNo:"Fully booked",yes:"Rooms available",no:"No availability",wa:"Chat on WhatsApp",msg:"Hello, I found your hotel on the Plato 400 years website and would like to check availability.",footA:"Plato 400 years · Pilot program",footB:"Availability last updated:",empty:"No hotels in this category right now.",admin:"Admin mode: change availability and upload photos for each hotel. Changes go live for everyone instantly.",mkNo:"Mark as NO availability",mkYes:"Mark as AVAILABLE",saving:"Saving…",addPh:"Add photos",rmPh:"Remove this photo",uploading:"Uploading…",ask:"Ask about other dates",noPh:"Photos coming soon",stLbl:"Hotel stars",stHint:"Tap a star to set the category",heroAlt:"Photo collage: a man in a green costume and hat, a parade float with queens and a bronze sculpture",segLbl:"Hotel status",segYes:"Available",segNo:"Full",adminLocal:"Local admin mode: your changes are visible only in this browser. To publish them, click “Copy data” and paste the result into the data block of the file (id data), then upload the file again.",copy:"Copy data",reset:"Discard changes",copied:"Copied!"}
+};
+var DATA=JSON.parse(document.getElementById("data").textContent);
+var lang=(navigator.language||"en").slice(0,2)==="es"?"es":"en",filtro="todos",admin=false,artifact=null,assets=null;
+var grid=document.getElementById("grid");
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function applyText(){
+  var t=T[lang];document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i]").forEach(function(e){e.textContent=t[e.dataset.i]});
+  var hi=document.getElementById("heroImg");if(hi)hi.alt=t.heroAlt;
+  document.querySelectorAll("#lang button").forEach(function(b){b.classList.toggle("on",b.dataset.l===lang)});
+  var d=new Date(DATA.actualizado+"T12:00:00");
+  document.getElementById("fecha").textContent=d.toLocaleDateString(lang==="es"?"es-CO":"en-US",{year:"numeric",month:"long",day:"numeric"});
+  var ab=document.getElementById("adminbar");ab.hidden=!admin;ab.innerHTML=admin?"<span>"+esc(artifact?t.admin:t.adminLocal)+"</span>"+(artifact?"":' <br><button type="button" class="abtn" data-a="copy">'+t.copy+'</button><button type="button" class="abtn" data-a="reset">'+t.reset+'</button>'):"";
+  render();
+}
+function byId(id){return DATA.hoteles.filter(function(x){return x.id===id})[0]}
+function fotoSrc(f){return /[./:]/.test(f)?f:"/_blob/"+f}
+function gallery(h,icon){var f=h.fotos||[];if(!f.length)return icon;
+  var s='<div class="car">'+f.map(function(id,i){return '<img src="'+fotoSrc(id)+'" alt="'+esc(h.nombre)+' '+(i+1)+'"'+(i?' loading="lazy"':'')+'>'}).join("")+'</div>';
+  if(f.length>1)s+='<button class="nav l" aria-label="Previous">‹</button><button class="nav r" aria-label="Next">›</button><div class="dots">'+f.map(function(_,i){return '<i'+(i?'':' class="on"')+'></i>'}).join("")+'</div>';
+  if(admin&&assets)s+='<button class="rm">🗑 '+T[lang].rmPh+'</button>';
+  return s}
+function stars(h){var n=Math.max(0,Math.min(5,Math.round(+h.estrellas||0)));
+  if(admin){var bs="";for(var i=1;i<=5;i++)bs+='<button type="button" class="st'+(i<=n?'':' off')+'" data-id="'+h.id+'" data-n="'+i+'" aria-label="'+i+' ★">★</button>';
+    return '<div class="stars adm" role="group" aria-label="'+T[lang].stLbl+'">'+bs+'<small>'+(n?'':T[lang].stHint)+'</small></div>'}
+  if(!n)return"";
+  return '<div class="stars" role="img" aria-label="'+(lang==="es"?n+" de 5 estrellas":n+" out of 5 stars")+'"><span>'+"★".repeat(n)+'</span><span class="off">'+"★".repeat(5-n)+'</span></div>'}
+function setStars(id,v){var h=byId(id);if(!h)return;h.estrellas=v;
+  if(!artifact){guardarLocal();applyText();return}
+  artifact.publish(snapshot()).catch(function(){applyText()})}
+function render(){
+  var t=T[lang];
+  var lista=DATA.hoteles.filter(function(h){return filtro==="todos"||(filtro==="si")===h.disponible});
+  grid.innerHTML=lista.length?lista.map(function(h,i){
+    var c=h[lang];
+    return '<article class="hotel'+(h.disponible?'':' off')+'"><div class="ph" data-id="'+h.id+'"><span class="badge">'+(h.disponible?'✓ '+t.yes:'✕ '+t.no)+'</span>'+gallery(h,'<span class="nophoto">'+t.noPh+'</span>')+'</div><div class="body">'+
+      '<h3>'+esc(h.nombre)+'</h3>'+stars(h)+'<div class="chips">'+c.serv.map(function(s){return '<span>'+esc(s)+'</span>'}).join("")+'</div><p>'+esc(c.desc)+'</p>'+
+      '<div class="actions"><a class="wa'+(h.disponible?'':' sec')+'" href="https://wa.me/'+esc(h.whatsapp)+'?text='+encodeURIComponent(t.msg)+'" target="_blank" rel="noopener">'+(h.disponible?t.wa:t.ask)+'</a>'+
+      '<div class="soc">'+(h.facebook?'<a href="'+esc(h.facebook)+'" target="_blank" rel="noopener">Facebook</a>':'')+(h.instagram?'<a href="'+esc(h.instagram)+'" target="_blank" rel="noopener">Instagram</a>':'')+'</div>'+
+      (admin?'<div class="seg" role="group" aria-label="'+t.segLbl+'"><button class="tog'+(h.disponible?' sel':'')+'" data-id="'+h.id+'" data-v="1">✓ '+t.segYes+'</button><button class="tog'+(h.disponible?'':' sel no')+'" data-id="'+h.id+'" data-v="0">✕ '+t.segNo+'</button></div>':'')+
+      '</div></div></article>';
+  }).join(""):'<p class="sub">'+t.empty+'</p>';
+}
+function guardarLocal(){try{var o={actualizado:DATA.actualizado,estado:{},estrellas:{}};DATA.hoteles.forEach(function(h){o.estado[h.id]=h.disponible;o.estrellas[h.id]=h.estrellas||0});localStorage.setItem("plato400-estado",JSON.stringify(o))}catch(e){}}
+function cargarLocal(){try{var o=JSON.parse(localStorage.getItem("plato400-estado")||"null");if(!o)return;DATA.hoteles.forEach(function(h){if(typeof o.estado[h.id]==="boolean")h.disponible=o.estado[h.id];if(o.estrellas&&typeof o.estrellas[h.id]==="number")h.estrellas=o.estrellas[h.id]});if(o.actualizado)DATA.actualizado=o.actualizado}catch(e){}}
+function copiarDatos(btn){var txt=JSON.stringify(DATA,null,1);
+  var ok=function(){btn.textContent=T[lang].copied};
+  var fb=function(){var ta=document.createElement("textarea");ta.value=txt;ta.style.cssText="display:block;width:100%;height:140px;margin-top:8px";document.getElementById("adminbar").appendChild(ta);ta.select()};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(ok,fb);else fb()}
+function descartarLocal(){try{localStorage.removeItem("plato400-estado")}catch(e){}location.reload()}
+function toggle(id,btn){
+  var h=DATA.hoteles.filter(function(x){return x.id===id})[0];if(!h)return;
+  h.disponible=!h.disponible;
+  var n=new Date();DATA.actualizado=n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0");
+  guardarLocal();applyText();
+}
+document.getElementById("adminbar").addEventListener("click",function(e){var b=e.target.closest(".abtn");if(!b)return;if(b.dataset.a==="copy")copiarDatos(b);else descartarLocal()});
+document.getElementById("lang").addEventListener("click",function(e){var b=e.target.closest("button");if(b){lang=b.dataset.l;applyText()}});
+document.getElementById("filters").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;filtro=b.dataset.f;[].forEach.call(this.children,function(x){x.classList.toggle("on",x===b)});render()});
+grid.addEventListener("click",function(e){
+  var st=e.target.closest(".st");if(st){var h2=byId(st.dataset.id),k=+st.dataset.n;setStars(st.dataset.id,h2&&Math.round(+h2.estrellas||0)===k?0:k);return}
+  var b=e.target.closest(".tog");if(b){var hh=byId(b.dataset.id);if(hh&&hh.disponible!==(b.dataset.v==="1"))toggle(b.dataset.id,b);return}
+  var n=e.target.closest(".nav");if(n){var car=n.parentNode.querySelector(".car");car.scrollBy({left:(n.classList.contains("r")?1:-1)*car.clientWidth,behavior:"smooth"});return}
+});
+grid.addEventListener("scroll",function(e){var car=e.target;if(!car.classList||!car.classList.contains("car"))return;
+  var i=Math.round(car.scrollLeft/car.clientWidth);car.parentNode.querySelectorAll(".dots i").forEach(function(x,k){x.classList.toggle("on",k===i)})},true);
+if(location.hash==="#admin"){cargarLocal();admin=true}
+applyText();
+window.addEventListener("hashchange",function(){admin=location.hash==="#admin";if(admin)cargarLocal();applyText()});
+</script>
+</body></html>
+

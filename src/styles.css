@@ -1,0 +1,174 @@
+/* DEFINICIÓN OFICIAL DE FUENTE SPECTRAL (LOCAL DE ALTO RENDIMIENTO) */
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-ExtraLight.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: italic;
+  font-weight: 200;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-ExtraLightItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-LightItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-MediumItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-SemiBoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/spectral/Spectral-ExtraBoldItalic.ttf') format('truetype');
+}
+
+/* VARIABLES DE COLOR (modo claro) */
+:root {
+  --bg: #f7f1e3;
+  --card: #fffdf8;
+  --ink: #1b2a2f;
+  --mute: #5b6b70;
+  --brand: #0f4c5c;
+  --onb: #fff;
+  --oro: #c8962e;
+  --sun: #e6b84f;
+  --ok: #14633f;
+  --okbg: #dff2e8;
+  --no: #a3231b;
+  --nobg: #fbe4e1;
+  --line: #e3d9c3;
+  --sh: 0 12px 32px rgba(15, 76, 92, 0.12);
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* MODO OSCURO automático */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1a1e;
+    --card: #14262c;
+    --ink: #f1f4f2;
+    --mute: #a3b4b6;
+    --brand: #4fb4c4;
+    --onb: #0d1a1e;
+    --ok: #7be3a8;
+    --okbg: #14351f;
+    --no: #ff9c97;
+    --nobg: #401a1a;
+    --line: #26393e;
+    --sh: 0 12px 32px rgba(0, 0, 0, 0.45);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: #fbf7ee url('/fondo-ilustracion-plato.jpg') center top / cover no-repeat fixed;
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: 'Spectral', Georgia, serif;
+  line-height: 1.6;
+}
+
+button, input, select, textarea {
+  font-family: 'Spectral', Georgia, serif;
+}
+
+:focus-visible {
+  outline: 3px solid #e6b84f;
+  outline-offset: 2px;
+}
