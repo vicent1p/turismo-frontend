@@ -89,6 +89,16 @@ export function getApiBaseUrl(): string {
     }
   }
 
+  if (typeof window !== 'undefined' && window.location) {
+    const hostname = window.location.hostname;
+    // Si estamos en entorno de desarrollo local (localhost o 127.0.0.1)
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return 'http://localhost:3000';
+    }
+    // Si estamos desplegados en producción en proturismo.magdalena.gov.co o similar
+    return window.location.origin;
+  }
+
   return 'https://proturismo.magdalena.gov.co';
 }
 
