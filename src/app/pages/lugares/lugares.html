@@ -121,10 +121,6 @@
               ★ {{ item.estrellas || 0 }} de 5
             </span>
 
-            @if (item.fotos && item.fotos.length > 1) {
-              <span class="lugar-photo-count">1/{{ item.fotos.length }}</span>
-            }
-
             <!-- Botón Ver Detalle sobre la foto -->
             <button
               type="button"
@@ -138,16 +134,6 @@
 
           <!-- 2. CUERPO DE LA TARJETA (RÉPLICA EXACTA DE LA PORTADA) -->
           <div class="lugar-body card-body">
-            <!-- Calificación en estrellas -->
-            <div class="card-stars-wrap">
-              <div class="stars" [attr.aria-label]="(item.estrellas || 0) + ' de 5 estrellas'">
-                @for (s of [1, 2, 3, 4, 5]; track s) {
-                  <span [class.star-on]="s <= (item.estrellas || 0)" [class.star-off]="s > (item.estrellas || 0)">★</span>
-                }
-                <span class="stars-num">{{ item.estrellas || 0 }} de 5 estrellas</span>
-              </div>
-            </div>
-
             <!-- Título del establecimiento -->
             <h3 class="lugar-name hotel-nombre" (click)="abrirDetalle(item)">{{ item.nombre }}</h3>
 

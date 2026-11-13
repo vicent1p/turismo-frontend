@@ -427,27 +427,11 @@
                       </span>
                     }
                   </div>
-
-                  @if (h.fotos && h.fotos.length > 0) {
-                    <span class="photo-count-badge">
-                      {{ h.fotos.length }} {{ t().fotosCount }}
-                    </span>
-                  }
                 </div>
               </div>
 
               <!-- CUERPO DE LA TARJETA -->
               <div class="card-body">
-                <!-- CALIFICACIÓN EN ESTRELLAS DE LA TARJETA (SEGÚN CREACIÓN) -->
-                <div class="card-stars-wrap">
-                  <div class="stars" [attr.aria-label]="(h.estrellas || 0) + ' de 5 estrellas'">
-                    @for (s of [1, 2, 3, 4, 5]; track s) {
-                      <span [class.star-on]="s <= (h.estrellas || 0)" [class.star-off]="s > (h.estrellas || 0)">★</span>
-                    }
-                    <span class="stars-num">{{ h.estrellas || 0 }} de 5 estrellas</span>
-                  </div>
-                </div>
-
                 <!-- 1. NOMBRE DEL HOTEL -->
                 <h3 class="hotel-nombre">{{ h.nombre }}</h3>
 

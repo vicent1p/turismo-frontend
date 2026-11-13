@@ -1009,26 +1009,18 @@
                       [alt]="hotelNombre || cardMeta().previewAltFallback"
                       class="carousel-img"
                     />
-                    <span class="photo-count-badge">📷 {{ hotelFotos.length }} foto(s)</span>
                   } @else {
                     <div class="photo-placeholder">
                       <span>📷 Sin fotos cargadas</span>
                     </div>
                   }
+                  <span class="badge-rating-gold" style="position: absolute; top: 10px; left: 10px; z-index: 2;">
+                    ★ {{ hotelEstrellas }} / 5
+                  </span>
                 </div>
 
                 <!-- Cuerpo de la tarjeta con dimensiones uniformes -->
                 <div class="card-body">
-                  <!-- Estrellas -->
-                  <div class="card-stars-wrap">
-                    <div class="stars">
-                      @for (s of [1, 2, 3, 4, 5]; track s) {
-                        <span [class.star-on]="s <= hotelEstrellas" [class.star-off]="s > hotelEstrellas">★</span>
-                      }
-                      <span class="stars-num">{{ hotelEstrellas }} / 5</span>
-                    </div>
-                  </div>
-
                   <!-- Nombre de la tarjeta -->
                   <h3 class="hotel-nombre" [title]="hotelNombre || cardMeta().previewTitleFallback">
                     {{ hotelNombre || cardMeta().previewTitleFallback }}
