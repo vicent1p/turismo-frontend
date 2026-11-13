@@ -240,8 +240,8 @@ export class AuthService {
     }
   }
 
-  /** Ensures a valid JWT is loaded or acquired silently for the active session (Admin or Gestor). */
-  async getOrRefreshToken(): Promise<string | null> {
+  /** Returns active JWT synchronously from signal or localStorage (Admin or Gestor). */
+  getEffectiveToken(): string | null {
     const current = this.accessToken();
     if (current) return current;
 
@@ -253,15 +253,6 @@ export class AuthService {
           return stored;
         }
       } catch {}
-    }
-
-    const user = this.currentUser();
-    if (user && isDevMode()) {
-      const pass = user.email.toLowerCase().includes('gestor') ? 'gestor2026' : 'admin2026';
-      const res = await this.loginRemoto(user.email, pass);
-      if (res.exito) {
-        return this.accessToken();
-      }
     }
 
     return null;

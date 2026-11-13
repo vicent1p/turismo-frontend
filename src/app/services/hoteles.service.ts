@@ -676,7 +676,7 @@ export class HotelesService {
   async crearTarjetaRemota(
     hotelData: Omit<Hotel, 'id'>
   ): Promise<{ exito: boolean; hotel?: Hotel; error?: string }> {
-    const token = await this.authService.getOrRefreshToken();
+    const token = this.authService.getEffectiveToken();
     if (!this.http || !token) {
       if (this.allowOfflineFallback()) {
         const hotel = this.agregarHotel(hotelData);
@@ -719,7 +719,7 @@ export class HotelesService {
   async actualizarTarjetaRemota(
     hotelActualizado: Hotel
   ): Promise<{ exito: boolean; hotel?: Hotel; error?: string }> {
-    const token = await this.authService.getOrRefreshToken();
+    const token = this.authService.getEffectiveToken();
     if (!this.http || !token) {
       if (this.allowOfflineFallback()) {
         this.actualizarHotel(hotelActualizado);
@@ -760,7 +760,7 @@ export class HotelesService {
       return { exito: false, error: 'Establecimiento no encontrado.' };
     }
 
-    const token = await this.authService.getOrRefreshToken();
+    const token = this.authService.getEffectiveToken();
     if (!this.http || !token) {
       if (this.allowOfflineFallback()) {
         this.toggleDisponible(hotelId);
@@ -795,7 +795,7 @@ export class HotelesService {
 
   /** Soft-deletes a card in PostgreSQL (`DELETE /api/hoteles/:id`). */
   async eliminarTarjetaRemota(id: string): Promise<{ exito: boolean; error?: string }> {
-    const token = await this.authService.getOrRefreshToken();
+    const token = this.authService.getEffectiveToken();
     if (!this.http || !token) {
       if (this.allowOfflineFallback()) {
         this.eliminarHotel(id);

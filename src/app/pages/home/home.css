@@ -116,11 +116,15 @@
 .hero-actions .btn {
   display: inline-flex;
   align-items: center;
-  gap: 18px;
+  justify-content: center;
+  gap: 12px;
   font-family: 'Spectral', Georgia, serif;
   font-size: 0.9rem;
   font-weight: 600;
-  padding: 9px 26px;
+  padding: 0 26px;
+  height: 42px;
+  min-height: 42px;
+  box-sizing: border-box;
   border-radius: 999px;
   text-decoration: none;
   transition: all 0.2s ease;
@@ -1424,13 +1428,15 @@
   gap: 8px;
   background: linear-gradient(135deg, #22c55e 0%, #15803d 100%); /* Verde pasto natural y vibrante */
   color: #ffffff;
-  padding: 9px 26px;
+  padding: 0 26px;
+  height: 42px;
+  min-height: 42px;
   border-radius: 999px;
   border: 1.5px solid #86efac;
   font-family: 'Spectral', Georgia, serif;
   font-weight: 600;
   font-size: 0.9rem;
-  line-height: inherit;
+  line-height: 1;
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 5px 15px rgba(24, 88, 46, 0.22);
