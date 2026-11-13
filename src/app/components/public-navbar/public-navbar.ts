@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AppLang, LanguageService } from '../../services/language.service';
@@ -43,6 +43,16 @@ export class PublicNavbarComponent {
   readonly languageService = inject(LanguageService);
 
   readonly activeSection = input<'inicio' | 'historia' | 'cultura' | 'programacion' | 'lugares'>('inicio');
+
+  readonly mobileMenuOpen = signal(false);
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen.update(v => !v);
+  }
+
+  closeMobileMenu(): void {
+    this.mobileMenuOpen.set(false);
+  }
 
   readonly lang = this.languageService.lang;
   readonly t = computed(() => NAV_COPY[this.lang()]);

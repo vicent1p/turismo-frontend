@@ -12,6 +12,7 @@
   background: transparent;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 /* CONTENEDOR centrado */
@@ -1402,6 +1403,14 @@
     margin: 0 auto;
   }
 
+  .raices-tag-bar {
+    justify-content: center;
+  }
+
+  .raices-tag-underline {
+    margin: 6px auto 14px;
+  }
+
   .raices-title-p1,
   .raices-title-p2 {
     white-space: normal;
@@ -1445,12 +1454,55 @@
 }
 
 @media (max-width: 640px) {
-  .pillars-container {
-    grid-template-columns: 1fr;
+  .wrap {
+    padding: 0 12px;
+  }
+
+  .hero-container {
+    padding: 0 16px;
+  }
+
+  .hero-kicker-badge {
+    font-size: 0.78rem;
+    padding: 5px 14px;
+    letter-spacing: 0.05em;
   }
 
   .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    gap: 10px;
     justify-content: center;
+  }
+
+  .hero-actions .btn,
+  .hero-actions .btn-encuesta-hero {
+    width: 100%;
+    justify-content: center;
+    height: 44px;
+    min-height: 44px;
+  }
+
+  .pillars-bar {
+    width: 100%;
+    padding: 10px 16px 18px;
+    margin: 4px auto 8px;
+  }
+
+  .pillars-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .pillar-col {
+    padding: 10px 8px;
+    border-right: none;
+    border-bottom: 1px solid rgba(200, 150, 46, 0.35);
+  }
+
+  .raices-section {
+    padding: 20px 16px 28px;
   }
 
   .raices-title-p1 {
@@ -1461,26 +1513,168 @@
     font-size: clamp(2.1rem, 7.6vw, 2.85rem);
   }
 
+  #plato,
+  .seccion-conoce-plato-full {
+    padding: 38px 16px 30px;
+    margin-top: 16px;
+  }
+
   .info {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .parchment-inner-frame {
+    min-height: auto;
+    padding: 22px 16px 22px;
   }
 
   .wave-transition-svg {
-    height: 48px;
+    height: 44px;
+  }
+
+  .hoteles-experiencias-section {
+    padding: 18px 0 32px;
   }
 
   .hoteles-section-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+    padding: 0 16px;
+    gap: 14px;
+  }
+
+  .hoteles-titles {
+    text-align: center;
+  }
+
+  .hoteles-titles .gold-underline.left {
+    margin: 10px auto 0;
+  }
+
+  .btn-descubre-experiencias {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+
+  .category-tabs-wrap {
+    margin: 14px 0 20px;
+    padding: 0 12px;
+  }
+
+  .category-tabs {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tab-pill {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .hotels-carousel-container {
+    position: relative;
+    padding: 0 8px;
+    gap: 6px;
   }
 
   .grid {
+    padding: 12px 6px;
     grid-auto-columns: 100%;
+    border-radius: 12px;
   }
 
   .grid-nav-btn {
-    width: 34px;
-    height: 34px;
+    position: absolute;
+    top: 38%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    background: rgba(22, 84, 45, 0.94);
+    color: #ffffff;
+    border: 1.5px solid rgba(220, 168, 36, 0.5);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+  }
+
+  .grid-nav-btn.prev {
+    left: 2px;
+  }
+
+  .grid-nav-btn.next {
+    right: 2px;
+  }
+
+  .hotel-card {
+    border-radius: 14px;
+  }
+
+  .card-photo-hero {
+    height: 185px;
+    width: calc(100% - 14px);
+    margin: 7px 7px 0;
+  }
+
+  .card-body {
+    padding: 12px 14px 16px;
+  }
+
+  .cuadros-container {
+    gap: 7px;
+  }
+
+  .cuadro {
+    width: 32px;
+    height: 32px;
+  }
+
+  .btn-flotante-encuesta {
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 16px;
+    font-size: 0.84rem;
+  }
+
+  .modal-encuesta-card {
+    max-width: 95vw;
+    margin: 8px;
+    max-height: 92vh;
+  }
+
+  .modal-encuesta-header {
+    padding: 16px 18px;
+  }
+
+  .modal-encuesta-body {
+    padding: 16px 18px;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-kicker-badge {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+
+  .headline-p1,
+  .headline-p2 {
+    font-size: 1.65rem;
+  }
+
+  .tab-pill {
+    padding: 5px 6px;
+    font-size: 0.74rem;
+  }
+
+  .btn-flotante-encuesta {
+    padding: 8px 12px;
+    font-size: 0.78rem;
   }
 }
 

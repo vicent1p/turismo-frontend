@@ -11,37 +11,45 @@
       </a>
     </div>
 
-    <!-- ENLACES DE NAVEGACIÓN CENTRADOS -->
-    <nav class="nav-links" [attr.aria-label]="t().navAria">
+    <!-- ENLACES DE NAVEGACIÓN CENTRADOS (Y MENÚ DESPLEGABLE EN MÓVIL) -->
+    <nav class="nav-links" [class.open]="mobileMenuOpen()" [attr.aria-label]="t().navAria">
       <a
         routerLink="/"
-        (click)="onHomeAnchorClick($event, 'top')"
+        (click)="onHomeAnchorClick($event, 'top'); closeMobileMenu()"
         class="nav-item"
         [class.active]="activeSection() === 'inicio'"
       >{{ t().navInicio }}</a>
       <a
         routerLink="/historia"
+        (click)="closeMobileMenu()"
         class="nav-item"
         [class.active]="activeSection() === 'historia'"
       >{{ t().navHistoria }}</a>
       <a
         routerLink="/cultura"
+        (click)="closeMobileMenu()"
         class="nav-item"
         [class.active]="activeSection() === 'cultura'"
       >{{ t().navCultura }}</a>
       <a
         routerLink="/"
         fragment="plato"
-        (click)="onHomeAnchorClick($event, 'plato')"
+        (click)="onHomeAnchorClick($event, 'plato'); closeMobileMenu()"
         class="nav-item"
       >{{ t().navPueblo }}</a>
+      <a
+        routerLink="/programacion"
+        (click)="closeMobileMenu()"
+        class="nav-item mobile-celebracion-item"
+        [class.active]="activeSection() === 'programacion'"
+      >{{ t().btnCelebracion }}</a>
     </nav>
 
     <!-- ACCIONES A LA DERECHA -->
     <div class="nav-actions">
       <a
         routerLink="/programacion"
-        class="btn-celebracion"
+        class="btn-celebracion desktop-celebracion"
         [class.active]="activeSection() === 'programacion'"
       >{{ t().btnCelebracion }}</a>
 
@@ -49,6 +57,25 @@
         <button type="button" [class.on]="lang() === 'es'" (click)="setLang('es')" aria-label="Cambiar a Español">ES</button>
         <button type="button" [class.on]="lang() === 'en'" (click)="setLang('en')" aria-label="Switch to English">EN</button>
       </div>
+
+      <!-- BOTÓN HAMBURGUESA / MENÚ MÓVIL -->
+      <button
+        type="button"
+        class="btn-menu-toggle"
+        (click)="toggleMobileMenu()"
+        [attr.aria-expanded]="mobileMenuOpen()"
+        aria-label="Menú de navegación"
+      >
+        @if (!mobileMenuOpen()) {
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        } @else {
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        }
+      </button>
 
       @if (authService.isAuthenticated()) {
         <div class="user-session-pill">

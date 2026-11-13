@@ -1449,6 +1449,14 @@
   border-radius: 50%;
 }
 
+.uniform-card .fb-box {
+  color: #1877f2;
+}
+
+.uniform-card .cuadro-fb:hover {
+  border-color: #1877f2;
+}
+
 .uniform-card .cuadro-content {
   display: flex;
   flex-direction: column;

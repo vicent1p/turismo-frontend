@@ -448,6 +448,16 @@
   color: #ffffff;
 }
 
+.icon-action.facebook {
+  color: #1877f2;
+  border-color: rgba(24, 119, 242, 0.35);
+}
+
+.icon-action.facebook:hover {
+  background: #1877f2;
+  color: #ffffff;
+}
+
 .lugares-empty-state {
   text-align: center;
   padding: 36px 20px;
@@ -662,6 +672,15 @@
 .modal-btn.primary {
   background: #18572b;
   color: #ffffff;
+}
+
+.modal-btn.facebook {
+  background: #1877f2;
+  color: #ffffff;
+}
+
+.modal-btn.facebook:hover {
+  background: #166fe5;
 }
 
 .modal-btn.secondary {

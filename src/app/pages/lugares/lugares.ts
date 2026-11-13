@@ -323,6 +323,13 @@ export class LugaresComponent implements OnInit {
     return buildUbicacionUrl(place);
   }
 
+  getFacebookHref(place: Hotel): string {
+    const raw = (place.facebook || '').trim();
+    if (!raw) return 'https://www.facebook.com/';
+    if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
+    return `https://www.facebook.com/${raw.replace(/^@/, '')}`;
+  }
+
   getWhatsAppHref(place: Hotel): string {
     const msg =
       this.lang() === 'en'

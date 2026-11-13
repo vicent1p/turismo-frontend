@@ -185,6 +185,21 @@
                 </svg>
               </a>
 
+              @if (item.facebook) {
+                <a
+                  [href]="getFacebookHref(item)"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="icon-action facebook"
+                  [attr.aria-label]="'Facebook - ' + item.nombre"
+                  title="Facebook"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15" aria-hidden="true">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                  </svg>
+                </a>
+              }
+
               @if (item.whatsapp) {
                 <a
                   [href]="getWhatsAppHref(item)"
@@ -311,6 +326,16 @@
               class="modal-btn primary"
             >
               {{ content().whatsappLabel }}
+            </a>
+          }
+          @if (place.facebook) {
+            <a
+              [href]="getFacebookHref(place)"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="modal-btn facebook"
+            >
+              Facebook
             </a>
           }
           <a

@@ -315,7 +315,8 @@ form {
   display: block;
   width: 100%;
   padding: 0.85rem 1rem;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  min-height: 48px;
   color: var(--gris-800);
   background: #fff;
   border: 1.5px solid var(--gris-300);
@@ -458,6 +459,67 @@ form {
 @media (prefers-reduced-motion: reduce) {
   .identidad, .acceso {
     animation: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .contenido {
+    padding: 1.5rem 1rem 2rem;
+    gap: 1.5rem;
+  }
+  .identidad h1 {
+    margin-top: 1rem;
+  }
+  .sigla {
+    font-size: clamp(2.4rem, 9vw, 3.25rem);
+  }
+  .nombre {
+    font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+    max-width: 22rem;
+  }
+  .linea {
+    margin-top: 0.85rem;
+    width: clamp(5rem, 25vw, 8rem);
+  }
+  .tarjeta {
+    padding: 2rem 1.15rem 1.5rem;
+    border-radius: 14px;
+  }
+  .encabezado {
+    margin-bottom: 1.5rem;
+  }
+  .icono {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 0.75rem;
+  }
+  .icono svg {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+  .encabezado h2 {
+    font-size: 1.55rem;
+    line-height: 1.8rem;
+  }
+  .encabezado p {
+    font-size: 0.8rem;
+  }
+  .btn-primario {
+    min-height: 48px;
+    font-size: 0.95rem;
+  }
+  .volver-wrap {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .tarjeta {
+    padding: 1.5rem 0.85rem 1.25rem;
+  }
+  .campo input {
+    padding: 0.75rem 0.85rem;
   }
 }
 
