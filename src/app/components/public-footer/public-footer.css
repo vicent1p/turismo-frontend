@@ -84,10 +84,12 @@
 
 .footer-copy {
   margin: 0;
-  font-size: 0.98rem;
+  font-size: 0.92rem;
   font-weight: 600;
   color: #cf991a;
   font-family: 'Spectral', Georgia, serif;
+  line-height: 1.5;
+  padding: 0 12px;
 }
 
 .footer-admin-link {
@@ -109,6 +111,10 @@
   .institutional-footer::after {
     width: 110px;
     opacity: 0.36;
+  }
+
+  .footer-copy {
+    font-size: 0.82rem;
   }
 }
 
