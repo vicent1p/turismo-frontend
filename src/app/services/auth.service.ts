@@ -317,10 +317,6 @@ export class AuthService {
         const parsed = JSON.parse(stored);
         if (parsed && parsed.email) {
           this.currentUser.set(parsed);
-          if (!storedToken && isDevMode()) {
-            const devPass = parsed.email.toLowerCase().includes('gestor') ? 'gestor2026' : 'admin2026';
-            void this.loginRemoto(parsed.email, devPass);
-          }
         }
       }
     } catch {}

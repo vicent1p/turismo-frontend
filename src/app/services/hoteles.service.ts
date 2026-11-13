@@ -479,7 +479,21 @@ export class HotelesService {
       if (stored) {
         const parsed: HotelDataset = JSON.parse(stored);
         if (parsed && Array.isArray(parsed.hoteles)) {
-          this.dataset.set(parsed);
+          const hasRestaurante = parsed.hoteles.some(h => h.tipo === 'restaurante');
+          const hasCabana = parsed.hoteles.some(h => h.tipo === 'cabana');
+          let merged = [...parsed.hoteles];
+          if (!hasRestaurante) {
+            const seedRestaurantes = INITIAL_HOTELES.filter(s => s.tipo === 'restaurante');
+            merged = [...merged, ...seedRestaurantes];
+          }
+          if (!hasCabana) {
+            const seedCabanas = INITIAL_HOTELES.filter(s => s.tipo === 'cabana');
+            merged = [...merged, ...seedCabanas];
+          }
+          this.dataset.set({
+            ...parsed,
+            hoteles: merged
+          });
         }
       }
     } catch {}
@@ -690,7 +704,6 @@ export class HotelesService {
       });
       this.guardar();
       this.notificarCambioGlobal();
-      void this.sincronizarDesdeApi();
       return { exito: true, hotel: mapped };
     } catch (err) {
       if (this.allowOfflineFallback(err)) {
@@ -728,7 +741,6 @@ export class HotelesService {
       const mapped = mapApiHotelToFrontend(updated);
       this.actualizarHotel(mapped);
       this.notificarCambioGlobal();
-      void this.sincronizarDesdeApi();
       return { exito: true, hotel: mapped };
     } catch (err) {
       if (this.allowOfflineFallback(err)) {
@@ -768,7 +780,6 @@ export class HotelesService {
       );
       this.actualizarHotel(mapApiHotelToFrontend(updated));
       this.notificarCambioGlobal();
-      void this.sincronizarDesdeApi();
       return { exito: true };
     } catch (err) {
       if (this.allowOfflineFallback(err)) {
@@ -800,7 +811,6 @@ export class HotelesService {
       );
       this.eliminarHotel(id);
       this.notificarCambioGlobal();
-      void this.sincronizarDesdeApi();
       return { exito: true };
     } catch (err) {
       if (this.allowOfflineFallback(err)) {
