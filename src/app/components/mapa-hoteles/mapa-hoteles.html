@@ -1,6 +1,6 @@
 <div class="mapa-component-root">
   @if (!hoteles || hoteles.length === 0) {
-    <!-- MENSAJE CLARO SI NINGÚN HOTEL TIENE COORDENADAS -->
+    <!-- MENSAJE CLARO SI NINGÚN SERVICIO TIENE COORDENADAS -->
     <div class="mapa-empty-card" role="region" aria-label="Sin coordenadas registradas">
       <div class="empty-icon-wrap">
         <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
@@ -9,10 +9,10 @@
         </svg>
       </div>
       <div class="empty-content">
-        <h4>No hay hoteles con coordenadas geográficas</h4>
+        <h4>No hay servicios turísticos con coordenadas geográficas</h4>
         <p>
-          Ninguno de los hoteles registrados cuenta con latitud y longitud asignadas.
-          Edite los hoteles en el catálogo para registrar sus coordenadas y visualizarlos en el mapa interactivo.
+          Ninguno de los hoteles, cabañas o restaurantes registrados cuenta con latitud y longitud asignadas.
+          Edite las tarjetas para registrar sus coordenadas y visualizarlos en el mapa interactivo.
         </p>
       </div>
     </div>
@@ -20,7 +20,44 @@
     <!-- MAPA INTERACTIVO CON LEAFLET -->
     <div class="mapa-card-container">
       <div class="mapa-legend-bar">
-        <div class="legend-group">
+        <!-- PESTAÑAS DE FILTRO RÁPIDO EN EL MAPA -->
+        <div class="legend-filter-tabs">
+          <button
+            type="button"
+            class="tab-filtro-mapa"
+            [class.active]="filtroTipo() === 'todos'"
+            (click)="setFiltroTipo('todos')"
+          >
+            <span>🌟 Todos ({{ (hoteles || []).length }})</span>
+          </button>
+          <button
+            type="button"
+            class="tab-filtro-mapa tab-hotel"
+            [class.active]="filtroTipo() === 'hotel'"
+            (click)="setFiltroTipo('hotel')"
+          >
+            <span>🏨 Hoteles ({{ countTipo('hotel') }})</span>
+          </button>
+          <button
+            type="button"
+            class="tab-filtro-mapa tab-cabana"
+            [class.active]="filtroTipo() === 'cabana'"
+            (click)="setFiltroTipo('cabana')"
+          >
+            <span>🏡 Cabañas ({{ countTipo('cabana') }})</span>
+          </button>
+          <button
+            type="button"
+            class="tab-filtro-mapa tab-restaurante"
+            [class.active]="filtroTipo() === 'restaurante'"
+            (click)="setFiltroTipo('restaurante')"
+          >
+            <span>🍽️ Restaurantes ({{ countTipo('restaurante') }})</span>
+          </button>
+        </div>
+
+        <!-- INDICADORES DE ESTADO -->
+        <div class="legend-status-group">
           <span class="legend-pill pill-disponible">
             <span class="dot-green"></span>
             <span>Disponible</span>
@@ -29,10 +66,10 @@
             <span class="dot-red"></span>
             <span>No disponible</span>
           </span>
+          <span class="legend-count-info">
+            {{ establecimientosFiltrados().length }} en mapa
+          </span>
         </div>
-        <span class="legend-count-info">
-          {{ hoteles.length }} hospedaje(s) geolocalizado(s)
-        </span>
       </div>
 
       <div class="mapa-viewport-wrap">
@@ -41,4 +78,3 @@
     </div>
   }
 </div>
-

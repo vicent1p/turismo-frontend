@@ -1,6 +1,7 @@
 .mapa-component-root {
   width: 100%;
   display: block;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* ESTADO VACÍO (SIN COORDENADAS) */
@@ -56,24 +57,81 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 1.25rem;
+  padding: 0.75rem 1.15rem;
   background: #f8fafc;
   border-bottom: 1px solid #e2e8f0;
   flex-wrap: wrap;
   gap: 0.75rem;
 }
 
-.legend-group {
+/* PESTAÑAS DE FILTRO RÁPIDO EN MAPA */
+.legend-filter-tabs {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tab-filtro-mapa {
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #475569;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'Montserrat', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tab-filtro-mapa:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.tab-filtro-mapa.active {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
+}
+
+.tab-filtro-mapa.tab-hotel.active {
+  background: #0284c7;
+  border-color: #0284c7;
+  color: #ffffff;
+}
+
+.tab-filtro-mapa.tab-cabana.active {
+  background: #d97706;
+  border-color: #d97706;
+  color: #ffffff;
+}
+
+.tab-filtro-mapa.tab-restaurante.active {
+  background: #ea580c;
+  border-color: #ea580c;
+  color: #ffffff;
+}
+
+/* INDICADORES DE DISPONIBILIDAD */
+.legend-status-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .legend-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
   padding: 0.25rem 0.65rem;
   border-radius: 999px;
@@ -97,15 +155,18 @@
 
 .legend-count-info {
   font-size: 0.78rem;
-  color: #64748b;
-  font-weight: 600;
+  color: #0369a1;
+  font-weight: 700;
+  background: #e0f2fe;
+  padding: 3px 10px;
+  border-radius: 999px;
 }
 
 .mapa-viewport-wrap {
   position: relative;
   width: 100%;
-  height: 420px;
-  min-height: 420px;
+  height: 440px;
+  min-height: 440px;
   background: #e2e8f0;
 }
 
@@ -122,12 +183,13 @@
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
   border: 1px solid #e2e8f0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 :host ::ng-deep .hotel-leaflet-popup .leaflet-popup-content {
   margin: 0;
   line-height: 1.4;
-  font-family: inherit;
+  font-family: 'Montserrat', sans-serif;
 }
 
 :host ::ng-deep .popup-hotel-card {
@@ -147,31 +209,59 @@
 :host ::ng-deep .popup-badge {
   font-size: 0.72rem;
   font-weight: 700;
-  padding: 2px 7px;
+  padding: 2px 8px;
   border-radius: 999px;
+  white-space: nowrap;
+}
+
+:host ::ng-deep .popup-badge-tipo-hotel {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+:host ::ng-deep .popup-badge-tipo-cabana {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+:host ::ng-deep .popup-badge-tipo-restaurante {
+  background: #ffedd5;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
 }
 
 :host ::ng-deep .popup-badge.status-green {
   background: #dcfce7;
   color: #15803d;
+  border: 1px solid #bbf7d0;
 }
 
 :host ::ng-deep .popup-badge.status-red {
   background: #fee2e2;
   color: #b91c1c;
-}
-
-:host ::ng-deep .popup-mun {
-  font-size: 0.72rem;
-  color: #64748b;
-  font-weight: 600;
+  border: 1px solid #fecaca;
 }
 
 :host ::ng-deep .popup-title {
   margin: 2px 0 0 0;
-  font-size: 0.96rem;
+  font-size: 0.98rem;
   font-weight: 800;
   color: #0f172a;
+}
+
+:host ::ng-deep .popup-meta-sub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.75rem;
+}
+
+:host ::ng-deep .popup-mun {
+  color: #64748b;
+  font-weight: 600;
 }
 
 :host ::ng-deep .popup-stars {
@@ -207,6 +297,7 @@
   border-radius: 6px;
   text-decoration: none;
   transition: background 0.15s ease;
+  font-family: 'Montserrat', sans-serif;
 }
 
 :host ::ng-deep .btn-popup-wa:hover {
@@ -227,6 +318,7 @@
   border: none;
   cursor: pointer;
   transition: background 0.15s ease;
+  font-family: 'Montserrat', sans-serif;
 }
 
 :host ::ng-deep .btn-popup-editar:hover {
@@ -246,7 +338,7 @@
 }
 
 :host ::ng-deep .custom-pin-wrap:hover {
-  transform: scale(1.12);
+  transform: scale(1.15) translateY(-2px);
 }
 
 @media (max-width: 640px) {
@@ -254,5 +346,9 @@
     height: 320px;
     min-height: 320px;
   }
-}
 
+  .mapa-legend-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

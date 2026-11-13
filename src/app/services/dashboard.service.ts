@@ -43,6 +43,7 @@ export interface GraficasResponse {
 export interface MapaHotel {
   id: string;
   nombre: string;
+  tipo?: 'hotel' | 'cabana' | 'restaurante';
   estrellas: number;
   municipio: string;
   whatsapp: string | null;
@@ -383,7 +384,7 @@ export class DashboardService {
   }
 
   /**
-   * Calcula los hoteles para el mapa con coordenadas válidas.
+   * Calcula los servicios turísticos (hoteles, cabañas y restaurantes) para el mapa con coordenadas válidas.
    */
   calcularMapaLocal(): MapaHotel[] {
     const hoteles = this.hotelesService.dataset().hoteles;
@@ -392,6 +393,7 @@ export class DashboardService {
       .map(h => ({
         id: h.id,
         nombre: h.nombre,
+        tipo: (h.tipo || 'hotel') as 'hotel' | 'cabana' | 'restaurante',
         estrellas: h.estrellas,
         municipio: h.municipio || 'Plato',
         whatsapp: h.whatsapp,
