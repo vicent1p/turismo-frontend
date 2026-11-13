@@ -16,13 +16,36 @@
   --sombra-lg: 0 12px 28px rgba(8, 26, 44, .14), 0 2px 6px rgba(8, 26, 44, .06);
   --foco: 0 0 0 3px rgba(0, 113, 187, .22);
   --franja: linear-gradient(90deg, #5618BA 0 11.111%, #A28034 11.111% 22.222%, #FEC800 22.222% 33.333%, #F7003C 33.333% 44.444%, #0071BB 44.444% 55.556%, #00B7D9 55.556% 66.667%, #9FD7E5 66.667% 77.778%, #69B75E 77.778% 88.889%, #5618BA 88.889% 100%);
-  font-family: 'Spectral', Georgia, serif;
+  font-family: 'Montserrat', sans-serif;
   background: #fff;
   color: var(--gris-800);
 }
 
 * {
   box-sizing: border-box;
+}
+
+:host,
+.pagina,
+.identidad,
+.sigla,
+.nombre,
+.tarjeta,
+.formulario,
+.campo,
+.etiqueta,
+.entrada,
+.btn-primario,
+.btn-volver,
+.mensaje-error,
+.alerta-offline,
+.pie,
+.info-credenciales,
+button,
+input,
+select,
+textarea {
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 .pagina {

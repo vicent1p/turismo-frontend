@@ -90,7 +90,7 @@
       @if (authService.isAdmin()) {
         <button
           type="button"
-          class="nav-item"
+          class="nav-item nav-item-usuarios"
           [class.active]="seccion() === 'usuarios'"
           (click)="setSeccion('usuarios')"
           title="Crear Usuarios"
@@ -450,68 +450,6 @@
             }
           </div>
 
-          <!-- BLOQUE DE GRÁFICAS INTERACTIVAS -->
-          <div class="dashboard-section-block">
-            <div class="section-subtitle-wrap">
-              <h3>Distribución y Métricas Gráficas</h3>
-              <p class="section-subdesc">Visualización analítica de disponibilidad, categorías y cobertura territorial.</p>
-            </div>
-
-            <div class="charts-grid">
-              <!-- Gráfica 1: Dona Disponibles vs No Disponibles (Verde y Rojo) -->
-              <div class="chart-card">
-                <div class="chart-header">
-                  <div class="chart-title-box">
-                    <span class="chart-title">Disponibilidad de Hospedajes</span>
-                    <span class="chart-sub">Proporción en tiempo real</span>
-                  </div>
-                  <span class="chart-badge badge-dona">Dona</span>
-                </div>
-                <div class="chart-container">
-                  <canvas #donaCanvas id="donaChartCanvas"></canvas>
-                </div>
-                <div class="chart-footer-legend">
-                  <span class="legend-item"><i class="dot bg-green"></i> Disponibles: <strong>{{ dashboardService.graficas()?.disponibilidad?.disponibles }}</strong></span>
-                  <span class="legend-item"><i class="dot bg-red"></i> No disponibles: <strong>{{ dashboardService.graficas()?.disponibilidad?.noDisponibles }}</strong></span>
-                </div>
-              </div>
-
-              <!-- Gráfica 2: Barras por Número de Estrellas (1 a 5) -->
-              <div class="chart-card">
-                <div class="chart-header">
-                  <div class="chart-title-box">
-                    <span class="chart-title">Categoría por Estrellas</span>
-                    <span class="chart-sub">De 1 a 5 estrellas</span>
-                  </div>
-                  <span class="chart-badge badge-bar">Barras</span>
-                </div>
-                <div class="chart-container">
-                  <canvas #estrellasCanvas id="estrellasChartCanvas"></canvas>
-                </div>
-                <div class="chart-footer-legend">
-                  <span class="legend-hint">Calificación de calidad según el catálogo turístico.</span>
-                </div>
-              </div>
-
-              <!-- Gráfica 3: Barras Horizontales por Municipio -->
-              <div class="chart-card">
-                <div class="chart-header">
-                  <div class="chart-title-box">
-                    <span class="chart-title">Hoteles por Municipio</span>
-                    <span class="chart-sub">Cobertura geográfica</span>
-                  </div>
-                  <span class="chart-badge badge-horiz">Horizontal</span>
-                </div>
-                <div class="chart-container">
-                  <canvas #municipiosCanvas id="municipiosChartCanvas"></canvas>
-                </div>
-                <div class="chart-footer-legend">
-                  <span class="legend-hint">Distribución en el departamento del Magdalena.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <!-- BLOQUE DE MAPA INTERACTIVO (LEAFLET) -->
           <div class="dashboard-section-block">
             <div class="section-subtitle-wrap">
@@ -535,7 +473,7 @@
     <!-- SECCIÓN 1: CREAR USUARIOS (Gestión de usuarios y claves) -->
     <!-- ======================================================== -->
     @if (seccion() === 'usuarios' && authService.isAdmin()) {
-      <section class="section-content">
+      <section class="section-content section-usuarios">
         <div class="section-title-wrap">
           <h2>Crear Usuarios</h2>
           <p class="section-desc">

@@ -620,6 +620,32 @@
   text-decoration: underline;
 }
 
+/* ======================================================== */
+/* FUENTE MONTSERRAT PARA TODO EL APARTADO DE USUARIOS      */
+/* ======================================================== */
+.section-usuarios,
+.section-usuarios *,
+.card-usuarios,
+.card-usuarios *,
+.user-pill,
+.user-pill *,
+.users-table-wrap,
+.users-table,
+.users-table *,
+.users-table th,
+.users-table td,
+.user-email-text,
+.role-pill,
+.btn-pass-action,
+.btn-pass-save,
+.btn-pass-cancel,
+.input-pass-mini,
+.nav-item-usuarios,
+.modal-backdrop,
+.modal-backdrop * {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
 /* ========================================= */
 /* TABLA DE USUARIOS CREADOS                 */
 /* ========================================= */
