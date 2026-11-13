@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, DestroyRef, HostListener, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { EditorialShellComponent } from '../../components/editorial-shell/editorial-shell';
 import {
   CardType,
@@ -252,7 +252,7 @@ export class LugaresComponent implements OnInit {
     void this.hotelesService.sincronizarDesdeApi();
     this.route.queryParamMap
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(params => {
+      .subscribe((params: ParamMap) => {
         const param = params.get('categoria') as PlaceCategoryTab | null;
         if (param && VALID_TABS.has(param)) {
           this.categoriaActiva.set(param);
