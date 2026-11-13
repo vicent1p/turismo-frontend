@@ -89,7 +89,7 @@ export function getApiBaseUrl(): string {
     }
   }
 
-  return 'http://localhost:3000';
+  return 'https://proturismo.magdalena.gov.co';
 }
 
 /** Maps backend card type enum (`HOTEL`/`CABANA`/`RESTAURANTE`) to frontend CardType. */
