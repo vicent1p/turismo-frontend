@@ -210,6 +210,7 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly encuestaSeleccionadaId = signal<number | null>(null);
   readonly resultadosActuales = signal<ResultadosEncuesta | null>(null);
   readonly cargandoResultados = signal<boolean>(false);
+  readonly encuestasCreadas = computed(() => this.encuestasService.encuestasList());
 
   // Mensajes de notificación
   readonly toastMessage = signal<string | null>(null);
