@@ -318,6 +318,35 @@
   overflow: hidden;
 }
 
+.lugar-stars-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0 6px 0;
+}
+
+.lugar-stars {
+  display: inline-flex;
+  gap: 1.5px;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+.lugar-stars .star-on {
+  color: #f59e0b;
+}
+
+.lugar-stars .star-off {
+  color: #cbd5e1;
+}
+
+.lugar-stars-text {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
 .lugar-desc {
   margin: 0;
   font-size: 0.82rem;

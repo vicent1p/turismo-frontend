@@ -130,10 +130,11 @@ describe('App', () => {
     // Visitors should not see the add photo button
     expect(firstCard.querySelector('.btn-admin-addphoto')).toBeNull();
 
-    // 5. Redes sociales (WhatsApp, Instagram, X, TikTok, Página Web) y botón Ver ubicación arriba
+    // 5. Redes sociales (WhatsApp, Facebook, Instagram, X, TikTok, Página Web) y botón Ver ubicación arriba
     const cuadros = firstCard.querySelectorAll('.cuadro');
-    expect(cuadros.length).toBe(5);
+    expect(cuadros.length).toBe(6);
     expect(firstCard.querySelector('.cuadro-wa')).toBeTruthy();
+    expect(firstCard.querySelector('.cuadro-fb')).toBeTruthy();
     expect(firstCard.querySelector('.cuadro-ig')).toBeTruthy();
     expect(firstCard.querySelector('.cuadro-x')).toBeTruthy();
     expect(firstCard.querySelector('.cuadro-tk')).toBeTruthy();
@@ -870,6 +871,7 @@ describe('App', () => {
     expect(compiled.querySelector('#h_desc')).toBeTruthy();
     expect(compiled.querySelector('#h_wa')).toBeTruthy();
     expect(compiled.querySelector('#h_ig')).toBeTruthy();
+    expect(compiled.querySelector('#h_fb')).toBeTruthy();
     expect(compiled.querySelector('#h_x')).toBeTruthy();
     expect(compiled.querySelector('#h_tiktok')).toBeTruthy();
     expect(compiled.querySelector('#h_web')).toBeTruthy();

@@ -982,6 +982,37 @@
   position: static;
 }
 
+.card-body .card-stars-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.card-body .stars {
+  font-size: 1.15rem;
+  letter-spacing: 1.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.card-body .star-on {
+  color: #f59e0b;
+}
+
+.card-body .star-off {
+  color: #cbd5e1;
+}
+
+.card-body .stars-num {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-left: 6px;
+  font-family: 'Spectral', Georgia, serif;
+}
+
 .stars.adm {
   display: inline-flex;
   align-items: center;

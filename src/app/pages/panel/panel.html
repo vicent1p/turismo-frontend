@@ -896,6 +896,18 @@
                     />
                   </div>
 
+                  <!-- Facebook -->
+                  <div class="form-group">
+                    <label for="h_fb">FACEBOOK (ENLACE O PÁGINA)</label>
+                    <input
+                      id="h_fb"
+                      type="text"
+                      [(ngModel)]="hotelFacebook"
+                      name="hotelFacebook"
+                      [placeholder]="cardMeta().placeholderFacebook"
+                    />
+                  </div>
+
                   <!-- X (Twitter) -->
                   <div class="form-group">
                     <label for="h_x">X (ENLACE O USUARIO)</label>
@@ -933,7 +945,7 @@
                   </div>
 
                   <!-- Ubicación -->
-                  <div class="form-group">
+                  <div class="form-group form-group-full">
                     <label for="h_ubi">UBICACIÓN (BOTÓN VER UBICACIÓN - GOOGLE MAPS)</label>
                     <input
                       id="h_ubi"
@@ -1059,6 +1071,17 @@
                       <div class="cuadro-content">
                         <span class="cuadro-nombre">WhatsApp</span>
                         <span class="cuadro-accion">Contactar</span>
+                      </div>
+                    </a>
+
+                    <!-- Facebook -->
+                    <a class="cuadro cuadro-fb" [href]="getLiveFacebookLink()" target="_blank" rel="noopener noreferrer">
+                      <div class="cuadro-icon-box fb-box">
+                        <img src="icon-facebook.svg" alt="Facebook" class="cuadro-img-icon fb-icon" width="20" height="20" />
+                      </div>
+                      <div class="cuadro-content">
+                        <span class="cuadro-nombre">Facebook</span>
+                        <span class="cuadro-accion">Ver página</span>
                       </div>
                     </a>
 

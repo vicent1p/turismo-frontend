@@ -32,6 +32,7 @@ export interface CardTypeMeta {
   placeholderDesc: string;
   labelFotos: string;
   placeholderInstagram: string;
+  placeholderFacebook: string;
   placeholderX: string;
   previewTitleFallback: string;
   previewAltFallback: string;
@@ -58,6 +59,7 @@ const CARD_TYPE_CONFIG: Record<CardType, CardTypeMeta> = {
     placeholderDesc: 'Describe las instalaciones, ambiente, habitaciones y recomendaciones para turistas...',
     labelFotos: 'FOTOS E IMÁGENES DEL HOTEL *',
     placeholderInstagram: 'https://instagram.com/nombrehotel',
+    placeholderFacebook: 'https://facebook.com/nombrehotel',
     placeholderX: 'https://x.com/nombrehotel',
     previewTitleFallback: 'Nombre del Hotel',
     previewAltFallback: 'Foto del hotel',
@@ -82,6 +84,7 @@ const CARD_TYPE_CONFIG: Record<CardType, CardTypeMeta> = {
     placeholderDesc: 'Describe el entorno natural, comodidades, capacidad y experiencias de la cabaña...',
     labelFotos: 'FOTOS E IMÁGENES DE LA CABAÑA *',
     placeholderInstagram: 'https://instagram.com/nombrecabana',
+    placeholderFacebook: 'https://facebook.com/nombrecabana',
     placeholderX: 'https://x.com/nombrecabana',
     previewTitleFallback: 'Nombre de la Cabaña',
     previewAltFallback: 'Foto de la cabaña',
@@ -106,6 +109,7 @@ const CARD_TYPE_CONFIG: Record<CardType, CardTypeMeta> = {
     placeholderDesc: 'Describe la propuesta gastronómica, platos típicos, horario y ambiente del restaurante...',
     labelFotos: 'FOTOS E IMÁGENES DEL RESTAURANTE *',
     placeholderInstagram: 'https://instagram.com/nombrerestaurante',
+    placeholderFacebook: 'https://facebook.com/nombrerestaurante',
     placeholderX: 'https://x.com/nombrerestaurante',
     previewTitleFallback: 'Nombre del Restaurante',
     previewAltFallback: 'Foto del restaurante',
@@ -1308,7 +1312,7 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
     const raw = (hotel.facebook || '').trim();
     if (!raw) return 'https://facebook.com';
     if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
-    return `https://facebook.com/${raw}`;
+    return `https://facebook.com/${raw.replace(/^@/, '')}`;
   }
 
   getXLink(hotel: Hotel): string {
@@ -1354,7 +1358,7 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
     const raw = (this.hotelFacebook || '').trim();
     if (!raw) return 'https://facebook.com';
     if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
-    return `https://facebook.com/${raw}`;
+    return `https://facebook.com/${raw.replace(/^@/, '')}`;
   }
 
   getLiveXLink(): string {

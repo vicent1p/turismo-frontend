@@ -116,8 +116,8 @@
               {{ item.disponible ? content().available : content().unavailable }}
             </span>
 
-            <span class="lugar-stars-badge" [attr.aria-label]="item.estrellas + ' estrellas'">
-              ★ {{ item.estrellas }}.0
+            <span class="lugar-stars-badge" [attr.aria-label]="(item.estrellas || 0) + ' estrellas'">
+              ★ {{ item.estrellas || 0 }} de 5
             </span>
 
             @if (item.fotos && item.fotos.length > 1) {
@@ -138,6 +138,15 @@
             </div>
 
             <h3 class="lugar-name">{{ item.nombre }}</h3>
+
+            <div class="lugar-stars-row" [attr.aria-label]="(item.estrellas || 0) + ' de 5 estrellas'">
+              <span class="lugar-stars">
+                @for (s of [1, 2, 3, 4, 5]; track s) {
+                  <span [class.star-on]="s <= (item.estrellas || 0)" [class.star-off]="s > (item.estrellas || 0)">★</span>
+                }
+              </span>
+              <span class="lugar-stars-text">{{ item.estrellas || 0 }} de 5 estrellas</span>
+            </div>
             <p class="lugar-desc">{{ getDesc(item) }}</p>
 
             @if (getServices(item).length > 0) {

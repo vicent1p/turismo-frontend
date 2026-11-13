@@ -1074,6 +1074,10 @@
   gap: 14px;
 }
 
+.social-links-grid .form-group-full {
+  grid-column: 1 / -1;
+}
+
 @media (max-width: 600px) {
   .social-links-grid {
     grid-template-columns: 1fr;

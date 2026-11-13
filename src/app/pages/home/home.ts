@@ -505,7 +505,10 @@ export class HomeComponent implements OnInit {
   }
 
   getFacebookLink(hotel: Hotel): string {
-    return hotel.facebook || 'https://www.facebook.com/';
+    const raw = (hotel.facebook || '').trim();
+    if (!raw) return 'https://www.facebook.com/';
+    if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
+    return `https://www.facebook.com/${raw.replace(/^@/, '')}`;
   }
 
   getXLink(hotel: Hotel): string {

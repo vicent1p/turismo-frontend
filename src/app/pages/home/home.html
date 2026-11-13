@@ -357,36 +357,6 @@
                     </div>
                   }
 
-                  <!-- BADGES DE ESTRELLAS Y FOTOS ARRIBA A LA IZQUIERDA (LADO A LADO COMO EN EL PDF) -->
-                  <div class="photo-badges-overlay">
-                    <div class="card-stars-wrap">
-                      @if (admin()) {
-                        <div class="stars adm" role="group" [attr.aria-label]="t().stLbl">
-                          @for (star of [1, 2, 3, 4, 5]; track star) {
-                            <button
-                              type="button"
-                              class="st"
-                              [class.off]="star > (h.estrellas || 0)"
-                              [attr.aria-label]="star + ' ★'"
-                              (click)="setStars(h.id, star)"
-                            >
-                              ★
-                            </button>
-                          }
-                          <small>{{ h.estrellas ? '' : t().stHint }}</small>
-                        </div>
-                      } @else {
-                        <span class="badge-rating-gold">
-                          ★ {{ h.estrellas || 4.5 }}/5
-                        </span>
-                      }
-                    </div>
-
-                    <span class="photo-count-badge">
-                      {{ h.fotos.length }} {{ t().fotosCount }}
-                    </span>
-                  </div>
-
                   <!-- BOTONES EXCLUSIVOS PARA ADMINISTRADOR Y GESTOR DE CONTENIDOS -->
                   @if (canManagePhotos()) {
                     <div class="admin-photo-actions">
@@ -432,10 +402,52 @@
                     }
                   </div>
                 }
+
+                <!-- BADGES DE ESTRELLAS Y FOTOS ARRIBA A LA IZQUIERDA (SIEMPRE VISIBLE) -->
+                <div class="photo-badges-overlay">
+                  <div class="card-stars-wrap">
+                    @if (admin()) {
+                      <div class="stars adm" role="group" [attr.aria-label]="t().stLbl">
+                        @for (star of [1, 2, 3, 4, 5]; track star) {
+                          <button
+                            type="button"
+                            class="st"
+                            [class.off]="star > (h.estrellas || 0)"
+                            [attr.aria-label]="star + ' ★'"
+                            (click)="setStars(h.id, star)"
+                          >
+                            ★
+                          </button>
+                        }
+                        <small>{{ h.estrellas ? '' : t().stHint }}</small>
+                      </div>
+                    } @else {
+                      <span class="badge-rating-gold">
+                        ★ {{ h.estrellas || 0 }} / 5
+                      </span>
+                    }
+                  </div>
+
+                  @if (h.fotos && h.fotos.length > 0) {
+                    <span class="photo-count-badge">
+                      {{ h.fotos.length }} {{ t().fotosCount }}
+                    </span>
+                  }
+                </div>
               </div>
 
               <!-- CUERPO DE LA TARJETA -->
               <div class="card-body">
+                <!-- CALIFICACIÓN EN ESTRELLAS DE LA TARJETA (SEGÚN CREACIÓN) -->
+                <div class="card-stars-wrap">
+                  <div class="stars" [attr.aria-label]="(h.estrellas || 0) + ' de 5 estrellas'">
+                    @for (s of [1, 2, 3, 4, 5]; track s) {
+                      <span [class.star-on]="s <= (h.estrellas || 0)" [class.star-off]="s > (h.estrellas || 0)">★</span>
+                    }
+                    <span class="stars-num">{{ h.estrellas || 0 }} de 5 estrellas</span>
+                  </div>
+                </div>
+
                 <!-- 1. NOMBRE DEL HOTEL -->
                 <h3 class="hotel-nombre">{{ h.nombre }}</h3>
 
@@ -502,7 +514,22 @@
                     <span class="sr-only">{{ t().boxWaSub }}</span>
                   </a>
 
-                  <!-- CUADRO 2: INSTAGRAM -->
+                  <!-- CUADRO 2: FACEBOOK -->
+                  <a
+                    class="cuadro cuadro-fb"
+                    [href]="getFacebookLink(h)"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    [attr.aria-label]="'Facebook ' + h.nombre"
+                    [title]="t().boxFb"
+                  >
+                    <div class="cuadro-icon-box fb-box">
+                      <img src="icon-facebook.svg" alt="Facebook" class="cuadro-img-icon fb-icon" width="14" height="14" />
+                    </div>
+                    <span class="sr-only">{{ t().boxFbSub }}</span>
+                  </a>
+
+                  <!-- CUADRO 3: INSTAGRAM -->
                   <a
                     class="cuadro cuadro-ig"
                     [href]="getInstagramLink(h)"
@@ -517,7 +544,7 @@
                     <span class="sr-only">{{ t().boxIgSub }}</span>
                   </a>
 
-                  <!-- CUADRO 3: X -->
+                  <!-- CUADRO 4: X -->
                   <a
                     class="cuadro cuadro-x"
                     [href]="getXLink(h)"
@@ -532,7 +559,7 @@
                     <span class="sr-only">{{ t().boxXSub }}</span>
                   </a>
 
-                  <!-- CUADRO 4: TIKTOK -->
+                  <!-- CUADRO 5: TIKTOK -->
                   <a
                     class="cuadro cuadro-tk"
                     [href]="getTikTokLink(h)"
@@ -547,7 +574,7 @@
                     <span class="sr-only">{{ t().boxTkSub }}</span>
                   </a>
 
-                  <!-- CUADRO 5: PÁGINA WEB -->
+                  <!-- CUADRO 6: PÁGINA WEB -->
                   <a
                     class="cuadro cuadro-web"
                     [href]="getPaginaWebLink(h)"
