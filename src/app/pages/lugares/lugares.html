@@ -88,15 +88,8 @@
     <div class="lugares-grid">
       @for (item of visibleItems(); track item.id) {
         <article class="lugar-card hotel-card">
-          <!-- 1. FOTO PRINCIPAL CON BOTÓN VER DETALLE Y BADGES -->
-          <div
-            class="lugar-thumb-wrap"
-            role="button"
-            tabindex="0"
-            [attr.aria-label]="item.nombre"
-            (click)="abrirDetalle(item)"
-            (keydown.enter)="abrirDetalle(item)"
-          >
+          <!-- 1. FOTO PRINCIPAL CON BADGES -->
+          <div class="lugar-thumb-wrap">
             @if (item.fotos && item.fotos.length > 0) {
               <img
                 [src]="item.fotos[0]"
@@ -120,22 +113,12 @@
             <span class="lugar-stars-badge" [attr.aria-label]="(item.estrellas || 0) + ' estrellas'">
               ★ {{ item.estrellas || 0 }} de 5
             </span>
-
-            <!-- Botón Ver Detalle sobre la foto -->
-            <button
-              type="button"
-              class="btn-detail btn-detail-overlay"
-              (click)="abrirDetalle(item); $event.stopPropagation()"
-              [title]="content().viewDetail"
-            >
-              {{ content().viewDetail }}
-            </button>
           </div>
 
           <!-- 2. CUERPO DE LA TARJETA (RÉPLICA EXACTA DE LA PORTADA) -->
           <div class="lugar-body card-body">
             <!-- Título del establecimiento -->
-            <h3 class="lugar-name hotel-nombre" (click)="abrirDetalle(item)">{{ item.nombre }}</h3>
+            <h3 class="lugar-name hotel-nombre">{{ item.nombre }}</h3>
 
             <!-- Servicios y Amenidades con íconos dorados (Wifi, TV Cable, etc.) -->
             <div class="instalaciones-block">
@@ -287,124 +270,5 @@
   }
 </app-editorial-shell>
 
-<!-- MODAL INTERACTIVO DE DETALLE -->
-@if (selectedPlace(); as place) {
-  <div class="lugar-modal-backdrop" (click)="cerrarDetalle()">
-    <div
-      class="lugar-modal"
-      role="dialog"
-      aria-modal="true"
-      [attr.aria-label]="place.nombre"
-      (click)="$event.stopPropagation()"
-    >
-      <button
-        type="button"
-        class="modal-close-btn"
-        [attr.aria-label]="content().closeModal"
-        (click)="cerrarDetalle()"
-      >
-        ✕
-      </button>
 
-      <div class="modal-gallery">
-        @if (modalPhotos().length > 0) {
-          <img
-            [src]="modalPhotos()[modalPhotoIdx()]"
-            [alt]="place.nombre"
-            class="modal-hero-img"
-          />
-          @if (modalPhotos().length > 1) {
-            <button
-              type="button"
-              class="gallery-nav prev"
-              [attr.aria-label]="content().prevPhoto"
-              (click)="stepModalPhoto(-1)"
-            >
-              ‹
-            </button>
-            <button
-              type="button"
-              class="gallery-nav next"
-              [attr.aria-label]="content().nextPhoto"
-              (click)="stepModalPhoto(1)"
-            >
-              ›
-            </button>
-            <div class="gallery-dots">
-              @for (p of modalPhotos(); track $index) {
-                <span class="gallery-dot" [class.active]="modalPhotoIdx() === $index"></span>
-              }
-            </div>
-          }
-        } @else {
-          <div class="lugar-thumb-placeholder modal-empty">{{ content().noImage }}</div>
-        }
-      </div>
-
-      <div class="modal-body">
-        <div class="modal-badges">
-          <span class="lugar-type-tag">{{ getCardCategoryBadge(place.tipo) }}</span>
-          <span
-            class="modal-status-pill"
-            [class.available]="place.disponible"
-            [class.unavailable]="!place.disponible"
-          >
-            {{ place.disponible ? content().available : content().unavailable }}
-          </span>
-          <span class="modal-stars" aria-hidden="true" [attr.title]="place.estrellas + ' de 5 estrellas'">
-            @for (s of [1, 2, 3, 4, 5]; track s) {
-              <span [class.star-on]="s <= place.estrellas" [class.star-off]="s > place.estrellas">★</span>
-            }
-          </span>
-        </div>
-
-        <h2 class="modal-title">{{ place.nombre }}</h2>
-        <p class="modal-location">📍 {{ place.municipio }}, Magdalena</p>
-        <p class="modal-desc">{{ getDesc(place) }}</p>
-
-        @if (getServices(place).length > 0) {
-          <div class="modal-amenities">
-            <h4>{{ content().amenitiesTitle }}</h4>
-            <div class="lugar-chips">
-              @for (serv of getServices(place); track $index) {
-                <span class="lugar-chip">{{ serv }}</span>
-              }
-            </div>
-          </div>
-        }
-
-        <div class="modal-cta-row">
-          @if (place.whatsapp) {
-            <a
-              [href]="getWhatsAppHref(place)"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="modal-btn primary"
-            >
-              {{ content().whatsappLabel }}
-            </a>
-          }
-          @if (place.facebook) {
-            <a
-              [href]="getFacebookHref(place)"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="modal-btn facebook"
-            >
-              Facebook
-            </a>
-          }
-          <a
-            [href]="getMapsUrl(place)"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="modal-btn secondary"
-          >
-            {{ content().mapsLabel }}
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-}
 
