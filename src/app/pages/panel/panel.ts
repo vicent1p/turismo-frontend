@@ -158,6 +158,36 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sidebarCollapsed.update(v => !v);
   }
 
+  // Métricas reactivas del catálogo para las tarjetas superiores de resumen
+  readonly totalHotelesCount = computed(() => {
+    return this.hotelesService.dataset().hoteles.filter(h => !h.tipo || h.tipo === 'hotel').length;
+  });
+
+  readonly totalCabanasCount = computed(() => {
+    return this.hotelesService.dataset().hoteles.filter(h => h.tipo === 'cabana').length;
+  });
+
+  readonly totalRestaurantesCount = computed(() => {
+    return this.hotelesService.dataset().hoteles.filter(h => h.tipo === 'restaurante').length;
+  });
+
+  readonly totalCatalogosCount = computed(() => {
+    return this.hotelesService.dataset().hoteles.length;
+  });
+
+  readonly totalDisponiblesCount = computed(() => {
+    return this.hotelesService.dataset().hoteles.filter(h => h.disponible).length;
+  });
+
+  readonly totalNoDisponiblesCount = computed(() => {
+    return this.hotelesService.dataset().hoteles.filter(h => !h.disponible).length;
+  });
+
+  // Muestra exactamente 4 catálogos modificados recientemente
+  readonly ultimosModificados = computed(() => {
+    return this.hotelesService.dataset().hoteles.slice(0, 4);
+  });
+
   // Sub-pestaña dentro de hoteles: 'crear' o 'catalogo'
   readonly subTabHoteles = signal<HotelSubTab>('catalogo');
 

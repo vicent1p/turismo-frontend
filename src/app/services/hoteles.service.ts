@@ -39,6 +39,7 @@ export interface Hotel {
   longitud?: number;
   es: HotelLangData;
   en: HotelLangData;
+  actualizadoEn?: string;
 }
 
 export type ServiceIconType =
@@ -479,13 +480,18 @@ export class HotelesService {
   actualizarHotel(hotelActualizado: Hotel): void {
     const actual = this.dataset();
     const index = actual.hoteles.findIndex(h => h.id === hotelActualizado.id);
+    const ahoraIso = new Date().toISOString();
+    const itemActualizado: Hotel = {
+      ...hotelActualizado,
+      actualizadoEn: ahoraIso
+    };
     if (index !== -1) {
-      const nuevos = [...actual.hoteles];
-      nuevos[index] = { ...hotelActualizado };
+      // Mover el catálogo modificado al inicio para que "Últimos Modificados" se actualice en tiempo real
+      const otros = actual.hoteles.filter(h => h.id !== hotelActualizado.id);
       this.dataset.set({
         ...actual,
-        actualizado: new Date().toISOString().slice(0, 10),
-        hoteles: nuevos
+        actualizado: ahoraIso.slice(0, 10),
+        hoteles: [itemActualizado, ...otros]
       });
       this.guardar();
     }
@@ -545,9 +551,18 @@ export class HotelesService {
     const index = actual.hoteles.findIndex(h => h.id === hotelId);
     if (index !== -1) {
       const hotel = actual.hoteles[index];
-      const nuevos = [...actual.hoteles];
-      nuevos[index] = { ...hotel, disponible: !hotel.disponible };
-      this.dataset.set({ ...actual, hoteles: nuevos });
+      const ahoraIso = new Date().toISOString();
+      const itemActualizado: Hotel = {
+        ...hotel,
+        disponible: !hotel.disponible,
+        actualizadoEn: ahoraIso
+      };
+      const otros = actual.hoteles.filter(h => h.id !== hotelId);
+      this.dataset.set({
+        ...actual,
+        actualizado: ahoraIso.slice(0, 10),
+        hoteles: [itemActualizado, ...otros]
+      });
       this.guardar();
     }
   }

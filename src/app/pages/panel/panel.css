@@ -2090,11 +2090,85 @@
   line-height: 1.4;
 }
 
+/* LISTA DE CATÁLOGOS REGISTRADOS (HOTELES, CABAÑAS, RESTAURANTES) */
+.catalogos-breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0.4rem 0 0.6rem 0;
+}
+
+.catalogo-breakdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  transition: all 0.15s ease;
+}
+
+.catalogo-breakdown-item:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.item-icon-tag {
+  font-size: 1rem;
+}
+
+.item-name {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.item-count {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0284c7;
+}
+
+.item-hotel .item-count {
+  color: #0284c7;
+}
+
+.item-cabana .item-count {
+  color: #059669;
+}
+
+.item-restaurante .item-count {
+  color: #d97706;
+}
+
 /* DISPONIBILIDAD PILLS (VERDE / ROJO) */
 .kpi-split-row {
   display: flex;
   gap: 0.65rem;
   margin-bottom: 0.5rem;
+}
+
+/* DISPONIBILIDAD EN COLUMNA (UNO ENCIMA DEL OTRO) */
+.kpi-split-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0.4rem 0 0.6rem 0;
+}
+
+.kpi-split-col .split-pill {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.85rem;
 }
 
 .split-pill {
@@ -2144,6 +2218,90 @@
 .pill-text {
   font-size: 0.75rem;
   white-space: nowrap;
+}
+
+/* ÚLTIMOS MODIFICADOS (TARJETA COMPACTA DE MÁXIMO 4) */
+.ultimos-mini-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0.4rem 0 0.6rem 0;
+}
+
+.ultimos-mini-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.42rem 0.65rem;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  gap: 0.5rem;
+  transition: all 0.15s ease;
+}
+
+.ultimos-mini-item:hover {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+.ultimos-mini-info {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.ultimos-mini-name {
+  font-size: 0.79rem;
+  font-weight: 600;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 135px;
+}
+
+.ultimos-mini-tipo {
+  font-size: 0.66rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.badge-tipo-hotel {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.badge-tipo-cabana {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.badge-tipo-restaurante {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.btn-mini-edit {
+  border: 0;
+  background: #0284c7;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  flex-shrink: 0;
+}
+
+.btn-mini-edit:hover {
+  background: #0369a1;
 }
 
 /* MUNICIPIOS CHIPS */
