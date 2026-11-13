@@ -271,9 +271,9 @@
           >
             {{ place.disponible ? content().available : content().unavailable }}
           </span>
-          <span class="modal-stars" aria-hidden="true">
-            @for (s of getStarArray(place.estrellas); track $index) {
-              ★
+          <span class="modal-stars" aria-hidden="true" [attr.title]="place.estrellas + ' de 5 estrellas'">
+            @for (s of [1, 2, 3, 4, 5]; track s) {
+              <span [class.star-on]="s <= place.estrellas" [class.star-off]="s > place.estrellas">★</span>
             }
           </span>
         </div>

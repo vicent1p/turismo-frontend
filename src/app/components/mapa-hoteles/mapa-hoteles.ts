@@ -226,7 +226,8 @@ export class MapaHotelesComponent implements AfterViewInit, OnChanges, OnDestroy
   }
 
   private generarPopupHtml(hotel: MapaHotel): string {
-    const estrellasStr = '★'.repeat(Math.max(1, Math.min(5, Math.round(hotel.estrellas))));
+    const starCount = Math.max(1, Math.min(5, Math.round(hotel.estrellas || 1)));
+    const estrellasStr = `<span class="star-on">${'★'.repeat(starCount)}</span><span class="star-off">${'★'.repeat(5 - starCount)}</span>`;
     const estadoClass = hotel.disponible ? 'status-green' : 'status-red';
     const estadoLabel = hotel.disponible ? '✓ Disponible' : '✗ No disponible';
     const telDigits = (hotel.whatsapp || '').replace(/\D/g, '');

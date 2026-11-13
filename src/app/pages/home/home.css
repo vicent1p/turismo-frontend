@@ -982,6 +982,42 @@
   position: static;
 }
 
+.stars.adm {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 253, 248, 0.95);
+  border: 1px solid #d4a238;
+  padding: 2px 8px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.stars.adm .st {
+  background: none;
+  border: 0;
+  padding: 0 1px;
+  font-size: 0.95rem;
+  color: #f59e0b;
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.stars.adm .st:hover {
+  transform: scale(1.2);
+}
+
+.stars.adm .st.off {
+  color: #cbd5e1;
+}
+
+.stars.adm small {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-left: 4px;
+}
+
 .badge-rating-gold {
   display: inline-flex;
   align-items: center;

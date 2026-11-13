@@ -909,7 +909,7 @@
 }
 
 .btn-star.active {
-  color: #eab308;
+  color: #f59e0b;
 }
 
 .stars-val-text {
@@ -1827,9 +1827,27 @@
   flex-wrap: wrap;
 }
 
-.stars-gold {
-  color: #eab308;
+.hotel-stars-sub .stars-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.95rem;
+  line-height: 1;
   letter-spacing: 1px;
+}
+
+.star-on,
+.stars-gold .star-on,
+.hotel-stars-sub .stars-gold .star-on,
+.uniform-card .star-on {
+  color: #f59e0b;
+}
+
+.star-off,
+.stars-gold .star-off,
+.hotel-stars-sub .stars-gold .star-off,
+.uniform-card .star-off {
+  color: #cbd5e1;
 }
 
 .stars-text {
@@ -3924,7 +3942,7 @@
   color: #0f172a;
 }
 
-.stars-gold {
+.promedio-stars-display .stars-gold {
   color: #f59e0b;
   font-size: 1.6rem;
   letter-spacing: 2px;

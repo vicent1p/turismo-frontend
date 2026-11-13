@@ -265,9 +265,17 @@
 }
 
 :host ::ng-deep .popup-stars {
-  font-size: 0.82rem;
-  color: #f59e0b;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
   font-weight: 700;
+}
+
+:host ::ng-deep .popup-stars .star-on {
+  color: #f59e0b;
+}
+
+:host ::ng-deep .popup-stars .star-off {
+  color: #cbd5e1;
 }
 
 :host ::ng-deep .stars-num {

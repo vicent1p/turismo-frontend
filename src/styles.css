@@ -175,3 +175,11 @@ button, input, select, textarea {
   outline: 3px solid #e6b84f;
   outline-offset: 2px;
 }
+
+.star-on {
+  color: #f59e0b;
+}
+
+.star-off {
+  color: #cbd5e1;
+}
