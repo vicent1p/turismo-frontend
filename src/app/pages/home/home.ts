@@ -107,7 +107,22 @@ export const TRANSLATIONS = {
     raicesTitle1: 'Cuatro siglos construyendo',
     raicesTitle2: 'identidad y futuro',
     raicesDesc: 'Plato es historia, es cultura, es pasión. Desde su fundación, ha sido un territorio de encuentros, tradiciones y sueños que se han transmitido de generación en generación.',
-    raicesLink: 'Descubre más'
+    raicesLink: 'Descubre más',
+    // Encuesta Turística
+    btnEncuesta: 'Encuesta Turística',
+    btnEncuestaTitle: 'Realizar Encuesta Turística',
+    encuestaTag: 'OPINIÓN Y EXPERIENCIA TURÍSTICA',
+    encuestaTituloDefault: 'Encuesta de Satisfacción Turística',
+    encuestaCerrarAria: 'Cerrar ventana de encuesta',
+    encuestaExitoTitulo: '¡Muchas gracias por tu valiosa opinión!',
+    encuestaExitoDesc: 'Tus respuestas han sido recibidas con éxito. Nos ayudan a seguir mejorando las experiencias, hospedajes y el turismo en Plato y todo el Magdalena.',
+    encuestaCerrarBtn: 'Cerrar y seguir navegando',
+    encuestaRatingHint: 'Toca las estrellas para calificar (1 a 5):',
+    encuestaRatingDe: 'de',
+    encuestaTextPlaceholder: 'Escribe aquí tu opinión, sugerencia o comentario...',
+    encuestaCancelarBtn: 'Cancelar',
+    encuestaEnviandoBtn: 'Enviando respuestas...',
+    encuestaEnviarBtn: 'Enviar Respuestas'
   },
   en: {
     kicker: 'Magdalena Tourism Office · Colombia',
@@ -200,7 +215,22 @@ export const TRANSLATIONS = {
     raicesTitle1: 'Four centuries building',
     raicesTitle2: 'identity and future',
     raicesDesc: 'Plato is history, culture, and passion. Since its founding, it has been a land of encounters, traditions, and dreams passed down through generations.',
-    raicesLink: 'Learn more'
+    raicesLink: 'Learn more',
+    // Tourist Survey
+    btnEncuesta: 'Tourist Survey',
+    btnEncuestaTitle: 'Take the Tourist Survey',
+    encuestaTag: 'TOURIST OPINION & EXPERIENCE',
+    encuestaTituloDefault: 'Tourist Satisfaction Survey',
+    encuestaCerrarAria: 'Close survey window',
+    encuestaExitoTitulo: 'Thank you very much for your feedback!',
+    encuestaExitoDesc: 'Your responses have been successfully received. They help us continue improving experiences, lodgings, and tourism in Plato and across Magdalena.',
+    encuestaCerrarBtn: 'Close and continue browsing',
+    encuestaRatingHint: 'Tap stars to rate (1 to 5):',
+    encuestaRatingDe: 'of',
+    encuestaTextPlaceholder: 'Write your opinion, suggestion, or comment here...',
+    encuestaCancelarBtn: 'Cancel',
+    encuestaEnviandoBtn: 'Submitting responses...',
+    encuestaEnviarBtn: 'Submit Responses'
   }
 };
 
@@ -586,6 +616,60 @@ export class HomeComponent implements OnInit {
     return this.respuestasUsuario()[preguntaId]?.texto || '';
   }
 
+  getEncuestaTitulo(): string {
+    const raw = this.encuestaLanding()?.titulo || this.t().encuestaTituloDefault;
+    if (this.lang() !== 'en') return raw;
+    if (raw.toLowerCase().includes('satisfacción') || raw.toLowerCase().includes('satisfaccion')) {
+      return 'Tourist Satisfaction Survey - Magdalena';
+    }
+    return raw;
+  }
+
+  getEncuestaDescripcion(): string {
+    const raw = this.encuestaLanding()?.descripcion || '';
+    if (this.lang() !== 'en') return raw;
+    if (raw.toLowerCase().includes('ayúdanos a mejorar') || raw.toLowerCase().includes('ayudanos a mejorar')) {
+      return 'Help us improve tourism services and experiences. Your feedback helps us promote attractions and hospitality in the region.';
+    }
+    return raw;
+  }
+
+  getPreguntaTexto(preg: { pregunta: string }): string {
+    if (this.lang() !== 'en') return preg.pregunta;
+    const p = (preg.pregunta || '').toLowerCase().trim();
+    if (p.includes('motivo principal')) {
+      return 'What is the main reason for your visit or tourist interest?';
+    }
+    if (p.includes('calificarías') || p.includes('calificarias')) {
+      return 'How would you rate the quality of lodgings and tourist services?';
+    }
+    if (p.includes('mejoras') || p.includes('prioritarios') || p.includes('servicios te gustaría')) {
+      return 'What improvements or new services would you like to find?';
+    }
+    return preg.pregunta;
+  }
+
+  getOpcionTexto(op: { texto: string }): string {
+    if (this.lang() !== 'en') return op.texto;
+    const t = (op.texto || '').toLowerCase().trim();
+    if (t.includes('cultural') || t.includes('festivales') || t.includes('patronales') || t.includes('hombre caimán') || t.includes('hombre caiman')) {
+      return 'Cultural tourism, festivals and local legends';
+    }
+    if (t.includes('ecoturismo') || t.includes('aves') || t.includes('ciénaga') || t.includes('cienaga') || t.includes('naturaleza')) {
+      return 'Ecotourism, birdwatching and nature';
+    }
+    if (t.includes('gastronomía') || t.includes('gastronomia') || t.includes('descanso')) {
+      return 'Gastronomy and riverfront relaxation';
+    }
+    if (t.includes('familiar') || t.includes('negocios')) {
+      return 'Family visit or business events';
+    }
+    if (t.includes('señalización') || t.includes('senalizacion')) {
+      return 'Tourist signage along boardwalks';
+    }
+    return op.texto;
+  }
+
   async enviarRespuestasEncuesta(): Promise<void> {
     const enc = this.encuestaLanding();
     if (!enc || !enc.preguntas) return;
@@ -599,16 +683,29 @@ export class HomeComponent implements OnInit {
       const resp = respMap[preg.id];
 
       if (preg.obligatoria) {
+        const pText = this.getPreguntaTexto(preg);
         if (preg.tipoPregunta === 'opcion' && !resp?.opcionId) {
-          this.encuestaError.set(`Por favor responde la pregunta: "${preg.pregunta}"`);
+          this.encuestaError.set(
+            this.lang() === 'en'
+              ? `Please answer the question: "${pText}"`
+              : `Por favor responde la pregunta: "${preg.pregunta}"`
+          );
           return;
         }
         if (preg.tipoPregunta === 'calificacion' && (!resp?.texto || isNaN(Number(resp.texto)))) {
-          this.encuestaError.set(`Por favor califica con estrellas la pregunta: "${preg.pregunta}"`);
+          this.encuestaError.set(
+            this.lang() === 'en'
+              ? `Please rate with stars the question: "${pText}"`
+              : `Por favor califica con estrellas la pregunta: "${preg.pregunta}"`
+          );
           return;
         }
         if (preg.tipoPregunta === 'texto' && (!resp?.texto || !resp.texto.trim())) {
-          this.encuestaError.set(`Por favor responde la pregunta: "${preg.pregunta}"`);
+          this.encuestaError.set(
+            this.lang() === 'en'
+              ? `Please answer the question: "${pText}"`
+              : `Por favor responde la pregunta: "${preg.pregunta}"`
+          );
           return;
         }
       }
@@ -629,7 +726,11 @@ export class HomeComponent implements OnInit {
       await this.encuestasService.responderEncuesta(enc.id, respuestas);
       this.encuestaEnviadaExito.set(true);
     } catch (err: any) {
-      this.encuestaError.set(err?.message || 'Error al enviar la encuesta. Intenta de nuevo.');
+      this.encuestaError.set(
+        this.lang() === 'en'
+          ? (err?.message || 'Error submitting survey. Please try again.')
+          : (err?.message || 'Error al enviar la encuesta. Intenta de nuevo.')
+      );
     } finally {
       this.enviandoEncuesta.set(false);
     }
