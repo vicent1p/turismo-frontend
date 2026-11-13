@@ -1914,44 +1914,6 @@
                 </div>
               </div>
 
-              <!-- TABLA DE RESPUESTAS RECIENTES -->
-              <div class="respuestas-recientes-box">
-                <h3 class="box-heading">Envíos Recientes de los Visitantes</h3>
-
-                @if (resultadosActuales()?.respuestasRecientes && (resultadosActuales()?.respuestasRecientes?.length || 0) > 0) {
-                  <div class="table-responsive">
-                    <table class="catalogo-table">
-                      <thead>
-                        <tr>
-                          <th># ID</th>
-                          <th>Fecha y Hora</th>
-                          <th>Respuestas Registradas</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @for (r of resultadosActuales()?.respuestasRecientes; track r.id) {
-                          <tr>
-                            <td><strong>#{{ r.id }}</strong></td>
-                            <td>{{ r.fechaRespuesta | date:'medium' }}</td>
-                            <td>
-                              <ul class="respuestas-detalles-list">
-                                @for (d of r.detalles; track d.preguntaId) {
-                                  <li>
-                                    <strong>{{ d.pregunta }}:</strong>
-                                    <span>{{ d.opcionTexto || d.respuestaTexto || 'Sin respuesta' }}</span>
-                                  </li>
-                                }
-                              </ul>
-                            </td>
-                          </tr>
-                        }
-                      </tbody>
-                    </table>
-                  </div>
-                } @else {
-                  <p class="table-empty">Aún no hay respuestas individuales enviadas.</p>
-                }
-              </div>
             }
           </div>
         }
