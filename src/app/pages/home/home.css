@@ -1416,26 +1416,33 @@
 /* ==========================================================================
    ESTILOS DE LA ENCUESTA TURÍSTICA EN LANDING PAGE
    ========================================================================== */
-.btn-encuesta-hero {
+.btn-encuesta-hero,
+.hero-actions .btn-encuesta-hero {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   background: linear-gradient(135deg, #22c55e 0%, #15803d 100%); /* Verde pasto natural y vibrante */
   color: #ffffff;
-  padding: 12px 22px;
-  border-radius: 30px;
-  border: 2px solid #86efac;
-  font-weight: 700;
-  font-size: 0.95rem;
+  padding: 9px 26px;
+  border-radius: 999px;
+  border: 1.5px solid #86efac;
+  font-family: 'Spectral', Georgia, serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: inherit;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 16px rgba(22, 163, 74, 0.4);
+  transition: all 0.2s ease;
+  box-shadow: 0 5px 15px rgba(24, 88, 46, 0.22);
+  box-sizing: border-box;
+  text-decoration: none;
 }
 
-.btn-encuesta-hero:hover {
+.btn-encuesta-hero:hover,
+.hero-actions .btn-encuesta-hero:hover {
   background: linear-gradient(135deg, #16a34a 0%, #14532d 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(22, 163, 74, 0.55);
+  box-shadow: 0 8px 22px rgba(24, 88, 46, 0.28);
   border-color: #bbf7d0;
 }
 

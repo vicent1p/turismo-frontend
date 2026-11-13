@@ -596,18 +596,6 @@
   </div>
 }
 
-<!-- BOTÓN FLOTANTE DE ENCUESTA TURÍSTICA -->
-<button
-  type="button"
-  class="btn-flotante-encuesta"
-  (click)="abrirModalEncuesta()"
-  [attr.title]="t().btnEncuestaTitle"
-  [attr.aria-label]="t().btnEncuestaTitle"
->
-  <span class="flotante-icon">📋</span>
-  <span class="flotante-label">{{ t().btnEncuesta }}</span>
-</button>
-
 <!-- MODAL INTERACTIVO DE ENCUESTA PARA TURISTAS -->
 @if (mostrarModalEncuesta()) {
   <div class="modal-encuesta-overlay" (click)="cerrarModalEncuesta()">
