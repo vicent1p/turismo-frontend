@@ -1170,6 +1170,7 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
       this.limpiarFormularioHotel();
     }
 
+    await this.hotelesService.sincronizarDesdeApi();
     this.dashboardService.refrescarResumen();
     this.subTabHoteles.set('catalogo');
   }
@@ -1269,6 +1270,7 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
       alert(res.error || 'No se pudo cambiar el estado.');
       return;
     }
+    await this.hotelesService.sincronizarDesdeApi();
     this.dashboardService.refrescarResumen();
   }
 
@@ -1279,6 +1281,7 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
         alert(res.error || 'No se pudo eliminar la tarjeta.');
         return;
       }
+      await this.hotelesService.sincronizarDesdeApi();
       this.dashboardService.refrescarResumen();
       this.mostrarNotificacion(`✓ Tarjeta de «${hotel.nombre}» eliminada.`);
       if (this.hotelEditId === hotel.id) {

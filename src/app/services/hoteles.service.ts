@@ -420,8 +420,56 @@ export class HotelesService {
   readonly syncLoading = signal<boolean>(false);
   readonly syncError = signal<string | null>(null);
 
+  private broadcastChannel?: BroadcastChannel;
+
   constructor() {
     this.cargarDesdeStorage();
+    this.configurarSincronizacionEnVivo();
+  }
+
+  private configurarSincronizacionEnVivo(): void {
+    if (typeof window === 'undefined') return;
+
+    // Canal de difusión para sincronización instantánea multiventana/pestaña
+    if ('BroadcastChannel' in window) {
+      try {
+        this.broadcastChannel = new BroadcastChannel('plato400_sync_channel');
+        this.broadcastChannel.onmessage = (event) => {
+          if (event.data === 'sync_hoteles') {
+            void this.sincronizarDesdeApi();
+          }
+        };
+      } catch {}
+    }
+
+    // Escuchar cambios de localStorage emitidos desde otras pestañas
+    window.addEventListener('storage', (e) => {
+      if (e.key === STORAGE_KEY && e.newValue) {
+        try {
+          const parsed: HotelDataset = JSON.parse(e.newValue);
+          if (parsed && Array.isArray(parsed.hoteles)) {
+            this.dataset.set(parsed);
+          }
+        } catch {}
+      }
+    });
+
+    // Auto-refrescar cuando el usuario vuelve a la pestaña (Landing page, Lugares o Panel)
+    window.addEventListener('focus', () => {
+      void this.sincronizarDesdeApi();
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        void this.sincronizarDesdeApi();
+      }
+    });
+  }
+
+  public notificarCambioGlobal(): void {
+    try {
+      this.broadcastChannel?.postMessage('sync_hoteles');
+    } catch {}
   }
 
   private cargarDesdeStorage(): void {
@@ -430,19 +478,8 @@ export class HotelesService {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed: HotelDataset = JSON.parse(stored);
-        if (parsed && Array.isArray(parsed.hoteles) && parsed.hoteles.length > 0) {
-          const existingIds = new Set(parsed.hoteles.map(h => h.id));
-          const missingSeeds = INITIAL_HOTELES.filter(seed => !existingIds.has(seed.id));
-          if (missingSeeds.length > 0) {
-            const mergedHoteles = [...parsed.hoteles, ...missingSeeds];
-            this.dataset.set({
-              ...parsed,
-              hoteles: mergedHoteles
-            });
-            this.guardar();
-          } else {
-            this.dataset.set(parsed);
-          }
+        if (parsed && Array.isArray(parsed.hoteles)) {
+          this.dataset.set(parsed);
         }
       }
     } catch {}
@@ -472,6 +509,7 @@ export class HotelesService {
       hoteles: [nuevoHotel, ...actual.hoteles]
     });
     this.guardar();
+    this.notificarCambioGlobal();
     return nuevoHotel;
   }
 
@@ -484,7 +522,7 @@ export class HotelesService {
       actualizadoEn: ahoraIso
     };
     if (index !== -1) {
-      // Mover el catálogo modificado al inicio para que "Últimos Modificados" se actualice en tiempo real
+      // Mover el establecimiento modificado al inicio para que se refleje de inmediato
       const otros = actual.hoteles.filter(h => h.id !== hotelActualizado.id);
       this.dataset.set({
         ...actual,
@@ -492,6 +530,7 @@ export class HotelesService {
         hoteles: [itemActualizado, ...otros]
       });
       this.guardar();
+      this.notificarCambioGlobal();
     }
   }
 
@@ -502,6 +541,7 @@ export class HotelesService {
       hoteles: actual.hoteles.filter(h => h.id !== id)
     });
     this.guardar();
+    this.notificarCambioGlobal();
   }
 
   agregarFoto(hotelId: string, fotoUrl: string): void {
@@ -592,9 +632,20 @@ export class HotelesService {
       );
       if (Array.isArray(remote)) {
         const mapped = remote.map(item => mapApiHotelToFrontend(item));
+        const remoteIds = new Set(mapped.map(m => m.id));
+
+        // Preservar y subir tarjetas locales no sincronizadas todavía
+        const localPending = this.dataset().hoteles.filter(h => h.id.startsWith('h_') && !remoteIds.has(h.id));
+        if (localPending.length > 0 && this.authService.accessToken()) {
+          for (const pending of localPending) {
+            void this.crearTarjetaRemota(pending);
+          }
+        }
+
+        const combined = [...localPending, ...mapped];
         this.dataset.set({
           actualizado: new Date().toISOString().slice(0, 10),
-          hoteles: mapped
+          hoteles: combined
         });
         this.guardar();
       }
@@ -617,7 +668,9 @@ export class HotelesService {
   ): Promise<{ exito: boolean; hotel?: Hotel; error?: string }> {
     if (!this.http || !this.authService.accessToken()) {
       if (this.allowOfflineFallback()) {
-        return { exito: true, hotel: this.agregarHotel(hotelData) };
+        const hotel = this.agregarHotel(hotelData);
+        this.notificarCambioGlobal();
+        return { exito: true, hotel };
       }
       return { exito: false, error: 'Sesión no válida o sin conexión con el servidor.' };
     }
@@ -636,10 +689,14 @@ export class HotelesService {
         hoteles: [mapped, ...actual.hoteles.filter(h => h.id !== mapped.id)]
       });
       this.guardar();
+      this.notificarCambioGlobal();
+      void this.sincronizarDesdeApi();
       return { exito: true, hotel: mapped };
     } catch (err) {
       if (this.allowOfflineFallback(err)) {
-        return { exito: true, hotel: this.agregarHotel(hotelData) };
+        const hotel = this.agregarHotel(hotelData);
+        this.notificarCambioGlobal();
+        return { exito: true, hotel };
       }
       return {
         exito: false,
@@ -655,6 +712,7 @@ export class HotelesService {
     if (!this.http || !this.authService.accessToken()) {
       if (this.allowOfflineFallback()) {
         this.actualizarHotel(hotelActualizado);
+        this.notificarCambioGlobal();
         return { exito: true, hotel: hotelActualizado };
       }
       return { exito: false, error: 'Sesión no válida o sin conexión con el servidor.' };
@@ -669,10 +727,13 @@ export class HotelesService {
       );
       const mapped = mapApiHotelToFrontend(updated);
       this.actualizarHotel(mapped);
+      this.notificarCambioGlobal();
+      void this.sincronizarDesdeApi();
       return { exito: true, hotel: mapped };
     } catch (err) {
       if (this.allowOfflineFallback(err)) {
         this.actualizarHotel(hotelActualizado);
+        this.notificarCambioGlobal();
         return { exito: true, hotel: hotelActualizado };
       }
       return {
@@ -692,6 +753,7 @@ export class HotelesService {
     if (!this.http || !this.authService.accessToken()) {
       if (this.allowOfflineFallback()) {
         this.toggleDisponible(hotelId);
+        this.notificarCambioGlobal();
         return { exito: true };
       }
       return { exito: false, error: 'Sesión no válida o sin conexión con el servidor.' };
@@ -705,10 +767,13 @@ export class HotelesService {
         )
       );
       this.actualizarHotel(mapApiHotelToFrontend(updated));
+      this.notificarCambioGlobal();
+      void this.sincronizarDesdeApi();
       return { exito: true };
     } catch (err) {
       if (this.allowOfflineFallback(err)) {
         this.toggleDisponible(hotelId);
+        this.notificarCambioGlobal();
         return { exito: true };
       }
       return {
@@ -723,6 +788,7 @@ export class HotelesService {
     if (!this.http || !this.authService.accessToken()) {
       if (this.allowOfflineFallback()) {
         this.eliminarHotel(id);
+        this.notificarCambioGlobal();
         return { exito: true };
       }
       return { exito: false, error: 'Sesión no válida o sin conexión con el servidor.' };
@@ -733,10 +799,13 @@ export class HotelesService {
         this.http.delete(`${getApiBaseUrl()}/api/hoteles/${encodeURIComponent(id)}`)
       );
       this.eliminarHotel(id);
+      this.notificarCambioGlobal();
+      void this.sincronizarDesdeApi();
       return { exito: true };
     } catch (err) {
       if (this.allowOfflineFallback(err)) {
         this.eliminarHotel(id);
+        this.notificarCambioGlobal();
         return { exito: true };
       }
       return {
