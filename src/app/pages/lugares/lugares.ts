@@ -8,9 +8,13 @@ import {
   Hotel,
   HotelesService,
   PlaceCategoryTab,
+  ServiceIconType,
   buildUbicacionUrl,
   buildWhatsAppUrl,
+  buildXLink,
   filterHotelsByCategory,
+  getServiceIconAsset,
+  getServiceIconType,
   normalizeCardType,
   resolveHotelDescription,
   resolveHotelServices
@@ -44,6 +48,7 @@ interface LugaresLocaleContent {
   unavailable: string;
   amenitiesTitle: string;
   viewDetail: string;
+  verUbicacionBtn: string;
   mapsLabel: string;
   whatsappLabel: string;
   closeModal: string;
@@ -108,6 +113,7 @@ const LUGARES_CONTENT: Record<AppLang, LugaresLocaleContent> = {
     unavailable: 'Sin cupo',
     amenitiesTitle: 'Servicios destacados',
     viewDetail: 'Ver detalle',
+    verUbicacionBtn: 'Ver ubicación',
     mapsLabel: 'Ubicación',
     whatsappLabel: 'WhatsApp',
     closeModal: 'Cerrar detalle',
@@ -165,6 +171,7 @@ const LUGARES_CONTENT: Record<AppLang, LugaresLocaleContent> = {
     unavailable: 'Booked',
     amenitiesTitle: 'Featured amenities',
     viewDetail: 'View details',
+    verUbicacionBtn: 'View location',
     mapsLabel: 'Location',
     whatsappLabel: 'WhatsApp',
     closeModal: 'Close details',
@@ -317,6 +324,54 @@ export class LugaresComponent implements OnInit {
       (normalized === 'hotel' && cat.id === 'hoteles')
     );
     return match?.singularLabel ?? categories[0].singularLabel;
+  }
+
+  getHotelServicios(place: Hotel): string[] {
+    return resolveHotelServices(place, this.lang());
+  }
+
+  getServIconType(serv: string): ServiceIconType {
+    return getServiceIconType(serv);
+  }
+
+  getServIconAsset(serv: string): string | null {
+    return getServiceIconAsset(serv);
+  }
+
+  getUbicacionLink(place: Hotel): string {
+    if (place.ubicacion) return place.ubicacion;
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.nombre + ' Plato Magdalena')}`;
+  }
+
+  getWhatsAppLink(place: Hotel): string {
+    return this.getWhatsAppHref(place);
+  }
+
+  getFacebookLink(place: Hotel): string {
+    return this.getFacebookHref(place);
+  }
+
+  getInstagramLink(place: Hotel): string {
+    return place.instagram || 'https://www.instagram.com/';
+  }
+
+  getXLink(place: Hotel): string {
+    return buildXLink(place.x);
+  }
+
+  getTikTokLink(place: Hotel): string {
+    const raw = (place.tiktok || '').trim();
+    if (!raw) return 'https://www.tiktok.com/';
+    if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
+    const cleanUser = raw.startsWith('@') ? raw : `@${raw}`;
+    return `https://www.tiktok.com/${cleanUser}`;
+  }
+
+  getPaginaWebLink(place: Hotel): string {
+    const raw = (place.paginaWeb || '').trim();
+    if (!raw) return '#';
+    if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
+    return `https://${raw}`;
   }
 
   getMapsUrl(place: Hotel): string {
