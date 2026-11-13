@@ -1428,6 +1428,7 @@
   .seccion-conoce-plato-full::before {
     height: 540px;
     background-size: cover;
+    background-position: left top;
   }
 
   .plato-header {
