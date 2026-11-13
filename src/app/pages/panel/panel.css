@@ -656,22 +656,22 @@
 .users-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.88rem;
+  font-size: 0.80rem;
   text-align: left;
 }
 
 .users-table th {
-  padding: 12px 14px;
+  padding: 8px 10px;
   background: #f8fafc;
   color: #475569;
-  font-size: 0.74rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   border-bottom: 1px solid #e2e8f0;
 }
 
 .users-table td {
-  padding: 14px;
+  padding: 8px 10px;
   border-bottom: 1px solid #f1f5f9;
   color: #1e293b;
   vertical-align: middle;
@@ -1725,21 +1725,38 @@
 .card-table-hotel-wrap {
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
 }
 
 .table-responsive {
   width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 5px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
 }
 
 .hotels-admin-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 0.88rem;
+  font-size: 0.76rem;
+  line-height: 1.25;
 }
 
 .hotels-admin-table thead tr {
@@ -1748,11 +1765,11 @@
 }
 
 .hotels-admin-table th {
-  padding: 16px 20px;
+  padding: 8px 10px;
   color: #475569;
-  font-size: 0.74rem;
+  font-size: 0.66rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -1763,8 +1780,8 @@
 
 .th-sort-arrows {
   display: inline-block;
-  margin-left: 6px;
-  font-size: 0.65rem;
+  margin-left: 3px;
+  font-size: 0.55rem;
   color: #94a3b8;
   letter-spacing: -2px;
 }
@@ -1779,7 +1796,7 @@
 }
 
 .hotels-admin-table td {
-  padding: 16px 20px;
+  padding: 7px 10px;
   vertical-align: middle;
 }
 
@@ -1787,20 +1804,20 @@
 .hotel-id-block {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
 }
 
 .hotel-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
   overflow: hidden;
   background: #0284c7;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+  box-shadow: 0 1px 4px rgba(2, 132, 199, 0.2);
 }
 
 .hotel-avatar-img {
@@ -1815,37 +1832,45 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.95rem;
 }
 
 .hotel-info-meta {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 1px;
+  min-width: 0;
 }
 
 .hotel-name-title {
-  font-size: 0.94rem;
-  font-weight: 800;
+  font-size: 0.80rem;
+  font-weight: 700;
   color: #0f172a;
   letter-spacing: 0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 170px;
 }
 
 .hotel-stars-sub {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.76rem;
+  gap: 3px;
+  font-size: 0.65rem;
   color: #64748b;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .hotel-stars-sub .stars-gold {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
-  font-size: 0.95rem;
+  gap: 1px;
+  font-size: 0.72rem;
   line-height: 1;
-  letter-spacing: 1px;
+  letter-spacing: 0;
 }
 
 .star-on,
@@ -1865,6 +1890,7 @@
 .stars-text {
   font-weight: 600;
   color: #64748b;
+  font-size: 0.65rem;
 }
 
 .meta-dot {
@@ -1874,13 +1900,15 @@
 .meta-photos {
   color: #64748b;
   font-weight: 500;
+  font-size: 0.64rem;
 }
 
 /* Columna 2: Municipio */
 .td-municipio {
   color: #334155;
-  font-size: 0.88rem;
+  font-size: 0.76rem;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .municipio-val {
@@ -1893,11 +1921,12 @@
 .contacto-phone-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   text-decoration: none;
-  padding: 6px 10px;
-  border-radius: 8px;
+  padding: 2px 5px;
+  border-radius: 5px;
   transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
 .contacto-phone-link:hover {
@@ -1907,11 +1936,13 @@
 .phone-svg {
   color: #16a34a;
   flex-shrink: 0;
+  width: 12px;
+  height: 12px;
 }
 
 .phone-number {
   color: #334155;
-  font-size: 0.88rem;
+  font-size: 0.74rem;
   font-weight: 600;
 }
 
@@ -1919,14 +1950,15 @@
 .badge-estado {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 14px;
+  gap: 4px;
+  padding: 2px 7px;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.66rem;
   font-weight: 700;
   border: 1px solid transparent;
   cursor: pointer;
   transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
 .badge-activo {
@@ -1952,7 +1984,7 @@
 }
 
 .badge-dot {
-  font-size: 0.85rem;
+  font-size: 0.64rem;
   line-height: 1;
 }
 
@@ -1960,13 +1992,13 @@
 .table-actions-cell {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 .btn-icon-square {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
   border: 1px solid #e2e8f0;
   background: #ffffff;
   display: flex;
@@ -1974,6 +2006,12 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.15s ease;
+  padding: 0;
+}
+
+.btn-icon-square svg {
+  width: 12px;
+  height: 12px;
 }
 
 .btn-edit-hotel {
@@ -1985,7 +2023,7 @@
   border-color: #0284c7;
   color: #0369a1;
   transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.2);
+  box-shadow: 0 1px 4px rgba(2, 132, 199, 0.2);
 }
 
 .btn-del-hotel {
@@ -1997,17 +2035,17 @@
   border-color: #ef4444;
   color: #dc2626;
   transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.2);
+  box-shadow: 0 1px 4px rgba(239, 68, 68, 0.2);
 }
 
 /* Badges de Tipo de Servicio */
 .badge-tipo {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 4px 10px;
+  gap: 3px;
+  padding: 2px 6px;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.67rem;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -2042,17 +2080,17 @@
 .servicios-chips-wrap {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 3px;
   flex-wrap: wrap;
-  max-width: 220px;
+  max-width: 155px;
 }
 
 .chip-servicio {
   background: #f1f5f9;
   color: #475569;
-  padding: 2px 7px;
-  border-radius: 4px;
-  font-size: 0.72rem;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 0.64rem;
   font-weight: 600;
   border: 1px solid #e2e8f0;
   white-space: nowrap;
@@ -2062,11 +2100,13 @@
   background: #e2e8f0;
   color: #1e293b;
   font-weight: 700;
+  padding: 1px 4px;
+  font-size: 0.64rem;
 }
 
 .chip-servicio-empty {
   color: #94a3b8;
-  font-size: 0.78rem;
+  font-size: 0.66rem;
   font-style: italic;
 }
 
