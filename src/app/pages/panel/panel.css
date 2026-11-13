@@ -1528,6 +1528,185 @@
   transform: translateY(-1px);
 }
 
+/* ================================================= */
+/* FILTRO INTERACTIVO: PREGUNTAS SELECTIVAS TURISMO  */
+/* ================================================= */
+.filtros-servicios-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.filtros-servicios-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.filtros-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.filtros-title {
+  margin: 0 0 4px 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.filtros-sub {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.btn-reset-filtros {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-reset-filtros:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  transform: translateY(-1px);
+}
+
+.filtros-preguntas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.filtro-pregunta-box {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  transition: all 0.2s ease;
+}
+
+.filtro-pregunta-box:focus-within {
+  border-color: #0284c7;
+  background: #f0f9ff;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
+}
+
+.filtro-pregunta-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.pregunta-q-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #0284c7;
+  letter-spacing: 0.05em;
+}
+
+.pregunta-texto {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.35;
+}
+
+.select-pregunta-control {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.select-pregunta-control:focus {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.filtros-resumen-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 12px;
+  border-top: 1px dashed #e2e8f0;
+  font-size: 0.84rem;
+}
+
+.resumen-label {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.resumen-tag {
+  background: #f1f5f9;
+  color: #334155;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border: 1px solid #e2e8f0;
+}
+
+.resumen-tag.tag-amenidad {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+
+.resumen-total {
+  margin-left: auto;
+  color: #0369a1;
+  font-weight: 700;
+  font-size: 0.84rem;
+}
+
 /* ========================================= */
 /* TABLA ADMINISTRATIVA DE HOTELES (MODERNA) */
 /* ========================================= */
@@ -1789,6 +1968,130 @@
   color: #dc2626;
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(239, 68, 68, 0.2);
+}
+
+/* Badges de Tipo de Servicio */
+.badge-tipo {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge-tipo-hotel {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.badge-tipo-cabana {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.badge-tipo-restaurante {
+  background: #ffedd5;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+}
+
+.avatar-cabana {
+  background: #d97706 !important;
+}
+
+.avatar-restaurante {
+  background: #ea580c !important;
+}
+
+/* Chips de Servicios y Amenidades */
+.servicios-chips-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  max-width: 220px;
+}
+
+.chip-servicio {
+  background: #f1f5f9;
+  color: #475569;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.chip-mas {
+  background: #e2e8f0;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.chip-servicio-empty {
+  color: #94a3b8;
+  font-size: 0.78rem;
+  font-style: italic;
+}
+
+/* Estado vacío en tabla por filtros */
+.td-empty-filtros {
+  padding: 48px 24px !important;
+  text-align: center;
+}
+
+.empty-filtros-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.empty-filtros-icon {
+  font-size: 2.2rem;
+  margin-bottom: 4px;
+}
+
+.empty-filtros-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.empty-filtros-desc {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.btn-reset-filtros-action {
+  margin-top: 12px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: #0284c7;
+  color: #ffffff;
+  border: none;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-reset-filtros-action:hover {
+  background: #0369a1;
+  transform: translateY(-1px);
 }
 
 /* Toast flotante */

@@ -188,6 +188,61 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.hotelesService.dataset().hoteles.slice(0, 4);
   });
 
+  // Filtros interactivos con preguntas selectivas para el Catálogo de Servicios Turísticos
+  readonly filtroTipoServicio = signal<string>('todos'); // 'todos' | 'hotel' | 'cabana' | 'restaurante'
+  readonly filtroServicioAmenidad = signal<string>('todos'); // 'todos' | nombre de amenidad/servicio
+
+  readonly listaServiciosDisponibles = computed(() => {
+    const set = new Set<string>();
+    for (const h of this.hotelesService.dataset().hoteles) {
+      for (const s of (h.es?.serv || [])) {
+        if (s && s.trim()) set.add(s.trim());
+      }
+    }
+    return Array.from(set).sort();
+  });
+
+  countPorTipo(tipo: 'hotel' | 'cabana' | 'restaurante'): number {
+    return this.hotelesService.dataset().hoteles.filter(h => (!h.tipo && tipo === 'hotel') || h.tipo === tipo).length;
+  }
+
+  limpiarFiltrosServicios(): void {
+    this.filtroTipoServicio.set('todos');
+    this.filtroServicioAmenidad.set('todos');
+  }
+
+  getTipoLabel(tipo?: string): string {
+    switch (tipo) {
+      case 'cabana': return 'Cabaña';
+      case 'restaurante': return 'Restaurante';
+      default: return 'Hotel';
+    }
+  }
+
+  getTipoIcon(tipo?: string): string {
+    switch (tipo) {
+      case 'cabana': return '🏡';
+      case 'restaurante': return '🍽️';
+      default: return '🏨';
+    }
+  }
+
+  readonly serviciosTuristicosFiltrados = computed(() => {
+    let list = this.hotelesService.dataset().hoteles;
+    const tipo = this.filtroTipoServicio();
+    if (tipo !== 'todos') {
+      list = list.filter(h => (!h.tipo && tipo === 'hotel') || h.tipo === tipo);
+    }
+    const amenidad = this.filtroServicioAmenidad();
+    if (amenidad !== 'todos') {
+      list = list.filter(h => {
+        const servList = h.es?.serv || [];
+        return servList.some(s => s.toLowerCase() === amenidad.toLowerCase());
+      });
+    }
+    return list;
+  });
+
   // Sub-pestaña dentro de hoteles: 'crear' o 'catalogo'
   readonly subTabHoteles = signal<HotelSubTab>('catalogo');
 

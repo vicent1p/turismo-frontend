@@ -431,17 +431,15 @@ export class HotelesService {
       if (stored) {
         const parsed: HotelDataset = JSON.parse(stored);
         if (parsed && Array.isArray(parsed.hoteles) && parsed.hoteles.length > 0) {
-          const hasNonHotel = parsed.hoteles.some(h => normalizeCardType(h.tipo) !== 'hotel');
-          const hasLegacyUntypedOnly = parsed.hoteles.every(h => h.tipo === undefined);
-          if (!hasNonHotel && hasLegacyUntypedOnly) {
-            const existingIds = new Set(parsed.hoteles.map(h => h.id));
-            const extraSeeds = INITIAL_HOTELES.filter(
-              seed => normalizeCardType(seed.tipo) !== 'hotel' && !existingIds.has(seed.id)
-            );
+          const existingIds = new Set(parsed.hoteles.map(h => h.id));
+          const missingSeeds = INITIAL_HOTELES.filter(seed => !existingIds.has(seed.id));
+          if (missingSeeds.length > 0) {
+            const mergedHoteles = [...parsed.hoteles, ...missingSeeds];
             this.dataset.set({
               ...parsed,
-              hoteles: [...parsed.hoteles, ...extraSeeds]
+              hoteles: mergedHoteles
             });
+            this.guardar();
           } else {
             this.dataset.set(parsed);
           }

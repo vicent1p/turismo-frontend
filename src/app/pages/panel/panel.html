@@ -38,20 +38,20 @@
         <span class="nav-label">Panel de Control</span>
       </button>
 
-      <!-- 1. CATÁLOGO DE HOTELES -->
+      <!-- 1. CATÁLOGOS DE SERVICIOS TURÍSTICOS -->
       <button
         type="button"
         class="nav-item"
         [class.active]="seccion() === 'hoteles' && subTabHoteles() === 'catalogo'"
         (click)="setSeccion('hoteles', 'catalogo')"
-        title="Catálogo de Hoteles"
+        title="Catálogos de servicios turísticos"
       >
         <span class="nav-icon">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.75a1.5 1.5 0 011.5-1.5h1.5a1.5 1.5 0 011.5 1.5V21"/>
           </svg>
         </span>
-        <span class="nav-label">Catálogo de Hoteles</span>
+        <span class="nav-label">Catálogos de servicios turísticos</span>
       </button>
 
       <!-- 2. CREAR TARJETA -->
@@ -188,7 +188,7 @@
         </button>
         <span>Panel Turismo</span>
         <span class="sep">/</span>
-        <strong>{{ seccion() === 'dashboard' ? 'Panel de Control' : (seccion() === 'usuarios' ? 'Crear Usuarios' : (seccion() === 'catalogos' ? 'Catálogos' : (seccion() === 'encuestas' ? 'Encuestas Turísticas' : (subTabHoteles() === 'crear' ? 'Crear Tarjeta' : 'Catálogo de Hoteles')))) }}</strong>
+        <strong>{{ seccion() === 'dashboard' ? 'Panel de Control' : (seccion() === 'usuarios' ? 'Crear Usuarios' : (seccion() === 'catalogos' ? 'Catálogos' : (seccion() === 'encuestas' ? 'Encuestas Turísticas' : (subTabHoteles() === 'crear' ? 'Crear Tarjeta' : 'Catálogos de servicios turísticos')))) }}</strong>
       </div>
 
       <div class="topbar-right">
@@ -673,15 +673,15 @@
     }
 
     <!-- ======================================================== -->
-    <!-- SECCIÓN 2: CATÁLOGO DE HOTELES (Vinculado a portada)       -->
+    <!-- SECCIÓN 2: CATÁLOGOS DE SERVICIOS TURÍSTICOS             -->
     <!-- ======================================================== -->
     @if (seccion() === 'hoteles') {
       <section class="section-content">
         <div class="section-title-wrap">
           @if (subTabHoteles() === 'catalogo') {
-            <h2>Catálogo de Hoteles</h2>
+            <h2>Catálogos de servicios turísticos</h2>
             <p class="section-desc">
-              Configure y administre el catálogo de hospedajes y hoteles turísticos del Magdalena. Los cambios se sincronizan inmediatamente en la portada pública.
+              Configure y administre el catálogo de servicios turísticos (hoteles, cabañas y restaurantes) del Magdalena. Los cambios se sincronizan en tiempo real.
             </p>
           } @else {
             <h2>{{ hotelEditId ? 'Editar Tarjeta' : 'Crear Tarjeta' }}</h2>
@@ -1112,14 +1112,14 @@
           </div>
         }
 
-        <!-- 2. APARTADO: CATÁLOGO DE HOTELES (TABLA ADMINISTRATIVA MODERNA) -->
+        <!-- 2. APARTADO: CATÁLOGOS DE SERVICIOS TURÍSTICOS (TABLA ADMINISTRATIVA MODERNA) -->
         @if (subTabHoteles() === 'catalogo') {
           <div class="catalog-view-wrap">
             <!-- Barra superior del Catálogo -->
             <div class="catalog-toolbar">
               <div class="catalog-toolbar-left">
                 <span class="catalog-count-pill">
-                  Total: <strong>{{ hotelesService.hoteles.length }}</strong> hoteles registrados
+                  Total: <strong>{{ serviciosTuristicosFiltrados().length }}</strong> de <strong>{{ totalCatalogosCount() }}</strong> servicios registrados
                 </span>
                 <span class="catalog-sync-badge">✓ Sincronizado en tiempo real con la portada</span>
               </div>
@@ -1131,14 +1131,100 @@
               </button>
             </div>
 
-            <!-- Tabla Administrativa de Hoteles -->
+            <!-- CAJA DE FILTROS INTERACTIVOS: PREGUNTAS SELECTIVAS -->
+            <div class="card filtros-servicios-card">
+              <div class="filtros-servicios-header">
+                <div class="filtros-header-info">
+                  <div class="filtros-badge-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                    </svg>
+                    <span>Filtro Selectivo</span>
+                  </div>
+                  <h3 class="filtros-title">Preguntas Selectivas de Servicios Turísticos</h3>
+                  <p class="filtros-sub">Seleccione las opciones interactivas para consultar hoteles, cabañas y restaurantes según tipo y características específicas.</p>
+                </div>
+                @if (filtroTipoServicio() !== 'todos' || filtroServicioAmenidad() !== 'todos') {
+                  <button type="button" class="btn-reset-filtros" (click)="limpiarFiltrosServicios()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                    <span>Restablecer preguntas</span>
+                  </button>
+                }
+              </div>
+
+              <div class="filtros-preguntas-grid">
+                <!-- PREGUNTA 1: TIPO DE SERVICIO -->
+                <div class="filtro-pregunta-box">
+                  <label class="filtro-pregunta-label" for="select-tipo-servicio">
+                    <span class="pregunta-q-badge">Pregunta 1</span>
+                    <span class="pregunta-texto">¿Qué tipo de servicio turístico deseas consultar?</span>
+                  </label>
+                  <div class="select-wrapper">
+                    <select
+                      id="select-tipo-servicio"
+                      class="select-pregunta-control"
+                      [value]="filtroTipoServicio()"
+                      (change)="filtroTipoServicio.set($any($event.target).value)"
+                    >
+                      <option value="todos">🌟 Todos los servicios (Hoteles, Cabañas y Restaurantes) — ({{ totalCatalogosCount() }})</option>
+                      <option value="hotel">🏨 Hoteles ({{ countPorTipo('hotel') }})</option>
+                      <option value="cabana">🏡 Cabañas ({{ countPorTipo('cabana') }})</option>
+                      <option value="restaurante">🍽️ Restaurantes ({{ countPorTipo('restaurante') }})</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- PREGUNTA 2: AMENIDAD / SERVICIO ESPECÍFICO -->
+                <div class="filtro-pregunta-box">
+                  <label class="filtro-pregunta-label" for="select-servicio-amenidad">
+                    <span class="pregunta-q-badge">Pregunta 2</span>
+                    <span class="pregunta-texto">¿Qué servicio o amenidad específica buscas?</span>
+                  </label>
+                  <div class="select-wrapper">
+                    <select
+                      id="select-servicio-amenidad"
+                      class="select-pregunta-control"
+                      [value]="filtroServicioAmenidad()"
+                      (change)="filtroServicioAmenidad.set($any($event.target).value)"
+                    >
+                      <option value="todos">✨ Cualquier servicio / Todos los servicios y amenidades</option>
+                      @for (serv of listaServiciosDisponibles(); track serv) {
+                        <option [value]="serv">🔹 {{ serv }}</option>
+                      }
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Barra de resumen del filtro -->
+              <div class="filtros-resumen-bar">
+                <span class="resumen-label">Filtros aplicados:</span>
+                <span class="resumen-tag">
+                  Tipo: <strong>{{ filtroTipoServicio() === 'todos' ? 'Todos' : (filtroTipoServicio() === 'hotel' ? 'Hoteles' : (filtroTipoServicio() === 'cabana' ? 'Cabañas' : 'Restaurantes')) }}</strong>
+                </span>
+                @if (filtroServicioAmenidad() !== 'todos') {
+                  <span class="resumen-tag tag-amenidad">
+                    Servicio: <strong>{{ filtroServicioAmenidad() }}</strong>
+                  </span>
+                }
+                <span class="resumen-total">Resultados: <strong>{{ serviciosTuristicosFiltrados().length }}</strong></span>
+              </div>
+            </div>
+
+            <!-- Tabla Administrativa de Servicios Turísticos -->
             <div class="card card-table-hotel-wrap">
               <div class="table-responsive">
                 <table class="hotels-admin-table">
                   <thead>
                     <tr>
                       <th class="th-sortable">
-                        <span class="th-label">NOMBRE DEL HOTEL</span>
+                        <span class="th-label">ESTABLECIMIENTO / SERVICIO</span>
+                        <span class="th-sort-arrows">▲▼</span>
+                      </th>
+                      <th class="th-sortable">
+                        <span class="th-label">TIPO</span>
                         <span class="th-sort-arrows">▲▼</span>
                       </th>
                       <th class="th-sortable">
@@ -1146,11 +1232,14 @@
                         <span class="th-sort-arrows">▲▼</span>
                       </th>
                       <th class="th-sortable">
+                        <span class="th-label">SERVICIOS / AMENIDADES</span>
+                      </th>
+                      <th class="th-sortable">
                         <span class="th-label">CONTACTO (WHATSAPP)</span>
                         <span class="th-sort-arrows">▲▼</span>
                       </th>
                       <th class="th-sortable">
-                        <span class="th-label">DISPONIBILIDAD DEL HOTEL</span>
+                        <span class="th-label">DISPONIBILIDAD</span>
                         <span class="th-sort-arrows">▲▼</span>
                       </th>
                       <th class="th-actions">
@@ -1159,19 +1248,17 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @for (h of hotelesService.hoteles; track h.id) {
+                    @for (h of serviciosTuristicosFiltrados(); track h.id) {
                       <tr class="hotel-table-row">
-                        <!-- 1. NOMBRE DEL HOTEL -->
+                        <!-- 1. NOMBRE DEL SERVICIO -->
                         <td class="td-nombre">
                           <div class="hotel-id-block">
-                            <div class="hotel-avatar">
+                            <div class="hotel-avatar" [class.avatar-cabana]="h.tipo === 'cabana'" [class.avatar-restaurante]="h.tipo === 'restaurante'">
                               @if (h.fotos && h.fotos.length > 0) {
                                 <img [src]="h.fotos[0]" [alt]="h.nombre" class="hotel-avatar-img" />
                               } @else {
                                 <div class="hotel-avatar-icon">
-                                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.75a1.5 1.5 0 011.5-1.5h1.5a1.5 1.5 0 011.5 1.5V21"/>
-                                  </svg>
+                                  <span>{{ getTipoIcon(h.tipo) }}</span>
                                 </div>
                               }
                             </div>
@@ -1193,12 +1280,40 @@
                           </div>
                         </td>
 
-                        <!-- 2. MUNICIPIO -->
+                        <!-- 2. TIPO DE SERVICIO -->
+                        <td class="td-tipo">
+                          <span
+                            class="badge-tipo"
+                            [class.badge-tipo-hotel]="!h.tipo || h.tipo === 'hotel'"
+                            [class.badge-tipo-cabana]="h.tipo === 'cabana'"
+                            [class.badge-tipo-restaurante]="h.tipo === 'restaurante'"
+                          >
+                            <span class="badge-tipo-icon">{{ getTipoIcon(h.tipo) }}</span>
+                            <span>{{ getTipoLabel(h.tipo) }}</span>
+                          </span>
+                        </td>
+
+                        <!-- 3. MUNICIPIO -->
                         <td class="td-municipio">
                           <span class="municipio-val">{{ h.municipio || 'Plato' }}</span>
                         </td>
 
-                        <!-- 3. CONTACTO (WHATSAPP) -->
+                        <!-- 4. SERVICIOS / AMENIDADES -->
+                        <td class="td-servicios">
+                          <div class="servicios-chips-wrap">
+                            @for (s of (h.es.serv || []).slice(0, 3); track s) {
+                              <span class="chip-servicio">{{ s }}</span>
+                            }
+                            @if ((h.es.serv || []).length > 3) {
+                              <span class="chip-servicio chip-mas">+{{ (h.es.serv || []).length - 3 }}</span>
+                            }
+                            @if (!h.es.serv.length) {
+                              <span class="chip-servicio-empty">Sin servicios</span>
+                            }
+                          </div>
+                        </td>
+
+                        <!-- 5. CONTACTO (WHATSAPP) -->
                         <td class="td-contacto">
                           <a
                             class="contacto-phone-link"
@@ -1214,7 +1329,7 @@
                           </a>
                         </td>
 
-                        <!-- 4. DISPONIBILIDAD DEL HOTEL -->
+                        <!-- 6. DISPONIBILIDAD -->
                         <td class="td-disponibilidad">
                           @if (h.disponible) {
                             <button
@@ -1239,7 +1354,7 @@
                           }
                         </td>
 
-                        <!-- 5. ACCIÓN (EDITAR INFORMACIÓN CREADA) -->
+                        <!-- 7. ACCIÓN (EDITAR / ELIMINAR) -->
                         <td class="td-acciones">
                           <div class="table-actions-cell">
                             <!-- Botón Editar Información -->
@@ -1247,7 +1362,7 @@
                               type="button"
                               class="btn-icon-square btn-edit-hotel"
                               (click)="editarHotel(h)"
-                              title="Editar información del hotel"
+                              title="Editar información"
                             >
                               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
@@ -1259,11 +1374,27 @@
                               type="button"
                               class="btn-icon-square btn-del-hotel"
                               (click)="eliminarHotel(h)"
-                              title="Eliminar hotel"
+                              title="Eliminar de catálogo"
                             >
                               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
                               </svg>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    }
+
+                    <!-- ESTADO VACÍO CUANDO NO HAY COINCIDENCIAS CON EL FILTRO -->
+                    @if (serviciosTuristicosFiltrados().length === 0) {
+                      <tr>
+                        <td colspan="7" class="td-empty-filtros">
+                          <div class="empty-filtros-box">
+                            <span class="empty-filtros-icon">🔍</span>
+                            <h4 class="empty-filtros-title">No se encontraron servicios turísticos</h4>
+                            <p class="empty-filtros-desc">No hay establecimientos que coincidan con la combinación de preguntas y filtros seleccionados.</p>
+                            <button type="button" class="btn-reset-filtros-action" (click)="limpiarFiltrosServicios()">
+                              Restablecer todas las preguntas
                             </button>
                           </div>
                         </td>
