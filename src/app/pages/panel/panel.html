@@ -1,16 +1,20 @@
-<div class="panel-layout">
+<div class="panel-layout" [class.sidebar-collapsed]="sidebarCollapsed()">
   <!-- MENÚ LATERAL (SIDEBAR) ESTILO GOBERNACIÓN DEL MAGDALENA -->
-  <aside class="sidebar" aria-label="Menú principal del panel">
+  <aside class="sidebar" [class.collapsed]="sidebarCollapsed()" aria-label="Menú principal del panel">
     <!-- Encabezado con Logo Oficial de la Gobernación del Magdalena -->
     <div class="sidebar-header">
       <div class="sidebar-logo-box">
-        <img
-          src="logo-horizontal-color.png"
-          alt="Gobernación del Magdalena"
-          class="sidebar-logo-img"
-          width="200"
-          height="44"
-        />
+        @if (!sidebarCollapsed()) {
+          <img
+            src="logo-horizontal-color.png"
+            alt="Gobernación del Magdalena"
+            class="sidebar-logo-img"
+            width="200"
+            height="44"
+          />
+        } @else {
+          <span class="sidebar-mini-logo" title="Gobernación del Magdalena">GM</span>
+        }
       </div>
     </div>
 
@@ -24,6 +28,7 @@
         class="nav-item"
         [class.active]="seccion() === 'dashboard'"
         (click)="setSeccion('dashboard')"
+        title="Panel de Control"
       >
         <span class="nav-icon">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -39,6 +44,7 @@
         class="nav-item"
         [class.active]="seccion() === 'hoteles' && subTabHoteles() === 'catalogo'"
         (click)="setSeccion('hoteles', 'catalogo')"
+        title="Catálogo de Hoteles"
       >
         <span class="nav-icon">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -54,6 +60,7 @@
         class="nav-item"
         [class.active]="seccion() === 'hoteles' && subTabHoteles() === 'crear'"
         (click)="setSeccion('hoteles', 'crear')"
+        title="Crear Tarjeta"
       >
         <span class="nav-icon">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -69,6 +76,7 @@
         class="nav-item nav-item-encuestas"
         [class.active]="seccion() === 'encuestas'"
         (click)="setSeccion('encuestas')"
+        title="Encuestas Turísticas"
       >
         <span class="nav-icon">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -85,6 +93,7 @@
           class="nav-item"
           [class.active]="seccion() === 'usuarios'"
           (click)="setSeccion('usuarios')"
+          title="Crear Usuarios"
         >
           <span class="nav-icon">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -100,6 +109,7 @@
           class="nav-item nav-item-catalogos"
           [class.active]="seccion() === 'catalogos'"
           (click)="setSeccion('catalogos')"
+          title="Catálogos"
         >
           <span class="nav-icon">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -112,27 +122,50 @@
       }
     </div>
 
-    <!-- ENLACE DIRECTO A LA PORTADA PÚBLICA -->
+    <!-- ENLACE DIRECTO A LA PORTADA PÚBLICA Y CONTROLES DEL PANEL -->
     <div class="sidebar-footer">
-      <a routerLink="/" class="btn-sidebar-portada">
+      <!-- Botón para recoger y desplazar el panel lateral -->
+      <button
+        type="button"
+        class="btn-sidebar-toggle"
+        (click)="toggleSidebar()"
+        [attr.title]="sidebarCollapsed() ? 'Desplegar panel' : 'Recoger panel'"
+        [attr.aria-label]="sidebarCollapsed() ? 'Desplegar panel' : 'Recoger panel'"
+      >
+        <span class="sidebar-toggle-icon">
+          @if (sidebarCollapsed()) {
+            <!-- Flecha a la derecha para desplazar/abrir el panel -->
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
+            </svg>
+          } @else {
+            <!-- Flecha a la izquierda para recoger/cerrar el panel -->
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
+            </svg>
+          }
+        </span>
+        @if (!sidebarCollapsed()) {
+          <span class="btn-text">Recoger panel</span>
+        }
+      </button>
+
+      <a routerLink="/" class="btn-sidebar-portada" title="Ver Portada">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
         </svg>
-        <span>Ver Portada</span>
+        @if (!sidebarCollapsed()) {
+          <span class="btn-text">Ver Portada</span>
+        }
       </a>
 
-      <button type="button" class="btn-sidebar-password" (click)="openOwnPasswordModal()">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
-        </svg>
-        <span>Cambiar contraseña</span>
-      </button>
-
-      <button type="button" class="btn-sidebar-logout" (click)="logout()">
+      <button type="button" class="btn-sidebar-logout" (click)="logout()" title="Cerrar sesión">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H8.25"/>
         </svg>
-        <span>Cerrar sesión</span>
+        @if (!sidebarCollapsed()) {
+          <span class="btn-text">Cerrar sesión</span>
+        }
       </button>
     </div>
   </aside>
@@ -142,6 +175,17 @@
     <!-- Barra Superior -->
     <header class="panel-topbar">
       <div class="breadcrumb">
+        <button
+          type="button"
+          class="btn-topbar-toggle"
+          (click)="toggleSidebar()"
+          [attr.title]="sidebarCollapsed() ? 'Desplegar panel' : 'Recoger panel'"
+          [attr.aria-label]="sidebarCollapsed() ? 'Desplegar panel' : 'Recoger panel'"
+        >
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
         <span>Panel Turismo</span>
         <span class="sep">/</span>
         <strong>{{ seccion() === 'dashboard' ? 'Panel de Control' : (seccion() === 'usuarios' ? 'Crear Usuarios' : (seccion() === 'catalogos' ? 'Catálogos' : (seccion() === 'encuestas' ? 'Encuestas Turísticas' : (subTabHoteles() === 'crear' ? 'Crear Tarjeta' : 'Catálogo de Hoteles')))) }}</strong>

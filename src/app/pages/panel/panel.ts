@@ -151,6 +151,13 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
   // Pestaña activa del menú lateral
   readonly seccion = signal<PanelTab>('dashboard');
 
+  // Estado de repliegue/expansión del panel lateral (sidebar)
+  readonly sidebarCollapsed = signal<boolean>(false);
+
+  toggleSidebar(): void {
+    this.sidebarCollapsed.update(v => !v);
+  }
+
   // Sub-pestaña dentro de hoteles: 'crear' o 'catalogo'
   readonly subTabHoteles = signal<HotelSubTab>('catalogo');
 
