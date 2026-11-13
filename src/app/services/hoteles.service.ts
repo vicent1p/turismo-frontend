@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject, isDevMode, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import {
@@ -464,6 +464,13 @@ export class HotelesService {
         void this.sincronizarDesdeApi();
       }
     });
+
+    // Polling periódico cada 10s para mantener actualizados administradores, gestores y landing page en tiempo real
+    setInterval(() => {
+      if (typeof document !== 'undefined' && document.visibilityState === 'visible') {
+        void this.sincronizarDesdeApi();
+      }
+    }, 10000);
   }
 
   public notificarCambioGlobal(): void {
@@ -680,7 +687,8 @@ export class HotelesService {
   async crearTarjetaRemota(
     hotelData: Omit<Hotel, 'id'>
   ): Promise<{ exito: boolean; hotel?: Hotel; error?: string }> {
-    if (!this.http || !this.authService.accessToken()) {
+    const token = await this.authService.getOrRefreshToken();
+    if (!this.http || !token) {
       if (this.allowOfflineFallback()) {
         const hotel = this.agregarHotel(hotelData);
         this.notificarCambioGlobal();
@@ -722,7 +730,8 @@ export class HotelesService {
   async actualizarTarjetaRemota(
     hotelActualizado: Hotel
   ): Promise<{ exito: boolean; hotel?: Hotel; error?: string }> {
-    if (!this.http || !this.authService.accessToken()) {
+    const token = await this.authService.getOrRefreshToken();
+    if (!this.http || !token) {
       if (this.allowOfflineFallback()) {
         this.actualizarHotel(hotelActualizado);
         this.notificarCambioGlobal();
@@ -762,7 +771,8 @@ export class HotelesService {
       return { exito: false, error: 'Establecimiento no encontrado.' };
     }
 
-    if (!this.http || !this.authService.accessToken()) {
+    const token = await this.authService.getOrRefreshToken();
+    if (!this.http || !token) {
       if (this.allowOfflineFallback()) {
         this.toggleDisponible(hotelId);
         this.notificarCambioGlobal();
@@ -796,7 +806,8 @@ export class HotelesService {
 
   /** Soft-deletes a card in PostgreSQL (`DELETE /api/hoteles/:id`). */
   async eliminarTarjetaRemota(id: string): Promise<{ exito: boolean; error?: string }> {
-    if (!this.http || !this.authService.accessToken()) {
+    const token = await this.authService.getOrRefreshToken();
+    if (!this.http || !token) {
       if (this.allowOfflineFallback()) {
         this.eliminarHotel(id);
         this.notificarCambioGlobal();
@@ -813,6 +824,11 @@ export class HotelesService {
       this.notificarCambioGlobal();
       return { exito: true };
     } catch (err) {
+      if (err instanceof HttpErrorResponse && err.status === 404) {
+        this.eliminarHotel(id);
+        this.notificarCambioGlobal();
+        return { exito: true };
+      }
       if (this.allowOfflineFallback(err)) {
         this.eliminarHotel(id);
         this.notificarCambioGlobal();
