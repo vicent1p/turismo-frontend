@@ -201,7 +201,7 @@ export class AuthService {
 
       return { exito: true };
     } catch (err) {
-      if (isNetworkUnavailableError(err)) {
+      if (isNetworkUnavailableError(err) || (isDevMode() && err instanceof HttpErrorResponse && err.status >= 500)) {
         if (isDevMode()) {
           return this.loginConCredenciales(email, password);
         }

@@ -1,5 +1,6 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import {
   PlaceCategoryTab,
@@ -8,6 +9,7 @@ import {
 import { AuthService } from '../../services/auth.service';
 import { HotelesService, Hotel, HotelDataset, ServiceIconType, buildXLink, getServiceIconAsset, getServiceIconType } from '../../services/hoteles.service';
 import { LanguageService } from '../../services/language.service';
+import { EncuestasService, Encuesta, DetalleRespuestaEnvio } from '../../services/encuestas.service';
 import { PublicNavbarComponent } from '../../components/public-navbar/public-navbar';
 import { PublicFooterComponent } from '../../components/public-footer/public-footer';
 
@@ -205,7 +207,7 @@ export const TRANSLATIONS = {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, PublicNavbarComponent, PublicFooterComponent],
+  imports: [CommonModule, RouterLink, FormsModule, PublicNavbarComponent, PublicFooterComponent],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
@@ -214,6 +216,14 @@ export class HomeComponent implements OnInit {
   readonly authService = inject(AuthService);
   readonly hotelesService = inject(HotelesService);
   readonly languageService = inject(LanguageService);
+  readonly encuestasService = inject(EncuestasService);
+
+  readonly mostrarModalEncuesta = signal<boolean>(false);
+  readonly encuestaLanding = signal<Encuesta | null>(null);
+  readonly respuestasUsuario = signal<{ [preguntaId: number]: { opcionId?: number; texto?: string } }>({});
+  readonly enviandoEncuesta = signal<boolean>(false);
+  readonly encuestaEnviadaExito = signal<boolean>(false);
+  readonly encuestaError = signal<string | null>(null);
 
   readonly lang = this.languageService.lang;
   readonly filtro = signal<'todos' | 'si' | 'no'>('todos');
@@ -521,5 +531,107 @@ export class HomeComponent implements OnInit {
 
   descartarLocal(): void {
     this.hotelesService.restaurarDatos();
+  }
+
+  async abrirModalEncuesta(): Promise<void> {
+    this.encuestaEnviadaExito.set(false);
+    this.encuestaError.set(null);
+    this.mostrarModalEncuesta.set(true);
+    const enc = await this.encuestasService.getLandingActiva();
+    if (enc) {
+      this.encuestaLanding.set(enc);
+      const initResp: { [preguntaId: number]: { opcionId?: number; texto?: string } } = {};
+      if (enc.preguntas) {
+        for (const p of enc.preguntas) {
+          if (p.id) {
+            initResp[p.id] = {};
+          }
+        }
+      }
+      this.respuestasUsuario.set(initResp);
+    }
+  }
+
+  cerrarModalEncuesta(): void {
+    this.mostrarModalEncuesta.set(false);
+  }
+
+  seleccionarOpcion(preguntaId: number, opcionId: number): void {
+    this.respuestasUsuario.update(prev => ({
+      ...prev,
+      [preguntaId]: { ...prev[preguntaId], opcionId }
+    }));
+  }
+
+  setCalificacion(preguntaId: number, rating: number): void {
+    this.respuestasUsuario.update(prev => ({
+      ...prev,
+      [preguntaId]: { ...prev[preguntaId], texto: String(rating) }
+    }));
+  }
+
+  setTextoRespuesta(preguntaId: number, texto: string): void {
+    this.respuestasUsuario.update(prev => ({
+      ...prev,
+      [preguntaId]: { ...prev[preguntaId], texto }
+    }));
+  }
+
+  isStarActive(preguntaId: number, star: number): boolean {
+    const val = Number(this.respuestasUsuario()[preguntaId]?.texto || 0);
+    return val >= star;
+  }
+
+  getCalificacionText(preguntaId: number): string {
+    return this.respuestasUsuario()[preguntaId]?.texto || '';
+  }
+
+  async enviarRespuestasEncuesta(): Promise<void> {
+    const enc = this.encuestaLanding();
+    if (!enc || !enc.preguntas) return;
+
+    const respuestas: DetalleRespuestaEnvio[] = [];
+    const respMap = this.respuestasUsuario();
+
+    // Validar preguntas obligatorias
+    for (const preg of enc.preguntas) {
+      if (!preg.id) continue;
+      const resp = respMap[preg.id];
+
+      if (preg.obligatoria) {
+        if (preg.tipoPregunta === 'opcion' && !resp?.opcionId) {
+          this.encuestaError.set(`Por favor responde la pregunta: "${preg.pregunta}"`);
+          return;
+        }
+        if (preg.tipoPregunta === 'calificacion' && (!resp?.texto || isNaN(Number(resp.texto)))) {
+          this.encuestaError.set(`Por favor califica con estrellas la pregunta: "${preg.pregunta}"`);
+          return;
+        }
+        if (preg.tipoPregunta === 'texto' && (!resp?.texto || !resp.texto.trim())) {
+          this.encuestaError.set(`Por favor responde la pregunta: "${preg.pregunta}"`);
+          return;
+        }
+      }
+
+      if (resp) {
+        respuestas.push({
+          preguntaId: preg.id,
+          opcionId: resp.opcionId ?? null,
+          respuestaTexto: resp.texto ?? null
+        });
+      }
+    }
+
+    this.enviandoEncuesta.set(true);
+    this.encuestaError.set(null);
+
+    try {
+      await this.encuestasService.responderEncuesta(enc.id, respuestas);
+      this.encuestaEnviadaExito.set(true);
+    } catch (err: any) {
+      this.encuestaError.set(err?.message || 'Error al enviar la encuesta. Intenta de nuevo.');
+    } finally {
+      this.enviandoEncuesta.set(false);
+    }
   }
 }

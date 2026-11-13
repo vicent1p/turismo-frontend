@@ -8,6 +8,8 @@
           src="logo-horizontal-color.png"
           alt="Gobernación del Magdalena"
           class="sidebar-logo-img"
+          width="200"
+          height="44"
         />
       </div>
     </div>
@@ -59,6 +61,21 @@
           </svg>
         </span>
         <span class="nav-label">Crear Tarjeta</span>
+      </button>
+
+      <!-- 2.5 ENCUESTAS (Administrador y Gestor) -->
+      <button
+        type="button"
+        class="nav-item nav-item-encuestas"
+        [class.active]="seccion() === 'encuestas'"
+        (click)="setSeccion('encuestas')"
+      >
+        <span class="nav-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/>
+          </svg>
+        </span>
+        <span class="nav-label">Encuestas</span>
       </button>
 
       <!-- 3. CREAR USUARIOS (Solo Administradores) -->
@@ -127,7 +144,7 @@
       <div class="breadcrumb">
         <span>Panel Turismo</span>
         <span class="sep">/</span>
-        <strong>{{ seccion() === 'dashboard' ? 'Panel de Control' : (seccion() === 'usuarios' ? 'Crear Usuarios' : (seccion() === 'catalogos' ? 'Catálogos' : (subTabHoteles() === 'crear' ? 'Crear Tarjeta' : 'Catálogo de Hoteles'))) }}</strong>
+        <strong>{{ seccion() === 'dashboard' ? 'Panel de Control' : (seccion() === 'usuarios' ? 'Crear Usuarios' : (seccion() === 'catalogos' ? 'Catálogos' : (seccion() === 'encuestas' ? 'Encuestas Turísticas' : (subTabHoteles() === 'crear' ? 'Crear Tarjeta' : 'Catálogo de Hoteles')))) }}</strong>
       </div>
 
       <div class="topbar-right">
@@ -1524,6 +1541,421 @@
             </div>
           </div>
         </div>
+      </section>
+    }
+
+    <!-- ================================================================= -->
+    <!-- 5. SECCIÓN ENCUESTAS (ADMINISTRADOR Y GESTOR)                    -->
+    <!-- ================================================================= -->
+    @if (seccion() === 'encuestas') {
+      <section class="panel-section encuestas-section" aria-labelledby="encuestas-heading">
+        <div class="panel-section-header">
+          <div>
+            <h2 id="encuestas-heading" class="panel-section-title">Encuestas Turísticas</h2>
+            <p class="panel-section-desc">
+              Diseña formularios de preguntas para los visitantes del portal y consulta en tiempo real los resultados y sugerencias enviadas por la gente.
+            </p>
+          </div>
+
+          <div class="subtabs-bar">
+            <button
+              type="button"
+              class="subtab-btn"
+              [class.active]="subTabEncuestas() === 'crear'"
+              (click)="setSubTabEncuestas('crear')"
+            >
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+              </svg>
+              Crear Formulario de Encuesta
+            </button>
+            <button
+              type="button"
+              class="subtab-btn"
+              [class.active]="subTabEncuestas() === 'resultados'"
+              (click)="setSubTabEncuestas('resultados')"
+            >
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
+              </svg>
+              Ver Respuestas y Resultados
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= PESTAÑA: CREAR ENCUESTA ================= -->
+        @if (subTabEncuestas() === 'crear') {
+          <div class="encuesta-card-container">
+            @if (mensajeExitoEncuesta()) {
+              <div class="alerta-exito-encuesta" role="status">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>{{ mensajeExitoEncuesta() }}</span>
+              </div>
+            }
+
+            @if (mensajeErrorEncuesta()) {
+              <div class="alerta-error-encuesta" role="alert">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/>
+                </svg>
+                <span>{{ mensajeErrorEncuesta() }}</span>
+              </div>
+            }
+
+            <div class="encuesta-config-box">
+              <h3 class="box-heading">1. Datos Generales de la Encuesta</h3>
+              
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="enc_titulo">TÍTULO DE LA ENCUESTA *</label>
+                  <input
+                    id="enc_titulo"
+                    type="text"
+                    [(ngModel)]="encuestaTitulo"
+                    name="encuestaTitulo"
+                    placeholder="ej.: Encuesta de Satisfacción Turística 2026"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="enc_cant_preg">CANTIDAD DE PREGUNTAS A MOSTRAR *</label>
+                  <div class="counter-control">
+                    <button type="button" class="btn-counter" (click)="cambiarCantidadPreguntas(cantidadPreguntas - 1)">-</button>
+                    <input
+                      id="enc_cant_preg"
+                      type="number"
+                      min="1"
+                      max="20"
+                      [ngModel]="cantidadPreguntas"
+                      (ngModelChange)="cambiarCantidadPreguntas($event)"
+                      name="cantidadPreguntas"
+                      class="input-counter"
+                    />
+                    <button type="button" class="btn-counter" (click)="cambiarCantidadPreguntas(cantidadPreguntas + 1)">+</button>
+                    <span class="counter-hint">preguntas activas</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="enc_desc">DESCRIPCIÓN / OBJETIVO PARA EL VISITANTE</label>
+                <textarea
+                  id="enc_desc"
+                  rows="2"
+                  [(ngModel)]="encuestaDescripcion"
+                  name="encuestaDescripcion"
+                  placeholder="Explica a los turistas para qué se recopilan sus respuestas..."
+                ></textarea>
+              </div>
+
+              <div class="switches-row">
+                <label class="switch-item">
+                  <input type="checkbox" [(ngModel)]="encuestaMostrarLanding" name="encuestaMostrarLanding" />
+                  <span class="switch-label">
+                    <strong>Mostrar en el Landing Page</strong>
+                    <small>Esta encuesta será la que se abrirá cuando los turistas den clic en el botón de la página principal.</small>
+                  </span>
+                </label>
+
+                <label class="switch-item">
+                  <input type="checkbox" [(ngModel)]="encuestaActiva" name="encuestaActiva" />
+                  <span class="switch-label">
+                    <strong>Habilitar recepción de respuestas</strong>
+                    <small>Permitir que las personas puedan responderla ahora mismo.</small>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- LISTA DE PREGUNTAS -->
+            <div class="encuesta-preguntas-box">
+              <div class="preguntas-header-row">
+                <h3 class="box-heading">2. Formulario de Preguntas ({{ preguntasForm.length }})</h3>
+                <button type="button" class="btn-add-pregunta" (click)="agregarPregunta()">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                  </svg>
+                  Añadir otra pregunta
+                </button>
+              </div>
+
+              <div class="preguntas-list">
+                @for (preg of preguntasForm; track $index) {
+                  <div class="pregunta-card">
+                    <div class="pregunta-top-bar">
+                      <span class="pregunta-number-badge">Pregunta #{{ $index + 1 }}</span>
+                      
+                      <div class="pregunta-top-actions">
+                        <label class="checkbox-obligatoria">
+                          <input type="checkbox" [(ngModel)]="preg.obligatoria" [name]="'preg_obl_' + $index" />
+                          <span>Obligatoria</span>
+                        </label>
+
+                        @if (preguntasForm.length > 1) {
+                          <button
+                            type="button"
+                            class="btn-delete-pregunta"
+                            (click)="eliminarPregunta($index)"
+                            title="Eliminar esta pregunta"
+                          >
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/>
+                            </svg>
+                          </button>
+                        }
+                      </div>
+                    </div>
+
+                    <div class="pregunta-body-grid">
+                      <div class="form-group">
+                        <label>ENUNCIADO DE LA PREGUNTA *</label>
+                        <input
+                          type="text"
+                          [(ngModel)]="preg.pregunta"
+                          [name]="'preg_texto_' + $index"
+                          placeholder="ej.: ¿Cómo calificarías la gastronomía y los restaurantes en Plato?"
+                        />
+                      </div>
+
+                      <div class="form-group">
+                        <label>TIPO DE PREGUNTA *</label>
+                        <select [(ngModel)]="preg.tipoPregunta" [name]="'preg_tipo_' + $index" class="select-tipo-pregunta">
+                          <option value="opcion">Opción múltiple (seleccionar 1 opción)</option>
+                          <option value="calificacion">Calificación de 1 a 5 estrellas</option>
+                          <option value="texto">Texto libre (comentarios y sugerencias)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Si es tipo OPCIÓN MÚLTIPLE: Configuración de opciones -->
+                    @if (preg.tipoPregunta === 'opcion') {
+                      <div class="opciones-container">
+                        <label class="opciones-label">OPCIONES DISPONIBLES:</label>
+                        
+                        <div class="opciones-pills">
+                          @for (op of preg.opciones; track $index; let opIdx = $index) {
+                            <div class="opcion-pill">
+                              <span>{{ op }}</span>
+                              <button
+                                type="button"
+                                class="btn-remove-pill"
+                                (click)="eliminarOpcionPregunta($index, opIdx)"
+                                title="Eliminar opción"
+                              >✕</button>
+                            </div>
+                          }
+                        </div>
+
+                        <div class="add-opcion-row">
+                          <input
+                            type="text"
+                            [(ngModel)]="preg.nuevaOpcion"
+                            [name]="'nueva_op_' + $index"
+                            placeholder="Escribe una nueva opción..."
+                            (keydown.enter)="$event.preventDefault(); agregarOpcionPregunta($index)"
+                          />
+                          <button type="button" class="btn-add-opcion" (click)="agregarOpcionPregunta($index)">
+                            + Agregar Opción
+                          </button>
+                        </div>
+                      </div>
+                    }
+
+                    @if (preg.tipoPregunta === 'calificacion') {
+                      <div class="preview-calificacion">
+                        <span class="preview-calificacion-text">El usuario verá una escala de 5 estrellas interactivas:</span>
+                        <div class="stars-row">
+                          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                      </div>
+                    }
+
+                    @if (preg.tipoPregunta === 'texto') {
+                      <div class="preview-texto">
+                        <span class="preview-texto-hint">El usuario verá una caja de texto libre para escribir su experiencia y recomendaciones.</span>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+
+            <div class="encuesta-footer-actions">
+              <button
+                type="button"
+                class="btn-primary-action btn-guardar-encuesta"
+                [disabled]="guardandoEncuesta()"
+                (click)="guardarEncuesta()"
+              >
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                </svg>
+                {{ guardandoEncuesta() ? 'Guardando encuesta...' : 'Guardar y Publicar Encuesta' }}
+              </button>
+            </div>
+          </div>
+        }
+
+        <!-- ================= PESTAÑA: VER RESULTADOS ================= -->
+        @if (subTabEncuestas() === 'resultados') {
+          <div class="resultados-container">
+            <!-- Barra de selector de encuesta -->
+            <div class="selector-encuesta-bar">
+              <span class="selector-label">Selecciona la encuesta para ver resultados:</span>
+              <div class="chips-encuestas">
+                @for (enc of encuestasCreadas(); track enc.id) {
+                  <button
+                    type="button"
+                    class="chip-encuesta"
+                    [class.active]="encuestaSeleccionadaId() === enc.id"
+                    (click)="verResultados(enc.id)"
+                  >
+                    <strong>{{ enc.titulo }}</strong>
+                    <span class="chip-badge">{{ enc.totalRespuestas || 0 }} respuestas</span>
+                    @if (enc.mostrarEnLanding) {
+                      <span class="chip-badge-landing">En Landing</span>
+                    }
+                  </button>
+                }
+              </div>
+            </div>
+
+            @if (cargandoResultados()) {
+              <div class="loading-resultados">
+                <div class="spinner"></div>
+                <p>Cargando resultados y respuestas de la gente...</p>
+              </div>
+            } @else if (resultadosActuales()) {
+              <!-- TARJETAS DE RESUMEN MÉTRICAS -->
+              <div class="metrics-summary-grid">
+                <div class="metric-card">
+                  <span class="metric-label">TOTAL RESPUESTAS RECIBIDAS</span>
+                  <strong class="metric-value">{{ resultadosActuales()?.encuesta?.totalRespuestas || 0 }}</strong>
+                  <span class="metric-sub">Opiniones registradas</span>
+                </div>
+
+                <div class="metric-card">
+                  <span class="metric-label">TOTAL PREGUNTAS DEL FORMULARIO</span>
+                  <strong class="metric-value">{{ resultadosActuales()?.encuesta?.totalPreguntas || 0 }}</strong>
+                  <span class="metric-sub">Preguntas activas</span>
+                </div>
+
+                <div class="metric-card">
+                  <span class="metric-label">ESTADO DE LA ENCUESTA</span>
+                  <strong class="metric-value" style="font-size: 1.3rem; color: #16a34a;">
+                    {{ resultadosActuales()?.encuesta?.mostrarEnLanding ? 'Activa en Landing Page' : 'Archivada' }}
+                  </strong>
+                  <span class="metric-sub">Visible para turistas</span>
+                </div>
+              </div>
+
+              <!-- DESGLOSE ESTADÍSTICO POR PREGUNTA -->
+              <div class="preguntas-estadisticas-container">
+                <h3 class="box-heading">Estadísticas por Pregunta</h3>
+
+                <div class="stats-cards-grid">
+                  @for (stat of resultadosActuales()?.estadisticasPreguntas; track stat.preguntaId) {
+                    <div class="pregunta-stat-card">
+                      <div class="stat-card-header">
+                        <span class="badge-tipo">{{ stat.tipoPregunta === 'opcion' ? 'Opción múltiple' : (stat.tipoPregunta === 'calificacion' ? 'Calificación 1-5' : 'Texto libre') }}</span>
+                        <span class="stat-total">{{ stat.totalRespuestas }} respuestas</span>
+                      </div>
+
+                      <h4 class="stat-pregunta-title">{{ stat.pregunta }}</h4>
+
+                      <!-- Pregunta de OPCIÓN MÚLTIPLE: Barras de porcentaje -->
+                      @if (stat.tipoPregunta === 'opcion' && stat.opciones) {
+                        <div class="bars-container">
+                          @for (op of stat.opciones; track op.opcionId) {
+                            <div class="bar-row">
+                              <div class="bar-labels">
+                                <span class="bar-texto">{{ op.texto }}</span>
+                                <span class="bar-percent">{{ op.porcentaje }}% ({{ op.votos }})</span>
+                              </div>
+                              <div class="bar-track">
+                                <div class="bar-fill" [style.width.%]="op.porcentaje"></div>
+                              </div>
+                            </div>
+                          }
+                        </div>
+                      }
+
+                      <!-- Pregunta de CALIFICACIÓN: Promedio y estrellas -->
+                      @if (stat.tipoPregunta === 'calificacion') {
+                        <div class="calificacion-stat-box">
+                          <div class="promedio-stars-display">
+                            <span class="promedio-big">{{ stat.promedio || 0 }}</span>
+                            <div class="stars-gold">
+                              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="promedio-sub">Promedio sobre 5.0</span>
+                          </div>
+                        </div>
+                      }
+
+                      <!-- Pregunta de TEXTO LIBRE: Opiniones enviadas -->
+                      @if (stat.tipoPregunta === 'texto') {
+                        <div class="comentarios-list">
+                          @if (stat.respuestasTexto && stat.respuestasTexto.length > 0) {
+                            @for (coment of stat.respuestasTexto; track $index) {
+                              <div class="comentario-bubble">
+                                <span class="quote-icon">“</span>
+                                <p>{{ coment }}</p>
+                              </div>
+                            }
+                          } @else {
+                            <p class="comentarios-empty">No hay comentarios de texto registrados todavía.</p>
+                          }
+                        </div>
+                      }
+                    </div>
+                  }
+                </div>
+              </div>
+
+              <!-- TABLA DE RESPUESTAS RECIENTES -->
+              <div class="respuestas-recientes-box">
+                <h3 class="box-heading">Envíos Recientes de los Visitantes</h3>
+
+                @if (resultadosActuales()?.respuestasRecientes && (resultadosActuales()?.respuestasRecientes?.length || 0) > 0) {
+                  <div class="table-responsive">
+                    <table class="catalogo-table">
+                      <thead>
+                        <tr>
+                          <th># ID</th>
+                          <th>Fecha y Hora</th>
+                          <th>Respuestas Registradas</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @for (r of resultadosActuales()?.respuestasRecientes; track r.id) {
+                          <tr>
+                            <td><strong>#{{ r.id }}</strong></td>
+                            <td>{{ r.fechaRespuesta | date:'medium' }}</td>
+                            <td>
+                              <ul class="respuestas-detalles-list">
+                                @for (d of r.detalles; track d.preguntaId) {
+                                  <li>
+                                    <strong>{{ d.pregunta }}:</strong>
+                                    <span>{{ d.opcionTexto || d.respuestaTexto || 'Sin respuesta' }}</span>
+                                  </li>
+                                }
+                              </ul>
+                            </td>
+                          </tr>
+                        }
+                      </tbody>
+                    </table>
+                  </div>
+                } @else {
+                  <p class="table-empty">Aún no hay respuestas individuales enviadas.</p>
+                }
+              </div>
+            }
+          </div>
+        }
       </section>
     }
 

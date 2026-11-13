@@ -6,12 +6,14 @@ import { AuthService, UserAccount, UserRole } from '../../services/auth.service'
 import { ApiMunicipioDto, ApiServicioDto } from '../../services/api.config';
 import { HotelesService, Hotel, CardType, buildXLink, getServiceIconAsset } from '../../services/hoteles.service';
 import { DashboardService } from '../../services/dashboard.service';
+import { EncuestasService, Encuesta, ResultadosEncuesta, TipoPregunta } from '../../services/encuestas.service';
 import { MapaHotelesComponent } from '../../components/mapa-hoteles/mapa-hoteles';
 import Chart from 'chart.js/auto';
 
-type PanelTab = 'dashboard' | 'usuarios' | 'hoteles' | 'catalogos';
+type PanelTab = 'dashboard' | 'usuarios' | 'hoteles' | 'catalogos' | 'encuestas';
 type UserSubTab = 'crear' | 'lista';
 type HotelSubTab = 'crear' | 'catalogo';
+type EncuestaSubTab = 'crear' | 'resultados';
 
 export interface CardTypeMeta {
   id: CardType;
@@ -130,6 +132,7 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly authService = inject(AuthService);
   readonly hotelesService = inject(HotelesService);
   readonly dashboardService = inject(DashboardService);
+  readonly encuestasService = inject(EncuestasService);
   private readonly router = inject(Router);
 
   // Referencias a los canvas de las 3 gráficas
@@ -153,6 +156,60 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Sub-pestaña dentro de usuarios: 'crear' o 'lista'
   readonly subTabUsuarios = signal<UserSubTab>('crear');
+
+  // Sub-pestaña dentro de encuestas: 'crear' o 'resultados'
+  readonly subTabEncuestas = signal<EncuestaSubTab>('crear');
+
+  // FORMULARIO CREAR ENCUESTA
+  encuestaTitulo = 'Encuesta de Satisfacción Turística';
+  encuestaDescripcion = 'Ayúdanos a evaluar la experiencia y los atractivos turísticos del Magdalena.';
+  encuestaMostrarLanding = true;
+  encuestaActiva = true;
+  cantidadPreguntas = 3;
+
+  preguntasForm: Array<{
+    pregunta: string;
+    tipoPregunta: TipoPregunta;
+    obligatoria: boolean;
+    opciones: string[];
+    nuevaOpcion: string;
+  }> = [
+    {
+      pregunta: '¿Cuál es el motivo principal de tu visita o interés turístico?',
+      tipoPregunta: 'opcion',
+      obligatoria: true,
+      opciones: [
+        'Turismo cultural y fiestas patronales',
+        'Ecoturismo y naturaleza',
+        'Gastronomía y descanso ribereño',
+        'Visita familiar o negocios'
+      ],
+      nuevaOpcion: ''
+    },
+    {
+      pregunta: '¿Cómo calificarías la oferta hotelera y gastronómica en la región?',
+      tipoPregunta: 'calificacion',
+      obligatoria: true,
+      opciones: [],
+      nuevaOpcion: ''
+    },
+    {
+      pregunta: '¿Qué aspectos consideras prioritarios para impulsar el turismo?',
+      tipoPregunta: 'texto',
+      obligatoria: false,
+      opciones: [],
+      nuevaOpcion: ''
+    }
+  ];
+
+  readonly guardandoEncuesta = signal<boolean>(false);
+  readonly mensajeExitoEncuesta = signal<string | null>(null);
+  readonly mensajeErrorEncuesta = signal<string | null>(null);
+
+  // RESULTADOS ENCUESTA
+  readonly encuestaSeleccionadaId = signal<number | null>(null);
+  readonly resultadosActuales = signal<ResultadosEncuesta | null>(null);
+  readonly cargandoResultados = signal<boolean>(false);
 
   // Mensajes de notificación
   readonly toastMessage = signal<string | null>(null);
@@ -499,6 +556,9 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
     if (tab === 'catalogos') {
       void this.sincronizarCatalogos();
     }
+    if (tab === 'encuestas') {
+      void this.cargarEncuestasYResultados();
+    }
     if (tab === 'dashboard') {
       this.dashboardService.refrescarResumen();
       this.programarGraficas();
@@ -525,6 +585,131 @@ export class PanelComponent implements OnInit, AfterViewInit, OnDestroy {
 
   setSubTabUsuarios(sub: UserSubTab): void {
     this.subTabUsuarios.set(sub);
+  }
+
+  setSubTabEncuestas(sub: EncuestaSubTab): void {
+    this.subTabEncuestas.set(sub);
+    if (sub === 'resultados') {
+      void this.cargarEncuestasYResultados();
+    }
+  }
+
+  cambiarCantidadPreguntas(cant: number): void {
+    const num = Math.max(1, Math.min(20, cant || 1));
+    this.cantidadPreguntas = num;
+    while (this.preguntasForm.length < num) {
+      this.preguntasForm.push({
+        pregunta: '',
+        tipoPregunta: 'opcion',
+        obligatoria: true,
+        opciones: ['Opción 1', 'Opción 2'],
+        nuevaOpcion: ''
+      });
+    }
+    if (this.preguntasForm.length > num) {
+      this.preguntasForm = this.preguntasForm.slice(0, num);
+    }
+  }
+
+  agregarPregunta(): void {
+    this.preguntasForm.push({
+      pregunta: '',
+      tipoPregunta: 'opcion',
+      obligatoria: true,
+      opciones: ['Opción 1', 'Opción 2'],
+      nuevaOpcion: ''
+    });
+    this.cantidadPreguntas = this.preguntasForm.length;
+  }
+
+  eliminarPregunta(index: number): void {
+    if (this.preguntasForm.length <= 1) return;
+    this.preguntasForm.splice(index, 1);
+    this.cantidadPreguntas = this.preguntasForm.length;
+  }
+
+  agregarOpcionPregunta(preguntaIndex: number): void {
+    const p = this.preguntasForm[preguntaIndex];
+    const text = (p.nuevaOpcion || '').trim();
+    if (text) {
+      p.opciones.push(text);
+      p.nuevaOpcion = '';
+    }
+  }
+
+  eliminarOpcionPregunta(preguntaIndex: number, opcionIndex: number): void {
+    this.preguntasForm[preguntaIndex].opciones.splice(opcionIndex, 1);
+  }
+
+  async guardarEncuesta(): Promise<void> {
+    if (!this.encuestaTitulo.trim()) {
+      this.mensajeErrorEncuesta.set('Por favor ingresa un título para la encuesta.');
+      return;
+    }
+
+    const preguntasValidas = this.preguntasForm.filter(p => p.pregunta.trim().length > 0);
+    if (preguntasValidas.length === 0) {
+      this.mensajeErrorEncuesta.set('Debes ingresar al menos una pregunta válida.');
+      return;
+    }
+
+    this.guardandoEncuesta.set(true);
+    this.mensajeErrorEncuesta.set(null);
+    this.mensajeExitoEncuesta.set(null);
+
+    try {
+      await this.encuestasService.crearEncuesta({
+        titulo: this.encuestaTitulo.trim(),
+        descripcion: this.encuestaDescripcion.trim(),
+        activa: this.encuestaActiva,
+        mostrarEnLanding: this.encuestaMostrarLanding,
+        preguntas: preguntasValidas.map((p, idx) => ({
+          pregunta: p.pregunta.trim(),
+          tipoPregunta: p.tipoPregunta,
+          obligatoria: p.obligatoria,
+          orden: idx + 1,
+          opciones: p.tipoPregunta === 'opcion'
+            ? p.opciones.filter(o => o.trim().length > 0).map((texto, opIdx) => ({ texto: texto.trim(), orden: opIdx + 1 }))
+            : []
+        }))
+      });
+
+      this.mensajeExitoEncuesta.set('¡Encuesta guardada y configurada exitosamente!');
+      await this.cargarEncuestasYResultados();
+      setTimeout(() => {
+        this.mensajeExitoEncuesta.set(null);
+        this.setSubTabEncuestas('resultados');
+      }, 1200);
+    } catch (err: any) {
+      this.mensajeErrorEncuesta.set(err?.message || 'Error al guardar la encuesta.');
+    } finally {
+      this.guardandoEncuesta.set(false);
+    }
+  }
+
+  async cargarEncuestasYResultados(): Promise<void> {
+    const list = await this.encuestasService.getEncuestas();
+    if (list.length > 0) {
+      const selectedId = this.encuestaSeleccionadaId() || list[0].id;
+      await this.verResultados(selectedId);
+    }
+  }
+
+  async verResultados(encuestaId: number): Promise<void> {
+    this.encuestaSeleccionadaId.set(encuestaId);
+    this.cargandoResultados.set(true);
+    try {
+      const res = await this.encuestasService.getResultados(encuestaId);
+      this.resultadosActuales.set(res);
+    } finally {
+      this.cargandoResultados.set(false);
+    }
+  }
+
+  async eliminarEncuesta(encuestaId: number): Promise<void> {
+    if (!confirm('¿Estás seguro de que deseas eliminar esta encuesta?')) return;
+    await this.encuestasService.eliminarEncuesta(encuestaId);
+    await this.cargarEncuestasYResultados();
   }
 
   // GESTIÓN DE USUARIOS
