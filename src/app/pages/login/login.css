@@ -296,50 +296,45 @@ form {
 }
 
 .campo {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  text-align: left;
+}
+
+.campo label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--gris-700);
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  user-select: none;
 }
 
 .campo input {
   display: block;
   width: 100%;
-  padding: 1.5rem 1rem .625rem;
-  font-size: 15px;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
   color: var(--gris-800);
   background: #fff;
-  border: 1px solid var(--gris-300);
+  border: 1.5px solid var(--gris-300);
   border-radius: 8px;
   appearance: none;
   transition: box-shadow .15s, border-color .15s;
+  box-sizing: border-box;
+}
+
+.campo input::placeholder {
+  color: #94A3B8;
+  font-size: 0.88rem;
+  font-weight: 400;
 }
 
 .campo input:focus {
   outline: none;
   border-color: var(--primario);
   box-shadow: var(--foco);
-}
-
-.campo label {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  z-index: 1;
-  transform-origin: 0 0;
-  font-size: .875rem;
-  font-weight: 600;
-  color: var(--gris-500);
-  transform: translateY(-.625rem) scale(.75);
-  transition: transform .2s, color .2s;
-  cursor: text;
-  pointer-events: none;
-}
-
-.campo input:placeholder-shown + label {
-  transform: none;
-}
-
-.campo input:focus + label {
-  color: var(--primario);
-  transform: translateY(-.625rem) scale(.75);
 }
 
 .derecha {
