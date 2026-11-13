@@ -653,20 +653,9 @@ export class HotelesService {
       );
       if (Array.isArray(remote)) {
         const mapped = remote.map(item => mapApiHotelToFrontend(item));
-        const remoteIds = new Set(mapped.map(m => m.id));
-
-        // Preservar y subir tarjetas locales no sincronizadas todavía
-        const localPending = this.dataset().hoteles.filter(h => h.id.startsWith('h_') && !remoteIds.has(h.id));
-        if (localPending.length > 0 && this.authService.accessToken()) {
-          for (const pending of localPending) {
-            void this.crearTarjetaRemota(pending);
-          }
-        }
-
-        const combined = [...localPending, ...mapped];
         this.dataset.set({
           actualizado: new Date().toISOString().slice(0, 10),
-          hoteles: combined
+          hoteles: mapped
         });
         this.guardar();
       }
