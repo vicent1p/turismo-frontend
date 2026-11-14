@@ -64,15 +64,17 @@
 }
 
 .brand-logo-img {
-  height: 44px;
+  height: 40px;
   width: auto;
   object-fit: contain;
+  display: block;
   transition: transform 0.2s ease;
 }
 
 .gob-logo-img {
-  height: 38px;
+  height: 40px;
   width: auto;
+  display: block;
 }
 
 .brand-logo-img:hover {
@@ -325,12 +327,11 @@
     gap: 8px;
   }
 
-  .brand-logo-img {
-    height: 32px;
-  }
-
+  .brand-logo-img,
   .gob-logo-img {
-    height: 26px;
+    height: 30px;
+    width: auto;
+    display: block;
   }
 
   .lang-selector button {
