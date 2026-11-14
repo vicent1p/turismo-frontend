@@ -63,23 +63,10 @@
       <span class="context-desc">{{ activeCategoryMeta().summaryText }}</span>
     </div>
 
-    <div class="availability-pills" role="group" aria-label="Availability filter">
-      <button
-        type="button"
-        class="avail-pill"
-        [class.active]="!soloDisponibles()"
-        (click)="setSoloDisponibles(false)"
-      >
-        {{ content().filterAll }} ({{ categoryItems().length }})
-      </button>
-      <button
-        type="button"
-        class="avail-pill"
-        [class.active]="soloDisponibles()"
-        (click)="setSoloDisponibles(true)"
-      >
-        {{ content().filterAvailable }}
-      </button>
+    <div class="availability-pills">
+      <span class="avail-pill active">
+        {{ content().filterAll }} ({{ visibleItems().length }})
+      </span>
     </div>
   </div>
 
@@ -260,12 +247,7 @@
     </div>
   } @else {
     <div class="lugares-empty-state">
-      <p>{{ soloDisponibles() ? content().emptyAvailable : content().emptyCategory }}</p>
-      @if (soloDisponibles()) {
-        <button type="button" class="btn-reset-filter" (click)="setSoloDisponibles(false)">
-          {{ content().showAllBtn }}
-        </button>
-      }
+      <p>{{ content().emptyCategory }}</p>
     </div>
   }
 </app-editorial-shell>

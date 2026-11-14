@@ -213,7 +213,9 @@ export class LugaresComponent implements OnInit {
   readonly selectedPlace = signal<Hotel | null>(null);
   readonly modalPhotoIdx = signal<number>(0);
 
-  readonly allItems = computed(() => this.hotelesService.dataset().hoteles);
+  readonly allItems = computed(() =>
+    this.hotelesService.dataset().hoteles.filter(h => h.disponible)
+  );
 
   readonly countHoteles = computed(() => filterHotelsByCategory(this.allItems(), 'hoteles').length);
   readonly countRestaurantes = computed(
@@ -245,13 +247,7 @@ export class LugaresComponent implements OnInit {
     filterHotelsByCategory(this.allItems(), this.categoriaActiva())
   );
 
-  readonly visibleItems = computed(() => {
-    const list = this.categoryItems();
-    if (!this.soloDisponibles()) {
-      return list;
-    }
-    return list.filter(item => item.disponible);
-  });
+  readonly visibleItems = computed(() => this.categoryItems());
 
   readonly modalPhotos = computed(() => this.selectedPlace()?.fotos ?? []);
 

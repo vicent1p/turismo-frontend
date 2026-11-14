@@ -260,7 +260,10 @@ export class HomeComponent implements OnInit {
   readonly categoriaActiva = signal<PlaceCategoryTab>('hoteles');
   readonly data = computed(() => this.hotelesService.dataset());
   readonly hotelesPorCategoria = computed(() =>
-    filterHotelsByCategory(this.data().hoteles, this.categoriaActiva())
+    filterHotelsByCategory(
+      this.data().hoteles.filter(h => h.disponible),
+      this.categoriaActiva()
+    )
   );
   readonly emptyCategoriaMsg = computed(() => {
     const t = this.t();
