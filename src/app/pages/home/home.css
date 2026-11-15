@@ -532,10 +532,30 @@
 }
 
 .box-scroll-icon {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 48px;
+}
+
+.parchment-icon-img {
+  height: 44px;
+  width: auto;
+  max-width: 60px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 1px 2px rgba(200, 150, 46, 0.15));
+  transition: transform 0.25s ease;
+}
+
+.parchment-icon-img.caiman-icon {
+  height: 38px;
+  max-width: 66px;
+}
+
+.parchment-card:hover .parchment-icon-img {
+  transform: scale(1.08) translateY(-2px);
 }
 
 .parchment-card h3 {
