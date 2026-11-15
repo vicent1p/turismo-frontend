@@ -161,8 +161,7 @@
   position: absolute;
   inset: 0;
   background: url('/banner-mosaico-itinerario.webp') center center / cover no-repeat;
-  opacity: 0.95;
-  filter: contrast(1.15) saturate(1.1);
+  opacity: 1;
   z-index: 0;
   pointer-events: none;
 }
@@ -172,10 +171,10 @@
   position: absolute;
   inset: 0;
   background: radial-gradient(
-    ellipse 62% 75% at 50% 50%,
-    rgba(253, 249, 242, 0.62) 0%,
-    rgba(253, 249, 242, 0.20) 60%,
-    rgba(253, 249, 242, 0) 100%
+    ellipse 58% 68% at 50% 50%,
+    rgba(253, 249, 242, 0.52) 0%,
+    rgba(253, 249, 242, 0.15) 55%,
+    transparent 100%
   );
   z-index: 1;
   pointer-events: none;
