@@ -606,25 +606,27 @@
 /* SECCIÓN DE HOTELES: DÓNDE DISFRUTAR Y HOSPEDARTE (PDF) */
 /* ======================================================== */
 .hoteles-experiencias-section {
-  padding: 6px 0 42px;
+  padding: 6px 0 24px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  background: transparent;
 }
 
 .hoteles-experiencias-section::before {
   content: '';
   position: absolute;
-  inset: auto 0 0 0;
-  height: 440px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   background: url('/fondo-ilustracion-plato.jpg') center bottom / cover no-repeat;
-  opacity: 0.32;
+  opacity: 0.28;
   -webkit-mask-image:
-    linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.78) 52%, rgba(0, 0, 0, 0.72) 82%, rgba(0, 0, 0, 0) 100%),
-    linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.15) 28%, rgba(0, 0, 0, 0.15) 72%, rgba(0, 0, 0, 1) 100%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.85) 30%, rgba(0, 0, 0, 0.85) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.12) 28%, rgba(0, 0, 0, 0.12) 72%, rgba(0, 0, 0, 1) 100%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.78) 52%, rgba(0, 0, 0, 0.72) 82%, rgba(0, 0, 0, 0) 100%),
-    linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.15) 28%, rgba(0, 0, 0, 0.15) 72%, rgba(0, 0, 0, 1) 100%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.85) 30%, rgba(0, 0, 0, 0.85) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.12) 28%, rgba(0, 0, 0, 0.12) 72%, rgba(0, 0, 0, 1) 100%);
   mask-composite: intersect;
   pointer-events: none;
   z-index: 0;
@@ -844,9 +846,9 @@
   scroll-behavior: smooth;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  background: rgba(202, 185, 160, 0.22);
-  border-radius: 12px;
-  padding: 16px 18px;
+  background: transparent;
+  border-radius: 0;
+  padding: 4px 2px 14px;
 }
 
 .grid::-webkit-scrollbar {
@@ -869,33 +871,33 @@
   margin: 0 auto;
 }
 
-/* TARJETA DE HOTEL ESTILO PDF */
+/* TARJETA DE HOTEL ESTILO PDF (MÁS COMPACTA) */
 .hotel-card {
   background: #fdfaf5;
   border: 1.5px solid #dec184;
-  border-radius: 18px;
+  border-radius: 16px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 10px 26px rgba(18, 67, 54, 0.08);
+  box-shadow: 0 8px 20px rgba(18, 67, 54, 0.07);
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
   height: 100%;
 }
 
 .hotel-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(18, 67, 54, 0.16);
+  box-shadow: 0 14px 28px rgba(18, 67, 54, 0.14);
   border-color: #c8962e;
 }
 
 /* FOTO DEL HOTEL (CARRUSEL CON MARCO INTERIOR DORADO INFERIOR) */
 .card-photo-hero {
   position: relative;
-  height: 205px;
-  width: calc(100% - 18px);
-  margin: 9px 9px 0;
-  border-radius: 12px;
-  border-bottom: 2.5px solid #d4a238;
+  height: 155px;
+  width: calc(100% - 16px);
+  margin: 8px 8px 0;
+  border-radius: 11px;
+  border-bottom: 2px solid #d4a238;
   background: #e2e8f0;
   overflow: hidden;
   flex-shrink: 0;
@@ -1130,29 +1132,29 @@
   cursor: pointer;
 }
 
-/* CUERPO DE LA TARJETA (ESTILO PDF) */
+/* CUERPO DE LA TARJETA (ESTILO PDF - MÁS COMPACTO) */
 .card-body {
-  padding: 14px 16px 18px;
+  padding: 10px 14px 14px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .hotel-nombre {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   font-family: 'Spectral', Georgia, serif;
-  font-size: 1.24rem;
-  line-height: 1.25;
+  font-size: 1.08rem;
+  line-height: 1.22;
   color: #12492a;
   font-weight: 600;
   text-align: center;
 }
 
 .instalaciones-block {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   align-items: center;
 }
 
@@ -1164,16 +1166,16 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px 14px;
+  gap: 6px 12px;
   align-items: flex-start;
-  margin: 4px 0 8px;
+  margin: 2px 0 6px;
 }
 
 .chip {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   text-align: center;
   background: transparent;
   border: none;
@@ -1184,8 +1186,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   color: #cfa035;
 }
 
@@ -1198,7 +1200,7 @@
 
 .chip-label {
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: #556860;
 }
@@ -1212,15 +1214,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin: 6px auto 12px;
+  gap: 6px;
+  margin: 4px auto 8px;
   width: fit-content;
   border: 1px solid #d4a238;
   border-radius: 999px;
-  padding: 6px 20px;
+  padding: 4px 16px;
   color: #12492a;
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-decoration: none;
   background: #ffffff;
@@ -1237,12 +1239,12 @@
   transform: translateX(3px);
 }
 
-/* CANALES DE CONTACTO (4 CÍRCULOS DORADOS COMPACTOS) */
+/* CANALES DE CONTACTO (CÍRCULOS DORADOS COMPACTOS) */
 .cuadros-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
+  gap: 7px;
   margin-top: auto;
   padding-top: 2px;
 }
