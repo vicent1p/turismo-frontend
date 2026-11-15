@@ -1,4 +1,39 @@
 <header class="top-header">
+  <!-- FONDO ORGÁNICO CURVO DEL NAVBAR -->
+  <div class="header-curved-bg" aria-hidden="true">
+    <svg viewBox="0 0 1440 76" preserveAspectRatio="none" class="header-curved-svg">
+      <defs>
+        <linearGradient id="navGreenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#124828" />
+          <stop offset="18%" stop-color="#14552B" />
+          <stop offset="50%" stop-color="#165D30" />
+          <stop offset="78%" stop-color="#15582E" />
+          <stop offset="100%" stop-color="#134C29" />
+        </linearGradient>
+        <clipPath id="navCurveClip">
+          <path d="M 0 0 L 0 68 C 80 70, 220 76, 420 76 C 600 76, 780 65, 980 65 C 1120 65, 1280 72, 1440 72 L 1440 0 Z" />
+        </clipPath>
+      </defs>
+      <!-- Base shape con gradiente verde institucional -->
+      <path
+        d="M 0 0 L 0 68 C 80 70, 220 76, 420 76 C 600 76, 780 65, 980 65 C 1120 65, 1280 72, 1440 72 L 1440 0 Z"
+        fill="url(#navGreenGrad)"
+      />
+      <!-- Textura sutil recortada exactamente a la curva -->
+      <image
+        href="fondo-ilustracion-plato.jpg"
+        x="0"
+        y="0"
+        width="1440"
+        height="76"
+        preserveAspectRatio="xMidYMid slice"
+        opacity="0.14"
+        clip-path="url(#navCurveClip)"
+        style="filter: grayscale(1) contrast(1.1); mix-blend-mode: soft-light;"
+      />
+    </svg>
+  </div>
+
   <div class="top-nav-container">
     <!-- LOGOS A LA IZQUIERDA: PLATO 400 AÑOS Y GOBERNACIÓN DEL MAGDALENA -->
     <div class="nav-brand-group">
@@ -36,6 +71,14 @@
         (click)="onHomeAnchorClick($event, 'plato'); closeMobileMenu()"
         class="nav-item"
       >{{ t().navPueblo }}</a>
+      <a
+        routerLink="/programacion"
+        (click)="closeMobileMenu()"
+        class="nav-item"
+        [class.active]="activeSection() === 'programacion'"
+      >{{ t().navProgramacion }}</a>
+
+      <!-- Versión móvil para Únete a la celebración -->
       <a
         routerLink="/programacion"
         (click)="closeMobileMenu()"
@@ -91,20 +134,4 @@
       }
     </div>
   </div>
-  <!-- ONDA CURVA INFERIOR DEL NAVBAR -->
-  <svg class="header-bottom-wave" viewBox="0 0 1440 20" preserveAspectRatio="none" aria-hidden="true">
-    <defs>
-      <linearGradient id="headerWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#124828" />
-        <stop offset="18%" stop-color="#14552B" />
-        <stop offset="50%" stop-color="#165D30" />
-        <stop offset="70%" stop-color="#1D6035" />
-        <stop offset="79%" stop-color="#3C6E48" />
-        <stop offset="88%" stop-color="#1A5831" />
-        <stop offset="100%" stop-color="#134C29" />
-      </linearGradient>
-    </defs>
-    <path d="M0,0 L1440,0 L1440,4 C1080,18 420,18 0,4 Z" fill="url(#headerWaveGrad)"></path>
-  </svg>
 </header>
-
