@@ -7,9 +7,10 @@
       [class.sheet-gallery]="sheetWidth() === 'gallery'"
       [class.sheet-wide]="sheetWidth() === 'wide'"
       [class.sheet-lugares]="activeSection() === 'lugares'"
+      [class.sheet-historia]="activeSection() === 'historia'"
     >
-      @if (activeSection() === 'lugares') {
-        <!-- CABECERA PERSONALIZADA LUGARES Y EXPERIENCIAS (RÉPLICA EXACTA DISEÑO OFICIAL PÁGINA 5) -->
+      @if (activeSection() === 'lugares' || activeSection() === 'historia') {
+        <!-- CABECERA PERSONALIZADA CON MARCAS DE AGUA Y LÍNEA ONDULADA (HISTORIA Y LUGARES) -->
         <header class="lugares-header-banner">
           <!-- ILUSTRACIONES ARTÍSTICAS DE FONDO -->
           <div class="lugares-banner-watermarks" aria-hidden="true">

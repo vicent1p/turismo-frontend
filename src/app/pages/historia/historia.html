@@ -17,69 +17,170 @@
   ctaSecondaryFragment="hoteles"
   [ctaBackLabel]="content().ctaBackHome"
 >
-  <!-- ÍNDICE INTERACTIVO DE CAPÍTULOS -->
-  <nav class="historia-toc" [attr.aria-label]="content().tocLabel">
-    <span class="toc-heading">{{ content().tocLabel }}</span>
-    <div class="toc-chips">
-      @for (cap of content().chapters; track cap.id) {
-        <a
-          [href]="'#' + cap.id"
-          (click)="scrollToChapter(cap.id, $event)"
-          class="toc-chip"
-          [class.active]="activeChapterId() === cap.id"
-        >
-          <span class="toc-roman">{{ cap.roman }}</span>
-          <span>{{ cap.shortLabel }}</span>
-        </a>
-      }
-    </div>
+  <!-- 1. TRES PILARES CLAVE DE LA HISTORIA (AÑO DE FUNDACIÓN / TERRITORIO / PATRIMONIO) -->
+  <section class="historia-facts-strip" aria-label="Datos históricos clave">
+    @for (fact of content().facts; track fact.label; let i = $index) {
+      <div class="fact-pill-card">
+        <div class="fact-icon-wrap" aria-hidden="true">
+          @switch (i) {
+            @case (0) {
+              <!-- Año de fundación: pergamino / calendario -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8962e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            }
+            @case (1) {
+              <!-- Territorio: río / brújula -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8962e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12c2.5 0 2.5-3 5-3s2.5 3 5 3 2.5-3 5-3 2.5 3 5 3M2 17c2.5 0 2.5-3 5-3s2.5 3 5 3 2.5-3 5-3 2.5 3 5 3"/>
+              </svg>
+            }
+            @case (2) {
+              <!-- Patrimonio: cumbia / notas -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8962e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+              </svg>
+            }
+          }
+        </div>
+        <div class="fact-text-wrap">
+          <span class="fact-pill-label">{{ fact.label }}</span>
+          <strong class="fact-pill-value">{{ fact.value }}</strong>
+        </div>
+      </div>
+    }
+  </section>
+
+  <!-- 2. TÍTULO DE LA SECCIÓN DE CAPÍTULOS -->
+  <h2 class="capitulos-title">{{ content().tocLabel }}</h2>
+
+  <!-- 3. SELECTOR HORIZONTAL DE 8 CAPÍTULOS CON ICONOS Y NÚMEROS ROMANOS -->
+  <nav class="capitulos-tabs-bar" [attr.aria-label]="content().tocLabel">
+    @for (cap of content().chapters; track cap.id) {
+      <button
+        type="button"
+        class="cap-tab-pill"
+        [class.active]="activeChapterId() === cap.id"
+        [attr.aria-selected]="activeChapterId() === cap.id"
+        (click)="selectChapter(cap.id)"
+      >
+        <span class="cap-tab-icon" aria-hidden="true">
+          @switch (cap.icon) {
+            @case ('feather') {
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5zM16 8L2 22M17.5 15H9"/>
+              </svg>
+            }
+            @case ('home') {
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            }
+            @case ('church') {
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 22V7l-6-4-6 4v15M10 22V12h4v10M12 3V1M10 2h4"/>
+              </svg>
+            }
+            @case ('waves') {
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12c2.5 0 2.5-3 5-3s2.5 3 5 3 2.5-3 5-3 2.5 3 5 3M2 17c2.5 0 2.5-3 5-3s2.5 3 5 3 2.5-3 5-3 2.5 3 5 3"/>
+              </svg>
+            }
+            @case ('monument') {
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="21" x2="21" y2="21"/>
+                <line x1="6" y1="21" x2="6" y2="7"/>
+                <line x1="18" y1="21" x2="18" y2="7"/>
+                <line x1="12" y1="21" x2="12" y2="7"/>
+                <path d="M4 7h16L12 2z"/>
+              </svg>
+            }
+            @case ('users') {
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            }
+            @case ('music') {
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+              </svg>
+            }
+            @case ('caiman') {
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 16c2-1 4-1 6 0 2 1 4 1 6 0 2-1 4-1 6 0l2-2-2-1c-2-1-4 0-6-1-2-1-4-1-6 0-2 1-4 1-6 0zM17 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+              </svg>
+            }
+          }
+        </span>
+        <span class="cap-tab-roman">{{ cap.roman }}</span>
+        <span class="cap-tab-label">{{ cap.shortLabel }}</span>
+      </button>
+    }
   </nav>
 
-  <!-- TARJETAS PARCHMENT DE CAPÍTULOS CON DESPLIEGUE "LEER MÁS" -->
-  <div class="historia-body">
-    @for (cap of content().chapters; track cap.id) {
-      <section
-        [id]="cap.id"
-        class="historia-chapter parchment-card"
-        [class.is-expanded]="isExpanded(cap.id)"
-      >
-        <div class="parchment-inner-frame">
-          <div class="box-scroll-icon" aria-hidden="true">
-            <svg width="34" height="34" viewBox="0 0 36 36" fill="none" stroke="#c8962e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10 5.5h12.5a2 2 0 0 1 2 2v5"/>
-              <path d="M24.5 22v4a2.5 2.5 0 0 1-2.5 2.5H9a2.5 2.5 0 0 1-2.5-2.5V8A2.5 2.5 0 0 1 9 5.5h1v19.5a2.5 2.5 0 0 1-2.5 2.5"/>
-              <path d="M13 10.5h7.5M13 14h7.5M13 17.5h5M13 21h4"/>
-              <path d="M30.2 9.2c-4.2 1.2-7.3 4.2-9.2 8.6l-1.4 4.1 4-1.4c3.7-1.9 6.1-5 6.6-11.3z"/>
-              <path d="M18.4 23.2l8.4-9.8"/>
-            </svg>
-          </div>
+  <!-- 4. TARJETA DESTACADA DEL CAPÍTULO ACTIVO (MARCO PERGAMINO DOBLE LÍNEA CON ESQUINAS ORGÁNICAS) -->
+  <article class="capitulo-featured-card">
+    <div class="featured-card-frame">
+      <div class="featured-card-media">
+        <img
+          [src]="activeChapter().image"
+          [alt]="activeChapter().title"
+          class="featured-card-img"
+          loading="eager"
+        />
+      </div>
 
-          <span class="chapter-era">{{ cap.roman }} · {{ cap.era }}</span>
-          <h2 class="chapter-heading">{{ cap.title }}</h2>
-          <div class="chapter-gold-rule" aria-hidden="true"></div>
+      <div class="featured-card-body">
+        <span class="featured-card-kicker">CAPÍTULO {{ activeChapter().roman }}</span>
+        <h3 class="featured-card-title">{{ activeChapter().shortLabel }}</h3>
+        <p class="featured-card-text">{{ activeChapter().body }}</p>
+      </div>
+    </div>
+  </article>
 
-          <div
-            [id]="'body-' + cap.id"
-            class="chapter-text-collapse"
-            [class.expanded]="isExpanded(cap.id)"
-          >
-            <p class="chapter-paragraph">
-              {{ cap.body }}
-            </p>
-          </div>
-
-          <button
-            type="button"
-            class="chapter-read-more-btn"
-            [attr.aria-expanded]="isExpanded(cap.id)"
-            [attr.aria-controls]="'body-' + cap.id"
-            (click)="toggleChapter(cap.id)"
-          >
-            <span>{{ isExpanded(cap.id) ? content().readLessLabel : content().readMoreLabel }}</span>
-            <span class="read-more-chevron" aria-hidden="true">{{ isExpanded(cap.id) ? '▲' : '▼' }}</span>
-          </button>
-        </div>
-      </section>
+  <!-- 5. PUNTOS DE PAGINACIÓN INTERACTIVOS (8 DOTS) -->
+  <div class="capitulos-dots-nav" aria-label="Navegación de capítulos">
+    @for (cap of content().chapters; track cap.id; let i = $index) {
+      <button
+        type="button"
+        class="dot-btn"
+        [class.active]="activeChapterId() === cap.id"
+        [attr.aria-label]="'Ir al capítulo ' + cap.roman + ': ' + cap.shortLabel"
+        (click)="selectChapter(cap.id)"
+      ></button>
     }
   </div>
+
+  <!-- 6. CUADRÍCULA DE TODAS LAS ILUSTRACIONES HISTÓRICAS (3 COLUMNAS X FILAS) -->
+  <section class="historia-gallery-grid" aria-label="Galería de grabados históricos">
+    @for (cap of content().chapters; track cap.id) {
+      <button
+        type="button"
+        class="gallery-item-card"
+        [class.selected]="activeChapterId() === cap.id"
+        (click)="selectChapter(cap.id)"
+        [attr.aria-label]="'Capítulo ' + cap.roman + ': ' + cap.shortLabel"
+      >
+        <div class="gallery-thumb-wrap">
+          <img
+            [src]="cap.image"
+            [alt]="cap.title"
+            class="gallery-thumb-img"
+            loading="lazy"
+          />
+        </div>
+      </button>
+    }
+  </section>
 </app-editorial-shell>
