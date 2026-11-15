@@ -258,7 +258,7 @@ export class HistoriaComponent implements AfterViewInit, OnDestroy {
   readonly languageService = inject(LanguageService);
   readonly lang = this.languageService.lang;
   readonly content = computed(() => HISTORIA_CONTENT[this.lang()]);
-  readonly activeChapterId = signal<string>('cap-zarate');
+  readonly activeChapterId = signal<string>('cap-chimilas');
   readonly expandedChapters = signal<Set<string>>(new Set());
 
   readonly galleryChapters = computed(() =>
