@@ -102,3 +102,4 @@ export class ServiceIconComponent {
     return getServiceIconType(this.service);
   }
 }
+

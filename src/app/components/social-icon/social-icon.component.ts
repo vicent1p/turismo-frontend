@@ -144,3 +144,4 @@ export class SocialIconComponent {
     return 'web';
   }
 }
+
