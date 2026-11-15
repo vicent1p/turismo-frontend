@@ -44,13 +44,21 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background: #faf4e9;
-  border: 1.5px solid rgba(200, 150, 46, 0.45);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  overflow: hidden;
   box-shadow: 0 2px 6px rgba(184, 132, 31, 0.08);
+}
+
+.metric-icon-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
 .metric-text-wrap {
@@ -218,16 +226,24 @@
 }
 
 .gold-sun-badge {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: #d4a339;
-  color: #ffffff;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 3px 8px rgba(180, 130, 40, 0.3);
+  box-shadow: 0 3px 8px rgba(180, 130, 40, 0.28);
+  overflow: hidden;
+}
+
+.badge-icon-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
 .content-col {
