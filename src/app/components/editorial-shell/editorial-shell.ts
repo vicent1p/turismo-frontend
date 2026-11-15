@@ -2,11 +2,12 @@ import { AfterViewInit, Component, OnDestroy, input, signal } from '@angular/cor
 import { RouterLink } from '@angular/router';
 import { PublicNavbarComponent } from '../public-navbar/public-navbar';
 import { PublicFooterComponent } from '../public-footer/public-footer';
+import { SectionHeaderComponent } from '../section-header/section-header';
 
 @Component({
   selector: 'app-editorial-shell',
   standalone: true,
-  imports: [RouterLink, PublicNavbarComponent, PublicFooterComponent],
+  imports: [RouterLink, PublicNavbarComponent, PublicFooterComponent, SectionHeaderComponent],
   templateUrl: './editorial-shell.html',
   styleUrl: './editorial-shell.css'
 })

@@ -1,7 +1,19 @@
 <div class="historia-page-shell">
   <app-public-navbar [activeSection]="activeSection()"></app-public-navbar>
 
-  <main class="historia-main">
+  @if (activeSection() === 'cultura' || activeSection() === 'historia' || activeSection() === 'programacion') {
+    <!-- ENCABEZADO DE SECCIÓN REUTILIZABLE (CULTURA, HISTORIA, PROGRAMACIÓN) -->
+    <app-section-header
+      [eyebrow]="eyebrow()"
+      [title]="pageTitle()"
+      [description]="subtitle()"
+    ></app-section-header>
+  }
+
+  <main
+    class="historia-main"
+    [class.main-with-section-header]="activeSection() === 'cultura' || activeSection() === 'historia' || activeSection() === 'programacion'"
+  >
     <div
       class="historia-sheet"
       [class.sheet-gallery]="sheetWidth() === 'gallery'"
@@ -11,8 +23,8 @@
       [class.sheet-programacion]="activeSection() === 'programacion'"
       [class.sheet-cultura]="activeSection() === 'cultura'"
     >
-      @if (activeSection() === 'lugares' || activeSection() === 'historia' || activeSection() === 'programacion' || activeSection() === 'cultura') {
-        <!-- CABECERA PERSONALIZADA CON MARCAS DE AGUA Y LÍNEA ONDULADA (HISTORIA, LUGARES, PROGRAMACIÓN Y CULTURA) -->
+      @if (activeSection() === 'lugares') {
+        <!-- CABECERA PERSONALIZADA CON MARCAS DE AGUA Y LÍNEA ONDULADA (LUGARES) -->
         <header class="lugares-header-banner">
           <!-- ILUSTRACIONES ARTÍSTICAS DE FONDO -->
           <div class="lugares-banner-watermarks" aria-hidden="true">
@@ -48,7 +60,7 @@
             />
           </div>
         </header>
-      } @else {
+      } @else if (activeSection() !== 'cultura' && activeSection() !== 'historia' && activeSection() !== 'programacion') {
         <!-- CABECERA EDITORIAL EN SPECTRAL TIPO LANDING PAGE -->
         <header class="historia-header">
           <span class="historia-eyebrow">{{ eyebrow() }}</span>
