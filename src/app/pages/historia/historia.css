@@ -185,16 +185,20 @@
   aspect-ratio: 4 / 3;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(96, 65, 24, 0.12);
-  border: 1px solid rgba(200, 150, 46, 0.35);
-  background: #eae0ce;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .featured-card-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  mix-blend-mode: multiply;
   transition: transform 0.4s ease;
 }
 
@@ -321,18 +325,19 @@
   object-fit: contain;
   display: block;
   border-radius: 0;
-  transition: transform 0.32s cubic-bezier(0.2, 0.9, 0.3, 1), filter 0.32s ease;
-  filter: drop-shadow(0 4px 10px rgba(180, 140, 50, 0.08));
+  mix-blend-mode: multiply;
+  transition: transform 0.32s cubic-bezier(0.2, 0.9, 0.3, 1), filter 0.32s ease, opacity 0.25s ease;
+  filter: contrast(1.04);
 }
 
 .gallery-item-card:hover .gallery-thumb-img {
   transform: scale(1.06);
-  filter: drop-shadow(0 10px 22px rgba(180, 130, 40, 0.24));
+  filter: contrast(1.08) drop-shadow(0 4px 12px rgba(180, 130, 40, 0.25));
 }
 
 .gallery-item-card.selected .gallery-thumb-img {
   transform: scale(1.05);
-  filter: drop-shadow(0 8px 20px rgba(22, 84, 45, 0.32));
+  filter: contrast(1.10) drop-shadow(0 4px 14px rgba(22, 84, 45, 0.35));
 }
 
 .gallery-item-card:focus-visible {
@@ -340,7 +345,7 @@
 }
 
 .gallery-item-card:focus-visible .gallery-thumb-img {
-  filter: drop-shadow(0 0 14px rgba(200, 150, 46, 0.5));
+  filter: drop-shadow(0 0 12px rgba(200, 150, 46, 0.5));
 }
 
 /* ==========================================================================
