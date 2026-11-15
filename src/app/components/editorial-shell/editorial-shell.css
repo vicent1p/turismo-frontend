@@ -303,6 +303,132 @@
   text-underline-offset: 3px;
 }
 
+/* ==========================================================================
+   CABECERA DEDICADA DE LUGARES Y EXPERIENCIAS (RÉPLICA EXACTA DISEÑO OFICIAL PÁGINA 5)
+   ========================================================================== */
+.historia-sheet.sheet-lugares {
+  position: relative;
+  overflow: hidden;
+  padding-top: 0;
+}
+
+.lugares-header-banner {
+  position: relative;
+  width: calc(100% + (clamp(20px, 2.8vw, 38px) * 2));
+  margin-left: calc(-1 * clamp(20px, 2.8vw, 38px));
+  margin-right: calc(-1 * clamp(20px, 2.8vw, 38px));
+  margin-top: 0;
+  margin-bottom: 24px;
+  padding: clamp(36px, 4.4vw, 56px) clamp(20px, 3.5vw, 48px) clamp(46px, 5.4vw, 70px);
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.lugares-banner-watermarks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lugares-watermark-caiman {
+  position: absolute;
+  left: -15px;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: auto;
+  max-width: clamp(220px, 32vw, 380px);
+  object-fit: contain;
+  object-position: left center;
+  opacity: 0.44;
+  filter: sepia(0.18) saturate(0.92);
+}
+
+.lugares-watermark-iglesia {
+  position: absolute;
+  right: -15px;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: auto;
+  max-width: clamp(240px, 35vw, 410px);
+  object-fit: contain;
+  object-position: right center;
+  opacity: 0.44;
+  filter: sepia(0.18) saturate(0.92);
+}
+
+.lugares-banner-inner {
+  position: relative;
+  z-index: 3;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.lugares-banner-eyebrow {
+  display: inline-block;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: clamp(0.72rem, 0.86vw, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c99b38;
+}
+
+.lugares-banner-gold-rule {
+  width: 68px;
+  height: 1.5px;
+  background: #c99b38;
+  margin: 8px auto 10px;
+}
+
+.lugares-banner-title {
+  margin: 0;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: clamp(2.35rem, 4.3vw, 3.85rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: #16542d;
+}
+
+.lugares-banner-subtitle {
+  margin: 6px auto 0;
+  max-width: 580px;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: clamp(0.95rem, 1.14vw, 1.12rem);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #4a4a4a;
+}
+
+.lugares-banner-wave-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: clamp(36px, 5.2vw, 64px);
+  pointer-events: none;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+}
+
+.lugares-wave-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
 @media (max-width: 1120px) {
   .historia-sheet,
   .historia-sheet.sheet-gallery {
@@ -328,6 +454,23 @@
     width: 100%;
     padding: 22px 16px 28px;
     border-radius: 16px;
+  }
+
+  .historia-sheet.sheet-lugares {
+    padding-top: 0;
+  }
+
+  .lugares-header-banner {
+    width: calc(100% + 32px);
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 24px 14px 40px;
+  }
+
+  .lugares-watermark-caiman,
+  .lugares-watermark-iglesia {
+    opacity: 0.22;
+    max-width: 140px;
   }
 }
 

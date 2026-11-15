@@ -1,0 +1,13 @@
+<svg viewBox="0 0 918 90" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="lugaresWaveGrad" x1="0" y1="0" x2="918" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#d49e32" />
+      <stop offset="12%" stop-color="#e2ad3c" />
+      <stop offset="28%" stop-color="#d5a034" />
+      <stop offset="55%" stop-color="#cca039" />
+      <stop offset="80%" stop-color="#d5a034" />
+      <stop offset="100%" stop-color="#b68224" />
+    </linearGradient>
+  </defs>
+  <path d="M 0 35 Q 0 35, 12.5 30 Q 25 25, 37.5 21 Q 50 17, 62.5 15 Q 75 13, 87.5 11.5 Q 100 10, 112.5 12.5 Q 125 15, 137.5 17.5 Q 150 20, 162.5 23.5 Q 175 27, 187.5 31.5 Q 200 36, 212.5 39 Q 225 42, 237.5 45 Q 250 48, 275 46.5 Q 300 45, 350 48.5 Q 400 52, 450 54.5 Q 500 57, 550 55 Q 600 53, 625 50.5 Q 650 48, 675 46.5 Q 700 45, 725 44.5 Q 750 44, 775 45.5 Q 800 47, 825 51 Q 850 55, 865 58.5 Q 880 62, 890 64.5 Q 900 67, 909 69.5 L 918 72 L 918 86 Q 918 86, 909 83.5 Q 900 81, 890 77 Q 880 73, 865 69 Q 850 65, 825 60 Q 800 55, 775 53.5 Q 750 52, 725 51 Q 700 50, 675 51 Q 650 52, 625 54.5 Q 600 57, 550 61.5 Q 500 66, 450 65 Q 400 64, 350 59 Q 300 54, 275 54.5 Q 250 55, 237.5 53.5 Q 225 52, 212.5 49 Q 200 46, 187.5 43.5 Q 175 41, 162.5 38 Q 150 35, 137.5 32.5 Q 125 30, 112.5 29 Q 100 28, 87.5 28 Q 75 28, 62.5 30 Q 50 32, 37.5 35.5 Q 25 39, 12.5 43.5 L 0 48 Z" fill="url(#lugaresWaveGrad)" />
+</svg>
