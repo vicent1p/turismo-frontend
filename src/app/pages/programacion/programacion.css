@@ -164,13 +164,13 @@
    TARJETAS TIPO MOSAICO ELEVADAS CON SOMBREADO
    ========================================================================== */
 .prog-mosaic-card {
-  background: #ffffff;
-  border-radius: 18px;
-  border: 1px solid rgba(212, 175, 55, 0.22);
+  background: #fdfaf4;
+  border-radius: 20px;
+  border: 1px solid rgba(220, 185, 110, 0.35);
   box-shadow:
-    0 12px 28px rgba(90, 65, 20, 0.08),
-    0 3px 8px rgba(0, 0, 0, 0.03);
-  padding: clamp(20px, 2.5vw, 28px);
+    0 10px 28px rgba(100, 75, 25, 0.07),
+    0 2px 6px rgba(0, 0, 0, 0.02);
+  padding: clamp(20px, 2.4vw, 28px);
   display: flex;
   flex-direction: column;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -179,14 +179,14 @@
 .prog-mosaic-card:hover {
   transform: translateY(-2px);
   box-shadow:
-    0 16px 36px rgba(90, 65, 20, 0.12),
-    0 5px 12px rgba(0, 0, 0, 0.04);
+    0 16px 36px rgba(100, 75, 25, 0.12),
+    0 4px 10px rgba(0, 0, 0, 0.04);
 }
 
 .card-inner-flex {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 16px;
 }
 
 .badge-col {
@@ -195,16 +195,16 @@
 }
 
 .gold-sun-badge {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: #c99b38;
+  background: #d4a339;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(200, 150, 46, 0.35);
+  box-shadow: 0 3px 8px rgba(180, 130, 40, 0.3);
 }
 
 .content-col {
@@ -216,50 +216,55 @@
 
 .bracket-gold {
   border-left: 2px solid #c99b38;
-  padding-left: 12px;
+  padding-left: 14px;
   margin-bottom: 6px;
 }
 
 .event-date-gold {
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: #c8962e;
-  letter-spacing: 0.03em;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #8a734e;
+  letter-spacing: 0.02em;
   display: block;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .event-noble-title {
   margin: 0;
   font-family: 'Spectral', Georgia, serif;
-  font-size: clamp(1.15rem, 1.4vw, 1.35rem);
+  font-size: clamp(1.2rem, 1.45vw, 1.4rem);
   font-weight: 700;
   color: #16542d;
-  line-height: 1.25;
+  line-height: 1.18;
+}
+
+.event-noble-title.pre-line,
+.pre-line {
+  white-space: pre-line;
 }
 
 .event-noble-title.sm {
-  font-size: 1.05rem;
+  font-size: clamp(1.15rem, 1.35vw, 1.3rem);
   display: inline-block;
-  margin-bottom: 2px;
+  line-height: 1.2;
 }
 
 .event-sub-desc {
-  margin: 0;
+  margin: 6px 0 0 16px;
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.94rem;
-  color: #555555;
-  line-height: 1.45;
+  font-size: 0.92rem;
+  color: #5a5449;
+  line-height: 1.38;
 }
 
 .event-quote-desc {
-  margin: 0;
+  margin: 6px 0 0 16px;
   font-family: 'Spectral', Georgia, serif;
   font-style: italic;
-  font-size: 0.98rem;
-  color: #555555;
-  line-height: 1.4;
+  font-size: 0.96rem;
+  color: #5a5449;
+  line-height: 1.38;
 }
 
 .event-bullet-list {
@@ -268,15 +273,15 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .event-inline-note {
   display: block;
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.88rem;
-  color: #6a6a6a;
-  margin-top: 4px;
+  font-size: 0.92rem;
+  color: #6f685c;
+  margin: 4px 0 0 16px;
 }
 
 /* ==========================================================================
@@ -285,9 +290,10 @@
 .prog-wide-block {
   margin-top: clamp(20px, 3vw, 32px);
   display: grid;
-  grid-template-columns: 1.3fr 1.2fr 0.9fr;
-  gap: clamp(16px, 2vw, 24px);
+  grid-template-columns: 1.35fr 1.25fr 0.95fr;
+  gap: clamp(16px, 2.2vw, 28px);
   align-items: center;
+  padding: clamp(18px, 2.2vw, 26px) clamp(20px, 2.5vw, 30px);
 }
 
 .wide-col-main {
@@ -296,8 +302,8 @@
 }
 
 .wide-col-bullets {
-  border-left: 1.5px solid rgba(200, 150, 46, 0.35);
-  padding-left: clamp(14px, 2vw, 22px);
+  border-left: 2px solid #c99b38;
+  padding-left: clamp(16px, 2.2vw, 24px);
   display: flex;
   align-items: center;
 }
@@ -308,50 +314,57 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.92rem;
-  color: #2c3e35;
-  line-height: 1.45;
+  font-size: 0.95rem;
+  color: #444444;
+  line-height: 1.5;
 }
 
 .wide-col-artist {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
   justify-content: flex-end;
-  gap: 12px;
   position: relative;
 }
 
-.artist-guest-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+.artist-guest-header-label {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #16542d;
+  margin-bottom: 6px;
+  margin-right: 32px;
   text-align: right;
+  width: 100%;
 }
 
-.artist-kicker {
+.artist-guest-profile-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  width: 100%;
+}
+
+.artist-guest-name-col {
   font-family: 'Spectral', Georgia, serif;
   font-size: 0.88rem;
   font-weight: 700;
   color: #16542d;
-  line-height: 1.2;
-}
-
-.artist-subtitle-name {
-  font-family: 'Spectral', Georgia, serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #887042;
+  line-height: 1.25;
+  text-align: right;
+  white-space: pre-line;
 }
 
 .artist-featured-cutout {
-  height: clamp(86px, 11vw, 110px);
+  height: clamp(86px, 10vw, 115px);
   width: auto;
-  max-width: 130px;
+  max-width: 140px;
   object-fit: contain;
   object-position: right bottom;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
 }
 
 /* ==========================================================================
