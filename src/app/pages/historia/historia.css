@@ -198,7 +198,7 @@
   display: block;
   mix-blend-mode: multiply;
   transition: transform 0.4s ease;
-  filter: contrast(1.05);
+  filter: contrast(1.05) saturate(1.12);
 }
 
 .featured-card-frame:hover .featured-card-img {
@@ -325,7 +325,7 @@
   border-radius: 0;
   mix-blend-mode: multiply;
   transition: transform 0.32s cubic-bezier(0.2, 0.9, 0.3, 1), filter 0.32s ease, opacity 0.25s ease;
-  filter: contrast(1.04);
+  filter: contrast(1.05) saturate(1.12);
 }
 
 .gallery-item-card:hover .gallery-thumb-img {
