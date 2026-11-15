@@ -287,7 +287,7 @@
   margin-right: calc(-1 * clamp(20px, 2.8vw, 38px));
   margin-top: 0;
   margin-bottom: clamp(24px, 3.2vw, 40px);
-  padding: clamp(36px, 4.4vw, 56px) clamp(20px, 3.5vw, 48px) clamp(96px, 11vw, 140px);
+  padding: clamp(28px, 3.6vw, 44px) clamp(20px, 3.5vw, 48px) clamp(64px, 7.8vw, 92px);
   background: transparent;
   display: flex;
   flex-direction: column;
@@ -308,29 +308,29 @@
 .lugares-watermark-caiman {
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 105%;
+  top: clamp(6px, 1.2vw, 14px);
+  bottom: clamp(24px, 3.2vw, 42px);
+  height: calc(100% - clamp(30px, 4.4vw, 56px));
   width: auto;
-  max-width: clamp(280px, 36vw, 480px);
+  max-width: clamp(240px, 30vw, 420px);
   object-fit: contain;
-  object-position: left center;
-  opacity: 0.92;
+  object-position: left bottom;
+  opacity: 0.88;
   mix-blend-mode: multiply;
   pointer-events: none;
 }
 
 .lugares-watermark-iglesia {
   position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 105%;
+  right: clamp(16px, 4vw, 46px);
+  top: clamp(8px, 1.4vw, 16px);
+  bottom: clamp(24px, 3.2vw, 42px);
+  height: calc(100% - clamp(32px, 4.6vw, 58px));
   width: auto;
-  max-width: clamp(300px, 38vw, 500px);
+  max-width: clamp(240px, 28vw, 390px);
   object-fit: contain;
-  object-position: right center;
-  opacity: 0.90;
+  object-position: right bottom;
+  opacity: 0.86;
   mix-blend-mode: multiply;
   pointer-events: none;
 }
