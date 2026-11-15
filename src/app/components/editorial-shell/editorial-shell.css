@@ -143,25 +143,32 @@
 }
 
 .historia-closing-cta {
-  margin-top: 56px;
-  padding: 38px 20px;
-  border-radius: 0;
+  margin-top: clamp(48px, 6vw, 68px);
+  padding: clamp(36px, 4.6vw, 60px) clamp(22px, 4vw, 48px);
+  border-radius: 28px;
   text-align: center;
-  background: transparent;
-  border: none;
-  border-top: 1px solid rgba(200, 150, 46, 0.28);
-  box-shadow: none;
+  background:
+    linear-gradient(180deg, rgba(253, 248, 238, 0.82) 0%, rgba(251, 242, 230, 0.88) 100%),
+    url('/banner-mosaico-itinerario.webp') center center / cover no-repeat;
+  border: 1.5px solid rgba(200, 150, 46, 0.48);
+  box-shadow:
+    0 18px 44px rgba(96, 65, 24, 0.12),
+    0 6px 18px rgba(22, 84, 45, 0.06);
+  position: relative;
+  overflow: hidden;
 }
 
 .historia-sheet.sheet-historia .historia-closing-cta {
   background:
-    linear-gradient(180deg, rgba(253, 248, 238, 0.88) 0%, rgba(251, 242, 230, 0.94) 100%),
-    url('/historia/historia-cta-bg.webp') center center / cover no-repeat;
-  border: 1.2px solid rgba(200, 150, 46, 0.42);
-  border-radius: 20px;
-  box-shadow: 0 12px 34px rgba(96, 65, 24, 0.1);
+    linear-gradient(180deg, rgba(253, 248, 238, 0.82) 0%, rgba(251, 242, 230, 0.88) 100%),
+    url('/banner-mosaico-itinerario.webp') center center / cover no-repeat;
+  border: 1.5px solid rgba(200, 150, 46, 0.48);
+  border-radius: 28px;
+  box-shadow:
+    0 18px 44px rgba(96, 65, 24, 0.12),
+    0 6px 18px rgba(22, 84, 45, 0.06);
   margin-top: 48px;
-  padding: clamp(34px, 4.4vw, 56px) clamp(22px, 4vw, 48px);
+  padding: clamp(36px, 4.6vw, 60px) clamp(22px, 4vw, 48px);
 }
 
 .closing-tag {
@@ -271,8 +278,8 @@
   margin-left: calc(-1 * clamp(20px, 2.8vw, 38px));
   margin-right: calc(-1 * clamp(20px, 2.8vw, 38px));
   margin-top: 0;
-  margin-bottom: 24px;
-  padding: clamp(36px, 4.4vw, 56px) clamp(20px, 3.5vw, 48px) clamp(46px, 5.4vw, 70px);
+  margin-bottom: clamp(24px, 3.2vw, 40px);
+  padding: clamp(36px, 4.4vw, 56px) clamp(20px, 3.5vw, 48px) clamp(96px, 11vw, 140px);
   background: transparent;
   display: flex;
   flex-direction: column;
@@ -287,11 +294,12 @@
   inset: 0;
   pointer-events: none;
   z-index: 1;
+  overflow: hidden;
 }
 
 .lugares-watermark-caiman {
   position: absolute;
-  left: -15px;
+  left: 0;
   top: 0;
   bottom: 0;
   height: 100%;
@@ -299,13 +307,17 @@
   max-width: clamp(220px, 32vw, 380px);
   object-fit: contain;
   object-position: left center;
-  opacity: 0.44;
+  opacity: 0.52;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 20% 50%, black 50%, transparent 100%);
+  mask-image: radial-gradient(ellipse 95% 85% at 20% 50%, black 50%, transparent 100%);
   filter: sepia(0.18) saturate(0.92);
+  pointer-events: none;
 }
 
 .lugares-watermark-iglesia {
   position: absolute;
-  right: -15px;
+  right: 0;
   top: 0;
   bottom: 0;
   height: 100%;
@@ -313,8 +325,12 @@
   max-width: clamp(240px, 35vw, 410px);
   object-fit: contain;
   object-position: right center;
-  opacity: 0.44;
+  opacity: 0.50;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 80% 50%, black 50%, transparent 100%);
+  mask-image: radial-gradient(ellipse 95% 85% at 80% 50%, black 50%, transparent 100%);
   filter: sepia(0.18) saturate(0.92);
+  pointer-events: none;
 }
 
 .lugares-banner-inner {
@@ -322,6 +338,7 @@
   z-index: 3;
   max-width: 680px;
   margin: 0 auto;
+  margin-bottom: clamp(16px, 2.4vw, 28px);
 }
 
 .lugares-banner-eyebrow {
@@ -368,7 +385,7 @@
   left: 0;
   right: 0;
   width: 100%;
-  height: clamp(36px, 5.2vw, 64px);
+  height: clamp(36px, 4.8vw, 60px);
   pointer-events: none;
   z-index: 2;
   display: flex;
@@ -384,45 +401,41 @@
 
 @media (max-width: 1120px) {
   .historia-sheet,
-  .historia-sheet.sheet-gallery {
-    width: min(820px, 88vw);
-    min-width: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(253, 249, 241, 0.92) 0%,
-      rgba(252, 246, 234, 0.94) 100%
-    );
-  }
-
-  .historia-sheet.sheet-wide {
-    width: 94vw;
-    min-width: 0;
+  .historia-sheet.sheet-gallery,
+  .historia-sheet.sheet-wide,
+  .historia-sheet.sheet-lugares,
+  .historia-sheet.sheet-historia {
+    width: 100%;
+    max-width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
   }
 }
 
 @media (max-width: 680px) {
   .historia-sheet,
   .historia-sheet.sheet-gallery,
-  .historia-sheet.sheet-wide {
+  .historia-sheet.sheet-wide,
+  .historia-sheet.sheet-lugares,
+  .historia-sheet.sheet-historia {
     width: 100%;
-    padding: 22px 16px 28px;
-    border-radius: 16px;
-  }
-
-  .historia-sheet.sheet-lugares {
-    padding-top: 0;
+    padding: 16px 14px 28px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
   }
 
   .lugares-header-banner {
-    width: calc(100% + 32px);
-    margin-left: -16px;
-    margin-right: -16px;
-    padding: 24px 14px 40px;
+    width: calc(100% + 28px);
+    margin-left: -14px;
+    margin-right: -14px;
+    padding: 24px 14px 64px;
   }
 
   .lugares-watermark-caiman,
   .lugares-watermark-iglesia {
-    opacity: 0.22;
+    opacity: 0.28;
     max-width: 140px;
   }
 }
