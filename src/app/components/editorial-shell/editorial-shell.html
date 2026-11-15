@@ -1,16 +1,8 @@
 <div class="historia-page-shell">
   <app-public-navbar [activeSection]="activeSection()"></app-public-navbar>
 
-  <!-- INDICADOR DE PROGRESO SUTIL -->
-  <div class="historia-progress-track" aria-hidden="true">
-    <div class="historia-progress-fill" [style.width.%]="readProgress()"></div>
-  </div>
-
-  <!-- LIENZO FIJO ILUSTRADO EN PERGAMINO -->
-  <div class="historia-backdrop" aria-hidden="true"></div>
-
   <main class="historia-main">
-    <article
+    <div
       class="historia-sheet"
       [class.sheet-gallery]="sheetWidth() === 'gallery'"
       [class.sheet-wide]="sheetWidth() === 'wide'"
@@ -54,38 +46,20 @@
           </div>
         </header>
       } @else {
-        <!-- MIGAS DE PAN Y METADATOS -->
-        <div class="historia-topbar">
-          <nav class="historia-breadcrumb" [attr.aria-label]="breadcrumbAria()">
-            <a routerLink="/" class="crumb-link">
-              <span aria-hidden="true">←</span> {{ breadcrumbHome() }}
-            </a>
-            <span class="crumb-sep" aria-hidden="true">/</span>
-            <span class="crumb-current">{{ breadcrumbCurrent() }}</span>
-          </nav>
-          <span class="read-meta-pill">{{ metaPill() }}</span>
-        </div>
-
-        <!-- CABECERA EDITORIAL EN SPECTRAL -->
+        <!-- CABECERA EDITORIAL EN SPECTRAL TIPO LANDING PAGE -->
         <header class="historia-header">
           <span class="historia-eyebrow">{{ eyebrow() }}</span>
           <div class="historia-gold-rule"></div>
           <h1 class="historia-title">{{ pageTitle() }}</h1>
+          <div class="historia-gold-rule"></div>
           <p class="historia-subtitle">{{ subtitle() }}</p>
-          <div class="historia-ornament" aria-hidden="true">
-            <span class="orn-line"></span>
-            <span class="orn-diamond">◆</span>
-            <span class="orn-line"></span>
-          </div>
-
-          <ng-content select="[shell-header-extra]"></ng-content>
         </header>
       }
 
       <!-- CONTENIDO PROPIO DEL APARTADO -->
       <ng-content></ng-content>
 
-      <!-- BLOQUE FINAL DE CONTINUIDAD -->
+      <!-- BLOQUE FINAL DE CONTINUIDAD TIPO LANDING -->
       <footer class="historia-closing-cta">
         <span class="closing-tag">{{ closingTag() }}</span>
         <h2 class="closing-title">{{ closingTitle() }}</h2>
@@ -103,7 +77,7 @@
           </a>
         </div>
       </footer>
-    </article>
+    </div>
   </main>
 
   <app-public-footer></app-public-footer>

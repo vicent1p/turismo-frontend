@@ -17,16 +17,6 @@
   ctaSecondaryFragment="hoteles"
   [ctaBackLabel]="content().ctaBackHome"
 >
-  <!-- HITOS CLAVE SCANEABLES -->
-  <div shell-header-extra class="historia-facts-grid">
-    @for (fact of content().facts; track fact.label) {
-      <div class="historia-fact-card">
-        <span class="fact-label">{{ fact.label }}</span>
-        <strong class="fact-value">{{ fact.value }}</strong>
-      </div>
-    }
-  </div>
-
   <!-- ÍNDICE INTERACTIVO DE CAPÍTULOS -->
   <nav class="historia-toc" [attr.aria-label]="content().tocLabel">
     <span class="toc-heading">{{ content().tocLabel }}</span>

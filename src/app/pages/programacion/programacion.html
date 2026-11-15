@@ -17,29 +17,6 @@
   ctaSecondaryRoute="/cultura"
   [ctaBackLabel]="content().ctaBackHome"
 >
-  <!-- CO-BRANDING INSTITUCIONAL Y TARJETAS RESUMEN -->
-  <div shell-header-extra class="prog-header-extra">
-    <div class="prog-institutional-strip" [attr.aria-label]="content().institutionalBannerLabel">
-      <div class="inst-logos-cluster">
-        <img src="escudo-alcaldia.png" alt="Alcaldía de Plato" class="inst-crest" loading="lazy" />
-        <span class="inst-divider" aria-hidden="true"></span>
-        <img src="logo-plato-400.png" alt="Plato 400 Años" class="inst-400-logo" loading="lazy" />
-        <span class="inst-divider" aria-hidden="true"></span>
-        <img src="escudo-gobernacion.png" alt="Gobernación del Magdalena" class="inst-crest" loading="lazy" />
-      </div>
-      <span class="inst-partners-caption">{{ content().institutionalPartners }}</span>
-    </div>
-
-    <div class="prog-metrics-grid">
-      @for (metric of content().metrics; track $index) {
-        <div class="prog-metric-card">
-          <span class="metric-label">{{ metric.label }}</span>
-          <strong class="metric-value">{{ metric.value }}</strong>
-        </div>
-      }
-    </div>
-  </div>
-
   <!-- FILTROS DE AGENDA INTERACTIVOS -->
   <nav class="prog-filter-bar" [attr.aria-label]="content().filterAriaLabel">
     @for (tab of content().filters; track tab.id) {

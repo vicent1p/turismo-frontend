@@ -17,16 +17,6 @@
   ctaSecondaryFragment="hoteles"
   [ctaBackLabel]="content().ctaBackHome"
 >
-  <!-- PILARES VISUALES ESCANEABLES -->
-  <div shell-header-extra class="cultura-pillars-grid">
-    @for (pillar of content().pillars; track pillar.label) {
-      <div class="cultura-pillar-card">
-        <span class="pillar-label">{{ pillar.label }}</span>
-        <strong class="pillar-value">{{ pillar.value }}</strong>
-      </div>
-    }
-  </div>
-
   <!-- FILTRO DE CATEGORÍAS EN SPECTRAL -->
   <nav class="cultura-filter-bar" [attr.aria-label]="content().filterAriaLabel">
     @for (tab of content().filters; track tab.id) {
