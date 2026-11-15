@@ -22,101 +22,123 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 0;
   max-width: 980px;
-  margin: 0 auto clamp(24px, 3.5vw, 40px);
-  padding: clamp(14px, 2vw, 20px) clamp(16px, 2.5vw, 28px);
+  margin: 0 auto clamp(20px, 3vw, 36px);
+  padding: 8px clamp(12px, 2vw, 24px);
   background: transparent;
-  border-bottom: 1.5px solid rgba(200, 150, 46, 0.28);
+  border-bottom: none;
 }
 
 .prog-metric-item {
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
   position: relative;
+  padding: 6px clamp(10px, 1.8vw, 24px);
 }
 
 .metric-icon-wrap {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  background: rgba(244, 232, 206, 0.72);
-  border: 1.5px solid rgba(200, 150, 46, 0.5);
+  background: #faf4e9;
+  border: 1.5px solid rgba(200, 150, 46, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(184, 132, 31, 0.08);
 }
 
 .metric-text-wrap {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .metric-label {
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.95rem;
+  font-size: clamp(1.08rem, 1.25vw, 1.25rem);
   font-weight: 700;
   color: #16542d;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .metric-value {
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.85rem;
-  color: #6a6a6a;
+  font-size: clamp(0.85rem, 0.95vw, 0.94rem);
+  color: #5a5a5a;
+  font-weight: 400;
+  line-height: 1.3;
+  white-space: nowrap;
 }
 
 .metric-divider {
   position: absolute;
-  right: -8px;
-  top: 10%;
-  bottom: 10%;
-  width: 1px;
-  background: rgba(200, 150, 46, 0.35);
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 42px;
+  background: #c8962e;
+  border-radius: 1px;
 }
 
 /* ==========================================================================
-   PESTAÑAS DE FILTRO POR FECHA (TODOS / 29 NOV - 7 DIC / 5 DIC...)
+   PESTAÑAS DE FILTRO POR FECHA (PILL TRACK UNIFICADO)
    ========================================================================== */
 .prog-filters-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(6px, 1vw, 12px);
-  flex-wrap: wrap;
-  margin: 0 auto clamp(32px, 4vw, 50px);
-  max-width: 1040px;
+  gap: 6px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto clamp(28px, 3.5vw, 44px);
+  padding: 5px 8px;
+  background: rgba(255, 252, 246, 0.95);
+  border: 1.5px solid rgba(200, 150, 46, 0.35);
+  border-radius: 999px;
+  box-shadow: 0 2px 10px rgba(96, 65, 24, 0.04);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.prog-filters-bar::-webkit-scrollbar {
+  display: none;
 }
 
 .prog-filter-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 253, 248, 0.9);
-  border: 1px solid rgba(200, 150, 46, 0.38);
+  background: #ffffff;
+  border: none;
+  border-radius: 999px;
   color: #16542d;
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  padding: 6px 16px;
-  border-radius: 999px;
+  padding: 5px 14px;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.prog-filter-pill:hover {
-  background: #fbf2e9;
-  border-color: #c8962e;
+.prog-filter-pill:hover:not(.active) {
+  background: #fbf5ea;
+  color: #16542d;
 }
 
 .prog-filter-pill.active {
-  background: #c8962e;
-  border-color: #b38222;
+  background: #18582e;
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(200, 150, 46, 0.28);
+  box-shadow: 0 2px 8px rgba(24, 88, 46, 0.25);
 }
 
 .filter-count-badge {
@@ -128,13 +150,14 @@
   border-radius: 50%;
   background: #18582e;
   color: #ffffff;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 .prog-filter-pill.active .filter-count-badge {
-  background: #ffffff;
-  color: #c8962e;
+  background: #c8962e;
+  color: #ffffff;
 }
 
 /* ==========================================================================
@@ -507,10 +530,17 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 14px;
+    padding: 12px 16px;
   }
 
   .metric-divider {
     display: none;
+  }
+
+  .prog-filters-bar {
+    justify-content: flex-start;
+    padding: 6px 10px;
+    width: 100%;
   }
 
   .prog-grid-2col {
