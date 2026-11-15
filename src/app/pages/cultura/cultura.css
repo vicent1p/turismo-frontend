@@ -117,13 +117,11 @@
   display: flex;
   flex-direction: column;
   padding: 0;
-  border-radius: 14px;
+  border-radius: var(--card-radius, 14px);
   overflow: hidden;
   background: linear-gradient(180deg, rgba(255, 254, 250, 0.96) 0%, rgba(252, 246, 234, 0.92) 100%);
-  border: 1px solid rgba(200, 150, 46, 0.36);
-  box-shadow:
-    0 6px 18px rgba(96, 65, 24, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  border: var(--card-border, 1px solid rgba(200, 150, 46, 0.36));
+  box-shadow: var(--card-shadow, 0 6px 18px rgba(96, 65, 24, 0.08));
   cursor: pointer;
   transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.24s ease,
@@ -133,9 +131,7 @@
 .cultura-card:hover {
   transform: translateY(-4px);
   border-color: rgba(200, 150, 46, 0.75);
-  box-shadow:
-    0 14px 28px rgba(96, 65, 24, 0.14),
-    0 4px 10px rgba(22, 84, 45, 0.08);
+  box-shadow: var(--card-shadow-hover, 0 14px 28px rgba(96, 65, 24, 0.14));
 }
 
 .cultura-card:focus-visible {
@@ -163,22 +159,6 @@
 
 .cultura-card:hover .card-media-img {
   transform: scale(1.05);
-}
-
-.card-index-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  font-family: 'Spectral', Georgia, serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: #fffaf0;
-  background: rgba(19, 63, 35, 0.84);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(243, 206, 111, 0.52);
-  padding: 2px 7px;
-  border-radius: 999px;
 }
 
 .card-zoom-pill {

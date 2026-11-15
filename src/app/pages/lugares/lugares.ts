@@ -3,6 +3,8 @@ import { Component, computed, DestroyRef, HostListener, inject, OnInit, signal }
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { EditorialShellComponent } from '../../components/editorial-shell/editorial-shell';
+import { ServiceIconComponent } from '../../components/service-icon/service-icon.component';
+import { SocialIconComponent } from '../../components/social-icon/social-icon.component';
 import {
   CardType,
   Hotel,
@@ -194,7 +196,7 @@ const LUGARES_CONTENT: Record<AppLang, LugaresLocaleContent> = {
 @Component({
   selector: 'app-lugares',
   standalone: true,
-  imports: [CommonModule, EditorialShellComponent],
+  imports: [CommonModule, EditorialShellComponent, SocialIconComponent, ServiceIconComponent],
   templateUrl: './lugares.html',
   styleUrl: './lugares.css'
 })
@@ -213,6 +215,13 @@ export class LugaresComponent implements OnInit {
   readonly selectedPlace = signal<Hotel | null>(null);
   readonly modalPhotoIdx = signal<number>(0);
 
+  /** Paginación: 3 columnas x 2 filas = 6 tarjetas por página (Página 5 del diseño) */
+  readonly pageSize = 6;
+  readonly currentPage = signal<number>(1);
+
+  /** Mapeo de fotos activas por tarjeta para carruseles independientes */
+  readonly cardPhotoIndex = signal<Record<string, number>>({});
+
   readonly allItems = computed(() =>
     this.hotelesService.dataset().hoteles.filter(h => h.disponible)
   );
@@ -222,6 +231,19 @@ export class LugaresComponent implements OnInit {
     () => filterHotelsByCategory(this.allItems(), 'restaurantes').length
   );
   readonly countCabanas = computed(() => filterHotelsByCategory(this.allItems(), 'cabanas').length);
+
+  getCategoryCount(tabId: PlaceCategoryTab): number {
+    switch (tabId) {
+      case 'hoteles':
+        return this.countHoteles();
+      case 'restaurantes':
+        return this.countRestaurantes();
+      case 'cabanas':
+        return this.countCabanas();
+      default:
+        return 0;
+    }
+  }
 
   readonly metrics = computed(() => {
     const t = this.content();
@@ -247,7 +269,17 @@ export class LugaresComponent implements OnInit {
     filterHotelsByCategory(this.allItems(), this.categoriaActiva())
   );
 
-  readonly visibleItems = computed(() => this.categoryItems());
+  readonly totalPages = computed(() =>
+    Math.max(1, Math.ceil(this.categoryItems().length / this.pageSize))
+  );
+
+  readonly paginatedItems = computed(() => {
+    const page = Math.min(Math.max(1, this.currentPage()), this.totalPages());
+    const start = (page - 1) * this.pageSize;
+    return this.categoryItems().slice(start, start + this.pageSize);
+  });
+
+  readonly visibleItems = computed(() => this.paginatedItems());
 
   readonly modalPhotos = computed(() => this.selectedPlace()?.fotos ?? []);
 
@@ -259,6 +291,7 @@ export class LugaresComponent implements OnInit {
         const param = params.get('categoria') as PlaceCategoryTab | null;
         if (param && VALID_TABS.has(param)) {
           this.categoriaActiva.set(param);
+          this.currentPage.set(1);
         }
       });
   }
@@ -272,6 +305,7 @@ export class LugaresComponent implements OnInit {
 
   setCategoria(cat: PlaceCategoryTab): void {
     this.categoriaActiva.set(cat);
+    this.currentPage.set(1);
     this.soloDisponibles.set(false);
     this.cerrarDetalle();
     void this.router.navigate([], {
@@ -280,6 +314,68 @@ export class LugaresComponent implements OnInit {
       queryParamsHandling: 'merge',
       replaceUrl: true
     });
+  }
+
+  goToPage(page: number): void {
+    const target = Math.max(1, Math.min(page, this.totalPages()));
+    this.currentPage.set(target);
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 300, behavior: 'smooth' });
+    }
+  }
+
+  prevPage(): void {
+    if (this.currentPage() > 1) {
+      this.goToPage(this.currentPage() - 1);
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage() < this.totalPages()) {
+      this.goToPage(this.currentPage() + 1);
+    }
+  }
+
+  firstPage(): void {
+    this.goToPage(1);
+  }
+
+  lastPage(): void {
+    this.goToPage(this.totalPages());
+  }
+
+  getCardPhoto(place: Hotel): string {
+    const photos = place.fotos ?? [];
+    if (photos.length === 0) return '';
+    const idx = (this.cardPhotoIndex()[place.id] ?? 0) % photos.length;
+    return photos[idx < 0 ? idx + photos.length : idx];
+  }
+
+  getCardPhotoIdx(place: Hotel): number {
+    const photos = place.fotos ?? [];
+    if (photos.length <= 1) return 0;
+    const idx = (this.cardPhotoIndex()[place.id] ?? 0) % photos.length;
+    return idx < 0 ? idx + photos.length : idx;
+  }
+
+  stepCardPhoto(place: Hotel, delta: number, event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+    const photos = place.fotos ?? [];
+    if (photos.length <= 1) return;
+    const current = this.cardPhotoIndex()[place.id] ?? 0;
+    const next = (current + delta + photos.length) % photos.length;
+    this.cardPhotoIndex.update(m => ({ ...m, [place.id]: next }));
+  }
+
+  setCardPhotoIdx(place: Hotel, idx: number, event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+    this.cardPhotoIndex.update(m => ({ ...m, [place.id]: idx }));
   }
 
   setSoloDisponibles(onlyAvailable: boolean): void {

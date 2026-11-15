@@ -12,6 +12,8 @@ import { LanguageService } from '../../services/language.service';
 import { EncuestasService, Encuesta, DetalleRespuestaEnvio } from '../../services/encuestas.service';
 import { PublicNavbarComponent } from '../../components/public-navbar/public-navbar';
 import { PublicFooterComponent } from '../../components/public-footer/public-footer';
+import { SocialIconComponent } from '../../components/social-icon/social-icon.component';
+import { ServiceIconComponent } from '../../components/service-icon/service-icon.component';
 
 export type { Hotel, HotelDataset };
 
@@ -237,7 +239,15 @@ export const TRANSLATIONS = {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, PublicNavbarComponent, PublicFooterComponent],
+  imports: [
+    CommonModule,
+    RouterLink,
+    FormsModule,
+    PublicNavbarComponent,
+    PublicFooterComponent,
+    SocialIconComponent,
+    ServiceIconComponent
+  ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

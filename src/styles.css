@@ -101,7 +101,7 @@
   src: url('/fonts/spectral/Spectral-ExtraBoldItalic.ttf') format('truetype');
 }
 
-/* VARIABLES DE COLOR (modo claro) */
+/* VARIABLES DE COLOR Y TOKENS DE DISEÑO PLATO 400 AÑOS (REGLA 0) */
 :root {
   --bg: #f7f1e3;
   --card: #fffdf8;
@@ -110,6 +110,8 @@
   --brand: #0f4c5c;
   --onb: #fff;
   --oro: #c8962e;
+  --oro-light: #f3ce6f;
+  --oro-stroke: #c8962e;
   --sun: #e6b84f;
   --ok: #14633f;
   --okbg: #dff2e8;
@@ -117,6 +119,16 @@
   --nobg: #fbe4e1;
   --line: #e3d9c3;
   --sh: 0 12px 32px rgba(15, 76, 92, 0.12);
+
+  /* Tokens de espaciado y proporciones según diseño CorelDRAW */
+  --space-section: 48px;
+  --space-card-gap: 20px;
+  --space-card-padding: 16px 18px 20px;
+  --card-radius: 14px;
+  --card-border: 1px solid rgba(200, 150, 46, 0.36);
+  --card-shadow: 0 6px 18px rgba(96, 65, 24, 0.08);
+  --card-shadow-hover: 0 14px 28px rgba(96, 65, 24, 0.14);
+
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
