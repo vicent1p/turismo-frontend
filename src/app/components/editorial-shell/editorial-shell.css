@@ -39,7 +39,9 @@
 .historia-sheet.sheet-gallery,
 .historia-sheet.sheet-wide,
 .historia-sheet.sheet-lugares,
-.historia-sheet.sheet-historia {
+.historia-sheet.sheet-historia,
+.historia-sheet.sheet-programacion,
+.historia-sheet.sheet-cultura {
   width: 100%;
   max-width: 1180px;
   min-width: 0;
@@ -404,7 +406,9 @@
   .historia-sheet.sheet-gallery,
   .historia-sheet.sheet-wide,
   .historia-sheet.sheet-lugares,
-  .historia-sheet.sheet-historia {
+  .historia-sheet.sheet-historia,
+  .historia-sheet.sheet-programacion,
+  .historia-sheet.sheet-cultura {
     width: 100%;
     max-width: 100%;
     background: transparent;
@@ -418,7 +422,9 @@
   .historia-sheet.sheet-gallery,
   .historia-sheet.sheet-wide,
   .historia-sheet.sheet-lugares,
-  .historia-sheet.sheet-historia {
+  .historia-sheet.sheet-historia,
+  .historia-sheet.sheet-programacion,
+  .historia-sheet.sheet-cultura {
     width: 100%;
     padding: 16px 14px 28px;
     background: transparent;
