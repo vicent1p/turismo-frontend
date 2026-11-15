@@ -1,64 +1,81 @@
-<header class="section-banner">
-  <!-- 1. FRANJA VERDE OSCURA SUPERIOR CON LIGERO BORDE ONDULADO -->
-  <svg
-    class="section-banner-top-strip"
-    viewBox="0 0 1440 20"
-    preserveAspectRatio="none"
-    aria-hidden="true"
-  >
-    <path
-      d="M 0,0 L 1440,0 L 1440,9 C 1140,15 860,18 640,16 C 400,14 180,7 0,10 Z"
-      fill="#2D5A27"
-    />
-  </svg>
-
-  <!-- 2. MARCAS DE AGUA HISTÓRICAS (MONUMENTO A LA IZQUIERDA, IGLESIA A LA DERECHA) -->
-  <div class="section-banner-watermarks" aria-hidden="true">
+@if (bannerImage()) {
+  <header class="section-banner-image-wrap">
     <img
-      src="/hero-monumento.webp"
-      alt=""
-      class="section-watermark-monumento"
+      [src]="bannerImage()"
+      [alt]="title() + ' — ' + eyebrow()"
+      class="section-banner-full-img"
       loading="eager"
     />
-    <img
-      src="/hero-iglesia.webp"
-      alt=""
-      class="section-watermark-iglesia"
-      loading="eager"
-    />
-  </div>
+    <!-- Textos accesibles y SEO para motores de búsqueda y lectores de pantalla -->
+    <div class="sr-only">
+      <span>{{ eyebrow() }}</span>
+      <h1>{{ title() }}</h1>
+      <p>{{ description() }}</p>
+    </div>
+  </header>
+} @else {
+  <header class="section-banner">
+    <!-- 1. FRANJA VERDE OSCURA SUPERIOR CON LIGERO BORDE ONDULADO -->
+    <svg
+      class="section-banner-top-strip"
+      viewBox="0 0 1440 20"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M 0,0 L 1440,0 L 1440,9 C 1140,15 860,18 640,16 C 400,14 180,7 0,10 Z"
+        fill="#2D5A27"
+      />
+    </svg>
 
-  <!-- 3. CONTENIDO EDITORIAL CENTRADO (Z-INDEX POR ENCIMA DE IMÁGENES) -->
-  <div class="section-banner-content">
-    <span class="section-banner-eyebrow">{{ eyebrow() }}</span>
-    <div class="section-banner-gold-rule" aria-hidden="true"></div>
-    <h1 class="section-banner-title">{{ title() }}</h1>
-    <div class="section-banner-gold-rule" aria-hidden="true"></div>
-    <p class="section-banner-description">{{ description() }}</p>
-  </div>
+    <!-- 2. MARCAS DE AGUA HISTÓRICAS (MONUMENTO A LA IZQUIERDA, IGLESIA A LA DERECHA) -->
+    <div class="section-banner-watermarks" aria-hidden="true">
+      <img
+        src="/hero-monumento.webp"
+        alt=""
+        class="section-watermark-monumento"
+        loading="eager"
+      />
+      <img
+        src="/hero-iglesia.webp"
+        alt=""
+        class="section-watermark-iglesia"
+        loading="eager"
+      />
+    </div>
 
-  <!-- 4. ONDAS DECORATIVAS INFERIORES EN SVG (LÍNEA ONDULADA CONTINUA) -->
-  <svg
-    class="section-banner-bottom-waves"
-    viewBox="0 0 1440 100"
-    preserveAspectRatio="none"
-    aria-hidden="true"
-  >
-    <!-- Onda muy suave en tono crema oscuro/beige en la zona inferior central -->
-    <path
-      d="M 180,82 C 400,68 700,82 960,75 C 1140,70 1300,63 1440,56 L 1440,61 C 1300,68 1140,75 960,81 C 700,88 400,74 180,87 Z"
-      fill="#EBDDC3"
-      opacity="0.65"
-    />
-    <!-- Onda amarilla/dorada sólida en la esquina inferior izquierda -->
-    <path
-      d="M 0,70 C 140,50 300,60 520,90 C 330,75 150,65 0,88 Z"
-      fill="#D4A52A"
-    />
-    <!-- Onda amarilla/dorada delgada en la parte inferior derecha -->
-    <path
-      d="M 720,91 C 940,85 1180,72 1440,54 L 1440,57 C 1180,75 940,88 720,93 Z"
-      fill="#D4A52A"
-    />
-  </svg>
-</header>
+    <!-- 3. CONTENIDO EDITORIAL CENTRADO (Z-INDEX POR ENCIMA DE IMÁGENES) -->
+    <div class="section-banner-content">
+      <span class="section-banner-eyebrow">{{ eyebrow() }}</span>
+      <div class="section-banner-gold-rule" aria-hidden="true"></div>
+      <h1 class="section-banner-title">{{ title() }}</h1>
+      <div class="section-banner-gold-rule" aria-hidden="true"></div>
+      <p class="section-banner-description">{{ description() }}</p>
+    </div>
+
+    <!-- 4. ONDAS DECORATIVAS INFERIORES EN SVG (LÍNEA ONDULADA CONTINUA) -->
+    <svg
+      class="section-banner-bottom-waves"
+      viewBox="0 0 1440 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <!-- Onda muy suave en tono crema oscuro/beige en la zona inferior central -->
+      <path
+        d="M 180,82 C 400,68 700,82 960,75 C 1140,70 1300,63 1440,56 L 1440,61 C 1300,68 1140,75 960,81 C 700,88 400,74 180,87 Z"
+        fill="#EBDDC3"
+        opacity="0.65"
+      />
+      <!-- Onda amarilla/dorada sólida en la esquina inferior izquierda -->
+      <path
+        d="M 0,70 C 140,50 300,60 520,90 C 330,75 150,65 0,88 Z"
+        fill="#D4A52A"
+      />
+      <!-- Onda amarilla/dorada delgada en la parte inferior derecha -->
+      <path
+        d="M 720,91 C 940,85 1180,72 1440,54 L 1440,57 C 1180,75 940,88 720,93 Z"
+        fill="#D4A52A"
+      />
+    </svg>
+  </header>
+}

@@ -10,4 +10,5 @@ export class SectionHeaderComponent {
   readonly eyebrow = input.required<string>();
   readonly title = input.required<string>();
   readonly description = input.required<string>();
+  readonly bannerImage = input<string | undefined>(undefined);
 }

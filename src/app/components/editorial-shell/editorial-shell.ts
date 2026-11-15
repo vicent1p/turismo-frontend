@@ -31,6 +31,7 @@ export class EditorialShellComponent implements AfterViewInit, OnDestroy {
   readonly ctaSecondaryRoute = input<string>('/');
   readonly ctaSecondaryFragment = input<string | undefined>(undefined);
   readonly ctaBackLabel = input.required<string>();
+  readonly bannerImage = input<string | undefined>(undefined);
 
   readonly readProgress = signal<number>(0);
 

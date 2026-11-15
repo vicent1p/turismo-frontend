@@ -3,6 +3,31 @@
   width: 100%;
 }
 
+/* Contenedor cuando se usa una imagen de banner completa exacta */
+.section-banner-image-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 240px;
+  background-color: #FAF3E8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.section-banner-full-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1440px;
+  height: auto;
+  max-height: clamp(260px, 24vw, 320px);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
 .section-banner {
   position: relative;
   width: 100%;
