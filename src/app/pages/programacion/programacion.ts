@@ -132,8 +132,8 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
       'Presentaciones de artistas invitados.'
     ],
     desfileArtistRole: 'Artista invitado',
-    desfileArtistName: 'Luister La Voz',
-    desfileArtistPhoto: 'artistas/luister.png',
+    desfileArtistName: 'Luister “La Voz”',
+    desfileArtistPhoto: 'artistas/luister-la-voz.webp',
     sectionFestivalesTitle: 'Festivales y conciertos',
     day12Date: '12 Dic.',
     day12GastroTitle: 'Festival Gastronómico',
@@ -149,9 +149,9 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     ],
     day12MusicLabel: 'Presentaciones Musicales',
     day12Artists: [
-      { name: 'Wilfrido Vargas', photo: 'artistas/wilfredo-vargas.png' },
-      { name: 'Diego Daza', photo: 'artistas/diego-daza.png' },
-      { name: 'Juglares Vallenatos', photo: 'artistas/juglares-vallenatos.png' }
+      { name: 'Wilfrido Vargas', photo: 'artistas/wilfrido-vargas.webp' },
+      { name: 'Diego Daza', photo: 'artistas/diego-daza.webp' },
+      { name: 'Juglares Vallenatos', photo: '' }
     ],
     day13Date: '13 Dic.',
     day13FestTitle: 'Festival de Festivales',
@@ -166,8 +166,8 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     ],
     day13MusicLabel: 'Presentaciones Musicales',
     day13Artists: [
-      { name: 'Carlos Vives', photo: 'artistas/carlos-vives.png' },
-      { name: 'Peter Manjarrés', photo: 'artistas/peter-manjarres.png' }
+      { name: 'Carlos Vives', photo: 'artistas/carlos-vives.webp' },
+      { name: 'Peter Manjarrés', photo: 'artistas/peter-manjarres.webp' }
     ],
     closingTag: 'VIVE LA FIESTA EN PLATO',
     closingTitle: 'Reserva tu estadía para los 400 años',
@@ -224,8 +224,8 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
       'Performances by guest artists.'
     ],
     desfileArtistRole: 'Guest artist',
-    desfileArtistName: 'Luister La Voz',
-    desfileArtistPhoto: 'artistas/luister.png',
+    desfileArtistName: 'Luister “La Voz”',
+    desfileArtistPhoto: 'artistas/luister-la-voz.webp',
     sectionFestivalesTitle: 'Festivals and Concerts',
     day12Date: 'Dec 12',
     day12GastroTitle: 'Gastronomy Festival',
@@ -241,9 +241,9 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     ],
     day12MusicLabel: 'Musical Performances',
     day12Artists: [
-      { name: 'Wilfrido Vargas', photo: 'artistas/wilfredo-vargas.png' },
-      { name: 'Diego Daza', photo: 'artistas/diego-daza.png' },
-      { name: 'Juglares Vallenatos', photo: 'artistas/juglares-vallenatos.png' }
+      { name: 'Wilfrido Vargas', photo: 'artistas/wilfrido-vargas.webp' },
+      { name: 'Diego Daza', photo: 'artistas/diego-daza.webp' },
+      { name: 'Juglares Vallenatos', photo: '' }
     ],
     day13Date: 'Dec 13',
     day13FestTitle: 'Festival of Festivals',
@@ -258,8 +258,8 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     ],
     day13MusicLabel: 'Musical Performances',
     day13Artists: [
-      { name: 'Carlos Vives', photo: 'artistas/carlos-vives.png' },
-      { name: 'Peter Manjarrés', photo: 'artistas/peter-manjarres.png' }
+      { name: 'Carlos Vives', photo: 'artistas/carlos-vives.webp' },
+      { name: 'Peter Manjarrés', photo: 'artistas/peter-manjarres.webp' }
     ],
     closingTag: 'EXPERIENCE THE CELEBRATION IN PLATO',
     closingTitle: 'Book your stay for the 400th anniversary',
