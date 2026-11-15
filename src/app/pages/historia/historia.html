@@ -162,9 +162,9 @@
     }
   </div>
 
-  <!-- 6. CUADRÍCULA DE TODAS LAS ILUSTRACIONES HISTÓRICAS (3 COLUMNAS X FILAS) -->
+  <!-- 6. CUADRÍCULA DE TODAS LAS ILUSTRACIONES HISTÓRICAS (DIBUJOS DIRECTOS, SIN TARJETAS) -->
   <section class="historia-gallery-grid" aria-label="Galería de grabados históricos">
-    @for (cap of content().chapters; track cap.id) {
+    @for (cap of galleryChapters(); track cap.id) {
       <button
         type="button"
         class="gallery-item-card"
