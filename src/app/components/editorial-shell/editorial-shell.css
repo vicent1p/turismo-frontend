@@ -306,36 +306,30 @@
 .lugares-watermark-caiman {
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
-  height: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 105%;
   width: auto;
-  max-width: clamp(220px, 32vw, 380px);
+  max-width: clamp(280px, 36vw, 480px);
   object-fit: contain;
   object-position: left center;
-  opacity: 0.52;
+  opacity: 0.92;
   mix-blend-mode: multiply;
-  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 20% 50%, black 50%, transparent 100%);
-  mask-image: radial-gradient(ellipse 95% 85% at 20% 50%, black 50%, transparent 100%);
-  filter: sepia(0.18) saturate(0.92);
   pointer-events: none;
 }
 
 .lugares-watermark-iglesia {
   position: absolute;
   right: 0;
-  top: 0;
-  bottom: 0;
-  height: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 105%;
   width: auto;
-  max-width: clamp(240px, 35vw, 410px);
+  max-width: clamp(300px, 38vw, 500px);
   object-fit: contain;
   object-position: right center;
-  opacity: 0.50;
+  opacity: 0.90;
   mix-blend-mode: multiply;
-  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 80% 50%, black 50%, transparent 100%);
-  mask-image: radial-gradient(ellipse 95% 85% at 80% 50%, black 50%, transparent 100%);
-  filter: sepia(0.18) saturate(0.92);
   pointer-events: none;
 }
 
@@ -441,8 +435,8 @@
 
   .lugares-watermark-caiman,
   .lugares-watermark-iglesia {
-    opacity: 0.28;
-    max-width: 140px;
+    opacity: 0.55;
+    max-width: 180px;
   }
 }
 
