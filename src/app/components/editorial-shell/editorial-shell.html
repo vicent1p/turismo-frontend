@@ -8,9 +8,10 @@
       [class.sheet-wide]="sheetWidth() === 'wide'"
       [class.sheet-lugares]="activeSection() === 'lugares'"
       [class.sheet-historia]="activeSection() === 'historia'"
+      [class.sheet-programacion]="activeSection() === 'programacion'"
     >
-      @if (activeSection() === 'lugares' || activeSection() === 'historia') {
-        <!-- CABECERA PERSONALIZADA CON MARCAS DE AGUA Y LÍNEA ONDULADA (HISTORIA Y LUGARES) -->
+      @if (activeSection() === 'lugares' || activeSection() === 'historia' || activeSection() === 'programacion') {
+        <!-- CABECERA PERSONALIZADA CON MARCAS DE AGUA Y LÍNEA ONDULADA (HISTORIA, LUGARES Y PROGRAMACIÓN) -->
         <header class="lugares-header-banner">
           <!-- ILUSTRACIONES ARTÍSTICAS DE FONDO -->
           <div class="lugares-banner-watermarks" aria-hidden="true">
@@ -32,7 +33,7 @@
           <div class="lugares-banner-inner">
             <span class="lugares-banner-eyebrow">{{ eyebrow() }}</span>
             <div class="lugares-banner-gold-rule"></div>
-            <h1 class="lugares-banner-title">{{ pageTitle() }}</h1>
+            <h1 class="lugares-banner-title historia-title">{{ pageTitle() }}</h1>
             <div class="lugares-banner-gold-rule"></div>
             <p class="lugares-banner-subtitle">{{ subtitle() }}</p>
           </div>

@@ -315,14 +315,14 @@ describe('App', () => {
     expect(text).toContain('Carlos Vives');
     expect(text).toContain('Peter Manjarrés');
 
-    // Filter to Grandes Festivales (2 mega cards)
+    // Filter by date pills (8 pills matching official design)
     const filterBtns = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.prog-filter-pill'));
-    expect(filterBtns.length).toBe(4);
-    filterBtns[3].click();
+    expect(filterBtns.length).toBe(8);
+    filterBtns[6].click();
     fixture.detectChanges();
-    expect(compiled.querySelectorAll('.prog-card, .festival-mega-card').length).toBe(2);
+    expect(compiled.querySelectorAll('.prog-card, .festival-mega-card').length).toBe(1);
 
-    // Back to Toda la agenda (7 cards)
+    // Back to Todos (7 cards)
     filterBtns[0].click();
     fixture.detectChanges();
     expect(compiled.querySelectorAll('.prog-card, .festival-mega-card').length).toBe(7);

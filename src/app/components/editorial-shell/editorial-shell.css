@@ -266,7 +266,8 @@
    CABECERA DEDICADA DE LUGARES Y EXPERIENCIAS (RÉPLICA EXACTA DISEÑO OFICIAL PÁGINA 5)
    ========================================================================== */
 .historia-sheet.sheet-lugares,
-.historia-sheet.sheet-historia {
+.historia-sheet.sheet-historia,
+.historia-sheet.sheet-programacion {
   position: relative;
   overflow: hidden;
   padding-top: 0;
