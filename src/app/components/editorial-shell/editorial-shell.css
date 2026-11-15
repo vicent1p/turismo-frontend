@@ -144,31 +144,46 @@
 
 .historia-closing-cta {
   margin-top: clamp(48px, 6vw, 68px);
-  padding: clamp(36px, 4.6vw, 60px) clamp(22px, 4vw, 48px);
+  padding: clamp(38px, 5vw, 64px) clamp(22px, 4vw, 48px);
   border-radius: 28px;
   text-align: center;
-  background:
-    linear-gradient(180deg, rgba(253, 248, 238, 0.82) 0%, rgba(251, 242, 230, 0.88) 100%),
-    url('/banner-mosaico-itinerario.webp') center center / cover no-repeat;
-  border: 1.5px solid rgba(200, 150, 46, 0.48);
-  box-shadow:
-    0 18px 44px rgba(96, 65, 24, 0.12),
-    0 6px 18px rgba(22, 84, 45, 0.06);
   position: relative;
   overflow: hidden;
-}
-
-.historia-sheet.sheet-historia .historia-closing-cta {
-  background:
-    linear-gradient(180deg, rgba(253, 248, 238, 0.82) 0%, rgba(251, 242, 230, 0.88) 100%),
-    url('/banner-mosaico-itinerario.webp') center center / cover no-repeat;
-  border: 1.5px solid rgba(200, 150, 46, 0.48);
-  border-radius: 28px;
+  border: 1.5px solid rgba(200, 150, 46, 0.52);
   box-shadow:
     0 18px 44px rgba(96, 65, 24, 0.12),
     0 6px 18px rgba(22, 84, 45, 0.06);
-  margin-top: 48px;
-  padding: clamp(36px, 4.6vw, 60px) clamp(22px, 4vw, 48px);
+  background-color: #fbf2e9;
+}
+
+.historia-closing-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/banner-mosaico-itinerario.webp') center center / cover no-repeat;
+  opacity: 0.95;
+  filter: contrast(1.15) saturate(1.1);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.historia-closing-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 62% 75% at 50% 50%,
+    rgba(253, 249, 242, 0.62) 0%,
+    rgba(253, 249, 242, 0.20) 60%,
+    rgba(253, 249, 242, 0) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.historia-closing-cta > * {
+  position: relative;
+  z-index: 2;
 }
 
 .closing-tag {
