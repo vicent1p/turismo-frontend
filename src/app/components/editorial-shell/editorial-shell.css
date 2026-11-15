@@ -267,7 +267,8 @@
    ========================================================================== */
 .historia-sheet.sheet-lugares,
 .historia-sheet.sheet-historia,
-.historia-sheet.sheet-programacion {
+.historia-sheet.sheet-programacion,
+.historia-sheet.sheet-cultura {
   position: relative;
   overflow: hidden;
   padding-top: 0;
