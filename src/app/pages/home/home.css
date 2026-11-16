@@ -311,7 +311,7 @@
   padding-left: clamp(24px, 4.5vw, 64px);
   padding-right: clamp(24px, 4.5vw, 64px);
   display: grid;
-  grid-template-columns: minmax(360px, 46%) minmax(0, 54%);
+  grid-template-columns: minmax(320px, 42%) minmax(0, 58%);
   gap: clamp(24px, 3.5vw, 56px);
   align-items: center;
   position: relative;
@@ -320,7 +320,7 @@
 
 .raices-photo-wrap {
   width: 100%;
-  max-width: 540px;
+  max-width: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -330,9 +330,9 @@
 
 .raices-img-arch {
   width: 100%;
-  max-width: 530px;
+  max-width: 470px;
   height: auto;
-  max-height: 440px;
+  max-height: 420px;
   object-fit: contain;
   display: block;
 }
