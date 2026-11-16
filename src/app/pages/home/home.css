@@ -28,7 +28,7 @@
   position: relative;
   overflow: hidden;
   background-color: #FAF3E8;
-  padding: clamp(24px, 3vw, 42px) 0 clamp(14px, 1.8vw, 22px);
+  padding: clamp(14px, 2vw, 26px) 0 clamp(10px, 1.4vw, 18px);
   width: 100%;
 }
 
@@ -38,8 +38,8 @@
   padding-left: clamp(24px, 5.5vw, 84px);
   padding-right: clamp(16px, 4vw, 56px);
   display: grid;
-  grid-template-columns: minmax(0, 52%) minmax(0, 48%);
-  gap: clamp(16px, 2.5vw, 40px);
+  grid-template-columns: minmax(0, 48%) minmax(0, 52%);
+  gap: clamp(16px, 2vw, 36px);
   align-items: start;
   box-sizing: border-box;
   min-height: auto;
@@ -54,6 +54,7 @@
   text-align: left;
   width: 100%;
   padding: 0;
+  margin-top: -4px;
 }
 
 .hero-kicker-badge {
@@ -208,13 +209,15 @@
 
 .hero-composite-artwork {
   width: 100%;
-  max-width: 620px;
+  max-width: 740px;
   height: auto;
-  max-height: clamp(340px, 35vw, 460px);
+  max-height: clamp(380px, 42vw, 530px);
   object-fit: contain;
   object-position: top right;
   display: block;
   mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse 92% 90% at 50% 50%, #000000 65%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(ellipse 92% 90% at 50% 50%, #000000 65%, rgba(0, 0, 0, 0) 100%);
   pointer-events: none;
 }
 
