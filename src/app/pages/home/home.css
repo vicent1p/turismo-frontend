@@ -607,6 +607,13 @@
   color: #16542d;
 }
 
+.parchment-date {
+  display: block;
+  white-space: nowrap;
+  font-size: 1.02rem;
+  margin-top: 2px;
+}
+
 .parchment-card h3::after {
   content: '';
   display: block;
