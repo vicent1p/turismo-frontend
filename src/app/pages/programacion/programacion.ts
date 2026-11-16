@@ -54,6 +54,8 @@ export interface ProgramacionLocaleContent {
   nocheBlancaDate: string;
   nocheBlancaTitle: string;
   nocheBlancaQuote: string;
+  nocheBlancaLocation: string;
+  nocheBlancaArtistRole: string;
   desfileDate: string;
   desfileTitle: string;
   desfileDesc: string;
@@ -122,10 +124,12 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     sectionTradicionTitle: 'Tradición y cultura',
     cabalgataDate: '5 Dic.',
     cabalgataTitle: 'Gran Cabalgata 400 Años',
-    cabalgataDesc: 'Recorrido tradicional por las calles de Plato',
+    cabalgataDesc: 'Recorrido tradicional por las calles de Plato, salida desde la Espinoza',
     nocheBlancaDate: '10 Dic.',
     nocheBlancaTitle: 'Noche Blanca Plato 400 Años',
     nocheBlancaQuote: '“Legado y honor Plateño”',
+    nocheBlancaLocation: 'Parque Simón Bolívar (Frente a la iglesia Inmaculada Concepción)',
+    nocheBlancaArtistRole: 'Artista invitado',
     desfileDate: '11 Dic.',
     desfileTitle: 'Segundo desfile de tradición\ndel hombre caimán',
     desfileDesc: 'Recorrido tradicional por\nlas calles de Plato',
@@ -221,6 +225,8 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     nocheBlancaDate: 'Dec 10',
     nocheBlancaTitle: 'Plato 400 Years White Night',
     nocheBlancaQuote: '“Plateño Legacy and Honor”',
+    nocheBlancaLocation: 'Simón Bolívar Park (In front of the Immaculate Conception Church)',
+    nocheBlancaArtistRole: 'Guest artist',
     desfileDate: 'Dec 11',
     desfileTitle: '2nd Alligator Man Tradition Parade',
     desfileDesc: 'Traditional parade through the streets of Plato',

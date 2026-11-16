@@ -306,6 +306,40 @@
   line-height: 1.38;
 }
 
+.event-location-desc {
+  margin: 8px 0 0 16px;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.92rem;
+  color: #1a3e26;
+  font-weight: 600;
+  line-height: 1.38;
+}
+
+.noche-blanca-artist-block {
+  margin: 12px 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.noche-blanca-artist-label {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #16542d;
+  letter-spacing: 0.01em;
+}
+
+.noche-blanca-artist-img {
+  width: clamp(76px, 9vw, 92px);
+  height: clamp(76px, 9vw, 92px);
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+}
+
 .event-bullet-list {
   list-style: none;
   padding: 0;

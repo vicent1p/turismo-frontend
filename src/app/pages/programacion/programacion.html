@@ -158,6 +158,17 @@
                   <h3 class="event-noble-title">{{ content().nocheBlancaTitle }}</h3>
                 </div>
                 <p class="event-quote-desc">{{ content().nocheBlancaQuote }}</p>
+                <p class="event-location-desc">{{ content().nocheBlancaLocation }}</p>
+
+                <div class="noche-blanca-artist-block">
+                  <span class="noche-blanca-artist-label">{{ content().nocheBlancaArtistRole }}</span>
+                  <img
+                    src="/foto_transparente.png"
+                    [alt]="content().nocheBlancaArtistRole"
+                    class="noche-blanca-artist-img"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </article>
