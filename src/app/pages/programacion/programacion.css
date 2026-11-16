@@ -306,8 +306,15 @@
   line-height: 1.38;
 }
 
+.novena-card,
 .cabalgata-card {
   width: 100%;
+}
+
+.wide-col-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .event-location-row.wide-location {
