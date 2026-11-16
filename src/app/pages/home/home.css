@@ -28,7 +28,7 @@
   position: relative;
   overflow: hidden;
   background-color: #FAF3E8;
-  padding: clamp(14px, 2vw, 26px) 0 clamp(10px, 1.4vw, 18px);
+  padding: clamp(32px, 3.5vw, 48px) 0 clamp(16px, 2vw, 24px);
   width: 100%;
 }
 
@@ -38,9 +38,9 @@
   padding-left: clamp(24px, 5.5vw, 84px);
   padding-right: clamp(16px, 4vw, 56px);
   display: grid;
-  grid-template-columns: minmax(0, 48%) minmax(0, 52%);
+  grid-template-columns: minmax(0, 52%) minmax(0, 48%);
   gap: clamp(16px, 2vw, 36px);
-  align-items: start;
+  align-items: center;
   box-sizing: border-box;
   min-height: auto;
 }
@@ -54,7 +54,7 @@
   text-align: left;
   width: 100%;
   padding: 0;
-  margin-top: -4px;
+  margin-top: 0;
 }
 
 .hero-kicker-badge {
@@ -113,23 +113,25 @@
 .hero-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
+  gap: 10px;
+  flex-wrap: nowrap;
+  margin-top: 4px;
 }
 
 .hero-actions .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.94rem;
+  font-size: clamp(0.84rem, 0.92vw, 0.92rem);
   font-weight: 600;
-  padding: 10px 24px;
-  min-height: 42px;
+  padding: 9px 18px;
+  min-height: 40px;
   border-radius: 999px;
   text-decoration: none;
   box-sizing: border-box;
+  white-space: nowrap;
   transition: all 0.22s ease;
   cursor: pointer;
 }
@@ -1438,6 +1440,7 @@
   }
 
   .hero-actions {
+    flex-wrap: wrap;
     justify-content: center;
   }
 
