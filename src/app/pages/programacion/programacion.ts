@@ -122,13 +122,13 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     filters: [
       { id: 'all', label: 'Todos', count: null },
       { id: '20nov', label: '20 Nov', count: 1 },
-      { id: '29nov-7dic', label: '29 Nov - 7 Dic', count: 1 },
-      { id: '5dic', label: '5 Dic', count: 1 },
-      { id: '8dic', label: '8 Dic', count: 2 },
-      { id: '10dic', label: '10 Dic', count: 1 },
-      { id: '11dic', label: '11 Dic', count: 3 },
-      { id: '12dic', label: '12 Dic', count: 5 },
-      { id: '13dic', label: '13 Dic', count: 6 }
+      { id: '29nov-7dic', label: '29 Nov - 7 Dic', count: 2 },
+      { id: '5dic', label: '5 Dic', count: 3 },
+      { id: '8dic', label: '8 Dic', count: 4 },
+      { id: '10dic', label: '10 Dic', count: 5 },
+      { id: '11dic', label: '11 Dic', count: 6 },
+      { id: '12dic', label: '12 Dic', count: 7 },
+      { id: '13dic', label: '13 Dic', count: 8 }
     ],
     sectionAperturaTitle: 'Apertura y Memoria',
     lanzamientoDate: '20 Nov.',
@@ -238,13 +238,13 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     filters: [
       { id: 'all', label: 'All', count: null },
       { id: '20nov', label: 'Nov 20', count: 1 },
-      { id: '29nov-7dic', label: 'Nov 29 - Dec 7', count: 1 },
-      { id: '5dic', label: 'Dec 5', count: 1 },
-      { id: '8dic', label: 'Dec 8', count: 2 },
-      { id: '10dic', label: 'Dec 10', count: 1 },
-      { id: '11dic', label: 'Dec 11', count: 3 },
-      { id: '12dic', label: 'Dec 12', count: 5 },
-      { id: '13dic', label: 'Dec 13', count: 6 }
+      { id: '29nov-7dic', label: 'Nov 29 - Dec 7', count: 2 },
+      { id: '5dic', label: 'Dec 5', count: 3 },
+      { id: '8dic', label: 'Dec 8', count: 4 },
+      { id: '10dic', label: 'Dec 10', count: 5 },
+      { id: '11dic', label: 'Dec 11', count: 6 },
+      { id: '12dic', label: 'Dec 12', count: 7 },
+      { id: '13dic', label: 'Dec 13', count: 8 }
     ],
     sectionAperturaTitle: 'Opening and Memory',
     lanzamientoDate: 'Nov 20',
