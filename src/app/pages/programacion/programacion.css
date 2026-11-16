@@ -340,7 +340,7 @@
 
 .event-location-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 7px;
   margin: 10px 0 0 16px;
   color: #1a3e26;
@@ -350,9 +350,15 @@
   line-height: 1.35;
 }
 
+.event-location-row.festival-location {
+  margin: 8px 0 0 16px;
+  font-size: 0.90rem;
+}
+
 .location-pin-icon {
   flex-shrink: 0;
   color: #c99b38;
+  margin-top: 2px;
 }
 
 .event-location-text {

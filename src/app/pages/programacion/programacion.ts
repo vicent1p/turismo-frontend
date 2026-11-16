@@ -76,6 +76,7 @@ export interface ProgramacionLocaleContent {
   day12Date: string;
   day12GastroTitle: string;
   day12GastroDesc: string;
+  day12Location: string;
   day12FestTitle: string;
   day12FestWinnersKicker: string;
   day12Winners: ReadonlyArray<string>;
@@ -166,6 +167,7 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     day12Date: '12 Dic.',
     day12GastroTitle: 'Festival Gastronómico',
     day12GastroDesc: 'Show 400 Años de nuestra Historia e Identidad',
+    day12Location: 'Parque Simón Bolívar (Frente a la iglesia Inmaculada Concepción)',
     day12FestTitle: 'Festival de Festivales',
     day12FestWinnersKicker: '5 ganadores de festivales del Magdalena:',
     day12Winners: [
@@ -179,7 +181,7 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     day12Artists: [
       { name: 'Wilfrido Vargas', photo: 'artistas/wilfrido-vargas.webp' },
       { name: 'Diego Daza', photo: 'artistas/diego-daza.webp' },
-      { name: 'Juglares Vallenatos', photo: '' }
+      { name: 'Haffit David', photo: '/david.png' }
     ],
     day13Date: '13 Dic.',
     day13FestTitle: 'Festival de Festivales',
@@ -275,6 +277,7 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     day12Date: 'Dec 12',
     day12GastroTitle: 'Gastronomy Festival',
     day12GastroDesc: '400 Years of Our History and Identity Live Show',
+    day12Location: 'Simón Bolívar Park (In front of the Immaculate Conception Church)',
     day12FestTitle: 'Festival of Festivals',
     day12FestWinnersKicker: '5 Winners from Magdalena Regional Festivals:',
     day12Winners: [
@@ -288,7 +291,7 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     day12Artists: [
       { name: 'Wilfrido Vargas', photo: 'artistas/wilfrido-vargas.webp' },
       { name: 'Diego Daza', photo: 'artistas/diego-daza.webp' },
-      { name: 'Juglares Vallenatos', photo: '' }
+      { name: 'Haffit David', photo: '/david.png' }
     ],
     day13Date: 'Dec 13',
     day13FestTitle: 'Festival of Festivals',
