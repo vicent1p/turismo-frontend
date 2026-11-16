@@ -71,44 +71,54 @@
 .lugares-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-card-gap, 20px);
-  margin-bottom: 28px;
+  gap: 20px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 28px;
+  align-items: stretch;
 }
 
-.lugar-card {
+/* TARJETA DE HOTEL / LUGAR (MEDIDAS Y ESTILO EXACTO DE HOME) */
+.lugar-card,
+.hotel-card {
+  background: #fdfaf5;
+  border: 1.5px solid #dec184;
+  border-radius: 16px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: #fffdf8;
-  border: var(--card-border, 1px solid rgba(200, 150, 46, 0.36));
-  border-radius: var(--card-radius, 14px);
-  overflow: hidden;
-  box-shadow: var(--card-shadow, 0 6px 18px rgba(96, 65, 24, 0.08));
+  box-shadow: 0 8px 20px rgba(18, 67, 54, 0.07);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  height: 100%;
   cursor: pointer;
-  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.24s ease,
-    border-color 0.24s ease;
   outline: none;
 }
 
-.lugar-card:hover {
+.lugar-card:hover,
+.hotel-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(200, 150, 46, 0.75);
-  box-shadow: var(--card-shadow-hover, 0 14px 28px rgba(96, 65, 24, 0.14));
+  box-shadow: 0 14px 28px rgba(18, 67, 54, 0.14);
+  border-color: #c8962e;
 }
 
-.lugar-card:focus-visible {
+.lugar-card:focus-visible,
+.hotel-card:focus-visible {
   outline: 2px solid #c8962e;
   outline-offset: 3px;
 }
 
-/* FOTO Y CARRUSEL DENTRO DE LA TARJETA */
-.lugar-thumb-wrap {
+/* FOTO DEL LUGAR (CARRUSEL CON MARCO INTERIOR DORADO INFERIOR) */
+.lugar-thumb-wrap,
+.card-photo-hero {
   position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
+  height: 155px;
+  width: calc(100% - 16px);
+  margin: 8px 8px 0;
+  border-radius: 11px;
+  border-bottom: 2px solid #d4a238;
+  background: #e2e8f0;
   overflow: hidden;
-  background: #eadfc8;
-  border-bottom: 1px solid rgba(200, 150, 46, 0.22);
+  flex-shrink: 0;
 }
 
 .lugar-thumb {
@@ -116,41 +126,66 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.3s ease;
 }
 
 .lugar-card:hover .lugar-thumb {
-  transform: scale(1.04);
+  transform: scale(1.02);
 }
 
-.lugar-thumb-placeholder {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  font-family: 'Spectral', Georgia, serif;
-  font-size: 0.85rem;
-  color: #7d6b52;
-  background: linear-gradient(135deg, #f3ead7 0%, #e7dac0 100%);
-}
-
-/* Calificación dorada en la esquina superior izquierda */
-.lugar-stars-badge {
+/* PLACEHOLDER CUANDO NO HAY FOTOS (ESTILO EXACTO REFERENCIA) */
+.photo-placeholder {
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #334155;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.placeholder-icon {
+  font-size: 0.95rem;
+}
+
+/* BADGES FLOTANTES ARRIBA A LA IZQUIERDA */
+.photo-badges-overlay {
+  position: absolute;
+  top: 34px;
+  left: 12px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lugar-thumb-wrap.has-photos .photo-badges-overlay {
+  top: 12px;
+}
+
+.card-stars-wrap {
+  position: static;
+}
+
+.badge-rating-gold {
   display: inline-flex;
   align-items: center;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: #d49c28;
-  color: #ffffff;
+  gap: 4px;
+  background: rgba(255, 253, 248, 0.95);
+  border: 1px solid #d4a238;
+  color: #b88628;
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
-  z-index: 2;
+  font-size: 0.74rem;
+  padding: 2px 9px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 /* Flechas de carrusel en tarjeta */
@@ -158,26 +193,28 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: none;
-  background: rgba(20, 17, 12, 0.6);
-  color: #ffffff;
-  font-size: 1.15rem;
+  background: rgba(255, 255, 255, 0.92);
+  color: #124336;
+  font-size: 1.3rem;
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 3;
+  z-index: 5;
   opacity: 0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
   transition: opacity 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
 }
 
 .card-carousel-arrow:hover {
-  background: rgba(20, 17, 12, 0.88);
-  transform: translateY(-50%) scale(1.1);
+  background: #124336;
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.08);
 }
 
 .card-carousel-arrow.prev {
@@ -200,48 +237,50 @@
   transform: translateX(-50%);
   display: flex;
   gap: 5px;
-  z-index: 3;
+  z-index: 4;
 }
 
 .card-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .card-dot.active {
-  background: #f3ce6f;
-  transform: scale(1.3);
+  background: #ffffff;
+  width: 14px;
+  border-radius: 999px;
 }
 
-/* 3. CUERPO DE LA TARJETA */
-.lugar-body {
-  padding: var(--space-card-padding, 16px 18px 20px);
+/* 3. CUERPO DE LA TARJETA (ESTILO HOME - EXACTO) */
+.lugar-body,
+.card-body {
+  padding: 10px 14px 14px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   flex: 1;
 }
 
-.lugar-name.hotel-nombre {
-  margin: 0 0 10px;
+.lugar-name.hotel-nombre,
+.hotel-nombre {
+  margin: 0 0 6px;
   font-family: 'Spectral', Georgia, serif;
-  font-size: 1.25rem;
-  line-height: 1.25;
-  color: #16542d;
-  font-weight: 700;
+  font-size: 1.08rem;
+  line-height: 1.22;
+  color: #12492a;
+  font-weight: 600;
   text-align: center;
 }
 
-/* Fila de servicios destacados con iconos dorados sin círculo */
+/* Servicios destacados con iconos dorados verticales (icono arriba, texto abajo) */
 .instalaciones-block {
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   display: flex;
   flex-direction: column;
+  gap: 4px;
   align-items: center;
   width: 100%;
 }
@@ -250,14 +289,16 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 8px 16px;
-  align-items: center;
+  gap: 6px 12px;
+  align-items: flex-start;
+  margin: 2px 0 6px;
 }
 
 .chip {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 2px;
   text-align: center;
   background: transparent;
   border: none;
@@ -265,33 +306,35 @@
 }
 
 .chip-icon {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
+  width: 22px;
+  height: 22px;
+  color: #cfa035;
 }
 
 .chip-label {
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: #3d4a42;
+  color: #556860;
 }
 
-/* Botón Ver Ubicación */
+/* Botón Ver Ubicación centrado */
 .btn-card-ubicacion {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin: 4px auto 14px;
+  gap: 6px;
+  margin: 4px auto 8px;
   width: fit-content;
-  border: 1px solid #c8962e;
+  border: 1px solid #d4a238;
   border-radius: 999px;
-  padding: 6px 22px;
-  color: #16542d;
+  padding: 4px 16px;
+  color: #12492a;
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.86rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-decoration: none;
   background: #ffffff;
@@ -300,9 +343,8 @@
 
 .btn-card-ubicacion:hover {
   background: #fbf7ee;
-  border-color: #16542d;
+  border-color: #124336;
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(200, 150, 46, 0.2);
 }
 
 .btn-card-ubicacion .btn-arrow {
@@ -313,14 +355,14 @@
   transform: translateX(3px);
 }
 
-/* Fila de redes sociales con círculos dorados */
+/* Fila de redes sociales con círculos dorados uniformes */
 .cuadros-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
+  gap: 7px;
   margin-top: auto;
-  padding-top: 4px;
+  padding-top: 2px;
   width: 100%;
 }
 

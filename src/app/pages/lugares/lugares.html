@@ -44,7 +44,7 @@
     <div class="lugares-grid">
       @for (item of visibleItems(); track item.id) {
         <article
-          class="lugar-card hotel-card"
+          class="hotel-card lugar-card"
           tabindex="0"
           role="button"
           [attr.aria-label]="item.nombre + ' - ' + content().viewDetail"
@@ -52,7 +52,7 @@
           (keydown.enter)="abrirDetalle(item)"
         >
           <!-- 1. FOTO PRINCIPAL CON CARRUSEL Y BADGE DE ESTRELLAS -->
-          <div class="lugar-thumb-wrap">
+          <div class="card-photo-hero lugar-thumb-wrap" [class.has-photos]="item.fotos && item.fotos.length > 0">
             @if (item.fotos && item.fotos.length > 0) {
               <img
                 [src]="getCardPhoto(item)"
@@ -88,22 +88,31 @@
                 </div>
               }
             } @else {
-              <div class="lugar-thumb-placeholder">{{ content().noImage }}</div>
+              <!-- Placeholder cuando no hay fotos aún -->
+              <div class="photo-placeholder">
+                <span class="placeholder-icon">📷</span>
+                <span class="placeholder-text">{{ content().noImage }}</span>
+              </div>
             }
 
-            <!-- Badge de calificación dorado en esquina superior izquierda -->
-            <span class="lugar-stars-badge" [attr.aria-label]="(item.estrellas || 0) + ' estrellas'">
-              ★ {{ item.estrellas || 4.5 }}/5
-            </span>
+            <!-- Badges overlay (estrellas estilo home/pdf) -->
+            <div class="photo-badges-overlay">
+              <div class="card-stars-wrap">
+                <span class="badge-rating-gold" [attr.aria-label]="(item.estrellas || 3) + ' estrellas'">
+                  ★ {{ item.estrellas || 3 }} / 5
+                </span>
+              </div>
+            </div>
           </div>
 
           <!-- 2. CUERPO DE LA TARJETA -->
-          <div class="lugar-body card-body">
+          <div class="card-body lugar-body">
             <!-- Título centrado en verde oscuro y tipografía serif -->
-            <h3 class="lugar-name hotel-nombre">{{ item.nombre }}</h3>
+            <h3 class="hotel-nombre lugar-name">{{ item.nombre }}</h3>
 
-            <!-- Servicios destacados con iconos de trazo dorado simple SIN círculo -->
+            <!-- Servicios destacados con iconos de trazo dorado simple vertical -->
             <div class="instalaciones-block">
+              <span class="instalaciones-label sr-only">Instalaciones</span>
               <div class="chips">
                 @for (serv of getHotelServicios(item); track $index) {
                   <div class="chip">
