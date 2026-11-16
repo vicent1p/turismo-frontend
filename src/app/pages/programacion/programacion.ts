@@ -70,6 +70,7 @@ export interface ProgramacionLocaleContent {
   desfileArtistRole: string;
   desfileArtistName: string;
   desfileArtistPhoto: string;
+  desfileArtists: ReadonlyArray<ArtistItem>;
   sectionFestivalesTitle: string;
   day12Date: string;
   day12GastroTitle: string;
@@ -151,9 +152,14 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
       'Noche de artistas locales.',
       'Presentaciones de artistas invitados.'
     ],
-    desfileArtistRole: 'Artista invitado',
+    desfileArtistRole: 'Artistas invitados',
     desfileArtistName: 'Luister\n“La Voz”',
     desfileArtistPhoto: 'artistas/luister-la-voz.webp',
+    desfileArtists: [
+      { name: 'Luister\n“La Voz”', photo: '/artistas/luister-la-voz.webp' },
+      { name: 'El Meke', photo: '/meke.png' },
+      { name: 'Valeria Lozano', photo: '/valeria.png' }
+    ],
     sectionFestivalesTitle: 'Festivales y conciertos',
     day12Date: '12 Dic.',
     day12GastroTitle: 'Festival Gastronómico',
@@ -254,9 +260,14 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
       'Night of local artists.',
       'Performances by guest artists.'
     ],
-    desfileArtistRole: 'Guest artist',
+    desfileArtistRole: 'Guest artists',
     desfileArtistName: 'Luister “La Voz”',
     desfileArtistPhoto: 'artistas/luister-la-voz.webp',
+    desfileArtists: [
+      { name: 'Luister “La Voz”', photo: '/artistas/luister-la-voz.webp' },
+      { name: 'El Meke', photo: '/meke.png' },
+      { name: 'Valeria Lozano', photo: '/valeria.png' }
+    ],
     sectionFestivalesTitle: 'Festivals and Concerts',
     day12Date: 'Dec 12',
     day12GastroTitle: 'Gastronomy Festival',

@@ -237,14 +237,18 @@
 
           <div class="wide-col-artist">
             <span class="artist-guest-header-label">{{ content().desfileArtistRole }}</span>
-            <div class="artist-guest-profile-row">
-              <span class="artist-guest-name-col pre-line">{{ content().desfileArtistName }}</span>
-              <img
-                [src]="content().desfileArtistPhoto"
-                [alt]="content().desfileArtistName"
-                class="artist-featured-cutout"
-                loading="lazy"
-              />
+            <div class="artist-guests-stack">
+              @for (art of content().desfileArtists; track art.name) {
+                <div class="artist-guest-profile-row">
+                  <span class="artist-guest-name-col pre-line">{{ art.name }}</span>
+                  <img
+                    [src]="art.photo"
+                    [alt]="art.name"
+                    class="artist-featured-cutout sm"
+                    loading="lazy"
+                  />
+                </div>
+              }
             </div>
           </div>
         </article>

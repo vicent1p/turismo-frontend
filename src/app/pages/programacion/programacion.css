@@ -456,10 +456,25 @@
   font-size: 1.05rem;
   font-weight: 700;
   color: #16542d;
-  margin-bottom: 6px;
-  margin-right: 32px;
+  margin-bottom: 8px;
   text-align: right;
   width: 100%;
+}
+
+.artist-guests-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.artist-featured-cutout.sm {
+  height: clamp(52px, 6vw, 64px);
+  width: auto;
+  max-width: 72px;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.12));
 }
 
 .artist-guest-profile-row {
