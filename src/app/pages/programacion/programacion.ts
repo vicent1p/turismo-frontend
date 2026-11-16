@@ -4,6 +4,7 @@ import { AppLang, LanguageService } from '../../services/language.service';
 
 export type ProgramacionFilterId =
   | 'all'
+  | '20nov'
   | '29nov-7dic'
   | '5dic'
   | '8dic'
@@ -45,6 +46,10 @@ export interface ProgramacionLocaleContent {
   metrics: ReadonlyArray<MetricPill>;
   filters: ReadonlyArray<FilterPill>;
   sectionAperturaTitle: string;
+  lanzamientoDate: string;
+  lanzamientoTitle: string;
+  lanzamientoVenue: string;
+  lanzamientoCity: string;
   novenaDate: string;
   novenaTitle: string;
   novenaDesc: string;
@@ -116,7 +121,8 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     ],
     filters: [
       { id: 'all', label: 'Todos', count: null },
-      { id: '29nov-7dic', label: '29 Nov - 7 Dic', count: 3 },
+      { id: '20nov', label: '20 Nov', count: 1 },
+      { id: '29nov-7dic', label: '29 Nov - 7 Dic', count: 1 },
       { id: '5dic', label: '5 Dic', count: 1 },
       { id: '8dic', label: '8 Dic', count: 2 },
       { id: '10dic', label: '10 Dic', count: 1 },
@@ -125,6 +131,10 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
       { id: '13dic', label: '13 Dic', count: 6 }
     ],
     sectionAperturaTitle: 'Apertura y Memoria',
+    lanzamientoDate: '20 Nov.',
+    lanzamientoTitle: 'Lanzamiento de los\nPlato 400 Años',
+    lanzamientoVenue: 'Casa del Libro',
+    lanzamientoCity: 'Santa Marta',
     novenaDate: '29 Nov. - 7 Dic',
     novenaTitle: 'Novena en honor a\nLa Virgen Inmaculada\nConcepción',
     novenaDesc: 'Recorrido tradicional por las calles de Plato',
@@ -227,7 +237,8 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     ],
     filters: [
       { id: 'all', label: 'All', count: null },
-      { id: '29nov-7dic', label: 'Nov 29 - Dec 7', count: 3 },
+      { id: '20nov', label: 'Nov 20', count: 1 },
+      { id: '29nov-7dic', label: 'Nov 29 - Dec 7', count: 1 },
       { id: '5dic', label: 'Dec 5', count: 1 },
       { id: '8dic', label: 'Dec 8', count: 2 },
       { id: '10dic', label: 'Dec 10', count: 1 },
@@ -236,6 +247,10 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
       { id: '13dic', label: 'Dec 13', count: 6 }
     ],
     sectionAperturaTitle: 'Opening and Memory',
+    lanzamientoDate: 'Nov 20',
+    lanzamientoTitle: 'Official Launch\nPlato 400 Years',
+    lanzamientoVenue: 'Casa del Libro',
+    lanzamientoCity: 'Santa Marta',
     novenaDate: 'Nov 29 - Dec 7',
     novenaTitle: 'Novena in honor of Our Lady of the Immaculate Conception',
     novenaDesc: 'Traditional procession through the streets of Plato',
@@ -339,6 +354,11 @@ export class ProgramacionComponent {
   readonly activeFilter = signal<ProgramacionFilterId>('all');
 
   // Filter conditions for each event/block
+  readonly showLanzamiento = computed(() => {
+    const f = this.activeFilter();
+    return f === 'all' || f === '20nov';
+  });
+
   readonly showNovena = computed(() => {
     const f = this.activeFilter();
     return f === 'all' || f === '29nov-7dic';
@@ -374,7 +394,9 @@ export class ProgramacionComponent {
     return f === 'all' || f === '13dic';
   });
 
-  readonly showAperturaSection = computed(() => this.showNovena() || this.showMisa());
+  readonly showAperturaSection = computed(
+    () => this.showLanzamiento() || this.showNovena() || this.showMisa()
+  );
   readonly showTradicionSection = computed(
     () => this.showCabalgata() || this.showNocheBlanca() || this.showDesfile()
   );

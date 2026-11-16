@@ -70,24 +70,58 @@
     <section class="prog-section" aria-labelledby="sec-apertura-title">
       <h2 id="sec-apertura-title" class="prog-section-title">{{ content().sectionAperturaTitle }}</h2>
 
-      <!-- Evento 1: Novena Inmaculada Concepción (29 Nov. - 7 Dic.) -->
-      @if (showNovena()) {
-        <article class="prog-mosaic-card novena-card">
-          <div class="card-inner-flex">
-            <div class="badge-col">
-              <span class="gold-sun-badge" aria-hidden="true">
-                <img src="/programacion/prog-event-novena.png" alt="" class="badge-icon-img" width="38" height="38" />
-              </span>
-            </div>
-            <div class="content-col">
-              <div class="bracket-gold">
-                <span class="event-date-gold">{{ content().novenaDate }}</span>
-                <h3 class="event-noble-title pre-line">{{ content().novenaTitle }}</h3>
+      <!-- Fila superior: Cuadrícula de 2 columnas para 20 Nov. y 29 Nov. - 7 Dic. -->
+      @if (showLanzamiento() || showNovena()) {
+        <div class="prog-grid-2col apertura-cards-grid">
+          <!-- Evento 1: Lanzamiento de los Plato 400 Años (20 Nov.) -->
+          @if (showLanzamiento()) {
+            <article class="prog-mosaic-card lanzamiento-card">
+              <div class="card-inner-flex">
+                <div class="badge-col">
+                  <span class="gold-sun-badge" aria-hidden="true">
+                    <img src="/programacion/prog-metric-2-agenda.png" alt="" class="badge-icon-img" width="38" height="38" />
+                  </span>
+                </div>
+                <div class="content-col">
+                  <div class="bracket-gold">
+                    <span class="event-date-gold">{{ content().lanzamientoDate }}</span>
+                    <h3 class="event-noble-title pre-line">{{ content().lanzamientoTitle }}</h3>
+                  </div>
+                  <div class="event-location-row festival-location">
+                    <svg class="location-pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <div class="event-location-stacked">
+                      <span class="event-location-venue">{{ content().lanzamientoVenue }}</span>
+                      <span class="event-location-city">{{ content().lanzamientoCity }}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p class="event-sub-desc">{{ content().novenaDesc }}</p>
-            </div>
-          </div>
-        </article>
+            </article>
+          }
+
+          <!-- Evento 2: Novena Inmaculada Concepción (29 Nov. - 7 Dic.) -->
+          @if (showNovena()) {
+            <article class="prog-mosaic-card novena-card">
+              <div class="card-inner-flex">
+                <div class="badge-col">
+                  <span class="gold-sun-badge" aria-hidden="true">
+                    <img src="/programacion/prog-event-novena.png" alt="" class="badge-icon-img" width="38" height="38" />
+                  </span>
+                </div>
+                <div class="content-col">
+                  <div class="bracket-gold">
+                    <span class="event-date-gold">{{ content().novenaDate }}</span>
+                    <h3 class="event-noble-title pre-line">{{ content().novenaTitle }}</h3>
+                  </div>
+                  <p class="event-sub-desc">{{ content().novenaDesc }}</p>
+                </div>
+              </div>
+            </article>
+          }
+        </div>
       }
 
       <!-- Evento 2: Misa solemne y cumpleaños de Plato (8 Dic.) -->
