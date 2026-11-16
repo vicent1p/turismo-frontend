@@ -262,7 +262,7 @@ export class HistoriaComponent implements AfterViewInit, OnDestroy {
   readonly expandedChapters = signal<Set<string>>(new Set());
 
   readonly galleryChapters = computed(() =>
-    this.content().chapters.filter(c => c.id !== 'cap-chimilas')
+    this.content().chapters
   );
 
   readonly activeChapter = computed(() => {
