@@ -299,13 +299,13 @@
 }
 
 .raices-container {
-  max-width: 1320px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding-left: clamp(32px, 8vw, 120px);
-  padding-right: clamp(24px, 4.5vw, 60px);
+  padding-left: clamp(24px, 4.5vw, 64px);
+  padding-right: clamp(24px, 4.5vw, 64px);
   display: grid;
-  grid-template-columns: clamp(260px, 26vw, 360px) minmax(0, 1fr);
-  gap: clamp(20px, 3.5vw, 44px);
+  grid-template-columns: minmax(360px, 46%) minmax(0, 54%);
+  gap: clamp(24px, 3.5vw, 56px);
   align-items: center;
   position: relative;
   box-sizing: border-box;
@@ -313,14 +313,19 @@
 
 .raices-photo-wrap {
   width: 100%;
-  max-width: 380px;
+  max-width: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   margin: 0;
 }
 
 .raices-img-arch {
   width: 100%;
+  max-width: 530px;
   height: auto;
+  max-height: 440px;
   object-fit: contain;
   display: block;
 }
