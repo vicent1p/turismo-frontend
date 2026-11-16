@@ -63,6 +63,7 @@ export interface ProgramacionLocaleContent {
   nocheBlancaQuote: string;
   nocheBlancaLocation: string;
   nocheBlancaArtistRole: string;
+  nocheBlancaArtistName: string;
   desfileDate: string;
   desfileTitle: string;
   desfileDesc: string;
@@ -144,6 +145,7 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     nocheBlancaQuote: '“Legado y honor Plateño”',
     nocheBlancaLocation: 'Parque Simón Bolívar (Frente a la iglesia Inmaculada Concepción)',
     nocheBlancaArtistRole: 'Artista invitado',
+    nocheBlancaArtistName: 'Mario\nCerchar',
     desfileDate: '11 Dic.',
     desfileTitle: 'Segundo desfile de tradición\ndel hombre caimán',
     desfileDesc: 'Recorrido tradicional por\nlas calles de Plato',
@@ -252,6 +254,7 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     nocheBlancaQuote: '“Plateño Legacy and Honor”',
     nocheBlancaLocation: 'Simón Bolívar Park (In front of the Immaculate Conception Church)',
     nocheBlancaArtistRole: 'Guest artist',
+    nocheBlancaArtistName: 'Mario\nCerchar',
     desfileDate: 'Dec 11',
     desfileTitle: '2nd Alligator Man Tradition Parade',
     desfileDesc: 'Traditional parade through the streets of Plato',
