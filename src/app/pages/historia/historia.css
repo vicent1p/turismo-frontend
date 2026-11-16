@@ -176,6 +176,20 @@
   color: #D4A52A;
   margin-bottom: 3px;
   transition: color 0.2s ease;
+  width: 24px;
+  height: 24px;
+}
+
+.cap-tab-icon-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.cap-tab-pill.active .cap-tab-icon-img {
+  filter: brightness(0) invert(1);
 }
 
 .cap-tab-pill.active .cap-tab-icon {
