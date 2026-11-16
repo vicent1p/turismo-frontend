@@ -275,16 +275,10 @@
   padding-top: clamp(20px, 2.8vw, 36px);
 }
 
-.historia-sheet.sheet-lugares {
-  position: relative;
-  overflow: hidden;
-  padding-top: 0;
-  margin-top: calc(-1 * clamp(20px, 3.5vw, 40px));
-}
-
 .historia-sheet.sheet-historia,
 .historia-sheet.sheet-programacion,
-.historia-sheet.sheet-cultura {
+.historia-sheet.sheet-cultura,
+.historia-sheet.sheet-lugares {
   position: relative;
   padding-top: 0;
   margin-top: 0;

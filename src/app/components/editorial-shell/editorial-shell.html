@@ -1,8 +1,8 @@
 <div class="historia-page-shell">
   <app-public-navbar [activeSection]="activeSection()"></app-public-navbar>
 
-  @if (activeSection() === 'cultura' || activeSection() === 'historia' || activeSection() === 'programacion') {
-    <!-- ENCABEZADO DE SECCIÓN REUTILIZABLE (CULTURA, HISTORIA, PROGRAMACIÓN) -->
+  @if (activeSection() === 'cultura' || activeSection() === 'historia' || activeSection() === 'programacion' || activeSection() === 'lugares') {
+    <!-- ENCABEZADO DE SECCIÓN REUTILIZABLE (CULTURA, HISTORIA, PROGRAMACIÓN, LUGARES) -->
     <app-section-header
       [eyebrow]="eyebrow()"
       [title]="pageTitle()"
@@ -13,7 +13,7 @@
 
   <main
     class="historia-main"
-    [class.main-with-section-header]="activeSection() === 'cultura' || activeSection() === 'historia' || activeSection() === 'programacion'"
+    [class.main-with-section-header]="activeSection() === 'cultura' || activeSection() === 'historia' || activeSection() === 'programacion' || activeSection() === 'lugares'"
   >
     <div
       class="historia-sheet"
@@ -24,44 +24,7 @@
       [class.sheet-programacion]="activeSection() === 'programacion'"
       [class.sheet-cultura]="activeSection() === 'cultura'"
     >
-      @if (activeSection() === 'lugares') {
-        <!-- CABECERA PERSONALIZADA CON MARCAS DE AGUA Y LÍNEA ONDULADA (LUGARES) -->
-        <header class="lugares-header-banner">
-          <!-- ILUSTRACIONES ARTÍSTICAS DE FONDO -->
-          <div class="lugares-banner-watermarks" aria-hidden="true">
-            <img
-              src="ilustracion-caiman-watermark.png"
-              alt=""
-              class="lugares-watermark-caiman"
-              loading="eager"
-            />
-            <img
-              src="ilustracion-iglesia-watermark.png"
-              alt=""
-              class="lugares-watermark-iglesia"
-              loading="eager"
-            />
-          </div>
-
-          <!-- CONTENIDO EDITORIAL CENTRADO -->
-          <div class="lugares-banner-inner">
-            <span class="lugares-banner-eyebrow">{{ eyebrow() }}</span>
-            <div class="lugares-banner-gold-rule"></div>
-            <h1 class="lugares-banner-title historia-title">{{ pageTitle() }}</h1>
-            <div class="lugares-banner-gold-rule"></div>
-            <p class="lugares-banner-subtitle">{{ subtitle() }}</p>
-          </div>
-
-          <!-- LÍNEA CURVA ONDULADA INFERIOR -->
-          <div class="lugares-banner-wave-line" aria-hidden="true">
-            <img
-              src="lugares-wave-line.png"
-              alt=""
-              class="lugares-wave-img"
-            />
-          </div>
-        </header>
-      } @else if (activeSection() !== 'cultura' && activeSection() !== 'historia' && activeSection() !== 'programacion') {
+      @if (activeSection() !== 'cultura' && activeSection() !== 'historia' && activeSection() !== 'programacion' && activeSection() !== 'lugares') {
         <!-- CABECERA EDITORIAL EN SPECTRAL TIPO LANDING PAGE -->
         <header class="historia-header">
           <span class="historia-eyebrow">{{ eyebrow() }}</span>
