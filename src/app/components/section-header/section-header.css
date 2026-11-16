@@ -1,6 +1,8 @@
 :host {
   display: block;
   width: 100%;
+  position: relative;
+  z-index: 5;
 }
 
 /* Contenedor cuando se usa una imagen de banner completa exacta */
@@ -37,7 +39,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   box-sizing: border-box;
 }
 
@@ -54,36 +56,38 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 110%;
+  height: 122%;
   width: auto;
-  max-width: clamp(340px, 38vw, 540px);
+  max-width: clamp(400px, 46vw, 680px);
   object-fit: contain;
   object-position: left bottom;
-  opacity: 0.48;
+  opacity: 0.70;
+  filter: saturate(1.35) contrast(1.08);
   mix-blend-mode: multiply;
   pointer-events: none;
-  transform: scale(1.15);
+  transform: scale(1.24);
   transform-origin: left bottom;
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
 }
 
 .section-watermark-iglesia {
   position: absolute;
   right: 0;
   bottom: 0;
-  height: 110%;
+  height: 122%;
   width: auto;
-  max-width: clamp(340px, 38vw, 540px);
+  max-width: clamp(400px, 46vw, 680px);
   object-fit: contain;
   object-position: right bottom;
-  opacity: 0.48;
+  opacity: 0.70;
+  filter: saturate(1.35) contrast(1.08);
   mix-blend-mode: multiply;
   pointer-events: none;
-  transform: scale(1.15);
+  transform: scale(1.24);
   transform-origin: right bottom;
-  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
 }
 
 /* 3. Contenido editorial centrado */
@@ -138,13 +142,13 @@
 /* 4. Ondas decorativas inferiores en SVG */
 .section-banner-bottom-waves {
   position: absolute;
-  bottom: 0;
+  bottom: clamp(-24px, -2vw, -16px);
   left: 0;
   right: 0;
   width: 100%;
-  height: clamp(60px, 7.5vw, 95px);
+  height: clamp(75px, 8.8vw, 115px);
   pointer-events: none;
-  z-index: 4;
+  z-index: 15;
   display: block;
 }
 
@@ -173,9 +177,9 @@
 
   .section-watermark-monumento,
   .section-watermark-iglesia {
-    max-width: 160px;
-    height: 75%;
-    opacity: 0.28;
+    max-width: 220px;
+    height: 90%;
+    opacity: 0.50;
   }
 }
 
@@ -187,8 +191,8 @@
 
   .section-watermark-monumento,
   .section-watermark-iglesia {
-    max-width: 120px;
-    opacity: 0.22;
+    max-width: 170px;
+    opacity: 0.45;
   }
 
   .section-banner-gold-rule {
