@@ -21,6 +21,14 @@
           <span>Ver hoteles</span>
           <span class="btn-arrow" aria-hidden="true">→</span>
         </a>
+        <button
+          type="button"
+          class="btn btn-hero-encuesta"
+          (click)="abrirModalEncuesta()"
+        >
+          <span>Encuesta</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
         <a class="btn btn-hero-secondary" href="/historia">
           <span>Conoce nuestra historia</span>
           <span class="btn-arrow" aria-hidden="true">→</span>
@@ -28,9 +36,15 @@
       </div>
     </div>
 
-    <!-- COLUMNA DERECHA: COMPOSICIÓN DE IMÁGENES (~50%) -->
+    <!-- COLUMNA DERECHA: IMAGEN PLATO 400 AÑOS (~48%) -->
     <div class="hero-right-artwork">
       <div class="hero-composition-stage">
+        <img
+          src="/hero-400-composicion.webp"
+          alt="Plato 400 Años - Celebración oficial"
+          class="hero-composite-artwork"
+          loading="eager"
+        />
       </div>
     </div>
   </div>

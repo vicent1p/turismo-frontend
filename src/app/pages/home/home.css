@@ -37,9 +37,10 @@
   margin: 0 auto;
   padding-left: clamp(24px, 5.5vw, 84px);
   padding-right: clamp(16px, 4vw, 56px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: minmax(0, 52%) minmax(0, 48%);
+  gap: clamp(16px, 2.5vw, 40px);
+  align-items: start;
   box-sizing: border-box;
   min-height: auto;
 }
@@ -51,7 +52,7 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  max-width: 960px;
+  width: 100%;
   padding: 0;
 }
 
@@ -78,13 +79,13 @@
 .hero-headline {
   margin: 0;
   font-family: 'Spectral', Georgia, serif;
-  line-height: 1.04;
+  line-height: 1.06;
   width: auto;
 }
 
 .headline-p1 {
   display: block;
-  font-size: clamp(2.85rem, 5.2vw, 4.85rem);
+  font-size: clamp(2.45rem, 3.8vw, 3.95rem);
   font-weight: 700;
   color: #2D5A27;
   letter-spacing: -0.02em;
@@ -92,7 +93,7 @@
 
 .headline-p2 {
   display: block;
-  font-size: clamp(2.85rem, 5.2vw, 4.85rem);
+  font-size: clamp(2.45rem, 3.8vw, 3.95rem);
   font-weight: 400;
   font-style: italic;
   color: #D4A52A;
@@ -101,10 +102,10 @@
 
 .hero-description {
   font-family: 'Spectral', Georgia, serif;
-  font-size: clamp(1.02rem, 1.18vw, 1.2rem);
+  font-size: clamp(0.98rem, 1.1vw, 1.14rem);
   line-height: 1.5;
   color: #4a554e;
-  max-width: 680px;
+  max-width: 580px;
   margin: 0 0 18px 0;
 }
 
@@ -146,6 +147,22 @@
   box-shadow: 0 6px 18px rgba(45, 90, 39, 0.3);
 }
 
+.hero-actions .btn-hero-encuesta {
+  background: #D4A52A;
+  color: #1a3c17;
+  border: 1.5px solid #D4A52A;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(212, 165, 42, 0.25);
+}
+
+.hero-actions .btn-hero-encuesta:hover {
+  background: #c39420;
+  border-color: #c39420;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212, 165, 42, 0.35);
+}
+
 .hero-actions .btn-hero-secondary {
   background: transparent;
   color: #2D5A27;
@@ -172,78 +189,32 @@
 /* COMPOSICIÓN DE IMÁGENES (COLUMNA DERECHA) */
 /* ========================================= */
 .hero-right-artwork {
-  display: none;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
 
 .hero-composition-stage {
   position: relative;
   width: 100%;
-  max-width: clamp(520px, 52vw, 780px);
-  height: 100%;
-  min-height: clamp(380px, 44vw, 540px);
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: flex-end;
   overflow: visible;
 }
 
-/* 1. Iglesia a la derecha */
-.hero-img-iglesia {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 94%;
-  max-width: 62%;
-  object-fit: contain;
-  object-position: bottom right;
-  z-index: 1;
-  opacity: 0.85;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-}
-
-/* 2. Monumento al Hombre Caimán a la izquierda, traslape ~15-20% */
-.hero-img-monumento {
-  position: absolute;
-  right: 36%;
-  bottom: 0;
-  height: 96%;
-  max-width: 54%;
-  object-fit: contain;
-  object-position: bottom right;
-  z-index: 2;
-  opacity: 0.88;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-}
-
-/* 3. Logo 400 Años en el centro-derecha por encima de las fotos */
-.hero-logo-400-wrap {
-  position: absolute;
-  right: 14%;
-  top: 18%;
-  width: clamp(230px, 25vw, 360px);
-  z-index: 6;
-  pointer-events: none;
-}
-
-.hero-logo-400-img {
+.hero-composite-artwork {
   width: 100%;
+  max-width: 620px;
   height: auto;
+  max-height: clamp(340px, 35vw, 460px);
   object-fit: contain;
+  object-position: top right;
   display: block;
-  filter: drop-shadow(0 4px 16px rgba(184, 132, 31, 0.12));
-}
-
-/* 4. Onda decorativa verde y dorada inferior derecha */
-.hero-wave-decoration {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: clamp(230px, 25vw, 350px);
-  height: auto;
-  object-fit: contain;
-  z-index: 5;
+  mix-blend-mode: multiply;
   pointer-events: none;
 }
 
@@ -1465,31 +1436,13 @@
   .hero-right-artwork,
   .hero-composition-stage {
     width: 100%;
-    margin-left: 0;
-    min-height: clamp(280px, 58vw, 420px);
+    margin: 16px auto 0;
     justify-content: center;
   }
 
-  .hero-img-iglesia {
-    right: 4%;
-    max-width: 55%;
-    height: 90%;
-  }
-
-  .hero-img-monumento {
-    right: 38%;
-    max-width: 50%;
-    height: 92%;
-  }
-
-  .hero-logo-400-wrap {
-    right: 16%;
-    top: 15%;
-    width: clamp(190px, 38vw, 280px);
-  }
-
-  .hero-wave-decoration {
-    width: clamp(170px, 34vw, 250px);
+  .hero-composite-artwork {
+    max-height: clamp(260px, 50vw, 360px);
+    object-position: center;
   }
 
   .pillars-container {
