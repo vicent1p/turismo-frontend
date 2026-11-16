@@ -49,16 +49,25 @@
 }
 
 .fact-icon-wrap {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: rgba(246, 239, 226, 0.88);
-  border: 1.5px solid rgba(200, 150, 46, 0.32);
-  box-shadow: 0 2px 8px rgba(184, 132, 31, 0.12);
-  color: #c8962e;
+  background: #FAF3E8;
+  border: 1.8px solid rgba(200, 150, 46, 0.45);
+  box-shadow: 0 3px 10px rgba(184, 132, 31, 0.14);
   flex-shrink: 0;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.fact-icon-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
 }
 
 .fact-text-wrap {
