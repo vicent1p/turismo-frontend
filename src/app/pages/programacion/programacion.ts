@@ -84,6 +84,7 @@ export interface ProgramacionLocaleContent {
   day12Artists: ReadonlyArray<ArtistItem>;
   day13Date: string;
   day13FestTitle: string;
+  day13Location: string;
   day13FestWinnersKicker: string;
   day13Winners: ReadonlyArray<string>;
   day13MusicLabel: string;
@@ -185,6 +186,7 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     ],
     day13Date: '13 Dic.',
     day13FestTitle: 'Festival de Festivales',
+    day13Location: 'Parque Simón Bolívar (Frente a la iglesia Inmaculada Concepción)',
     day13FestWinnersKicker: '6 ganadores de festivales del Magdalena:',
     day13Winners: [
       'Festival de la Trova.',
@@ -295,6 +297,7 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     ],
     day13Date: 'Dec 13',
     day13FestTitle: 'Festival of Festivals',
+    day13Location: 'Simón Bolívar Park (In front of the Immaculate Conception Church)',
     day13FestWinnersKicker: '6 Winners from Magdalena Regional Festivals:',
     day13Winners: [
       'Trova Festival.',
