@@ -172,8 +172,7 @@ html {
 
 body {
   margin: 0;
-  background: #fbf7ee url('/fondo-ilustracion-plato.jpg') center top / cover no-repeat fixed;
-  background-attachment: fixed;
+  background-color: #FAF3E8;
   color: var(--ink);
   font-family: 'Spectral', Georgia, serif;
   line-height: 1.6;
