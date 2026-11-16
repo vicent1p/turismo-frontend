@@ -301,7 +301,7 @@
 .featured-card-media {
   position: relative;
   width: 100%;
-  max-width: 320px;
+  max-width: 280px;
   aspect-ratio: 1 / 1;
   margin: 0 auto;
   border-radius: 6px;
