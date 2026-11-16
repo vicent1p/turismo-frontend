@@ -349,12 +349,72 @@
   gap: 6px;
 }
 
-.event-inline-note {
-  display: block;
+.event-location-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 10px 0 0 16px;
+  color: #1a3e26;
   font-family: 'Spectral', Georgia, serif;
-  font-size: 0.92rem;
-  color: #6f685c;
-  margin: 4px 0 0 16px;
+  font-size: 0.94rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.location-pin-icon {
+  flex-shrink: 0;
+  color: #c99b38;
+}
+
+.event-location-text {
+  color: #1a3e26;
+}
+
+.misa-schedule-block {
+  margin: 12px 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.misa-schedule-heading {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #16542d;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.misa-schedule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.misa-schedule-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.91rem;
+  line-height: 1.4;
+  color: #3e4a42;
+}
+
+.schedule-time {
+  font-weight: 700;
+  color: #8a734e;
+  white-space: nowrap;
+  min-width: 68px;
+}
+
+.schedule-act {
+  color: #2c3831;
 }
 
 /* ==========================================================================

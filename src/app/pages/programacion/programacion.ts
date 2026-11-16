@@ -24,6 +24,11 @@ export interface MetricPill {
   icon: 'calendar' | 'agenda' | 'music';
 }
 
+export interface ScheduleItem {
+  time: string;
+  activity: string;
+}
+
 export interface ArtistItem {
   name: string;
   photo: string;
@@ -46,7 +51,9 @@ export interface ProgramacionLocaleContent {
   misaDate: string;
   misaItem1: string;
   misaItem2: string;
-  misaNote: string;
+  misaLocation: string;
+  misaScheduleLabel: string;
+  misaSchedule: ReadonlyArray<ScheduleItem>;
   sectionTradicionTitle: string;
   cabalgataDate: string;
   cabalgataTitle: string;
@@ -120,7 +127,13 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     misaDate: '8 Dic.',
     misaItem1: 'Misa Solemne',
     misaItem2: 'Celebración de\nCumpleaños de Plato',
-    misaNote: '(Cantemos a Plato)',
+    misaLocation: 'Iglesia Inmaculada Concepción',
+    misaScheduleLabel: 'Horario',
+    misaSchedule: [
+      { time: '5:00 AM', activity: 'Alborada' },
+      { time: '5:00 PM', activity: 'Santa misa' },
+      { time: '7:00 PM', activity: 'Cantémosle a plato' }
+    ],
     sectionTradicionTitle: 'Tradición y cultura',
     cabalgataDate: '5 Dic.',
     cabalgataTitle: 'Gran Cabalgata 400 Años',
@@ -217,7 +230,13 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
     misaDate: 'Dec 8',
     misaItem1: 'Solemn Mass',
     misaItem2: 'Plato Birthday Celebration',
-    misaNote: '(Singing to Plato)',
+    misaLocation: 'Immaculate Conception Church',
+    misaScheduleLabel: 'Schedule',
+    misaSchedule: [
+      { time: '5:00 AM', activity: 'Alborada (Dawn Gathering)' },
+      { time: '5:00 PM', activity: 'Holy Mass' },
+      { time: '7:00 PM', activity: 'Singing to Plato' }
+    ],
     sectionTradicionTitle: 'Tradition and Culture',
     cabalgataDate: 'Dec 5',
     cabalgataTitle: '400 Years Grand Horse Parade',
