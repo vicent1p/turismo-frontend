@@ -54,40 +54,40 @@
 
 .section-watermark-monumento {
   position: absolute;
-  left: 0;
+  left: clamp(0px, 3vw, 50px);
   bottom: 0;
-  height: 96%;
+  height: 116%;
   width: auto;
-  max-width: clamp(380px, 44vw, 640px);
+  max-width: clamp(460px, 50vw, 760px);
   object-fit: contain;
   object-position: left bottom;
-  opacity: 0.70;
+  opacity: 0.72;
   filter: saturate(1.35) contrast(1.08);
   mix-blend-mode: multiply;
   pointer-events: none;
-  transform: scale(1.08);
+  transform: scale(1.22) translateX(clamp(15px, 2.5vw, 45px));
   transform-origin: left bottom;
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 78%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 78%, rgba(0, 0, 0, 0) 100%);
 }
 
 .section-watermark-iglesia {
   position: absolute;
-  right: 0;
+  right: clamp(0px, 3vw, 50px);
   bottom: 0;
-  height: 96%;
+  height: 116%;
   width: auto;
-  max-width: clamp(380px, 44vw, 640px);
+  max-width: clamp(460px, 50vw, 760px);
   object-fit: contain;
   object-position: right bottom;
-  opacity: 0.70;
+  opacity: 0.72;
   filter: saturate(1.35) contrast(1.08);
   mix-blend-mode: multiply;
   pointer-events: none;
-  transform: scale(1.08);
+  transform: scale(1.22) translateX(clamp(-45px, -2.5vw, -15px));
   transform-origin: right bottom;
-  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 78%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 78%, rgba(0, 0, 0, 0) 100%);
 }
 
 /* 3. Contenido editorial centrado */
@@ -142,11 +142,11 @@
 /* 4. Ondas decorativas inferiores en SVG */
 .section-banner-bottom-waves {
   position: absolute;
-  bottom: clamp(-36px, -3vw, -26px);
+  bottom: clamp(-56px, -4.8vw, -42px);
   left: 0;
   right: 0;
   width: 100%;
-  height: clamp(80px, 9.2vw, 120px);
+  height: clamp(92px, 11vw, 140px);
   pointer-events: none;
   z-index: 15;
   display: block;
