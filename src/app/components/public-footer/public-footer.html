@@ -4,20 +4,20 @@
     <div class="footer-logos-row">
       <img
         src="escudo-gobernacion.png"
-        alt="Gobernación del Magdalena"
+        [alt]="t().gobAlt"
         class="footer-escudo-img"
         loading="lazy"
       />
       <img
         src="escudo-alcaldia.png"
-        alt="Alcaldía de Plato"
+        [alt]="t().alcaldiaAlt"
         class="footer-escudo-img"
         loading="lazy"
       />
     </div>
     <div class="footer-gold-divider"></div>
     <p class="footer-copy">
-      © 2026 Gobernación del Magdalena - Desarrollado por Nelson Vicent. Todos los derechos reservados. - OFICINA TIC
+      {{ t().copyText }}
     </p>
   </div>
 </footer>

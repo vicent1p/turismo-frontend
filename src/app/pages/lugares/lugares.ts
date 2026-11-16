@@ -66,6 +66,15 @@ interface LugaresLocaleContent {
   ctaAgenda: string;
   ctaCulture: string;
   ctaBackHome: string;
+  paginationNavAria: string;
+  paginationFirstAria: string;
+  paginationPrevAria: string;
+  paginationNextAria: string;
+  paginationLastAria: string;
+  paginationPage: string;
+  paginationOf: string;
+  starsWord: string;
+  webLabel: string;
 }
 
 const VALID_TABS: ReadonlySet<PlaceCategoryTab> = new Set<PlaceCategoryTab>([
@@ -131,7 +140,16 @@ const LUGARES_CONTENT: Record<AppLang, LugaresLocaleContent> = {
       'Consulta la programación oficial del cuatricentenario o recorre el archivo histórico y cultural del municipio.',
     ctaAgenda: 'Ver Programación 400 Años',
     ctaCulture: 'Nuestra Historia y Cultura',
-    ctaBackHome: 'Volver a la portada'
+    ctaBackHome: 'Volver a la portada',
+    paginationNavAria: 'Navegación de páginas de lugares',
+    paginationFirstAria: 'Primera página',
+    paginationPrevAria: 'Página anterior',
+    paginationNextAria: 'Página siguiente',
+    paginationLastAria: 'Última página',
+    paginationPage: 'Página',
+    paginationOf: 'de',
+    starsWord: 'estrellas',
+    webLabel: 'Página web oficial'
   },
   en: {
     breadcrumbHome: 'Home',
@@ -189,7 +207,16 @@ const LUGARES_CONTENT: Record<AppLang, LugaresLocaleContent> = {
       'Check the official quadricentennial schedule or browse the municipality’s historical and cultural archive.',
     ctaAgenda: 'View 400 Years Schedule',
     ctaCulture: 'Our History & Culture',
-    ctaBackHome: 'Back to Home'
+    ctaBackHome: 'Back to Home',
+    paginationNavAria: 'Places pagination navigation',
+    paginationFirstAria: 'First page',
+    paginationPrevAria: 'Previous page',
+    paginationNextAria: 'Next page',
+    paginationLastAria: 'Last page',
+    paginationPage: 'Page',
+    paginationOf: 'of',
+    starsWord: 'stars',
+    webLabel: 'Official website'
   }
 };
 

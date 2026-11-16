@@ -18,10 +18,10 @@
   [ctaBackLabel]="content().ctaBackHome"
 >
   <!-- NOTA EDITORIAL ACCESIBLE PARA LECTORES Y MOTOR DE BÚSQUEDA -->
-  <span class="sr-only">Lanzamiento revista 400 años: Publicación conmemorativa oficial de cuatro siglos</span>
+  <span class="sr-only">{{ content().magazineSrOnly }}</span>
 
   <!-- BARRA DE MÉTRICAS / PILARES CLAVE (TEMPORADA FESTIVA / AGENDA OFICIAL / CARTEL MUSICAL) -->
-  <section class="prog-metrics-strip" aria-label="Métricas oficiales de la celebración">
+  <section class="prog-metrics-strip" [attr.aria-label]="content().metricsAria">
     @for (m of content().metrics; track m.label; let i = $index) {
       <div class="prog-metric-item">
         <div class="metric-icon-wrap" aria-hidden="true">
@@ -49,7 +49,7 @@
   </section>
 
   <!-- PESTAÑAS DE FILTRO POR FECHA (TODOS / 29 NOV - 7 DIC / 5 DIC / 8 DIC...) -->
-  <nav class="prog-filters-bar" aria-label="Filtrar programación por fecha">
+  <nav class="prog-filters-bar" [attr.aria-label]="content().filtersAria">
     @for (f of content().filters; track f.id) {
       <button
         type="button"
@@ -257,7 +257,7 @@
                       <span class="artist-pill-label">{{ art.name }}</span>
                     } @else {
                       <div class="artist-tile-green">
-                        <span>JUGLARES<br/>VALLENATOS</span>
+                        <span>{{ art.name }}</span>
                       </div>
                     }
                   </div>

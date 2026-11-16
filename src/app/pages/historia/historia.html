@@ -18,7 +18,7 @@
   [ctaBackLabel]="content().ctaBackHome"
 >
   <!-- 1. TRES PILARES CLAVE DE LA HISTORIA (AÑO DE FUNDACIÓN / TERRITORIO / PATRIMONIO) -->
-  <section class="historia-facts-strip" aria-label="Datos históricos clave">
+  <section class="historia-facts-strip" [attr.aria-label]="content().factsAria">
     @for (fact of content().facts; track fact.label; let i = $index) {
       <div class="fact-pill-card">
         <div class="fact-icon-wrap" aria-hidden="true">
@@ -129,7 +129,7 @@
       </div>
 
       <div class="featured-card-body">
-        <span class="featured-card-kicker">CAPÍTULO {{ activeChapter().roman }}</span>
+        <span class="featured-card-kicker">{{ content().chapterPrefix }} {{ activeChapter().roman }}</span>
         <h3 class="featured-card-title">{{ activeChapter().shortLabel }}</h3>
         <p class="featured-card-text">{{ activeChapter().body }}</p>
       </div>
@@ -137,27 +137,27 @@
   </article>
 
   <!-- 5. PUNTOS DE PAGINACIÓN INTERACTIVOS (8 DOTS) -->
-  <div class="capitulos-dots-nav" aria-label="Navegación de capítulos">
+  <div class="capitulos-dots-nav" [attr.aria-label]="content().dotsNavAria">
     @for (cap of content().chapters; track cap.id; let i = $index) {
       <button
         type="button"
         class="dot-btn"
         [class.active]="activeChapterId() === cap.id"
-        [attr.aria-label]="'Ir al capítulo ' + cap.roman + ': ' + cap.shortLabel"
+        [attr.aria-label]="content().goToChapterAria + ' ' + cap.roman + ': ' + cap.shortLabel"
         (click)="selectChapter(cap.id)"
       ></button>
     }
   </div>
 
   <!-- 6. CUADRÍCULA DE TODAS LAS ILUSTRACIONES HISTÓRICAS (DIBUJOS DIRECTOS, SIN TARJETAS) -->
-  <section class="historia-gallery-grid" aria-label="Galería de grabados históricos">
+  <section class="historia-gallery-grid" [attr.aria-label]="content().galleryAria">
     @for (cap of galleryChapters(); track cap.id) {
       <button
         type="button"
         class="gallery-item-card"
         [class.selected]="activeChapterId() === cap.id"
         (click)="selectChapter(cap.id)"
-        [attr.aria-label]="'Capítulo ' + cap.roman + ': ' + cap.shortLabel"
+        [attr.aria-label]="content().chapterWord + ' ' + cap.roman + ': ' + cap.shortLabel"
       >
         <div class="gallery-thumb-wrap">
           <img

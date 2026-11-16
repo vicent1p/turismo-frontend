@@ -37,11 +37,11 @@
   <div class="top-nav-container">
     <!-- LOGOS A LA IZQUIERDA: PLATO 400 AÑOS Y GOBERNACIÓN DEL MAGDALENA -->
     <div class="nav-brand-group">
-      <a class="nav-brand" routerLink="/" (click)="onHomeAnchorClick($event, 'top')" title="Plato 400 Años">
-        <img src="logo-plato-white.png" alt="Plato 400 Años" class="brand-logo-img" />
+      <a class="nav-brand" routerLink="/" (click)="onHomeAnchorClick($event, 'top')" [title]="t().brandTitle">
+        <img src="logo-plato-white.png" [alt]="t().brandTitle" class="brand-logo-img" />
       </a>
-      <a class="nav-brand nav-brand-gob" href="https://www.magdalena.gov.co" target="_blank" rel="noopener noreferrer" title="Gobernación del Magdalena">
-        <img src="logo-gobernacion-magdalena-white.png" alt="Gobernación del Magdalena" class="brand-logo-img gob-logo-img" />
+      <a class="nav-brand nav-brand-gob" href="https://www.magdalena.gov.co" target="_blank" rel="noopener noreferrer" [title]="t().gobTitle">
+        <img src="logo-gobernacion-magdalena-white.png" [alt]="t().gobTitle" class="brand-logo-img gob-logo-img" />
       </a>
     </div>
 
@@ -106,7 +106,7 @@
         class="btn-menu-toggle"
         (click)="toggleMobileMenu()"
         [attr.aria-expanded]="mobileMenuOpen()"
-        aria-label="Menú de navegación"
+        [attr.aria-label]="t().navAria"
       >
         @if (!mobileMenuOpen()) {
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">

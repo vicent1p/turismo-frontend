@@ -6,19 +6,19 @@
   <div class="hero-container">
     <!-- COLUMNA IZQUIERDA: TEXTOS (~50%) -->
     <div class="hero-left-content">
-      <span class="hero-kicker-badge">400 AÑOS DE HISTORIA, CULTURA Y ORGULLO PLATEÑO</span>
+      <span class="hero-kicker-badge">{{ t().heroKicker400 }}</span>
       <div class="hero-gold-rule"></div>
       <h1 class="hero-headline">
-        <span class="headline-p1">Plato, tierra de cumbia,</span>
-        <em class="headline-p2">corazón del magdalena</em>
+        <span class="headline-p1">{{ t().heroHeadline1 }}</span>
+        <em class="headline-p2">{{ t().heroHeadline2 }}</em>
       </h1>
       <div class="hero-gold-rule"></div>
-      <p class="hero-description">Hace 400 años comenzó nuestra historia. Hoy celebramos nuestras raíces, nuestra gente y todo lo que nos hace únicos</p>
+      <p class="hero-description">{{ t().heroDesc400 }}</p>
 
       <!-- BOTONES DE ACCIÓN HERO -->
       <div class="hero-actions">
         <a class="btn btn-hero-primary" href="#hoteles">
-          <span>Ver hoteles</span>
+          <span>{{ t().btnHeroHoteles }}</span>
           <span class="btn-arrow" aria-hidden="true">→</span>
         </a>
         <button
@@ -26,11 +26,11 @@
           class="btn btn-hero-encuesta"
           (click)="abrirModalEncuesta()"
         >
-          <span>Encuesta</span>
+          <span>{{ t().btnEncuesta }}</span>
           <span class="btn-arrow" aria-hidden="true">→</span>
         </button>
         <a class="btn btn-hero-secondary" href="/historia">
-          <span>Conoce nuestra historia</span>
+          <span>{{ t().btnConoceHistoria }}</span>
           <span class="btn-arrow" aria-hidden="true">→</span>
         </a>
       </div>
@@ -41,7 +41,7 @@
       <div class="hero-composition-stage">
         <img
           src="/hero-400-composicion.webp"
-          alt="Plato 400 Años - Celebración oficial"
+          [alt]="lang() === 'en' ? 'Plato 400 Years - Official Celebration' : 'Plato 400 Años - Celebración oficial'"
           class="hero-composite-artwork"
           loading="eager"
         />
@@ -106,7 +106,7 @@
     <div class="raices-photo-wrap">
       <img
         src="iglesia-arco-flores.png"
-        alt="Iglesia Inmaculada Concepción de Plato con flores y palmeras"
+        [alt]="lang() === 'en' ? 'Immaculate Conception Church of Plato with bougainvillea flowers and palms' : 'Iglesia Inmaculada Concepción de Plato con flores y palmeras'"
         class="raices-img-arch"
         loading="lazy"
       />
@@ -150,7 +150,7 @@
       <div class="box parchment-card">
         <div class="parchment-inner-frame">
           <div class="box-scroll-icon">
-            <img src="icon-historia-pergamino.png" alt="Historia" class="parchment-icon-img" />
+            <img src="icon-historia-pergamino.png" [alt]="t().b1t" class="parchment-icon-img" />
           </div>
           <h3>{{ t().b1t }}</h3>
           <p>{{ t().b1p }}</p>
@@ -161,7 +161,7 @@
       <div class="box parchment-card">
         <div class="parchment-inner-frame">
           <div class="box-scroll-icon">
-            <img src="icon-cultura-caiman.png" alt="Cultura y Tradición" class="parchment-icon-img caiman-icon" />
+            <img src="icon-cultura-caiman.png" [alt]="t().b2t" class="parchment-icon-img caiman-icon" />
           </div>
           <h3>{{ t().b2t }}</h3>
           <p>{{ t().b2p }}</p>
@@ -172,7 +172,7 @@
       <div class="box parchment-card">
         <div class="parchment-inner-frame">
           <div class="box-scroll-icon">
-            <img src="icon-visitar-camara.png" alt="Qué hacer y visitar" class="parchment-icon-img" />
+            <img src="icon-visitar-camara.png" [alt]="t().b3t" class="parchment-icon-img" />
           </div>
           <h3>{{ t().b3t }}</h3>
           <p>{{ t().b3p }}</p>
@@ -183,7 +183,7 @@
       <div class="box parchment-card">
         <div class="parchment-inner-frame">
           <div class="box-scroll-icon">
-            <img src="icon-llegar-pin.png" alt="Cómo llegar a Plato" class="parchment-icon-img" />
+            <img src="icon-llegar-pin.png" [alt]="t().b4t" class="parchment-icon-img" />
           </div>
           <h3>{{ t().b4t }}</h3>
           <p>{{ t().b4p }}</p>
@@ -287,7 +287,7 @@
         <button
           type="button"
           class="grid-nav-btn prev"
-          aria-label="Hotel anterior"
+          [attr.aria-label]="lang() === 'en' ? 'Previous place' : 'Establecimiento anterior'"
           (click)="scrollHotels(-1)"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -317,13 +317,13 @@
                     <button
                       type="button"
                       class="nav-arrow nav-left"
-                      aria-label="Foto anterior"
+                      [attr.aria-label]="lang() === 'en' ? 'Previous photo' : 'Foto anterior'"
                       (click)="scrollCarousel(car, -1); $event.stopPropagation()"
                     >‹</button>
                     <button
                       type="button"
                       class="nav-arrow nav-right"
-                      aria-label="Foto siguiente"
+                      [attr.aria-label]="lang() === 'en' ? 'Next photo' : 'Foto siguiente'"
                       (click)="scrollCarousel(car, 1); $event.stopPropagation()"
                     >›</button>
 
@@ -460,7 +460,7 @@
         <button
           type="button"
           class="grid-nav-btn next"
-          aria-label="Hotel siguiente"
+          [attr.aria-label]="lang() === 'en' ? 'Next place' : 'Establecimiento siguiente'"
           (click)="scrollHotels(1)"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">

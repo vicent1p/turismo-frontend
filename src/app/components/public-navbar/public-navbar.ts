@@ -15,7 +15,9 @@ const NAV_COPY = {
     adminActivo: 'Admin Activo',
     miEspacio: 'Mi Espacio',
     logoutBtn: 'Cerrar sesión',
-    panelTitle: 'Portal de Administración'
+    panelTitle: 'Portal de Administración',
+    brandTitle: 'Plato 400 Años',
+    gobTitle: 'Gobernación del Magdalena'
   },
   en: {
     navAria: 'Main navigation',
@@ -28,7 +30,9 @@ const NAV_COPY = {
     adminActivo: 'Active Admin',
     miEspacio: 'My Space',
     logoutBtn: 'Log Out',
-    panelTitle: 'Administration Portal'
+    panelTitle: 'Administration Portal',
+    brandTitle: 'Plato 400 Years',
+    gobTitle: 'Government of Magdalena'
   }
 } as const;
 

@@ -32,6 +32,12 @@ interface HistoriaLocaleContent {
   ctaCulture: string;
   ctaHotels: string;
   ctaBackHome: string;
+  chapterWord: string;
+  chapterPrefix: string;
+  goToChapterAria: string;
+  factsAria: string;
+  dotsNavAria: string;
+  galleryAria: string;
 }
 
 const HISTORIA_CONTENT: Record<'es' | 'en', HistoriaLocaleContent> = {
@@ -138,7 +144,13 @@ const HISTORIA_CONTENT: Record<'es' | 'en', HistoriaLocaleContent> = {
     closingDesc: 'Explora nuestras tradiciones vivas, lugares emblemáticos y los hospedajes que reciben al viajero a orillas del Magdalena.',
     ctaCulture: 'Explorar Cultura y Pueblo',
     ctaHotels: 'Ver Hoteles en Plato',
-    ctaBackHome: 'Volver al Inicio'
+    ctaBackHome: 'Volver al Inicio',
+    chapterWord: 'Capítulo',
+    chapterPrefix: 'CAPÍTULO',
+    goToChapterAria: 'Ir al capítulo',
+    factsAria: 'Datos históricos clave',
+    dotsNavAria: 'Navegación de capítulos',
+    galleryAria: 'Galería de grabados históricos'
   },
   en: {
     breadcrumbHome: 'Home',
@@ -170,8 +182,8 @@ const HISTORIA_CONTENT: Record<'es' | 'en', HistoriaLocaleContent> = {
       {
         id: 'cap-zarate',
         roman: 'II',
-        shortLabel: 'The Chimilas',
-        era: 'Ancestral Origins',
+        shortLabel: 'Zárate & Plato Viejo',
+        era: 'First Settlement',
         title: 'The village of Zárate and Chief “Plato Viejo”',
         image: '/historia/cap2-zarate.webp',
         icon: 'home',
@@ -243,7 +255,13 @@ const HISTORIA_CONTENT: Record<'es' | 'en', HistoriaLocaleContent> = {
     closingDesc: 'Discover our living cultural traditions, landmarks, and the hotels welcoming travelers along the Magdalena River.',
     ctaCulture: 'Explore Culture & Town',
     ctaHotels: 'Browse Hotels in Plato',
-    ctaBackHome: 'Back to Home'
+    ctaBackHome: 'Back to Home',
+    chapterWord: 'Chapter',
+    chapterPrefix: 'CHAPTER',
+    goToChapterAria: 'Go to chapter',
+    factsAria: 'Key historical facts',
+    dotsNavAria: 'Chapters navigation',
+    galleryAria: 'Historical engravings gallery'
   }
 };
 

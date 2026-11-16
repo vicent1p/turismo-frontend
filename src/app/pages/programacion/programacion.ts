@@ -82,6 +82,9 @@ export interface ProgramacionLocaleContent {
   ctaHotels: string;
   ctaCulture: string;
   ctaBackHome: string;
+  magazineSrOnly: string;
+  metricsAria: string;
+  filtersAria: string;
 }
 
 const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
@@ -175,7 +178,10 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
       'Explora hoteles, cabañas y restaurantes disponibles en el municipio y no te pierdas ninguno de los días de programación.',
     ctaHotels: 'Ver hoteles y hospedajes',
     ctaCulture: 'Nuestra historia y cultura',
-    ctaBackHome: 'Volver al inicio'
+    ctaBackHome: 'Volver al inicio',
+    magazineSrOnly: 'Lanzamiento revista 400 años: Publicación conmemorativa oficial de cuatro siglos',
+    metricsAria: 'Métricas oficiales de la celebración',
+    filtersAria: 'Filtrar programación por fecha'
   },
   en: {
     breadcrumbHome: 'Home',
@@ -267,7 +273,10 @@ const PROGRAMACION_CONTENT: Record<AppLang, ProgramacionLocaleContent> = {
       'Explore hotels, country lodges, and typical restaurants available in the municipality so you do not miss any event on the schedule.',
     ctaHotels: 'See hotels and accommodations',
     ctaCulture: 'Our history and culture',
-    ctaBackHome: 'Back to home'
+    ctaBackHome: 'Back to home',
+    magazineSrOnly: '400 Years Magazine Launch: Official commemorative four-century publication',
+    metricsAria: 'Official celebration key metrics',
+    filtersAria: 'Filter schedule by date'
   }
 };
 

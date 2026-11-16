@@ -98,7 +98,7 @@
             <!-- Badges overlay (estrellas estilo home/pdf) -->
             <div class="photo-badges-overlay">
               <div class="card-stars-wrap">
-                <span class="badge-rating-gold" [attr.aria-label]="(item.estrellas || 3) + ' estrellas'">
+                <span class="badge-rating-gold" [attr.aria-label]="(item.estrellas || 3) + ' ' + content().starsWord">
                   ★ {{ item.estrellas || 3 }} / 5
                 </span>
               </div>
@@ -146,7 +146,7 @@
               <app-social-icon network="instagram" [href]="getInstagramLink(item)" [label]="'Instagram ' + item.nombre" title="Instagram" />
               <app-social-icon network="x" [href]="getXLink(item)" [label]="'X ' + item.nombre" title="X" />
               <app-social-icon network="tiktok" [href]="getTikTokLink(item)" [label]="'TikTok ' + item.nombre" title="TikTok" />
-              <app-social-icon network="web" [href]="getPaginaWebLink(item)" [label]="'Página web ' + item.nombre" title="Página web oficial" />
+              <app-social-icon network="web" [href]="getPaginaWebLink(item)" [label]="content().webLabel + ' ' + item.nombre" [title]="content().webLabel" />
             </div>
           </div>
         </article>
@@ -155,37 +155,37 @@
 
     <!-- CONTROLES DE PAGINACIÓN CENTRADOS (Página X de Y con flechas « ‹ › ») -->
     @if (totalPages() > 1) {
-      <nav class="lugares-pagination" aria-label="Navegación de páginas de lugares">
+      <nav class="lugares-pagination" [attr.aria-label]="content().paginationNavAria">
         <button
           type="button"
           class="page-nav-btn"
           [disabled]="currentPage() === 1"
           (click)="firstPage()"
-          aria-label="Primera página"
+          [attr.aria-label]="content().paginationFirstAria"
         >«</button>
         <button
           type="button"
           class="page-nav-btn"
           [disabled]="currentPage() === 1"
           (click)="prevPage()"
-          aria-label="Página anterior"
+          [attr.aria-label]="content().paginationPrevAria"
         >‹</button>
         <span class="page-current-indicator">
-          Página {{ currentPage() }} de {{ totalPages() }}
+          {{ content().paginationPage }} {{ currentPage() }} {{ content().paginationOf }} {{ totalPages() }}
         </span>
         <button
           type="button"
           class="page-nav-btn"
           [disabled]="currentPage() === totalPages()"
           (click)="nextPage()"
-          aria-label="Página siguiente"
+          [attr.aria-label]="content().paginationNextAria"
         >›</button>
         <button
           type="button"
           class="page-nav-btn"
           [disabled]="currentPage() === totalPages()"
           (click)="lastPage()"
-          aria-label="Última página"
+          [attr.aria-label]="content().paginationLastAria"
         >»</button>
       </nav>
     }
@@ -283,7 +283,7 @@
             >
               {{ place.disponible ? content().available : content().unavailable }}
             </span>
-            <div class="modal-stars-row" [attr.aria-label]="(place.estrellas || 0) + ' estrellas'">
+            <div class="modal-stars-row" [attr.aria-label]="(place.estrellas || 0) + ' ' + content().starsWord">
               @for (s of [1, 2, 3, 4, 5]; track s) {
                 <span class="modal-star" [class.on]="s <= (place.estrellas || 0)">★</span>
               }
@@ -320,7 +320,7 @@
             @if (place.tiktok) {
               <app-social-icon network="tiktok" [href]="getTikTokLink(place)" [label]="'TikTok ' + place.nombre" />
             }
-            <app-social-icon network="web" [href]="getPaginaWebLink(place)" [label]="'Página Web ' + place.nombre" />
+            <app-social-icon network="web" [href]="getPaginaWebLink(place)" [label]="content().webLabel + ' ' + place.nombre" [title]="content().webLabel" />
           </div>
         </div>
       </div>
