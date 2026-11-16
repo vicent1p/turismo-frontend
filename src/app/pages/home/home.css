@@ -38,7 +38,7 @@
   padding-left: clamp(24px, 5.5vw, 84px);
   padding-right: 0;
   display: grid;
-  grid-template-columns: minmax(380px, 45%) minmax(0, 55%);
+  grid-template-columns: minmax(460px, 49%) minmax(0, 51%);
   gap: clamp(10px, 1.5vw, 24px);
   align-items: center;
   box-sizing: border-box;
@@ -53,6 +53,7 @@
   align-items: flex-start;
   text-align: left;
   width: 100%;
+  max-width: 620px;
   padding: 0;
   margin-top: 0;
 }
@@ -80,25 +81,28 @@
 .hero-headline {
   margin: 0;
   font-family: 'Spectral', Georgia, serif;
-  line-height: 1.06;
-  width: auto;
+  line-height: 1.05;
+  width: 100%;
+  max-width: 600px;
 }
 
 .headline-p1 {
   display: block;
-  font-size: clamp(2.45rem, 3.8vw, 3.95rem);
+  font-size: clamp(2.85rem, 4.35vw, 4.5rem);
   font-weight: 700;
   color: #2D5A27;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
+  white-space: nowrap;
 }
 
 .headline-p2 {
   display: block;
-  font-size: clamp(2.45rem, 3.8vw, 3.95rem);
+  font-size: clamp(2.85rem, 4.35vw, 4.5rem);
   font-weight: 400;
   font-style: italic;
   color: #D4A52A;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.035em;
+  white-space: nowrap;
 }
 
 .hero-description {
