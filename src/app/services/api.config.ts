@@ -95,11 +95,11 @@ export function getApiBaseUrl(): string {
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
       return 'http://localhost:3000';
     }
-    // Si estamos desplegados en producción en proturismo.magdalena.gov.co o similar
-    return window.location.origin;
+    // Si estamos desplegados en producción
+    return 'https://proturismoapi.magdalena.gov.co';
   }
 
-  return 'https://proturismo.magdalena.gov.co';
+  return 'https://proturismoapi.magdalena.gov.co';
 }
 
 /** Maps backend card type enum (`HOTEL`/`CABANA`/`RESTAURANTE`) to frontend CardType. */
