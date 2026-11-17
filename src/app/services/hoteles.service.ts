@@ -477,24 +477,6 @@ export class HotelesService {
         } catch {}
       }
     });
-
-    // Auto-refrescar cuando el usuario vuelve a la pestaña (Landing page, Lugares o Panel)
-    window.addEventListener('focus', () => {
-      void this.sincronizarDesdeApi();
-    });
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') {
-        void this.sincronizarDesdeApi();
-      }
-    });
-
-    // Polling periódico cada 10s para mantener actualizados administradores, gestores y landing page en tiempo real
-    setInterval(() => {
-      if (typeof document !== 'undefined' && document.visibilityState === 'visible') {
-        void this.sincronizarDesdeApi();
-      }
-    }, 10000);
   }
 
   public notificarCambioGlobal(): void {
