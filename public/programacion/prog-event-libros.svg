@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <radialGradient id="goldGlow" cx="50%" cy="42%" r="56%">
+      <stop offset="0%" stop-color="#e2b12f" />
+      <stop offset="70%" stop-color="#dca824" />
+      <stop offset="100%" stop-color="#cb961c" />
+    </radialGradient>
+  </defs>
+  <!-- Circulo dorado amarillo identico a las insignias oficiales -->
+  <circle cx="80" cy="80" r="78" fill="url(#goldGlow)" />
+  <circle cx="80" cy="80" r="72" fill="none" stroke="rgba(255, 255, 255, 0.28)" stroke-width="1.8" />
+  
+  <!-- Icono de Libro Abierto / Literatura en trazo blanco refinado -->
+  <g transform="translate(80, 80) scale(3.1) translate(-12, -12)" fill="none" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+    <line x1="6" y1="8" x2="8.5" y2="8" stroke-width="1.6" />
+    <line x1="6" y1="12" x2="8.5" y2="12" stroke-width="1.6" />
+    <line x1="15.5" y1="8" x2="18" y2="8" stroke-width="1.6" />
+    <line x1="15.5" y1="12" x2="18" y2="12" stroke-width="1.6" />
+  </g>
+</svg>
