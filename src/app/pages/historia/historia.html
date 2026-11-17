@@ -52,7 +52,29 @@
     <div class="cap-header-line" aria-hidden="true"></div>
   </div>
 
-  <!-- 3. SELECTOR HORIZONTAL DE 8 CAPÍTULOS CON ICONOS, NÚMEROS ROMANOS Y DIVISIÓN DORADA -->
+  <!-- 3. TARJETA DESTACADA DEL CAPÍTULO ACTIVO CON ADORNOS DORADOS EN LAS ESQUINAS -->
+  <article class="capitulo-featured-card">
+    <div class="featured-card-frame">
+      <div class="featured-card-corner-tr" aria-hidden="true"></div>
+      <div class="featured-card-corner-bl" aria-hidden="true"></div>
+      <div class="featured-card-media">
+        <img
+          [src]="activeChapter().image"
+          [alt]="activeChapter().title"
+          class="featured-card-img"
+          loading="eager"
+        />
+      </div>
+
+      <div class="featured-card-body">
+        <span class="featured-card-kicker">{{ content().chapterPrefix }} {{ activeChapter().roman }}</span>
+        <h3 class="featured-card-title">{{ activeChapter().shortLabel }}</h3>
+        <p class="featured-card-text">{{ activeChapter().body }}</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- 4. SELECTOR HORIZONTAL DE 8 CAPÍTULOS CON ICONOS, NÚMEROS ROMANOS Y DIVISIÓN DORADA -->
   <nav class="capitulos-tabs-bar" [attr.aria-label]="content().tocLabel">
     @for (cap of content().chapters; track cap.id) {
       <button
@@ -127,28 +149,6 @@
     }
   </nav>
 
-  <!-- 4. TARJETA DESTACADA DEL CAPÍTULO ACTIVO CON ADORNOS DORADOS EN LAS ESQUINAS -->
-  <article class="capitulo-featured-card">
-    <div class="featured-card-frame">
-      <div class="featured-card-corner-tr" aria-hidden="true"></div>
-      <div class="featured-card-corner-bl" aria-hidden="true"></div>
-      <div class="featured-card-media">
-        <img
-          [src]="activeChapter().image"
-          [alt]="activeChapter().title"
-          class="featured-card-img"
-          loading="eager"
-        />
-      </div>
-
-      <div class="featured-card-body">
-        <span class="featured-card-kicker">{{ content().chapterPrefix }} {{ activeChapter().roman }}</span>
-        <h3 class="featured-card-title">{{ activeChapter().shortLabel }}</h3>
-        <p class="featured-card-text">{{ activeChapter().body }}</p>
-      </div>
-    </div>
-  </article>
-
   <!-- 5. PUNTOS DE PAGINACIÓN INTERACTIVOS (8 DOTS) -->
   <div class="capitulos-dots-nav" [attr.aria-label]="content().dotsNavAria">
     @for (cap of content().chapters; track cap.id; let i = $index) {
@@ -161,26 +161,4 @@
       ></button>
     }
   </div>
-
-  <!-- 6. CUADRÍCULA DE TODAS LAS ILUSTRACIONES HISTÓRICAS (DIBUJOS DIRECTOS, SIN TARJETAS) -->
-  <section class="historia-gallery-grid" [attr.aria-label]="content().galleryAria">
-    @for (cap of galleryChapters(); track cap.id) {
-      <button
-        type="button"
-        class="gallery-item-card"
-        [class.selected]="activeChapterId() === cap.id"
-        (click)="selectChapter(cap.id)"
-        [attr.aria-label]="content().chapterWord + ' ' + cap.roman + ': ' + cap.shortLabel"
-      >
-        <div class="gallery-thumb-wrap">
-          <img
-            [src]="cap.image"
-            [alt]="cap.title"
-            class="gallery-thumb-img"
-            loading="lazy"
-          />
-        </div>
-      </button>
-    }
-  </section>
 </app-editorial-shell>
